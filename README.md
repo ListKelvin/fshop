@@ -3,7 +3,7 @@ A PRJ301 Project
 ## Tech Stack
 Using **Ant Design** for improving UI and some of main stack below:
 <div>
-  <img src="[https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB](https://img.shields.io/badge/-TomCat-yellow)" />
+  <img src="https://img.shields.io/badge/-TomCat-yellow" />
   <img src="https://img.shields.io/badge/Ant%20Design-1890FF?style=for-the-badge&logo=antdesign&logoColor=white" />
   <img src="https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white" />
   <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" />
