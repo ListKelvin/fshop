@@ -1,7 +1,7 @@
 # F-Shop
 A PRJ301 Project
 ## Tech Stack
-Using **Ant Design** for improving UI and some of main stack below:
+Using **Bootstrap 5** for improving UI and some of main stack below:
 <div>
   <img src="https://img.shields.io/badge/-TomCat-yellow" />
   <img src="https://img.shields.io/badge/-MVC-blue" />
