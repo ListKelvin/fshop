@@ -1,5 +1,88 @@
-# F-Shop
-A PRJ301 Project
+# Introduction to F-Shop
+
+_A PRJ301 Assignment Project_
+## 1. Requirements:
+
+This is an online shopping web application for customer to buy cloth from the F-Shop online store.
+
+- **What is this project name**: F-Shop.
+- **Who use the system**: Customer whom visits website for shopping and buying product from shop and admin whom manage the shop.
+- **What you'll build**: We'll make F-Shop online shopping web application is easy to navigate and user-friendly. Customers can browse through the different categories of clothing, including tops, bottoms, dresses, and accessories, and filter their search results based on size, color, style, and price range. Product pages include detailed descriptions, multiple images, and customer reviews, giving shoppers all the information they need to make an informed purchase.
+- **Prerequisites**: None. This project is a great practice for us to learn how a website work and behind the scene of an application.
+- **How long**: This project takes less than ten week to complete.
+
+## Some features: 
+#### UML use case diagram:
+ ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/978f8a97-710f-4d30-a9b6-924ed3020c2c)
+
+#### Functional Diagram:
+
+| **Use case**               | **Actor**       | **Description**                                                                                                                    |
+|----------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
+| Register                   | Customer        | Create a new account, Constraint by filling all necessary fields with valid information                                            |
+| Login                      | Customer, Admin | Access personal account, Constraint by login function                                                                              |
+| Manage account information | Customer        | Allow customer to view or update personal information, Validate information fields, Constraint by login function                   |
+| Searching Product          | Customer, Admin | Function that supports user finding products by insert keyword that matching product name                                          |
+| View product information   | Customer, Admin | Function return all product from database then display it to view                                                                  |
+| Add to cart                | Customer        | Adding customer selected products to customer cart, Using session to save cart product, Constraint by login function               |
+| Update cart                | Customer        | Functions support add, remove and update products quantity in cart                                                                 |
+| Buy now                    | Customer        | Function that create an order of the selected product.Constraint by login function and have all necessary customer information     |
+| Checkout                   | Customer        | Create order for all products in customer cart. Constraint by login function and have all necessary customer information           |
+| Create new product         | Shop            | Create new product to database. Constraint by filling all necessary fields with valid information. Authorization  role shop        |
+| Update product             | Shop            | Update product information in database. Constraint by filling all necessary fields with valid information. Authorization  role shop|
+| Create new category        | Shop            | Create new category to database. Constraint by filling all necessary fields with valid information. Authorization role shop        |
+| Update order status        | Shop            | Function support change order status. Authorization role shop                                                                      |
+
+
+
+
+## 2. Wireframe
+  **Link userFlow:** [UserFlow](https://www.figma.com/file/qOdcYrZvNDw2W598R0Erm7/UserFlow-F-SHOP?type=whiteboard&node-id=0%3A1&t=H5dp3dI9V4RwEx9K-1)
+  ### User Flow:
+  - Customer role:<br>
+ ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/87028d16-02d1-4166-8a91-2740a4211cc8)
+
+  
+  ### A quick look
+  __To see more reviews our figma:__ [Figma](https://www.figma.com/file/0FlAcFU8wu56wJUJJArbcs/PRJ-F-SHOP?type=design&node-id=0%3A1&t=Wvqv2I56Q1ED0Rm3-1)<br>
+   Below are some screenshot:
+- Landing page
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/61f1f0b1-8ec6-45cc-84a8-afbf0c5a56cd)
+
+- Login page
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/27cb599e-7207-49c8-9bde-6b56c61eb8bc)
+
+- Register page
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/c237429b-9668-486f-9628-fd655db69bc4)
+
+- Home page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/9a037a85-617b-42aa-8502-a7746d64b6e4)
+
+- Product Information<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/8640f492-fb72-498a-8e7b-b34c0373685a)
+
+- Cart page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/b99eac1f-8611-49e9-bd71-4a7f15ccab04)
+
+- Order page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/9ebcd7e3-8e55-4c25-b10d-5997fb1fc044)
+
+- Manage product [admin]
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/04cc29bb-2cb0-4590-93d8-263ec7ba6be1)
+<br>
+
+
+## 3. Database design:
+**Enter link for better view:**  [UML](https://lucid.app/lucidchart/fc91acdf-a287-445d-9e45-d049e9bd632d/edit?viewport_loc=64%2C-179%2C3840%2C1752%2C0_0&invitationId=inv_686281d8-d00e-41f0-bc58-fe309c93f50e)<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/b019da40-bbbb-4830-ba13-49b49a190836)<br>
+**Enter link for better view:**  [ERD](https://dbdiagram.io/d/646c2f85dca9fb07c491dc7e)<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/bc063149-78d7-4a87-91ce-b8bfe44a238b)
+## 4. System design
+ **UPCOMING**
+## 5. Conclusion and Discussion
+ **UPCOMING**
+## Installation
+ **UPCOMING**
 ## Tech Stack
 Using **Bootstrap 5** for improving UI and some of main stack below:
 <div>
@@ -9,8 +92,7 @@ Using **Bootstrap 5** for improving UI and some of main stack below:
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
 </div>
 
-
 ## About us
   - Nguyễn Gia Linh
   - Phạm Công Minh
-  - 
+  - Missing
