@@ -17,7 +17,7 @@ public class DBConnection {
      public Connection getConnection() throws Exception {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Wish;instanceName=MSSQLSERVER";
+            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=fshop;instanceName=MSSQLSERVER";
             Connection conn = DriverManager.getConnection(dbURL,"sa","password");
             return conn;
         } catch (ClassNotFoundException ex) {

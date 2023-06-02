@@ -1,5 +1,6 @@
 # F-Shop
 A PRJ301 Project
+
 ## Tech Stack
 Using **Bootstrap 5** for improving UI and some of main stack below:
 <div>
@@ -13,4 +14,4 @@ Using **Bootstrap 5** for improving UI and some of main stack below:
 ## About us
   - Nguyễn Gia Linh
   - Phạm Công Minh
-  - Thằng BOT
+  - 
