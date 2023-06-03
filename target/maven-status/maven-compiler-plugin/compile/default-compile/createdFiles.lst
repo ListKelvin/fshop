@@ -1,1 +1,7 @@
+DTO\AccountInfo.class
+Utils\NetUtils.class
+Utils\DBUtils.class
 Connection\DBConnection.class
+Utils\APIWrapper.class
+Servlet\AccountServlet.class
+Servlet\FacebookServlet.class

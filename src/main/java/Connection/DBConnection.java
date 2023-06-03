@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author 03lin
  */
 public class DBConnection {
-     public Connection getConnection() throws Exception {
+     public static Connection getConnection() throws Exception {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=fshop;instanceName=MSSQLSERVER";
