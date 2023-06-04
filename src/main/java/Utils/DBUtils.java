@@ -67,7 +67,7 @@ public class DBUtils {
                 String user = rs.getString(2);
                 
                 AccountInfo accountInfo = new AccountInfo();
-                accountInfo.setUsername(user);
+                accountInfo.setName(user);
                 return accountInfo;
             }
         } catch (SQLException ex) {
@@ -143,7 +143,7 @@ public class DBUtils {
                 String faceLink = rs.getString(5);
                 
                 AccountInfo accountInfo = new AccountInfo();
-                accountInfo.setUsername(user);
+                accountInfo.setName(user);
                 accountInfo.setFacebookID(faceId.trim());
                 accountInfo.setLink(faceLink);
                 

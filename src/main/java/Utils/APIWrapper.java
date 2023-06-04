@@ -8,6 +8,9 @@ package Utils;
 import DTO.AccountInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Version;
 
 /**
  *
@@ -16,7 +19,7 @@ import com.google.gson.JsonObject;
 public class APIWrapper {
     private static String appID = "6126359010808248";
     private static String appSerect = "914d2033816e46ae3d8c0b6ea0347cf6";
-    private static String redirectURL = "http://localhost:8080/PRJ301_FShop/FacebookServlet";
+    private static String redirectURL = "https://localhost:8443/PRJ301_FShop/FacebookServlet";
     private String accessToken;
     private Gson gson;
 
@@ -30,7 +33,7 @@ public class APIWrapper {
     
     
     public static String getDiaLogLink(){
-        String dialogLink = "https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s";
+        String dialogLink = "https://www.facebook.com/v17.0/dialog/oauth?client_id=%s&redirect_uri=%s";
         return String.format(dialogLink, appID, redirectURL);
     }
     
@@ -54,7 +57,7 @@ public class APIWrapper {
         String infoUrl= "https://graph.facebook.com/me?access_token=%s";
         infoUrl = String.format(infoUrl, this.accessToken);
         String result = NetUtils.GetResult(infoUrl);
-        
+
         AccountInfo accountInfo = gson.fromJson(result, AccountInfo.class);
         return accountInfo;
     }

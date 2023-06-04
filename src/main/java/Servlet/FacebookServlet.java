@@ -26,8 +26,11 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/FacebookServlet")
 public class FacebookServlet extends HttpServlet{
+    private static final long serialVersionUID = 1L;
     protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        
         response.setContentType("text/html;charset=UTF-8");
+        
         PrintWriter out = response.getWriter();
         try {
             String code = request.getParameter("code");
@@ -39,7 +42,7 @@ public class FacebookServlet extends HttpServlet{
             AccountInfo accountInfo = wrapper.getAccountInfo();
            
             if(DBUtils.login(accountInfo.getFacebookID()) == null){
-                DBUtils.register(accountInfo.getUsername(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+                DBUtils.register(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
             }
             
             HttpSession session = request.getSession();

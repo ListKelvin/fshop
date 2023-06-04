@@ -17,11 +17,12 @@
             UserName <input type="text" name="txtUser" value="" /> <br/>
             Password <input type="password" name="txtPass" value=""> <br/>
             <input type="submit" name="btAction" value="Login"/>
-            
+
             Not have account? Register <a href="register.jsp">here<a/>
-                
+
                 <h4>${requestScope.message}</h4>   
         </form>
-                <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a>
-    </body>
+            <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a>
+        
+</body>
 </html>

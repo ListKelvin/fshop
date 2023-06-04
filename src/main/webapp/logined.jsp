@@ -15,9 +15,9 @@
     <body>
     <c:set var="user" value="${sessionScope.user}"></c:set>
     
-    <h1>Hello, ${user.username}</h1>
+    <h1>Hello, ${user.name}</h1>
     
-    <p>Your username: ${user.username}</p>
+    <p>Your username: ${user.name}</p>
     <c:if test="${user.facebookID == null}">
         <p>you login using normal account</p>
     </c:if>
