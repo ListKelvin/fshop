@@ -18,22 +18,18 @@ public class UserInfo {
         private String avatar;
 	private Date dob;
         private String gender;
-        private String email;
         private String phone;
         private String address;
-        private String role;
         private String account_id;
 
-    public UserInfo(int id, String name, String avatar, Date dob, String gender, String email, String phone, String address, String role, String account_id) {
+    public UserInfo(int id, String name, String avatar, Date dob, String gender, String phone, String address, String account_id) {
         this.id = id;
         this.name = name;
         this.avatar = avatar;
         this.dob = dob;
         this.gender = gender;
-        this.email = email;
         this.phone = phone;
         this.address = address;
-        this.role = role;
         this.account_id = account_id;
     }
         
@@ -79,14 +75,6 @@ public class UserInfo {
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -101,14 +89,6 @@ public class UserInfo {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getAccount_id() {
