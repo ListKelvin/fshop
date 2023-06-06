@@ -8,7 +8,6 @@ and open the template in the editor.
     Author     : Minh
 */
 
-
 .bg{
     background-color: $green-primary;
     background-position: center;
@@ -18,7 +17,6 @@ and open the template in the editor.
     &.check{
         border-radius: 100% !important;
     }
-    
     .btn-styled{
          @include button;
     }
