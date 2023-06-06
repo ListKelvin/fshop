@@ -9,6 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+
         <title>F-Shop</title>
     </head>
     <body>
@@ -23,5 +26,13 @@
                 <h4>${requestScope.message}</h4>   
         </form>
         <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
+
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <script>
+            function onSignIn(googleUser) {
+                var id_token = googleUser.getAuthResponse().id_token;
+                // Send the ID token to your server and validate it
+            }
+        </script>
     </body>
 </html>

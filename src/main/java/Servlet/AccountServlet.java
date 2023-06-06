@@ -20,6 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
 /**
  *
  * @author 03lin
@@ -31,6 +35,7 @@ public class AccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+
             String redirectPage = "index.jsp";
             String username = request.getParameter("txtUser");
             String password = request.getParameter("txtPass");
@@ -62,7 +67,7 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("messagePassword", "Password is required at least 8 character with at least one uppercase, "
                             + "one lowercase, one number and one specific character");
                     System.out.println("messagePassword");
-                     redirectPage = "register.jsp";
+                    redirectPage = "register.jsp";
                 } else {
                     AccountInfo a = DBUtils.checkEmail(email);
                     if (a != null) {
@@ -96,8 +101,20 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String idToken = request.getParameter("id_token");
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+                .setAudience(Collections.singletonList(CLIENT_ID))
+                .build();
         try {
             processRequest(request, response);
+            GoogleIdToken token = verifier.verify(idToken);
+            if (token != null) {
+                Payload payload = token.getPayload();
+                String email = payload.getEmail();
+                // Authenticate the user and redirect to the home page
+            } else {
+                // Invalid token
+            }
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
