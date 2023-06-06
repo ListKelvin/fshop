@@ -17,8 +17,13 @@
         <h3 class="text-primary">Register</h3>
         <form action="AccountServlet" method="POST">
             UserName <input type="text" name="txtUser" value="" /> <br/>
+            <h4>${requestScope.messageUserName}</h4> 
+            Email <input type="text" name="txtEmail" value="" /> <br/>
+            <h4>${requestScope.messageEmail}</h4> 
             Password <input type="password" name="txtPass" value=""> <br/>
+            <h4>${requestScope.messagePassword}</h4> 
             <input type="submit" name="btAction" value="Register"/> 
+            <h4>${requestScope.message}</h4>   
         </form>
 
 

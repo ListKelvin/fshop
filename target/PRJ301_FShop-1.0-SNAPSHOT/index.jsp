@@ -14,7 +14,7 @@
     <body>
         <h3>Login</h3>
         <form action="AccountServlet" method="POST">
-            UserName <input type="text" name="txtUser" value="" /> <br/>
+            Email <input type="text" name="txtEmail" value="" /> <br/>
             Password <input type="password" name="txtPass" value=""> <br/>
             <input type="submit" name="btAction" value="Login"/>
 

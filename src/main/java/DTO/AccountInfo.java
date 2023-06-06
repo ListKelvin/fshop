@@ -19,6 +19,7 @@ public class AccountInfo {
     private String facebookID;
     private String link;
     private String name;
+    private String email;
     private String role;
 
     public String getId() {
@@ -60,6 +61,16 @@ public class AccountInfo {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
 
    
    

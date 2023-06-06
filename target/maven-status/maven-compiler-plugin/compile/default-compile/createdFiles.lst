@@ -8,6 +8,7 @@ Utils\APIWrapper.class
 Utils\ProductUtils.class
 DTO\UserInfo.class
 DTO\CategoryInfo.class
+Utils\Validation.class
 Connection\DBConnection.class
 Servlet\AccountServlet.class
 Servlet\FacebookServlet.class
