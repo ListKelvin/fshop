@@ -9,9 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
         <title>F-Shop</title>
     </head>
     <body>
@@ -27,12 +25,26 @@
         </form>
         <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
 
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <script>
-            function onSignIn(googleUser) {
-                var id_token = googleUser.getAuthResponse().id_token;
-                // Send the ID token to your server and validate it
-            }
-        </script>
+  
+        <div
+            id="g_id_onload"
+            data-client_id="15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:8080/PRJ301_FShop/AccountServlet"
+            data-itp_support="true"
+            ></div>
+
+        <div
+            class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="filled_blue"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left"
+            ></div>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+ 
     </body>
 </html>

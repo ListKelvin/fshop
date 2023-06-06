@@ -13,14 +13,23 @@ import java.sql.Date;
  * @author 03lin
  */
 public class AccountInfo {
-    @SerializedName(value="accountId")
+
+    @SerializedName(value = "accountId")
     private String id;
-    @SerializedName(value="id")
+    @SerializedName(value = "id")
     private String facebookID;
     private String link;
     private String name;
     private String email;
     private String role;
+
+    public AccountInfo() {
+    }
+
+    public AccountInfo(String email, String name) {
+        this.name = name;
+        this.email = email;
+    }
 
     public String getId() {
         return id;
@@ -69,9 +78,5 @@ public class AccountInfo {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 
-   
-   
 }

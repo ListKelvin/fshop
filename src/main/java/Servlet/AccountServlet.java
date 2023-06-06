@@ -7,6 +7,7 @@ package Servlet;
 
 import DTO.AccountInfo;
 import Utils.DBUtils;
+import Utils.GoogleSignIn;
 import Utils.Validation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,12 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import java.util.Collection;
-import org.codehaus.jackson.JsonFactory;
-
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+//
+//import java.util.Collections;
+//import org.codehaus.jackson.JsonFactory;
 /**
  *
  * @author 03lin
@@ -43,6 +44,11 @@ public class AccountServlet extends HttpServlet {
             String password = request.getParameter("txtPass");
             String email = request.getParameter("txtEmail");
             String action = request.getParameter("btAction");
+            String credential = request.getParameter("credential");
+       
+            AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
+            
+            log(ggAcc.getEmail());
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
                 if (accountInfo == null) {
@@ -104,20 +110,20 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idToken = request.getParameter("id_token");
-        
-        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(trueansport, JsonFactory)
-                .setAudience(Collections.singletonList(CLIENT_ID))
-                .build();
+
+//        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, JsonFactory)
+//                .setAudience(Collections.singletonList("15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"))
+//                .build();
         try {
-            processRequest(request, response);
-            GoogleIdToken token = verifier.verify(idToken);
-            if (token != null) {
-                Payload payload = token.getPayload();
-                String email = payload.getEmail();
-                // Authenticate the user and redirect to the home page
-            } else {
-                // Invalid token
-            }
+//            processRequest(request, response);
+//            GoogleIdToken token = verifier.verify(idToken);
+//            if (token != null) {
+//                Payload payload = token.getPayload();
+//                String email = payload.getEmail();
+//                // Authenticate the user and redirect to the home page
+//            } else {
+//                // Invalid token
+//            }
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
