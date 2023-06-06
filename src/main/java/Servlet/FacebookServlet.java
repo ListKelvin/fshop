@@ -25,35 +25,38 @@ import javax.servlet.http.HttpSession;
  * @author 03lin
  */
 @WebServlet("/FacebookServlet")
-public class FacebookServlet extends HttpServlet{
+public class FacebookServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
-    protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         try {
             String code = request.getParameter("code");
-            
+
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
             wrapper.setAccessToken(accessToken);
-            
+
             AccountInfo accountInfo = wrapper.getAccountInfo();
-           
-            if(DBUtils.login(accountInfo.getFacebookID()) == null){
-                DBUtils.register(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+
+            if (DBUtils.login(accountInfo.getFacebookID()) == null) {
+                DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
             }
-            
+
             HttpSession session = request.getSession();
             session.setAttribute("user", accountInfo);
-            
-             RequestDispatcher rd = request.getRequestDispatcher("logined.jsp");
+
+            RequestDispatcher rd = request.getRequestDispatcher("logined.jsp");
             rd.forward(request, response);
-        } finally{
+        } finally {
             out.close();
         }
-}
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
