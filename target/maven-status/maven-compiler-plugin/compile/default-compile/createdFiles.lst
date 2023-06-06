@@ -1,7 +1,13 @@
+Utils\UserUtils.class
 DTO\AccountInfo.class
+DTO\CartInfo.class
 Utils\NetUtils.class
+DTO\ProductInfo.class
 Utils\DBUtils.class
-Connection\DBConnection.class
 Utils\APIWrapper.class
+Utils\ProductUtils.class
+DTO\UserInfo.class
+DTO\CategoryInfo.class
+Connection\DBConnection.class
 Servlet\AccountServlet.class
 Servlet\FacebookServlet.class

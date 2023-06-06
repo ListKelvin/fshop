@@ -78,9 +78,16 @@
             <version>2.3.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.3.0</version>
+        </dependency>
 
     </dependencies>
 
+ 
     <build>
         <plugins>
             <plugin>
@@ -128,7 +135,61 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--Sass here-->
+            <!--            <plugin>
+                <groupId>io.github.cleydyr</groupId>
+                <artifactId>dart-sass-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-css-using-sass</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile-sass</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+            
+            <!--            <plugin>
+                <groupId>com.github.warmuuh</groupId>
+                <artifactId>libsass-maven-plugin</artifactId>
+                <version>libsass_3.4.4</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <inputPath>${basedir}/src/main/scss/</inputPath>
+                    <outputPath>${basedir}/target/</outputPath>
+                    <includePath>${basedir}/src/main/scss/plugins/</includePath>
+                </configuration>
+            </plugin>-->
+<!--            <plugin>
+                <groupId>com.gitlab.haynes</groupId>
+                <artifactId>libsass-maven-plugin</artifactId>
+                <version>0.2.29</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <inputPath>${basedir}/src/main/sass/</inputPath>
+                    <outputPath>${basedir}/target/</outputPath>
+                    <includePath>${basedir}/src/main/sass/plugins/</includePath>
+                </configuration>
+            </plugin>-->
+
         </plugins>
+    
     </build>
     <pluginRepositories>
         <pluginRepository>

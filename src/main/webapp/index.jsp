@@ -22,7 +22,6 @@
 
                 <h4>${requestScope.message}</h4>   
         </form>
-            <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a>
-        
-</body>
+        <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
+    </body>
 </html>
