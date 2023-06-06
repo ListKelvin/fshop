@@ -95,4 +95,4 @@ Using **Bootstrap 5** for improving UI and some of main stack below:
 ## About us
   - Nguyễn Gia Linh
   - Phạm Công Minh
-  - Missing
+  - Quản Nguyễn Duy An
