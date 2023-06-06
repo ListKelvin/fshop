@@ -23,6 +23,8 @@ import javax.servlet.http.HttpSession;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import java.util.Collection;
+import org.codehaus.jackson.JsonFactory;
 
 /**
  *
@@ -102,7 +104,8 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idToken = request.getParameter("id_token");
-        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+        
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(trueansport, JsonFactory)
                 .setAudience(Collections.singletonList(CLIENT_ID))
                 .build();
         try {
