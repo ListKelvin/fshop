@@ -12,3 +12,4 @@ Utils\Validation.class
 Connection\DBConnection.class
 Servlet\AccountServlet.class
 Servlet\FacebookServlet.class
+.netbeans_automatic_build
