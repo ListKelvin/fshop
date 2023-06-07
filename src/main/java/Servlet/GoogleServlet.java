@@ -40,7 +40,7 @@ public class GoogleServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String credential = request.getParameter("credential");
-            log(credential);
+   
             AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
             if (DBUtils.checkEmail(ggAcc.getEmail()) == null) {
                 DBUtils.registerByGG(ggAcc.getEmail(), ggAcc.getName().trim());

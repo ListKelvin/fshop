@@ -1,2 +1,68 @@
-body{background:blue}
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2023, 12:52:25 PM
+    Author     : Minh
+*/
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Play:wght@400;700&display=swap");
+/*components*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2023, 4:56:58 PM
+    Author     : Minh
+*/
+/*pages*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2023, 2:32:26 PM
+    Author     : Minh
+*/
+.bg {
+  background-color: #B8FFD0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  .bg.check {
+    border-radius: 100% !important; }
+  .bg .btn-styled {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*change to variable*/
+    gap: 10px;
+    padding: 1.035rem;
+    background: #DFBAF7;
+    color: #1B171E;
+    /*change to variable*/
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 10px;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 42px; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2023, 9:20:57 PM
+    Author     : Minh
+*/
+
 /*# sourceMappingURL=index.css.map */

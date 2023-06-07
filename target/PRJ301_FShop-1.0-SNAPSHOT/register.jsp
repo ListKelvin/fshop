@@ -14,6 +14,7 @@
         <title>Register</title>
     </head>
     <body>
+        
         <h3 class="text-primary">Register</h3>
         <form action="AccountServlet" method="POST">
             UserName <input type="text" name="txtUser" value="" /> <br/>
