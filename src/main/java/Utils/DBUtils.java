@@ -168,6 +168,42 @@ public class DBUtils {
         return false;
     }
      
+     
+       public static boolean registerByGG(String email, String username) {
+        PreparedStatement stm = null;
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+            String sql = "INSERT INTO [account](email,user_name)" + "VALUES (?,?)";
+            stm = conn.prepareStatement(sql);
+           
+            stm.setString(1, email);
+            stm.setString(2, username);
+     
+            
+            int row = stm.executeUpdate();
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stm != null) {
+                    stm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+     
       public static AccountInfo login(String facebookID) {
         PreparedStatement stm = null;
         Connection conn = null;

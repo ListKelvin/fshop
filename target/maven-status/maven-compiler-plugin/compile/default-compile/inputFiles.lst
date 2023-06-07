@@ -1,5 +1,8 @@
 D:\java\PRJ301_FShop\src\main\java\Utils\NetUtils.java
 D:\java\PRJ301_FShop\src\main\java\DTO\UserInfo.java
+D:\java\PRJ301_FShop\src\main\java\Servlet\GoogleServlet.java
+D:\java\PRJ301_FShop\src\main\java\Servlet\CreateProductServlet.java
+D:\java\PRJ301_FShop\src\main\java\Servlet\AddToCartServlet.java
 D:\java\PRJ301_FShop\src\main\java\Utils\UserUtils.java
 D:\java\PRJ301_FShop\src\main\java\Utils\ProductUtils.java
 D:\java\PRJ301_FShop\src\main\java\Utils\Validation.java
@@ -8,6 +11,7 @@ D:\java\PRJ301_FShop\src\main\java\DTO\AccountInfo.java
 D:\java\PRJ301_FShop\src\main\java\DTO\CategoryInfo.java
 D:\java\PRJ301_FShop\src\main\java\DTO\CartInfo.java
 D:\java\PRJ301_FShop\src\main\java\Servlet\FacebookServlet.java
+D:\java\PRJ301_FShop\src\main\java\Utils\GoogleSignIn.java
 D:\java\PRJ301_FShop\src\main\java\Utils\APIWrapper.java
 D:\java\PRJ301_FShop\src\main\java\Utils\DBUtils.java
 D:\java\PRJ301_FShop\src\main\java\DTO\ProductInfo.java

@@ -8,12 +8,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="style/index.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
         <title>F-Shop</title>
     </head>
     <body>
@@ -62,101 +58,30 @@
                                 <label for="floatingInput">Email address</label>
                             </div>
 
-                            <!-- Password input -->
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="password"
+                <h4>${requestScope.message}</h4>   
+        </form>
+        <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
 
-                                    class="form-control"
-                                    name="txtPass" 
-                                    value=""
-                                    placeholder="Password"
-                                    />
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                            <div
-                                class="d-flex justify-content-between align-items-center mb-4"
-                                >
-                                <!-- Checkbox -->
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input check"
-                                        type="checkbox"
-                                        value=""
-                                        id="rememberMe"
-                                        checked
-                                        />
-                                    <label class="form-check-label" For="rememberMe">
-                                        Remember me(Up-coming)
-                                    </label>
-                                </div>
-                                <a href="#!">Forgot password?</a>
-                            </div>
 
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-styled" name="btAction" value="Login">Sign in</button>
-                            <!-- this section for gg sign in or  -->
-                            <hr />
-                            <div
-                                class="divider d-flex align-items-center justify-content-center my-4"
-                                >
-                                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-                            </div>
+        <div
+            id="g_id_onload"
+            data-client_id="15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:8080/PRJ301_FShop/GoogleServlet"
+            data-itp_support="true"
+            ></div>
 
-                            <div
-                                class="divider d-flex align-items-center justify-content-center my-4"
-                                >
-                                <div
-                                    id="g_id_onload"
-                                    data-client_id="15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"
-                                    data-context="signin"
-                                    data-ux_mode="popup"
-                                    data-login_uri="http://localhost:8080/"
-                                    data-itp_support="true"
-                                    data-callback="handleCredentialResponse"
-                                    ></div>
-
-                                <div
-                                    class="g_id_signin"
-                                    data-type="standard"
-                                    data-shape="pill"
-                                    data-theme="filled_blue"
-                                    data-text="signin_with"
-                                    data-size="large"
-                                    data-logo_alignment="left"
-                                    ></div>
-                            </div>
-                            <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
-                            <div
-                                class="divider d-flex align-items-center justify-content-center my-4 fw-bolder"
-                                >
-                                <span>Doesn't have an account? </span>
-                                <a href="register.jsp" class="text-success px-1"> Sign Up for free</a>
-                            </div>
-                            <!-- 
-                            <a
-                              class="btn btn-primary btn-lg btn-block"
-                              style="background-color: #3b5998"
-                              href="#!"
-                              role="button"
-                            >
-                              <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-                            </a>
-                            <a
-                              class="btn btn-primary btn-lg btn-block"
-                              style="background-color: #55acee"
-                              href="#!"
-                              role="button"
-                            >
-                              <i class="fab fa-twitter me-2"></i>Continue with Twitter</a
-                            >
-                            -->
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div
+            class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="filled_blue"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left"
+            ></div>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <script src="./js/bootstrap.bundle.js" crossorigin="anonymous"></script>
+
     </body>
 </html>

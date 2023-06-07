@@ -7,6 +7,7 @@ package Servlet;
 
 import DTO.AccountInfo;
 import Utils.DBUtils;
+import Utils.GoogleSignIn;
 import Utils.Validation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+//import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+//
+//import java.util.Collections;
+//import org.codehaus.jackson.JsonFactory;
 /**
  *
  * @author 03lin
@@ -31,11 +38,13 @@ public class AccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+
             String redirectPage = "index.jsp";
             String username = request.getParameter("txtUser");
             String password = request.getParameter("txtPass");
             String email = request.getParameter("txtEmail");
             String action = request.getParameter("btAction");
+          
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
                 if (accountInfo == null) {
@@ -62,7 +71,7 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("messagePassword", "Password is required at least 8 character with at least one uppercase, "
                             + "one lowercase, one number and one specific character");
                     System.out.println("messagePassword");
-                     redirectPage = "register.jsp";
+                    redirectPage = "register.jsp";
                 } else {
                     AccountInfo a = DBUtils.checkEmail(email);
                     if (a != null) {
@@ -98,6 +107,7 @@ public class AccountServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

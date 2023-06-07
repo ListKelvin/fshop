@@ -8,6 +8,7 @@ package Servlet;
 import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +35,10 @@ public class CreateProductServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         ProductUtils pu = new ProductUtils();
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("create-product.jsp");
+        try{
+            String redirectPage = "create-product.jsp";
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             String category = request.getParameter("category");
@@ -48,18 +50,26 @@ public class CreateProductServlet extends HttpServlet {
             try {
                 price = Float.parseFloat(priceStr);
                 quantity = Integer.parseInt(quantityStr);
-                
+
             } catch (Exception e) {
                 // TODO: handle exception
             }
             try {
                 boolean result = pu.insertProduct(title, description, category, price, image, quantity);
-                if(result){
-                    response.sendRedirect("adminHome.jsp");
+                if (result) {
+                    request.setAttribute("message", "Create Product successfull");
+                    redirectPage = "adminHome.jsp";
+                }else{
+                    request.setAttribute("message", "Update Product fail");
                 }
             } catch (Exception e) {
             }
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
+        } finally {
+            out.close();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
