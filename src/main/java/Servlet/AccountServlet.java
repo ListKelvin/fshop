@@ -44,11 +44,7 @@ public class AccountServlet extends HttpServlet {
             String password = request.getParameter("txtPass");
             String email = request.getParameter("txtEmail");
             String action = request.getParameter("btAction");
-            String credential = request.getParameter("credential");
-       
-            AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
-            
-            log(ggAcc.getEmail());
+          
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
                 if (accountInfo == null) {
@@ -109,21 +105,9 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idToken = request.getParameter("id_token");
-
-//        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, JsonFactory)
-//                .setAudience(Collections.singletonList("15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"))
-//                .build();
         try {
-//            processRequest(request, response);
-//            GoogleIdToken token = verifier.verify(idToken);
-//            if (token != null) {
-//                Payload payload = token.getPayload();
-//                String email = payload.getEmail();
-//                // Authenticate the user and redirect to the home page
-//            } else {
-//                // Invalid token
-//            }
+            processRequest(request, response);
+
         } catch (Exception ex) {
             Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

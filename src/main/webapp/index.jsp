@@ -25,13 +25,13 @@
         </form>
         <a href="<%=APIWrapper.getDiaLogLink()%>">Login via Facebook</a> 
 
-  
+
         <div
             id="g_id_onload"
             data-client_id="15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"
             data-context="signin"
             data-ux_mode="popup"
-            data-login_uri="http://localhost:8080/PRJ301_FShop/AccountServlet"
+            data-login_uri="http://localhost:8080/PRJ301_FShop/GoogleServlet"
             data-itp_support="true"
             ></div>
 
@@ -45,6 +45,6 @@
             data-logo_alignment="left"
             ></div>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
- 
+
     </body>
 </html>

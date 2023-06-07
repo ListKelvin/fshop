@@ -23,12 +23,14 @@ import DTO.AccountInfo;
  */
 public class GoogleSignIn {
 
-//    private static final String CLIENT_ID = "your-client-id.apps.googleusercontent.com";
+    private static final String CLIENT_ID = "15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com";
+
     public static AccountInfo authenticate(String idTokenString) throws IOException {
         try {
             // Set up the Google ID token verifier
             GoogleIdTokenVerifier verifier = new Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance())
-                    .setAudience(Collections.singletonList("15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"))
+                    //                    chỗ này thay bằng biến constant
+                    .setAudience(Collections.singletonList(CLIENT_ID))
                     .build();
 
             // Verify the ID token
@@ -39,9 +41,8 @@ public class GoogleSignIn {
                 // Get the user's Google account information
                 String email = payload.getEmail();
                 String name = (String) payload.get("name");
-                System.out.println(payload.get("given_name"));
-                System.out.println(payload.get("family_name"));
-                String pictureUrl = (String) payload.get("picture");
+             
+//                String pictureUrl = (String) payload.get("picture");
                 return new AccountInfo(email, name);
             } else {
                 // Invalid token
