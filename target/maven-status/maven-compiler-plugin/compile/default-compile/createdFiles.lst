@@ -11,5 +11,6 @@ DTO\UserInfo.class
 DTO\CategoryInfo.class
 Utils\Validation.class
 Connection\DBConnection.class
+Servlet\GoogleServlet.class
 Servlet\AccountServlet.class
 Servlet\FacebookServlet.class
