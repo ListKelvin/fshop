@@ -8,18 +8,18 @@ and open the template in the editor.
     Author     : Minh
 */
 
-
 .bg{
     background-color: $green-primary;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
+
     &.check{
         border-radius: 100% !important;
     }
-    
     .btn-styled{
-         @include button;
+        @include button;
     }
+
+
 }

@@ -8,6 +8,7 @@ Servlet\AddToCartServlet.class
 Utils\DBUtils.class
 Utils\APIWrapper.class
 Utils\ProductUtils.class
+Servlet\UpdateProductServlet.class
 DTO\UserInfo.class
 DTO\CategoryInfo.class
 Utils\Validation.class
