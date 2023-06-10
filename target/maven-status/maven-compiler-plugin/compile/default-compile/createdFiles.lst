@@ -1,6 +1,7 @@
 Utils\UserUtils.class
 DTO\AccountInfo.class
 DTO\CartInfo.class
+Servlet\HomeController.class
 Utils\GoogleSignIn.class
 Utils\NetUtils.class
 DTO\ProductInfo.class
