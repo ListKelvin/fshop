@@ -55,7 +55,7 @@ public class AccountServlet extends HttpServlet {
                     if ((accountInfo.getEmail()).equals("admin123@gmail.com")) {
                         redirectPage = "adminHome.jsp";
                     }
-                    redirectPage = "logined.jsp";
+                    redirectPage = "home.jsp";
                 }
             } else if (action.equals("Register")) {
                 if (!Validation.readNonBlank(username)) {

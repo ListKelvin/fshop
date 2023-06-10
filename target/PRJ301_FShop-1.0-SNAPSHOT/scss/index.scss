@@ -7,10 +7,12 @@ and open the template in the editor.
     Created on : Jun 6, 2023, 12:52:25 PM
     Author     : Minh
 */
+
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Play:wght@400;700&display=swap');
-@import "variable.scss";
+@import "_variable.scss";
 /*components*/
 @import "components/_Button.scss";
 /*pages*/
+@import "home.scss";
 @import "login.scss";
 @import "register.scss";

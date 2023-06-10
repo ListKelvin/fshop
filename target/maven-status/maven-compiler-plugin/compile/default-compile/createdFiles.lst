@@ -1,6 +1,7 @@
 Utils\UserUtils.class
 DTO\AccountInfo.class
 DTO\CartInfo.class
+Servlet\HomeController.class
 Utils\GoogleSignIn.class
 Utils\NetUtils.class
 DTO\ProductInfo.class
@@ -8,6 +9,7 @@ Servlet\AddToCartServlet.class
 Utils\DBUtils.class
 Utils\APIWrapper.class
 Utils\ProductUtils.class
+Utils\CategoryUtils.class
 Servlet\UpdateProductServlet.class
 DTO\UserInfo.class
 DTO\CategoryInfo.class

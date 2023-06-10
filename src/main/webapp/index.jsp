@@ -30,8 +30,8 @@
                     >
                     <div class="col col-sm-7 col-md-6 col-lg-5  col-xxl-5 d-none d-sm-block">
                         <img
-                            src="./assest/Rectangle.png"
-                            class="object-fit-cover border rounded img-fluid"
+                            src="./assest/E-commerce_1.png"
+                            class="object-fit-cover  img-fluid"
                             alt="image"
                             />
                     </div>
@@ -165,12 +165,12 @@
 
             function validatePassword() {
                 var pass = document.getElementById("txtPass").value;
-                if ( pass.length < 2 || pass.length > 120) {
+                if (pass.length < 2 || pass.length > 120) {
                     document.getElementById("passError").innerHTML = "Age must be a number between 18 and 120.";
                     return false;
                 } else {
                     console.log("check run");
-                     document.getElementById("passError").innerHTML = "";
+                    document.getElementById("passError").innerHTML = "";
                 }
                 return true;
             }
