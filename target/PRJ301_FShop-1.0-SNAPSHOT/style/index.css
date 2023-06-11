@@ -30,12 +30,12 @@ and open the template in the editor.
 */
 .wrapper {
   background-color: #D7FF7D !important;
-  color: blue; }
+  /*padding: 1rem 2rem;*/ }
 
 .product {
   border-radius: 10px;
   width: 100%;
-  max-width: 15rem;
+  max-width: 18rem;
   background: transparent;
   transition: 0.2s all; }
   .product .text-eclipse {
@@ -162,5 +162,21 @@ and open the template in the editor.
     line-height: 65px;
     color: #BC6EEE;
     margin-bottom: 2rem; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 10, 2023, 11:21:23 PM
+    Author     : Minh
+*/
+.bgNavbar {
+  background: #BC6EEE;
+  padding: 1rem; }
+
+a {
+  text-decoration: none; }
 
 /*# sourceMappingURL=index.css.map */
