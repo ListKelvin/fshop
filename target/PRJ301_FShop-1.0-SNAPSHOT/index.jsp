@@ -41,7 +41,7 @@
                                   >Login</span
                             >
                         </div>
-                        <form id="login-form" action="AccountServlet" method="POST" onsubmit="return validateEmail() && validatePassword()" >
+                        <form id="login-form" action="Account" method="POST" onsubmit="return validateEmail() && validatePassword()" >
                             <!-- Email input -->
                             <div class="form-floating mb-3">
                                 <input

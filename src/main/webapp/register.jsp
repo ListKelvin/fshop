@@ -21,7 +21,7 @@
                     <div class="card-body w-75 ">
 
                         <h3 class="card-title textStyled">Register</h3>
-                        <form action="AccountServlet" method="POST" class="w-100 d-flex align-items-center justify-content-center flex-column">
+                        <form action="Account" method="POST" class="w-100 d-flex align-items-center justify-content-center flex-column">
                             <div class="form-floating w-100  mb-3">
                                 <input
 

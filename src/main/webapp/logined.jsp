@@ -30,7 +30,7 @@
             <p>FB Link: ${user.link}</p>
         </c:if>
 
-        <c:url value="AccountServlet" var="logOutUrl">
+        <c:url value="Account" var="logOutUrl">
             <c:param name="btAction" value="Logout"/>
         </c:url>
         <a href="${logOutUrl}">Logout</a>

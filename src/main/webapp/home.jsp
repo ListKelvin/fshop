@@ -28,7 +28,7 @@
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
     <link rel="stylesheet" href="style/index.css"/>
 
-    <h1>Hello World!</h1>       
+    <h1>Hello ${user.name}</h1>       
     <section class="container d-flex align-items-center justify-content-center">
         <div class="w-100 bgProduct p-5 h-100">
             <div class="wrapper">
