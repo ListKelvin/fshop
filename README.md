@@ -17,21 +17,28 @@ This is an online shopping web application for customer to buy cloth from the F-
 
 #### Functional Diagram:
 
-| **Use case**               | **Actor**       | **Description**                                                                                                                    |
-|----------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
-| Register                   | Customer        | Create a new account, Constraint by filling all necessary fields with valid information                                            |
-| Login                      | Customer, Admin | Access personal account, Constraint by login function                                                                              |
-| Manage account information | Customer        | Allow customer to view or update personal information, Validate information fields, Constraint by login function                   |
-| Searching Product          | Customer, Admin | Function that supports user finding products by insert keyword that matching product name                                          |
-| View product information   | Customer, Admin | Function return all product from database then display it to view                                                                  |
-| Add to cart                | Customer        | Adding customer selected products to customer cart, Using session to save cart product, Constraint by login function               |
-| Update cart                | Customer        | Functions support add, remove and update products quantity in cart                                                                 |
-| Buy now                    | Customer        | Function that create an order of the selected product.Constraint by login function and have all necessary customer information     |
-| Checkout                   | Customer        | Create order for all products in customer cart. Constraint by login function and have all necessary customer information           |
-| Create new product         | Shop            | Create new product to database. Constraint by filling all necessary fields with valid information. Authorization  role shop        |
-| Update product             | Shop            | Update product information in database. Constraint by filling all necessary fields with valid information. Authorization  role shop|
-| Create new category        | Shop            | Create new category to database. Constraint by filling all necessary fields with valid information. Authorization role shop        |
-| Update order status        | Shop            | Function support change order status. Authorization role shop                                                                      |
+| **Use case**               | **Actor**       | **Description**                                                                                                                                             |
+|----------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Register                   | Customer        | Create a new account, Constraint by filling all necessary fields (email, username, password) with valid information and email is not existed in database    |
+| Login                      | Customer, Admin | Access personal account by email and password. Constraint by register function                                                                              |
+| Login via Facebook         | Customer        | Access personal account via Facebook account by click Login Facebook button, customer do not need to register account                                       |
+| Login via Google           | Customer        | Access personal account via Google account by click Login Google button, customer do not need to register account                                           |
+| View account information   | Customer        | Allow customer to view personal information (address, phone, gender, birthday, email,..). Constraint by login function                                      |
+| Edit account information   | Customer        | Allow customer to change their personal information (address, phone, gender, birthday, email,..). Validate information fields. Constraint by login function |
+| View all products          | Customer, Admin | Function return all product from database then display it to view                                                                                           |
+| Searching Product          | Customer, Admin | Function that supports user finding products by insert keyword that matching product name to search box                                                     |
+| View product detail        | Customer, Admin | Function return the information of selected product from database then display it to view                                                                   |
+| View best seller product   | Customer, Admin | Function that return top 10 products with the highest sales                                                                                                 |
+| Add to cart                | Customer        | Adding customer selected products to customer cart. Using session to save cart product. Clear cart after create order. Constraint by login function         |
+| Update cart                | Customer        | Functions support remove products and update products quantity in cart. Constraint by login function                                                        |
+| Buy now                    | Customer        | Function that create an order of the selected product. Constraint by login function and have all necessary delivery information                             |
+| Checkout                   | Customer        | Create order for all products in customer cart. Constraint by login function and have all necessary delivery information                                    |
+| Create new product         | Admin           | Create new product to database. Constraint by filling all necessary fields with valid information. Authorization  role admin                                |
+| Update product             | Admin           | Update product information in database. Constraint by filling all necessary fields with valid information. Authorization  role admin                        |
+| Create new category        | Admin           | Create new category to database. Constraint by filling all necessary fields with valid information. Authorization role admin                                |
+| Update category            | Admin           | Change category information in database. Constraint by filling all necessary fields with valid information. Authorization role admin                        |
+| Update order status        | Admin           | Function support change order status. Authorization role admin                                                                                              |
+| Export PDF file of orders  | Admin           | Export the order detail from database to PDF file. Authorization role admin                                                                                 |
 
 
 
@@ -78,7 +85,25 @@ This is an online shopping web application for customer to buy cloth from the F-
 **Enter link for better view:**  [ERD](https://dbdiagram.io/d/646c2f85dca9fb07c491dc7e)<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/bc063149-78d7-4a87-91ce-b8bfe44a238b)
 ## 4. System design
- **UPCOMING**
+This project is a shopping cart web application using maven for built tool. Apply the MVC2 model to support the interaction between the user and the website <br>
+**Tool Require:** <br>
+- Netbeans IDE Version 8.2
+- JDK 1.8
+- MSSQL Server
+- Tomcat 8.x.x
+- ... 
+<br>
+
+MVC2 base on MVC model (Model-View-Controller) but more complicated. The MVC2 model offers several advantages. It is easy to test, maintain, extend, and the MVC2 model isolates presentation logic from business logic.<br>
+
+- Model: Represents state (data), and is the lowest layer in the pattern. It responds to requests from the view, and it also responds to instructions from the controller to update itself.
+- View: It is the a place to display your data in a particular form that developer can design its by themselves
+- Controller: Acts as an interface between View and Model. It is responsible for responding to all requests (receiving input and commands) to the Model/View to perform the corresponding interactions. Controller receives input, it performs validation and then performs operations that modify Model's state.<br>
+
+In MVC model 2, one or more servlets (usually one) act as the Controller, Java Beans act as the Model, and JSP pages act as the display (View). The complex logic of the program is written entirely in servlets, which are Java programs. The display only consists of JSP pages with a few simple codes to get the data available, no complicated logic.
+
+When servlet received a request from browser, it will call java bean to interact with the database and return the data throw relevent jsp page to client.
+
 ## 5. Conclusion and Discussion
  **UPCOMING**
 ## Installation
