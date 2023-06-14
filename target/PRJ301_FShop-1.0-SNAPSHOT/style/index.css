@@ -29,25 +29,120 @@ and open the template in the editor.
     Author     : Minh
 */
 .wrapper {
-  background-color: #D7FF7D !important;
+  background-color: #FFD5AA;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 13px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
   /*padding: 1rem 2rem;*/ }
+  .wrapper .headWrapper {
+    padding: 3rem 4rem 0 4rem; }
 
 .product {
   border-radius: 10px;
   width: 100%;
-  max-width: 18rem;
+  max-width: 14rem;
   background: transparent;
-  transition: 0.2s all; }
+  transition: 0.2s all;
+  border: none; }
   .product .text-eclipse {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0; }
+    margin: 0;
+    color: #BC6EEE; }
+  .product .badgeStyle {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    color: #C37DF0;
+    border: 2px solid #C37DF0;
+    border-radius: 28px; }
+  .product .price {
+    color: #FF9B33;
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px; }
   .product:hover {
     background: red;
     opacity: 0.75; }
+
+.category {
+  margin: 100px 0px;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+  .category > h1 {
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 58px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #BC6EEE;
+    margin-bottom: 1rem; }
+  .category .categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+    gap: 20px; }
+
+.categories_card {
+  width: 180px;
+  height: 250px;
+  background: #FFD5AA;
+  border-radius: 35px;
+  text-align: center;
+  padding: 1rem .5rem;
+  transition: 0.3s all ease;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25); }
+  .categories_card img {
+    width: 90%;
+    max-height: 150px;
+    border-radius: 35px;
+    object-fit: cover; }
+  .categories_card h5 {
+    color: #BC6EEE;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 29px; }
+  .categories_card:hover {
+    transform: translateY(-20px); }
+
+@media (max-width: 767px) {
+  .carousel-inner .carousel-item > div {
+    display: none; }
+
+  .carousel-inner .carousel-item > div:first-child {
+    display: block; } }
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex; }
+
+/* medium and up screens */
+@media (min-width: 768px) {
+  .carousel-inner .carousel-item-end.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(25%); }
+
+  .carousel-inner .carousel-item-start.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%); } }
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+  transform: translateX(0); }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -178,5 +273,28 @@ and open the template in the editor.
 
 a {
   text-decoration: none; }
+
+body {
+  background-color: #B8FFD0; }
+
+.textHeading {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 46px;
+  text-transform: uppercase;
+  color: #BC6EEE; }
+
+.linkStyled {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline !important;
+  color: #BC6EEE; }
 
 /*# sourceMappingURL=index.css.map */
