@@ -43,6 +43,7 @@ public class ProductUtils {
                 row.setPrice(rs.getFloat("price"));
                 row.setImage(rs.getString("image"));
                 row.setQuantity(rs.getInt("quantity"));
+                row.setSold(rs.getInt("sold"));
                 row.setSoldOut(rs.getString("sold_out"));
                 products.add(row);
             }
@@ -83,15 +84,59 @@ public class ProductUtils {
                         row.setTitle(rs.getString("title"));
                         row.setDescription(rs.getString("description"));
                         row.setCategoryName(rs.getString("category"));
-                        row.setPrice(rs.getFloat("price"));
+                    row.setPrice(rs.getFloat("price"));
                         row.setImage(rs.getString("image"));
                         row.setSoldOut(rs.getString("sold_out"));
+                        row.setSold(rs.getInt("sold"));
                         row.setPrice(rs.getInt("price") * item.getQuantity());
                         row.setQuantity(item.getQuantity());
                         products.add(row);
                     }
 
                 }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return products;
+    }
+    
+    public static List<ProductInfo> searchProduct(String title) {
+        List<ProductInfo> products = new ArrayList<ProductInfo>();
+        try {
+            con = DBConnection.getConnection();
+            String sql = "SELECT * FROM [product] where title like ? " ;
+            stm = con.prepareStatement(sql);
+            stm.setString(1,"%" + title + "%");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                ProductInfo row = new ProductInfo();
+                row.setId(rs.getInt("id"));
+                row.setTitle(rs.getString("title"));
+                row.setDescription(rs.getString("description"));
+                row.setCategoryName(rs.getString("category"));
+                row.setPrice(rs.getFloat("price"));
+                row.setImage(rs.getString("image"));
+                row.setQuantity(rs.getInt("quantity"));
+                row.setSold(rs.getInt("sold"));
+                row.setSoldOut(rs.getString("sold_out"));
+                products.add(row);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -132,6 +177,7 @@ public class ProductUtils {
                 product.setPrice(rs.getFloat("price"));
                 product.setImage(rs.getString("image"));
                 product.setQuantity(rs.getInt("quantity"));
+                product.setSold(rs.getInt("sold"));
                 product.setSoldOut(rs.getString("sold_out"));
 
             }
