@@ -38,7 +38,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 | Create new category        | Admin           | Create new category to database. Constraint by filling all necessary fields with valid information. Authorization role admin                                |
 | Update category            | Admin           | Change category information in database. Constraint by filling all necessary fields with valid information. Authorization role admin                        |
 | Update order status        | Admin           | Function support change order status. Authorization role admin                                                                                              |
-| Export PDF file of orders  | Admin           | Export the order detail from database to PDF file. Authorization role admin                                                                                 |
+| Export PDF file of orders  | Admin           | (Extend function)Export the order detail from database to PDF file. Authorization role admin                                                                                 |
 
 
 
