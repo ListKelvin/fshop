@@ -83,7 +83,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 **Enter link for better view:**  [UML](https://lucid.app/lucidchart/fc91acdf-a287-445d-9e45-d049e9bd632d/edit?viewport_loc=64%2C-179%2C3840%2C1752%2C0_0&invitationId=inv_686281d8-d00e-41f0-bc58-fe309c93f50e)<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/b019da40-bbbb-4830-ba13-49b49a190836)<br>
 **Enter link for better view:**  [ERD](https://dbdiagram.io/d/646c2f85dca9fb07c491dc7e)<br>
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/bc063149-78d7-4a87-91ce-b8bfe44a238b)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/34e5e930-2430-420a-8d19-1b3e6aadce75)
 ## 4. System design
 This project is a shopping cart web application using maven for built tool. Apply the MVC2 model to support the interaction between the user and the website <br>
 **Tool Require:** <br>
@@ -107,7 +107,19 @@ When servlet received a request from browser, it will call java bean to interact
 ## 5. Conclusion and Discussion
  **UPCOMING**
 ## Installation
- **UPCOMING**
+1. Sass Compiler 
+
+Objectives: CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. So we need a preprocessor can help maintainable CSS.
+
+To put it simply, Sass is a tool that can transform your preprocessed Sass code into standard CSS code that can be used in your website. This process can be accomplished through the terminal using the "sass" command. By specifying the input and output files, Sass will compile the Sass code in the input file and save the resulting CSS code in the output file. For instance, running "sass input.scss output.css" in the terminal will take the Sass file named "input.scss" and convert it into a CSS file called "output.css".
+
+Link setup: https://stackoverflow.com/questions/25965982/how-to-use-sass-with-netbeans-8-0-1
+
+bỏ qua bước install sass trong link setup
+
+Link to download ruby sass(version Ruby+Devkit 3.2.2-1): https://rubyinstaller.org/downloads/
+
+Learn to use sass: https://sass-lang.com/guide
 ## Tech Stack
 Using **Bootstrap 5** for improving UI and some of main stack below:
 <div>
