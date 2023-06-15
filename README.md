@@ -83,7 +83,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 **Enter link for better view:**  [UML](https://lucid.app/lucidchart/fc91acdf-a287-445d-9e45-d049e9bd632d/edit?viewport_loc=64%2C-179%2C3840%2C1752%2C0_0&invitationId=inv_686281d8-d00e-41f0-bc58-fe309c93f50e)<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/b019da40-bbbb-4830-ba13-49b49a190836)<br>
 **Enter link for better view:**  [ERD](https://dbdiagram.io/d/646c2f85dca9fb07c491dc7e)<br>
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/34e5e930-2430-420a-8d19-1b3e6aadce75)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/23ae06ec-89c9-4409-b5a1-785a09a63cd3)
 ## 4. System design
 This project is a shopping cart web application using maven for built tool. Apply the MVC2 model to support the interaction between the user and the website <br>
 **Tool Require:** <br>
