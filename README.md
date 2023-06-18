@@ -54,7 +54,8 @@ This is an online shopping web application for customer to buy cloth from the F-
   
   ### A quick look
   __To see more reviews our figma:__ [Figma](https://www.figma.com/file/0FlAcFU8wu56wJUJJArbcs/PRJ-F-SHOP?type=design&node-id=0%3A1&t=Wvqv2I56Q1ED0Rm3-1)<br>
-   Below are some screenshot:
+   Below are some screenshot
+   #### USER:
 - Landing page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/Screenshot%202023-06-18%20202412.png)
 
@@ -88,6 +89,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 - Edit User Information page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/edit_account_active.png)
 
+#### ADMIN
 - Manage product [admin]<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productlist.png)
 
