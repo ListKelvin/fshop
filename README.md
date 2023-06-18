@@ -49,7 +49,7 @@ This is an online shopping web application for customer to buy cloth from the F-
   **Link userFlow:** [UserFlow](https://www.figma.com/file/qOdcYrZvNDw2W598R0Erm7/UserFlow-F-SHOP?type=whiteboard&node-id=0%3A1&t=H5dp3dI9V4RwEx9K-1)
   ### User Flow:
   - Customer role:<br>
- ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/87028d16-02d1-4166-8a91-2740a4211cc8)
+ ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/CustomerFlow.png)
 
   
   ### A quick look
