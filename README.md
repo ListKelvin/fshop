@@ -12,10 +12,12 @@ This is an online shopping web application for customer to buy cloth from the F-
 - **How long**: This project takes less than ten week to complete.
 
 ## Some features: 
-#### UML use case diagram:
- ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/978f8a97-710f-4d30-a9b6-924ed3020c2c)
-
 #### Functional Diagram:
+**UPDATE**
+## Customer:
+
+## Admin:
+
 
 | **Use case**               | **Actor**       | **Description**                                                                                                                                             |
 |----------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -85,50 +87,13 @@ This is an online shopping web application for customer to buy cloth from the F-
 **Enter link for better view:**  [ERD](https://dbdiagram.io/d/646c2f85dca9fb07c491dc7e)<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/23ae06ec-89c9-4409-b5a1-785a09a63cd3)
 ## 4. System design
-This project is a shopping cart web application using maven for built tool. Apply the MVC2 model to support the interaction between the user and the website <br>
-**Tool Require:** <br>
-- Netbeans IDE Version 8.2
-- JDK 1.8
-- MSSQL Server
-- Tomcat 8.x.x
-- ... 
-<br>
-
-MVC2 base on MVC model (Model-View-Controller) but more complicated. The MVC2 model offers several advantages. It is easy to test, maintain, extend, and the MVC2 model isolates presentation logic from business logic.<br>
-
-- Model: Represents state (data), and is the lowest layer in the pattern. It responds to requests from the view, and it also responds to instructions from the controller to update itself.
-- View: It is the a place to display your data in a particular form that developer can design its by themselves
-- Controller: Acts as an interface between View and Model. It is responsible for responding to all requests (receiving input and commands) to the Model/View to perform the corresponding interactions. Controller receives input, it performs validation and then performs operations that modify Model's state.<br>
-
-In MVC model 2, one or more servlets (usually one) act as the Controller, Java Beans act as the Model, and JSP pages act as the display (View). The complex logic of the program is written entirely in servlets, which are Java programs. The display only consists of JSP pages with a few simple codes to get the data available, no complicated logic.
-
-When servlet received a request from browser, it will call java bean to interact with the database and return the data throw relevent jsp page to client.
-
+**UPCOMMING**
 ## 5. Conclusion and Discussion
  **UPCOMING**
 ## Installation
-1. Sass Compiler 
-
-Objectives: CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. So we need a preprocessor can help maintainable CSS.
-
-To put it simply, Sass is a tool that can transform your preprocessed Sass code into standard CSS code that can be used in your website. This process can be accomplished through the terminal using the "sass" command. By specifying the input and output files, Sass will compile the Sass code in the input file and save the resulting CSS code in the output file. For instance, running "sass input.scss output.css" in the terminal will take the Sass file named "input.scss" and convert it into a CSS file called "output.css".
-
-Link setup: https://stackoverflow.com/questions/25965982/how-to-use-sass-with-netbeans-8-0-1
-
-bỏ qua bước install sass trong link setup
-
-Link to download ruby sass(version Ruby+Devkit 3.2.2-1): https://rubyinstaller.org/downloads/
-
-Learn to use sass: https://sass-lang.com/guide
+**UPCOMING**
 ## Tech Stack
-Using **Bootstrap 5** for improving UI and some of main stack below:
-<div>
-  <img src="https://img.shields.io/badge/-TomCat-yellow" />
-  <img src="https://img.shields.io/badge/-MVC-blue" />
-  <img src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white" />
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
-</div>
-
+**UPCOMING**
 ## About us
   - Nguyễn Gia Linh
   - Phạm Công Minh
