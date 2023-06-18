@@ -56,25 +56,25 @@ This is an online shopping web application for customer to buy cloth from the F-
   __To see more reviews our figma:__ [Figma](https://www.figma.com/file/0FlAcFU8wu56wJUJJArbcs/PRJ-F-SHOP?type=design&node-id=0%3A1&t=Wvqv2I56Q1ED0Rm3-1)<br>
    Below are some screenshot:
 - Landing page
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/61f1f0b1-8ec6-45cc-84a8-afbf0c5a56cd)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/Screenshot%202023-06-18%20202412.png)
 
 - Login page
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/27cb599e-7207-49c8-9bde-6b56c61eb8bc)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/login.png)
 
 - Register page
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/c237429b-9668-486f-9628-fd655db69bc4)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/register.png)
 
 - Home page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/9a037a85-617b-42aa-8502-a7746d64b6e4)
 
 - Product Information<br>
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/8640f492-fb72-498a-8e7b-b34c0373685a)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productInfo.png)
 
 - Cart page<br>
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/b99eac1f-8611-49e9-bd71-4a7f15ccab04)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/cart.png)
 
 - Order page<br>
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/9ebcd7e3-8e55-4c25-b10d-5997fb1fc044)
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/order.png)
 
 - Manage product [admin]
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productlist.png)
