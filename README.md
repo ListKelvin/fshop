@@ -77,7 +77,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/9ebcd7e3-8e55-4c25-b10d-5997fb1fc044)
 
 - Manage product [admin]
-![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/04cc29bb-2cb0-4590-93d8-263ec7ba6be1)
+[![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/assets/92376692/04cc29bb-2cb0-4590-93d8-263ec7ba6be1)](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productlist.png)
 <br>
 
 
