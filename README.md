@@ -88,7 +88,7 @@ This is an online shopping web application for customer to buy cloth from the F-
 - Edit User Information page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/edit_account_active.png)
 
-#### ADMIN
+#### ADMIN:
 - Manage product [admin]<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productlist.png)
 
