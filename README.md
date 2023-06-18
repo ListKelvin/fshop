@@ -55,13 +55,13 @@ This is an online shopping web application for customer to buy cloth from the F-
   ### A quick look
   __To see more reviews our figma:__ [Figma](https://www.figma.com/file/0FlAcFU8wu56wJUJJArbcs/PRJ-F-SHOP?type=design&node-id=0%3A1&t=Wvqv2I56Q1ED0Rm3-1)<br>
    Below are some screenshot:
-- Landing page
+- Landing page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/Screenshot%202023-06-18%20202412.png)
 
-- Login page
+- Login page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/login.png)
 
-- Register page
+- Register page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/register.png)
 
 - Home page<br>
@@ -76,8 +76,26 @@ This is an online shopping web application for customer to buy cloth from the F-
 - Order page<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/order.png)
 
-- Manage product [admin]
+- Order List page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/order_list.png)
+
+- View Order page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/view_order.png)
+
+- User Information page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/edit_account.png)
+
+- Edit User Information page<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/edit_account_active.png)
+
+- Manage product [admin]<br>
 ![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/productlist.png)
+
+- Manage order [admin]<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/Orderlist-admin.png)
+
+- Dashboard [admin]<br>
+![image](https://github.com/dunghuynh-teaching/prj301-se1714-10/blob/main/assets/dashboard.png)
 <br>
 
 
