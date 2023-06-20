@@ -72,6 +72,7 @@ public class ProductUtils {
     public List<CartInfo> getCartProducts(ArrayList<CartInfo> cartList) {
         List<CartInfo> products = new ArrayList<CartInfo>();
         try {
+           con = DBConnection.getConnection(); 
             if (cartList.size() > 0) {
                 for (CartInfo item : cartList) {
                     query = "SELECT * FROM product WHERE id=?";
@@ -163,6 +164,7 @@ public class ProductUtils {
     public ProductInfo getSingleProduct(int id) {
         ProductInfo product = null;
         try {
+            con = DBConnection.getConnection();
             query = "SELECT * FROM product WHERE id=?";
             stm = this.con.prepareStatement(query);
             stm.setInt(1, id);
@@ -206,6 +208,7 @@ public class ProductUtils {
     public float getTotalCartPrice(ArrayList<CartInfo> cartList) {
         float sum = 0;
         try {
+            con = DBConnection.getConnection();
             if (cartList.size() > 0) {
                 for (CartInfo item : cartList) {
                     query = "SELECT price FROM product WHERE id=?";
@@ -240,17 +243,18 @@ public class ProductUtils {
         return sum;
     }
 
-    public boolean insertProduct(String title, String description, String category, float price, String image, int quantity) {
+    public boolean insertProduct(ProductInfo product) {
         boolean result = false;
         try {
+            con = DBConnection.getConnection();
             query = "insert into product(title, description, price, category, image, quantity) values (?,?,?,?,?,?)";
             stm = this.con.prepareStatement(query);
-            stm.setString(1, title);
-            stm.setString(2, description);
-            stm.setFloat(3, price);
-            stm.setString(4, category);
-            stm.setString(5, image);
-            stm.setInt(6, quantity);
+            stm.setString(1, product.getTitle());
+            stm.setString(2, product.getDescription());
+            stm.setFloat(3, product.getPrice());
+            stm.setString(4, product.getCategoryName().toLowerCase());
+            stm.setString(5, product.getImage());
+            stm.setInt(6, product.getQuantity());
             stm.executeUpdate();
             result = true;
         } catch (SQLException ex) {
@@ -275,18 +279,20 @@ public class ProductUtils {
         return result;
     }
 
-    public boolean updateProduct(int id, String title, String description, String category, float price, String image, int quantity) {
+    public boolean updateProduct(ProductInfo product) {
         boolean result = false;
         try {
-            query = "UPDATE product SET title=?, description=?,category=?, price=?, image=?, quantity=?  WHERE id=?;";
+            con = DBConnection.getConnection();
+            query = "UPDATE product SET title=?, description=?,category=?, price=?, image=?, quantity=?, sold_out=?  WHERE id=?;";
             stm = this.con.prepareStatement(query);
-            stm.setString(1, title);
-            stm.setString(2, description);
-            stm.setString(3, category);
-            stm.setFloat(4, price);
-            stm.setString(5, image);
-            stm.setInt(6, quantity);
-            stm.setInt(7, id);
+            stm.setString(1, product.getTitle());
+            stm.setString(2, product.getDescription());
+            stm.setString(3, product.getCategoryName().toLowerCase());
+            stm.setFloat(4, product.getPrice());
+            stm.setString(5, product.getImage());
+            stm.setInt(6, product.getQuantity());
+            stm.setString(7, product.getSoldOut());
+            stm.setInt(8, product.getId());
             stm.executeUpdate();
             result = true;
         } catch (SQLException ex) {

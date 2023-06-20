@@ -1,7 +1,7 @@
 
 <div class="">
     <!-- Footer -->
-    <footer class="text-center text-white" style="background-color: #3f51b5">
+    <footer class="text-center text-white bgNavbar" >
         <!-- Grid container -->
         <div class="container">
             <!-- Section: Links -->
@@ -72,22 +72,22 @@
             <!-- Section: Social -->
             <section class="text-center mb-5">
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
+                    <i class="bi bi-facebook"></i>
                 </a>
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
+                    <i class="bi bi-twitter"></i>
                 </a>
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-google"></i>
+                    <i class="bi bi-google"></i>
                 </a>
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-instagram"></i>
+                    <i class="bi bi-instagram"></i>
                 </a>
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-linkedin"></i>
+                    <i class="bi bi-linkedin"></i>
                 </a>
                 <a href="" class="text-white me-4">
-                    <i class="fab fa-github"></i>
+                    <i class="bi bi-github"></i>
                 </a>
             </section>
             <!-- Section: Social -->
@@ -99,10 +99,7 @@
             class="text-center p-3"
             style="background-color: rgba(0, 0, 0, 0.2)"
             >
-            © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/"
-               >MDBootstrap.com</a
-            >
+            © Photo, Inc. 2023. We love our users!
         </div>
         <!-- Copyright -->
     </footer>
@@ -134,6 +131,23 @@
         }
         return true;
     }
+
+    let items = document.querySelectorAll('.carousel .carousel-item')
+
+    items.forEach((el) => {
+        const minPerSlide = 5
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+    })
+
 </script>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>

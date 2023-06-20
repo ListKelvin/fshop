@@ -97,6 +97,7 @@ public class CategoryUtils {
         boolean result = false;
         try {
             query = "insert into category(name) values (?)";
+            con = DBConnection.getConnection();
             stm = this.con.prepareStatement(query);
             stm.setString(1, name);
             stm.executeUpdate();

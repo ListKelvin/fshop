@@ -1,4 +1,5 @@
 D:\java\PRJ301_FShop\src\main\java\Utils\NetUtils.java
+D:\java\PRJ301_FShop\src\main\java\Controller\SearchProductController.java
 D:\java\PRJ301_FShop\src\main\java\DTO\UserInfo.java
 D:\java\PRJ301_FShop\src\main\java\Utils\CategoryUtils.java
 D:\java\PRJ301_FShop\src\main\java\Controller\GoogleServlet.java
@@ -10,9 +11,11 @@ D:\java\PRJ301_FShop\src\main\java\Connection\DBConnection.java
 D:\java\PRJ301_FShop\src\main\java\Controller\AddToCartController.java
 D:\java\PRJ301_FShop\src\main\java\DTO\AccountInfo.java
 D:\java\PRJ301_FShop\src\main\java\DTO\CategoryInfo.java
+D:\java\PRJ301_FShop\src\main\java\Controller\UpdateCartController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\CreateProductController.java
 D:\java\PRJ301_FShop\src\main\java\DTO\CartInfo.java
 D:\java\PRJ301_FShop\src\main\java\Controller\HomeController.java
+D:\java\PRJ301_FShop\src\main\java\Controller\RemoveCartController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\GoogleSignIn.java
 D:\java\PRJ301_FShop\src\main\java\Utils\APIWrapper.java
 D:\java\PRJ301_FShop\src\main\java\Utils\DBUtils.java

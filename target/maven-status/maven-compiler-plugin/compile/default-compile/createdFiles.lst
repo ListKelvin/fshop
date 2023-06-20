@@ -7,13 +7,16 @@ Controller\GoogleServlet.class
 Utils\GoogleSignIn.class
 Utils\NetUtils.class
 DTO\ProductInfo.class
+Controller\RemoveCartController.class
 Utils\DBUtils.class
 Utils\APIWrapper.class
 Utils\ProductUtils.class
 Controller\HomeController.class
 Utils\CategoryUtils.class
 DTO\UserInfo.class
+Controller\UpdateCartController.class
 DTO\CategoryInfo.class
+Controller\SearchProductController.class
 Utils\Validation.class
 Controller\CreateProductController.class
 Controller\AddToCartController.class

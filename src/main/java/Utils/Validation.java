@@ -18,6 +18,21 @@ public class Validation {
         }
         return true;
     }
+    
+    public static boolean readInteger(int s) {
+        if(s >0 && s<Integer.MAX_VALUE){
+            return true;
+        }
+        return false;
+    }
+    public static boolean readFloat(String s) {
+        String regex = "\\d+(\\.\\d+)?";  
+        if(s.matches(regex)){
+            return true;
+        }else{
+            return false;
+        }
+    }
      public static boolean readPassword(String s) {
         String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>])(?=\\S+$).{8,20}$";  
         if(s.matches(regex)){

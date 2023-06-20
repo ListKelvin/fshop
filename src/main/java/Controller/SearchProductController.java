@@ -10,6 +10,7 @@ import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,11 +41,14 @@ public class SearchProductController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=UTF-8");
             String search = request.getParameter("search");
+//            request.setAttribute("search", search);
+//            response.sendRedirect("search.jsp");
             if (search != null) {
                 ProductUtils pu = new ProductUtils();
                 List<ProductInfo> products = pu.searchProduct(search);
                 request.setAttribute("search-products", products);
-                response.sendRedirect("search.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
+                rd.forward(request, response);
             } else {
                 response.sendRedirect("home.jsp");
             }

@@ -5,7 +5,10 @@
  */
 package Controller;
 
+import DTO.ProductInfo;
+import Utils.CategoryUtils;
 import Utils.ProductUtils;
+import Utils.Validation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -35,14 +38,18 @@ public class CreateProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        String redirectPage = null;
+
         PrintWriter out = response.getWriter();
         ProductUtils pu = new ProductUtils();
-        try{
-            String redirectPage = "create-product.jsp";
+        CategoryUtils ca = new CategoryUtils();
+        Validation va = new Validation();
+        try {
+
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             String category = request.getParameter("category");
-            String priceStr = request.getParameter("price");
+            String priceStr = request.getParameter("priceStr");
             String quantityStr = request.getParameter("quantityStr");
             String image = request.getParameter("image");
             float price = 0;
@@ -54,16 +61,40 @@ public class CreateProductController extends HttpServlet {
             } catch (Exception e) {
                 // TODO: handle exception
             }
-            try {
-                boolean result = pu.insertProduct(title, description, category, price, image, quantity);
-                if (result) {
-                    request.setAttribute("message", "Create Product successfull");
-                    redirectPage = "adminHome.jsp";
-                }else{
-                    request.setAttribute("message", "Update Product fail");
+            if (!va.readNonBlank(title)) {
+                request.setAttribute("message", "Title is required");
+                redirectPage = "create-product.jsp";
+            } else if (ca.checkCategory(category) == null) {
+                request.setAttribute("message", "category not exist");
+                redirectPage = "create-product.jsp";
+            } else if (!va.readInteger(quantity)) {
+                request.setAttribute("message", "quantity must be a number greater than 0");
+                redirectPage = "create-product.jsp";
+            } else if (!va.readFloat(priceStr)) {
+                request.setAttribute("message", "price must be number");
+                redirectPage = "create-product.jsp";
+            } else {
+                try {
+                    boolean result = false;
+                    ProductInfo newProduct = new ProductInfo();
+                    newProduct.setTitle(title);
+                    newProduct.setDescription(description);
+                    newProduct.setCategoryName(category);
+                    newProduct.setPrice(price);
+                    newProduct.setQuantity(quantity);
+                    newProduct.setImage(image);
+                    result = pu.insertProduct(newProduct);
+                    if (result) {
+                        request.setAttribute("message", "Create Product successfull");
+                        redirectPage = "admin-home.jsp";
+                    } else {
+                        request.setAttribute("message", "Create Product fail");
+                        redirectPage = "create-product.jsp";
+                    }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
             }
+
             RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
             rd.forward(request, response);
         } finally {

@@ -15,10 +15,10 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class=" product card ${className}" >
-    <img src="${img}" class="card-img-top" alt="${productName}">
+    <img src="${img}" class="card-img-top img-fluid" alt="${productName}">
     <div class="card-body">
-        <p class="badge rounded-pill text-bg-light">${category}</p>
-        <p class="text-eclipse">${productName}</p>
-        <p class="card-text">${price}</p>
+        <p class="badge rounded-pill badgeStyle ">${category}</p>
+        <p class="text-eclipse ">${productName}</p>
+        <p class="card-text price">${price}</p>
     </div>
 </div>

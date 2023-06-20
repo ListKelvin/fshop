@@ -16,3 +16,35 @@ and open the template in the editor.
 @import "home.scss";
 @import "login.scss";
 @import "register.scss";
+@import "navbar.scss";
+@import "search.scss";
+
+a{
+    text-decoration: none;
+}
+body{
+    background-color: $green-primary;
+}
+.textHeading{
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    text-transform: uppercase;
+
+    color: #BC6EEE;
+
+}
+
+.linkStyled{
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: underline !important;
+    color: #BC6EEE;
+}
