@@ -147,8 +147,4 @@ Download PDF File: Once the PDF file is generated, admin users are provided with
 ## About us
   - Nguyễn Gia Linh
   - Phạm Công Minh
-<<<<<<< HEAD
-  - Duy An
-=======
   - Quản Nguyễn Duy An
->>>>>>> 6541567a763871185d3fda11747094dfbd8fb5f0
