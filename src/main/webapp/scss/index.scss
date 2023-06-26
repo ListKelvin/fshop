@@ -17,6 +17,8 @@ and open the template in the editor.
 @import "login.scss";
 @import "register.scss";
 @import "navbar.scss";
+@import "productInfo.scss";
+
 a{
     text-decoration: none;
 }
@@ -45,4 +47,20 @@ body{
     text-align: center;
     text-decoration: underline !important;
     color: #BC6EEE;
+}
+.otherProduct{
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 1px solid $Purple-400;
+    border-radius: 10px;
+    
+}
+.badgeStyle{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    color:$Purple-400;
+    border: 2px solid $Purple-400;
+    border-radius: 28px;
 }
