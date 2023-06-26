@@ -73,6 +73,7 @@
 
 
             </div>
+
             <div class="row">
                 <div class="col-7">
                     <span class="productName">Description</span>
@@ -100,5 +101,6 @@
         </div>
     </div>
 </section>
+
 
 <c:import url="page/Footer.jsp"></c:import>
