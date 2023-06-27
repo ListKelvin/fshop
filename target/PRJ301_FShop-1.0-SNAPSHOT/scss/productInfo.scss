@@ -56,12 +56,14 @@ and open the template in the editor.
 }
 
 .productImg{
-    width: 5rem;
-    height: 5rem;
+
     border-radius: 100px;
     overflow: hidden;
     margin-right: 1rem;
+    min-width: 150px; 
+    max-height: 150px;
+    object-fit: cover;
 }
 .carousel-item:hover img {
-  transform: scale(1.1); /* Set the scale transform to zoom in on the image */
+    transform: scale(1.1); /* Set the scale transform to zoom in on the image */
 }

@@ -17,7 +17,7 @@
     </head>
     <!--navbar-expand-lg-->
     <body>
-        <nav class="navbar navbar-expand-md  fixed-top  bgNavbar">
+        <nav class="navbar navbar-expand-md  fixed-top  bgNavbar shadow">
             <div class="container-fluid ">
                 <div class="w-25">
                     <a class="navbar-brand text-white mx-3" href="#">F-SHOP</a>
