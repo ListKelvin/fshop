@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Minh
  */
-@WebServlet(name = "home", urlPatterns = {"/home"})
-public class HomeController extends HttpServlet {
+@WebServlet(name = "UpdateUserInfoController", urlPatterns = {"/UpdateUserInfoController"})
+public class UpdateUserInfoController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "AdminController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,23 +36,7 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String page = request.getParameter("page");
-            page = page.toLowerCase();
 
-            switch (page) {
-                case "home":
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
-                    break;
-                case "register":
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
-                    break;
-
-                case "index":
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-                    break;
-                default:
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
         }
     }
 

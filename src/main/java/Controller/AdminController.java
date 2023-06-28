@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Minh
  */
-@WebServlet(name = "UserController", urlPatterns = {"/UserController"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
+public class AdminController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "home.jsp";
+    private static final String SUCCESS = "admin.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,9 +38,11 @@ public class UserController extends HttpServlet {
         String url = ERROR;
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            //fetch data need for admin here
             url = SUCCESS;
-        } catch (Exception e) {
-            log("Error at UserController " + e.toString());
+        } catch (IOException e) {
+            log("Error at AdminController " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

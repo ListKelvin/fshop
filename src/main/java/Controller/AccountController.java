@@ -34,6 +34,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Account")
 public class AccountController extends HttpServlet {
 
+    private static final String ERROR_REGISTER = "register.jsp";
+    private static final String ADMIN = "ADMIN";
+    private static final String ADMIN_PAGE = "AdminController";
+    private static final String USER = "USER";
+    private static final String USER_PAGE = "home.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -44,34 +50,42 @@ public class AccountController extends HttpServlet {
             String password = request.getParameter("txtPass");
             String email = request.getParameter("txtEmail");
             String action = request.getParameter("btAction");
-          
+
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
                 if (accountInfo == null) {
                     request.setAttribute("message", "Wrong email or password");
                 } else {
+                    String role = accountInfo.getRole();
                     HttpSession session = request.getSession();
                     session.setAttribute("user", accountInfo);
-                    if ((accountInfo.getEmail()).equals("admin123@gmail.com")) {
-                        redirectPage = "adminHome.jsp";
+//                    if ((accountInfo.getEmail()).equals("admin123@gmail.com")) {
+//                        redirectPage = "ADMIN_PAGE";
+//                    }
+                    if (ADMIN.equals(role)) {
+                        redirectPage = ADMIN_PAGE;
+                    } else if (USER.equals(role)) {
+                        redirectPage = USER_PAGE;
+                    } else {
+                        request.setAttribute("ERROR", "Role is not support");
                     }
-                    redirectPage = "home.jsp";
+
                 }
             } else if (action.equals("Register")) {
                 if (!Validation.readNonBlank(username)) {
                     request.setAttribute("messageUserName", "User Name is required");
                     System.out.println("User Name is required");
-                    redirectPage = "register.jsp";
+                    redirectPage = ERROR_REGISTER;
                 } else if (!Validation.readEmail(email)) {
                     request.setAttribute("messageEmail", "Email is require");
                     System.out.println("Email is require");
-                    redirectPage = "register.jsp";
+                    redirectPage = ERROR_REGISTER;
 
                 } else if (!Validation.readPassword(password)) {
                     request.setAttribute("messagePassword", "Password is required at least 8 character with at least one uppercase, "
                             + "one lowercase, one number and one specific character");
                     System.out.println("messagePassword");
-                    redirectPage = "register.jsp";
+                    redirectPage = ERROR_REGISTER;
                 } else {
                     AccountInfo a = DBUtils.checkEmail(email);
                     if (a != null) {
