@@ -178,7 +178,8 @@ and open the template in the editor.
     line-height: 10px;
     width: 100%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 42px; }
+    border-radius: 42px;
+    transition: 0.3s; }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -229,7 +230,8 @@ and open the template in the editor.
     line-height: 10px;
     width: 200px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 42px; }
+    border-radius: 42px;
+    transition: 0.3s; }
   .registerBg .smallBtn {
     display: flex;
     flex-direction: row;
@@ -248,7 +250,8 @@ and open the template in the editor.
     line-height: 10px;
     width: 150px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 42px; }
+    border-radius: 42px;
+    transition: 0.3s; }
   .registerBg .textStyled {
     font-family: 'Play';
     font-style: normal;
@@ -270,6 +273,68 @@ and open the template in the editor.
 .bgNavbar {
   background: #BC6EEE;
   padding: 1rem; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 23, 2023, 7:02:23 PM
+    Author     : Minh
+*/
+.box {
+  background: #FFD5AA;
+  border-radius: 40px;
+  border: 1px solid #D7FF7D;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  width: 100%;
+  /*    width: 30.375rem;
+      height: 40.375rem;*/
+  padding: 1rem 2rem;
+  flex-direction: column;
+  /*align-items: center;*/ }
+  .box .fakeData {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000; }
+
+.wrapperProductInfo {
+  padding: 5rem; }
+
+.categoryTitle {
+  display: flex;
+  width: 9.1875rem;
+  height: 4.3125rem;
+  flex-direction: column;
+  justify-content: center;
+  color: #BC6EEE;
+  font-size: 1.25rem;
+  font-family: Roboto;
+  font-weight: 700; }
+
+.productName {
+  display: flex;
+  /*width: 30.5625rem;
+  height: 3.8125rem;*/
+  flex-direction: column;
+  align-self: start;
+  color: #000;
+  font-size: 2.25rem;
+  font-family: Roboto;
+  font-weight: 700; }
+
+.productImg {
+  border-radius: 100px;
+  overflow: hidden;
+  margin-right: 1rem;
+  min-width: 150px;
+  max-height: 150px;
+  object-fit: cover; }
+
+.carousel-item:hover img {
+  transform: scale(1.1);
+  /* Set the scale transform to zoom in on the image */ }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -321,5 +386,113 @@ body {
   text-align: center;
   text-decoration: underline !important;
   color: #BC6EEE; }
+
+.otherProduct {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: 1px solid #C37DF0;
+  border-radius: 10px; }
+
+.badgeStyle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  color: #C37DF0;
+  border: 2px solid #C37DF0;
+  border-radius: 28px; }
+
+.cartItem {
+  width: 100%;
+  padding: .5rem 2rem;
+  border: 1px solid #C37DF0;
+  border-radius: 10px;
+  margin-bottom: 1rem; }
+
+.btnPlaceOrder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*change to variable*/
+  gap: 10px;
+  padding: 1.035rem;
+  background: #DFBAF7;
+  color: #1B171E;
+  /*change to variable*/
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 10px;
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 42px;
+  transition: 0.3s; }
+  .btnPlaceOrder:hover {
+    background-color: #C37DF0; }
+
+p {
+  color: #6c757d; }
+
+.main_cart {
+  background: #fff; }
+
+.card {
+  border: none; }
+
+.product_img img {
+  min-width: 200px;
+  max-height: 200px; }
+
+.product_name {
+  color: black;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  font-weight: 500; }
+
+.card-title p {
+  font-size: 0.9rem;
+  font-weight: 500; }
+
+.remove-and-wish p {
+  font-size: 0.8rem;
+  margin-bottom: 0; }
+
+.price-money h3 {
+  font-size: 1rem;
+  font-weight: 600; }
+
+.page-link {
+  line-height: 16px;
+  width: 45px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #495057; }
+
+.page-item input {
+  line-height: 22px;
+  padding: 3px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+
+.page-link:hover {
+  text-decoration: none;
+  color: #495057;
+  outline: none !important; }
+
+.page-link:focus {
+  box-shadow: none; }
+
+.price_indiv p {
+  font-size: 1.1rem; }
+
+.fa-heart:hover {
+  color: red; }
 
 /*# sourceMappingURL=index.css.map */

@@ -5,14 +5,34 @@
  */
 package DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 03lin
  */
-public class CartInfo extends ProductInfo{
+public class CartInfo extends ProductInfo implements Serializable{
+    private int cartId;
     private int cartQuantity;
+    private int userId;
 
     public CartInfo() {
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCartQuantity() {

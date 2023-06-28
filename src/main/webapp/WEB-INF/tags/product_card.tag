@@ -4,9 +4,10 @@
     Author     : Minh
 --%>
 
-<%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%@tag description="this is a proudct card" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
+<%@attribute name="id" required="true"%>
 <%@attribute name="category" required="true"%>
 <%@attribute name="productName" required="true"%>
 <%@attribute name="img" required="true"%>
@@ -21,4 +22,9 @@
         <p class="text-eclipse ">${productName}</p>
         <p class="card-text price">${price}</p>
     </div>
+    <!--    <button>Add to cart or ICOn</button>-->
+    <form action="AddToCart" method="POST">
+        <input type=hidden name="id" value="${id}">
+        <input value="Add to cart" type="Submit">
+    </form>
 </div>

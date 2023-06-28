@@ -17,6 +17,7 @@ and open the template in the editor.
 @import "login.scss";
 @import "register.scss";
 @import "navbar.scss";
+@import "productInfo.scss";
 @import "search.scss";
 
 a{
@@ -48,3 +49,51 @@ body{
     text-decoration: underline !important;
     color: #BC6EEE;
 }
+.otherProduct{
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 1px solid $Purple-400;
+    border-radius: 10px;
+
+}
+.badgeStyle{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    color:$Purple-400;
+    border: 2px solid $Purple-400;
+    border-radius: 28px;
+}
+
+.cartItem{
+    width: 100%;
+    padding: .5rem 2rem;
+    border: 1px solid $Purple-400;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.btnPlaceOrder{
+    @include button;
+
+    &:hover{
+        background-color:$Purple-400;   
+    }
+}
+p { color: #6c757d; } 
+
+.main_cart { background: #fff; } 
+.card { border: none; } 
+.product_img img { min-width: 200px; max-height: 200px; }
+.product_name { color: black; font-size: 1.4rem; text-transform: capitalize; font-weight: 500; } 
+.card-title p { font-size: 0.9rem; font-weight: 500; } 
+.remove-and-wish p { font-size: 0.8rem; margin-bottom: 0; } 
+.price-money h3 { font-size: 1rem; font-weight: 600; } 
+
+
+.page-link { line-height: 16px; width: 45px; font-size: 1rem; display: flex; justify-content: center; align-items: center; color: #495057; }
+.page-item input { line-height: 22px; padding: 3px; font-size: 15px; display: flex; justify-content: center; align-items: center; text-align: center; } 
+.page-link:hover { text-decoration: none; color: #495057; outline: none !important; } 
+.page-link:focus { box-shadow: none; } 
+.price_indiv p { font-size: 1.1rem; } 
+.fa-heart:hover { color: red; }

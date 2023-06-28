@@ -20,9 +20,9 @@ public class UserInfo {
         private String gender;
         private String phone;
         private String address;
-        private String account_id;
+        private int account_id;
 
-    public UserInfo(int id, String name, String avatar, Date dob, String gender, String phone, String address, String account_id) {
+    public UserInfo(int id, String name, String avatar, Date dob, String gender, String phone, String address, int account_id) {
         this.id = id;
         this.name = name;
         this.avatar = avatar;
@@ -31,6 +31,9 @@ public class UserInfo {
         this.phone = phone;
         this.address = address;
         this.account_id = account_id;
+    }
+
+    public UserInfo() {
     }
         
         
@@ -91,11 +94,11 @@ public class UserInfo {
         this.address = address;
     }
 
-    public String getAccount_id() {
+    public int getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(String account_id) {
+    public void setAccount_id(int account_id) {
         this.account_id = account_id;
     }
 	

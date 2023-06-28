@@ -98,19 +98,19 @@
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-3 p-5 justify-content-center">
                 <c:forEach items="${products}" var="products">
-                    <tag:product_card className="col-md-4" category="${products.categoryName}" productName="${products.title}" img="./assest/linn.jpg" price="${products.price}"/>
+                    <tag:product_card className="col-md-4" id ="${products.id}" category="${products.categoryName}" productName="${products.title}" img="./assest/linn.jpg" price="${products.price}"/>
                 </c:forEach>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
-                <tag:product_card className="col" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
+                <tag:product_card className="col" id ="1" category="do dien tu" productName="testjdfslkajflskdajfljdsalkjflksdflsdjafkljsdalfjdsljflkdjslfjdslajldsajfldsjafljdsalkfjdslk" img="./assest/E-commerce_1.png" price="100$"/>
             </div>
 
 
