@@ -7,20 +7,20 @@ package DTO;
 
 import java.util.Date;
 
-
 /**
  *
  * @author 03lin
  */
 public class UserInfo {
-        private int id;
-	private String name;
-        private String avatar;
-	private Date dob;
-        private String gender;
-        private String phone;
-        private String address;
-        private String account_id;
+
+    private int id;
+    private String name;
+    private String avatar;
+    private Date dob;
+    private String gender;
+    private String phone;
+    private String address;
+    private String account_id;
 
     public UserInfo(int id, String name, String avatar, Date dob, String gender, String phone, String address, String account_id) {
         this.id = id;
@@ -32,8 +32,9 @@ public class UserInfo {
         this.address = address;
         this.account_id = account_id;
     }
-        
-        
+
+    public UserInfo() {
+    }
 
     public int getId() {
         return id;
@@ -98,7 +99,5 @@ public class UserInfo {
     public void setAccount_id(String account_id) {
         this.account_id = account_id;
     }
-	
-        
-    
+
 }
