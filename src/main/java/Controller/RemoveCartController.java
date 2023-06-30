@@ -6,9 +6,11 @@
 package Controller;
 
 import DTO.CartInfo;
+import Utils.CartUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,21 +37,19 @@ public class RemoveCartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("id");
-            if (id != null) {
-                ArrayList<CartInfo> sessionCart = (ArrayList<CartInfo>) request.getSession().getAttribute("cart-list");
-                if (sessionCart != null) {
-                    for (CartInfo c : sessionCart) {
-                        if (c.getId() == Integer.parseInt(id)) {
-                            sessionCart.remove(sessionCart.indexOf(c));
-                            break;
-                        }
-                    }
-                    response.sendRedirect("cart.jsp");
-                }
-            } else {
-                response.sendRedirect("cart.jsp");
-            }
+           int id = Integer.parseInt(request.getParameter("cartid"));
+           boolean result = CartUtils.removeCart(id);
+            
+           if(result){
+               request.setAttribute("message", "remove successfully");
+               RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+               rd.forward(request, response);
+           }else{
+               request.setAttribute("message", "remove fail");
+               RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+               rd.forward(request, response);
+           }
+            
         }
     }
 

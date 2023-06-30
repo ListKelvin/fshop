@@ -17,12 +17,13 @@ public class DBConnection {
 
 //    private static final String USER_NAME = "Minh2";
 //    private static final String PASSWORD = "minh1234";
+    //;instanceName=MSSQLSERVER
 
     public static Connection getConnection() throws Exception {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=fshop;instanceName=MSSQLSERVER";
-            Connection conn = DriverManager.getConnection(dbURL,"sa","password");
+            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=fshop";
+            Connection conn = DriverManager.getConnection(dbURL,"sa","12345");
             return conn;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();

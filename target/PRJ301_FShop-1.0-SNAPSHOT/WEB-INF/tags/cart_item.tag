@@ -25,7 +25,7 @@
 
 
         </div>
-            <div class="d-flex align-items-center flex-column ">
+        <div class="d-flex align-items-center flex-column ">
 
             <ul class="pagination justify-content-end set_quantity w-100">
                 <li class="page-item">
@@ -39,7 +39,12 @@
                 </li>
             </ul>
 
-            <button class="btn btn-danger" type="button"><i class="bi bi-trash"></i> REMOVE</button>
+            <!--            <button class="btn btn-danger" type="button"><i class="bi bi-trash"></i> REMOVE</button>-->
+
+            <form action="RemoveCart" method="POST">
+                <input type=hidden name="cartid" value="${id}">
+                <input class="btn btn-danger" value="REMOVE" type="Submit">
+            </form>
         </div>
         <div>
             ${price}

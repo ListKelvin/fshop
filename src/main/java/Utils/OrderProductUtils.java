@@ -28,7 +28,7 @@ public class OrderProductUtils {
         try {
             con = DBConnection.getConnection();
             query = "INSERT INTO order_product (order_id, product, quantity, total) VALUES (?,?,?,?)";
-            stm = this.con.prepareStatement(query);
+            stm = con.prepareStatement(query);
             stm.setInt(1, orderInfo.getOrderId());
             stm.setInt(2, orderInfo.getId());
             stm.setInt(3, orderInfo.getQuantity());

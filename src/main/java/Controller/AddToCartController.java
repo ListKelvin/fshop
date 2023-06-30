@@ -43,13 +43,13 @@ public class AddToCartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+        boolean result = false;
 
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
             UserInfo userinfo = UserUtils.getUser(user.getId());
             int id = Integer.parseInt(request.getParameter("id"));
-
             CartInfo ci = new CartInfo();
             ci.setUserId(userinfo.getId());
             ci.setId(id);
@@ -57,8 +57,12 @@ public class AddToCartController extends HttpServlet {
             CartInfo checkCart = (CartInfo) CartUtils.checkCartProduct(ci);
             if (checkCart != null) {
                 CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
+                request.setAttribute("message", "add to cart successfully");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.forward(request, response);
             } else {
-                boolean result = CartUtils.addToCart(ci);
+                result = CartUtils.addToCart(ci);
+                
                 if (result) {
                     request.setAttribute("message", "add to cart successfully");
                     RequestDispatcher rd = request.getRequestDispatcher("home.jsp");

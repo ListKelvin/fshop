@@ -34,7 +34,7 @@ public class CartUtils {
             rs = stm.executeQuery();
             while (rs.next()) {
                 CartInfo row = new CartInfo();
-                row.setCartId(rs.getInt("id"));
+                row.setCartId(rs.getInt(10));
                 row.setUserId(rs.getInt("userId"));
                 row.setId(rs.getInt("productId"));
                 row.setTitle(rs.getString("title"));
@@ -71,7 +71,7 @@ public class CartUtils {
     }
     
     public static CartInfo checkCartProduct(CartInfo items) {
-        CartInfo item = new CartInfo();
+        CartInfo item = null;
         try {
             con = DBConnection.getConnection();
             String sql = "SELECT * FROM [cart] WHERE userId = ? AND productId = ? ";
@@ -80,18 +80,11 @@ public class CartUtils {
             stm.setInt(2, items.getId());
             rs = stm.executeQuery();
             while (rs.next()) {
+                item = new CartInfo();
                 item.setCartId(rs.getInt("id"));
                 item.setUserId(rs.getInt("userId"));
                 item.setId(rs.getInt("productId"));
-                item.setTitle(rs.getString("title"));
-                item.setDescription(rs.getString("description"));
-                item.setCategoryName(rs.getString("category"));
-                item.setPrice(rs.getFloat("price"));
-                item.setImage(rs.getString("image"));
                 item.setCartQuantity(rs.getInt("cart_quantity"));
-                item.setQuantity(rs.getInt("quantity"));
-                item.setSold(rs.getInt("sold"));
-                item.setSoldOut(rs.getString("sold_out"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -155,6 +148,37 @@ public class CartUtils {
             stm = con.prepareStatement(query);
             stm.setInt(1, quantity);
             stm.setInt(2, id);
+            stm.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+     
+      public static boolean removeCart(int id) {
+        boolean result = false;
+        try {
+            con = DBConnection.getConnection();
+            String query = "DELETE FROM cart WHERE id=?";
+            stm = con.prepareStatement(query);
+            stm.setInt(1, id);
             stm.executeUpdate();
             result = true;
         } catch (SQLException ex) {

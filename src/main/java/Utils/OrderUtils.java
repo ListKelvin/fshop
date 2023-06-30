@@ -30,8 +30,8 @@ public class OrderUtils {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
-            query = "INSERT INTO order (order_number, user, delivery, payment, create_at, total_bill) values(?,?,?,?,?,?)";
-            stm = this.con.prepareStatement(query);
+            String sql = "insert into [order] (order_number, [user], delivery, payment, create_at, total_bill) values (?,?,?,?,?,?)";
+            stm = con.prepareStatement(sql);
             stm.setString(1, order.getOrderNumber());
             stm.setInt(2, order.getUserId());
             stm.setString(3, order.getDelivery());
@@ -66,8 +66,8 @@ public class OrderUtils {
         OrderInfo order = new OrderInfo();
         try {
             con = DBConnection.getConnection();
-            query = "SELECT * FROM order WHERE order_number=?";
-            stm = this.con.prepareStatement(query);
+            String sql  = "SELECT * FROM [order] WHERE order_number=?";
+            stm = con.prepareStatement(sql);
             stm.setString(1, orderNumber);
             rs = stm.executeQuery();
             while(rs.next()){
@@ -107,7 +107,7 @@ public class OrderUtils {
         try {
             con = DBConnection.getConnection();
             query = "SELECT * FROM order WHERE user=? ORDER BY order.id DESC";
-            stm = this.con.prepareStatement(query);
+            stm = con.prepareStatement(query);
             stm.setInt(1, id);
             rs = stm.executeQuery();
             while (rs.next()) {

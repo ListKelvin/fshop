@@ -205,19 +205,19 @@ public class ProductUtils {
         return product;
     }
 
-    public float getTotalCartPrice(ArrayList<CartInfo> cartList) {
+    public static float getTotalCartPrice(List<CartInfo> cartList) {
         float sum = 0;
         try {
             con = DBConnection.getConnection();
             if (cartList.size() > 0) {
                 for (CartInfo item : cartList) {
-                    query = "SELECT price FROM product WHERE id=?";
-                    stm = this.con.prepareStatement(query);
+                   String query = "SELECT price FROM product WHERE id=?";
+                    stm = con.prepareStatement(query);
                     stm.setInt(1, item.getId());
                     rs = stm.executeQuery();
 
                     while (rs.next()) {
-                        sum += rs.getFloat("price") * item.getQuantity();
+                        sum += rs.getFloat("price") * item.getCartQuantity();
                     }
                 }
             }

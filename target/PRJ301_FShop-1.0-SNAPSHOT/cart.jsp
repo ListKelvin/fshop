@@ -13,17 +13,27 @@
 
 <%
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
-    UserInfo userinfo = UserUtils.getUser(user.getId());
+    UserInfo userinfo = null;
     if (user == null) {
         request.setAttribute("message", "Unauthentication!!");
         response.sendRedirect("index.jsp");
     } else {
-        request.setAttribute("userinfo", userinfo);
+        userinfo = UserUtils.getUser(user.getId());
+        if (userinfo != null) {
+            CartUtils cartUtils = new CartUtils();
+            List<CartInfo> cartItems = cartUtils.getCartProduct(userinfo.getId());
+            request.setAttribute("cartItems", cartItems);
+            request.setAttribute("userinfo", userinfo);
+            float total = ProductUtils.getTotalCartPrice(cartItems);
+            request.setAttribute("total", total);
+        } else {
+            request.setAttribute("message", "sth wrong at user info!!");
+            response.sendRedirect("home.jsp");
+        }
+
     }
 
-   CartUtils cartUtils = new CartUtils();
-   List<CartInfo> cartItems = cartUtils.getCartProduct(userinfo.getId());
-   request.setAttribute("cartItems", cartItems);
+
 %> 
 
 
@@ -37,9 +47,9 @@
                     <h1 class="text-center" style="color: #BC6EEE;">Cart Item</h1>
                     <div class="productList">
                     <c:forEach items="${cartItems}" var="cartItems">
-                        <tag:cart_item id ="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="./assest/linn.jpg"/>
+                        <tag:cart_item id="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="./assest/linn.jpg"/>
                     </c:forEach>
-                    
+
 
                 </div>
 
@@ -57,7 +67,11 @@
                 </div>
                 <hr/>
                 <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>${total}</span></div>
-                <button type="button" class=" btnPlaceOrder">Place Order</button>
+                <!--                <button type="button" class=" btnPlaceOrder">Place Order</button>-->
+                <form action="CreateOrder" method="POST">
+<!--                    <input type=hidden name="cartid" value="${id}">-->
+                    <input class=" btnPlaceOrder" value="Place Order" type="Submit">
+                </form>
             </div>
 
 
