@@ -15,8 +15,8 @@ import java.sql.SQLException;
  */
 public class DBConnection {
 
-    private static final String USER_NAME = "Minh2";
-    private static final String PASSWORD = "minh1234";
+    private static final String USER_NAME = "sa";
+    private static final String PASSWORD = "12345";
 
     public static Connection getConnection() throws Exception {
         try {

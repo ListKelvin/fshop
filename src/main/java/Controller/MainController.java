@@ -54,7 +54,6 @@ public class MainController extends HttpServlet {
     private static final String DELETE_CART_CONTROLLER = "DeleteCartController";
     private static final String CHECKOUT = "Checkout";
     private static final String CHECKOUT_CONTROLLER = "CheckoutController";
-
     private static final String EDIT_USERINFO = "EditUserInfo";
     private static final String EDIT_USERINFO_CONTROLLER = "EditUserInfoController";
 

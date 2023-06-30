@@ -5,13 +5,25 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
+import DTO.UserInfo;
+import Utils.UserUtils;
+import Utils.Utility;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -21,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "AdminController";
+    private static final String SUCCESS = "MainController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +44,118 @@ public class UpdateUserInfoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private String getFileName(String fileName) {
+        try {
+            fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+            String tmpFileName = fileName.substring(0, fileName.lastIndexOf(".") - 1);
+            String imgType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            fileName = tmpFileName + new Date().getTime() + imgType;
+            return fileName;
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String url = ERROR;
 
+        boolean check = false;
+        try {
+
+            String name = "";
+            String avatar = "";
+            String dob = "";
+            String gender = "";
+            String phone = "";
+            String address = "";
+            String account_id = "";
+            String avtTmp = "";
+
+            try {
+                List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                for (FileItem item : items) {
+                    if (item.isFormField()) {
+                        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+                        String fieldName = item.getFieldName();
+                        String fieldValue = item.getString("utf-8");
+                        switch (fieldName) {
+                            case "accountId":
+                                account_id = fieldValue;
+                                break;
+                            case "dobTxt":
+                                dob = fieldValue;
+                                break;
+                            case "genderTxt":
+                                gender = fieldValue;
+                                break;
+                            case "phoneTxt":
+                                phone = fieldValue;
+                                break;
+                            case "nameTxt":
+                                name = fieldValue;
+                                break;
+                            case "avtUrl":
+                                avatar = fieldValue;
+                                break;
+                            case "avtStr":
+                                avtTmp = fieldValue;
+                                break;
+                            case "addressTxt":
+                                address = fieldValue;
+                                break;
+                        }
+                    } else {
+                        // Process form file field (input type="file").
+                        String fieldName = item.getFieldName();
+                        if (fieldName.equals("avtUrl")) {
+                            String fileName = item.getName();
+                            if (!fileName.equals("")) {
+                                fileName = getFileName(fileName);
+                            }
+
+                            if (!fileName.equals("") && (fileName.endsWith("png") || fileName.endsWith("bmp") || fileName.endsWith("jpg")
+                                    || fileName.endsWith("PNG") || fileName.endsWith("BMP") || fileName.endsWith("JPG"))) {
+                                String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
+                                File saveFile = new File(realPath);
+                                item.write(saveFile);
+                                avatar = realPath.substring(realPath.lastIndexOf("\\") + 1);
+                            }
+                        }
+
+                    }
+                }
+                UserInfo user = new UserInfo();
+                user.setName(name);
+                user.setAddress(address);
+                user.setAccount_id(account_id);
+                user.setPhone(phone);
+                if (avatar == null || avatar.trim().equals("")) {
+                    user.setAvatar(avtTmp);
+                } else {
+                    user.setAvatar(avatar);
+                }
+                user.setGender(gender);
+                user.setPhone(phone);
+                user.setDob(Utility.getSdf().parse(dob));
+
+                UserUtils userDAO = new UserUtils();
+                check = userDAO.updateUserInfo(user);
+                if (check) {
+                    url = SUCCESS;
+
+                } else {
+                    request.setAttribute("ERROR", "Something wrong!");
+                }
+            } catch (FileUploadException e) {
+                log("Cannot parse multipart request." + e.getMessage());
+
+            }
+        } catch (Exception e) {
+            log("Exception at Edit Profile Controller: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

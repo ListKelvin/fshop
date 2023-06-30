@@ -233,19 +233,19 @@ public class UserUtils {
         return result;
     }
 
-    public boolean updateUserInfo(String name, String avatar, Date dob, String gender, String phone, String address, String account_id) {
+    public boolean updateUserInfo(UserInfo user) {
         boolean result = false;
         try {
             query = "UPDATE user SET name=?, avatar=?,dob=?, gender=?, phone=?, address=?  WHERE account=?;";
             stm = this.con.prepareStatement(query);
-            stm.setString(1, name);
-            stm.setString(2, avatar);
-            stm.setDate(3, dob);
-            stm.setString(4, gender);
-            stm.setString(5, phone);
-            stm.setString(6, address);
+            stm.setString(1, user.getName());
+            stm.setString(2, user.getAvatar());
+            stm.setDate(3, (Date) user.getDob());
+            stm.setString(4, user.getGender());
+            stm.setString(5, user.getPhone());
+            stm.setString(6, user.getAddress());
 
-            stm.setString(7, account_id);
+            stm.setString(7, user.getAccount_id());
 
             stm.executeUpdate();
             result = true;
