@@ -54,15 +54,17 @@ public class MainController extends HttpServlet {
     private static final String DELETE_CART_CONTROLLER = "DeleteCartController";
     private static final String CHECKOUT = "Checkout";
     private static final String CHECKOUT_CONTROLLER = "CheckoutController";
-    private static final String EDIT_USERINFO = "EditUserInfo";
-    private static final String EDIT_USERINFO_CONTROLLER = "EditUserInfoController";
+    private static final String UPDATE_USERINFO = "UpdateUserInfo";
+    private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            log("check run");
             String action = request.getParameter("action");
+    
             if (LOGIN.equals(action)) {
                 url = LOGIN_CONTROLLER;
             } else if (LOGOUT.equals(action)) {
@@ -87,6 +89,8 @@ public class MainController extends HttpServlet {
                 url = DELETE_CART_CONTROLLER;
             } else if (CHECKOUT.equals(action)) {
                 url = CHECKOUT_CONTROLLER;
+            } else if (UPDATE_USERINFO.equals(action)) {
+                url = UPDATE_USERINFO_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController " + e.toString());

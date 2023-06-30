@@ -63,7 +63,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
         boolean check = false;
         try {
-
+            log("test update");
             String name = "";
             String avatar = "";
             String dob = "";
@@ -120,6 +120,7 @@ public class UpdateUserInfoController extends HttpServlet {
                                 String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
                                 File saveFile = new File(realPath);
                                 item.write(saveFile);
+                                log(saveFile.getPath());
                                 avatar = realPath.substring(realPath.lastIndexOf("\\") + 1);
                             }
                         }
@@ -134,15 +135,20 @@ public class UpdateUserInfoController extends HttpServlet {
                 if (avatar == null || avatar.trim().equals("")) {
                     user.setAvatar(avtTmp);
                 } else {
+             
                     user.setAvatar(avatar);
                 }
                 user.setGender(gender);
                 user.setPhone(phone);
-                user.setDob(Utility.getSdf().parse(dob));
+
+                user.setDob(Utility.handleParseDate(dob));
 
                 UserUtils userDAO = new UserUtils();
                 check = userDAO.updateUserInfo(user);
+       
+
                 if (check) {
+                    log("checkedddddd");
                     url = SUCCESS;
 
                 } else {

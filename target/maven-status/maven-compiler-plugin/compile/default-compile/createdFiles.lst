@@ -5,12 +5,15 @@ DTO\ProductInfo.class
 Controller\MainController.class
 Utils\DBUtils.class
 Utils\ProductUtils.class
+Utils\Utility.class
 DTO\UserInfo.class
+Controller\UpdateUserInfoController.class
 DTO\CategoryInfo.class
 Utils\Validation.class
 Controller\AdminController.class
 Controller\FacebookController.class
 Controller\UpdateProductController.class
+Utils\UserUtils.class
 Controller\AccountController.class
 DTO\AccountInfo.class
 Utils\GoogleSignIn.class
@@ -19,3 +22,4 @@ Utils\CategoryUtils.class
 Controller\UserController.class
 Controller\CreateProductController.class
 Controller\AddToCartController.class
+Connection\DBConnection.class

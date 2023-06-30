@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class Utility {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private static final String pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
     public Utility() {

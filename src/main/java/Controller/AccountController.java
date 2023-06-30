@@ -35,9 +35,9 @@ import javax.servlet.http.HttpSession;
 public class AccountController extends HttpServlet {
 
     private static final String ERROR_REGISTER = "register.jsp";
-    private static final String ADMIN = "ADMIN";
+    private static final String ADMIN = "shop";
     private static final String ADMIN_PAGE = "AdminController";
-    private static final String USER = "USER";
+    private static final String USER = "customer";
     private static final String USER_PAGE = "home.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,6 +53,7 @@ public class AccountController extends HttpServlet {
 
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
+
                 if (accountInfo == null) {
                     request.setAttribute("message", "Wrong email or password");
                 } else {
