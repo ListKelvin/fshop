@@ -7,7 +7,6 @@ package DTO;
 
 import java.util.Date;
 
-
 /**
  *
  * @author 03lin
@@ -35,8 +34,7 @@ public class UserInfo {
 
     public UserInfo() {
     }
-        
-        
+
 
     public int getId() {
         return id;
@@ -101,7 +99,5 @@ public class UserInfo {
     public void setAccount_id(int account_id) {
         this.account_id = account_id;
     }
-	
-        
-    
+
 }

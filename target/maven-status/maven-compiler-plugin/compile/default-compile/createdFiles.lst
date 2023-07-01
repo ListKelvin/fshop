@@ -2,15 +2,18 @@ DTO\CartInfo.class
 Controller\GoogleServlet.class
 Utils\NetUtils.class
 DTO\ProductInfo.class
+Controller\MainController.class
 Utils\DBUtils.class
 Utils\ProductUtils.class
-Controller\HomeController.class
+Utils\Utility.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
+Controller\UpdateUserInfoController.class
 DTO\CategoryInfo.class
 Utils\OrderUtils.class
 Controller\SearchProductController.class
 Utils\Validation.class
+Controller\AdminController.class
 Controller\CreateCategoryController.class
 Utils\OrderProductUtils.class
 Controller\FacebookController.class
@@ -23,6 +26,7 @@ Utils\GoogleSignIn.class
 Controller\RemoveCartController.class
 Utils\APIWrapper.class
 Utils\CategoryUtils.class
+Controller\UserController.class
 Controller\UpdateCartController.class
 Controller\CreateProductController.class
 Controller\AddToCartController.class

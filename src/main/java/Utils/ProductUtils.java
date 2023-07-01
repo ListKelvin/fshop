@@ -160,6 +160,50 @@ public class ProductUtils {
         }
         return products;
     }
+    
+    public static List<ProductInfo> searchProductCategory(String title, String cate) {
+        List<ProductInfo> products = new ArrayList<ProductInfo>();
+        try {
+            con = DBConnection.getConnection();
+            String sql = "SELECT * FROM [product] where category =? and title like ? " ;
+            stm = con.prepareStatement(sql);
+            stm.setString(1, cate);
+            stm.setString(2,"%" + title + "%");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                ProductInfo row = new ProductInfo();
+                row.setId(rs.getInt("id"));
+                row.setTitle(rs.getString("title"));
+                row.setDescription(rs.getString("description"));
+                row.setCategoryName(rs.getString("category"));
+                row.setPrice(rs.getFloat("price"));
+                row.setImage(rs.getString("image"));
+                row.setQuantity(rs.getInt("quantity"));
+                row.setSold(rs.getInt("sold"));
+                row.setSoldOut(rs.getString("sold_out"));
+                products.add(row);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return products;
+    }
 
     public ProductInfo getSingleProduct(int id) {
         ProductInfo product = null;
@@ -293,6 +337,40 @@ public class ProductUtils {
             stm.setInt(6, product.getQuantity());
             stm.setString(7, product.getSoldOut());
             stm.setInt(8, product.getId());
+            stm.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+    
+    public boolean updateProductSold(ProductInfo product) {
+        boolean result = false;
+        try {
+            con = DBConnection.getConnection();
+            query = "UPDATE product SET quantity=?, sold=?, sold_out=? WHERE id=?;";
+            stm = this.con.prepareStatement(query);
+            stm.setInt(1, product.getQuantity());
+            stm.setInt(2, product.getSold());
+            stm.setString(3, product.getSoldOut());
+            stm.setInt(4, product.getId());
             stm.executeUpdate();
             result = true;
         } catch (SQLException ex) {

@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author 03lin
  */
-public class OrderInfo {
+public class OrderInfo extends UserInfo{
     private int orderId;
     private String orderNumber;
     private int userId;

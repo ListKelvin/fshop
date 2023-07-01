@@ -45,6 +45,7 @@
 
                 <div class="box " style="min-height: 75vh;">
                     <h1 class="text-center" style="color: #BC6EEE;">Cart Item</h1>
+                    <p>${requestScope.message}</p>
                     <div class="productList">
                     <c:forEach items="${cartItems}" var="cartItems">
                         <tag:cart_item id="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="./assest/linn.jpg"/>

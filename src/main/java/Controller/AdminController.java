@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Minh
  */
-@WebServlet(name = "home", urlPatterns = {"/home"})
-public class HomeController extends HttpServlet {
+@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
+public class AdminController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "admin.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +35,16 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try (PrintWriter out = response.getWriter()) {
-            String page = request.getParameter("page");
-            page = page.toLowerCase();
-
-            switch (page) {
-                case "home":
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
-                    break;
-                case "register":
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
-                    break;
-
-                case "index":
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-                    break;
-                default:
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
+            /* TODO output your page here. You may use following sample code. */
+            
+            //fetch data need for admin here
+            url = SUCCESS;
+        } catch (IOException e) {
+            log("Error at AdminController " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
