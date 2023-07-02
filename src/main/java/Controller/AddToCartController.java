@@ -5,17 +5,21 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.CartInfo;
+import DTO.UserInfo;
+import Utils.CartUtils;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.bouncycastle.crypto.tls.ExtensionType;
 
 /**
  *
@@ -23,6 +27,8 @@ import org.bouncycastle.crypto.tls.ExtensionType;
  */
 @WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart"})
 public class AddToCartController extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,36 +43,38 @@ public class AddToCartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        try (PrintWriter out = response.getWriter()) {
-            ArrayList<CartInfo> cartList = new ArrayList<>();
+        boolean result = false;
 
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
+            UserInfo userinfo = UserUtils.getUser(user.getId());
             int id = Integer.parseInt(request.getParameter("id"));
             CartInfo ci = new CartInfo();
+            ci.setUserId(userinfo.getId());
             ci.setId(id);
-            ci.setQuantity(1);
 
-            HttpSession session = request.getSession();
-            ArrayList<CartInfo> sessionCart = (ArrayList<CartInfo>) session.getAttribute("cart-list");
-
-            if (sessionCart == null) {
-                cartList.add(ci);
-                session.setAttribute("cart-list", cartList);
-                response.sendRedirect("cart.jsp");
+            CartInfo checkCart = (CartInfo) CartUtils.checkCartProduct(ci);
+            if (checkCart != null) {
+                CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
+                request.setAttribute("message", "add to cart successfully");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.forward(request, response);
             } else {
-                cartList = sessionCart;
-                boolean exist = false;
+                result = CartUtils.addToCart(ci);
+                
+                if (result) {
+                    request.setAttribute("message", "add to cart successfully");
+                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    rd.forward(request, response);
+                } else {
+                    request.setAttribute("message", "add to cart fail");
+                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    rd.forward(request, response);
 
-                for (CartInfo c : cartList) {
-                    if (c.getId() == id) {
-                        exist = true;
-                        request.setAttribute("message", "Items already exist in cart");
-                    }
-                }
-                if (!exist) {
-                    cartList.add(ci);
-                    response.sendRedirect("cart.jsp");
                 }
             }
+
         }
     }
 

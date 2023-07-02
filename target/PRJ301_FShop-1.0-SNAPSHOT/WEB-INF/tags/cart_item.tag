@@ -8,8 +8,11 @@
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="srcImg"%>
+<%@attribute name="id"%>
+<%@attribute name="price"%>
 <%@attribute name="productName"%>
 <%@attribute name="category"%>
+<%@attribute name="quantity"%>
 
 <%-- any content can be specified here e.g.: --%>
 
@@ -22,13 +25,13 @@
 
 
         </div>
-            <div class="d-flex align-items-center flex-column ">
+        <div class="d-flex align-items-center flex-column ">
 
             <ul class="pagination justify-content-end set_quantity w-100">
                 <li class="page-item">
                     <button class="page-link " onclick="decreaseNumber('textbox1', 'itemval1')"> <i class="bi bi-dash"></i> </button>
                 </li>
-                <li class="page-item"><input type="number" name="" class="page-link" value="0" id="textbox1" >
+                <li class="page-item"><input type="number" name="" class="page-link" value="${quantity}" id="textbox1" >
                 </li>
                 <li class="page-item">
                     <button class="page-link" onclick="increaseNumber('textbox1', 'itemval1')"> <i class="bi bi-plus"></i></button>
@@ -36,10 +39,15 @@
                 </li>
             </ul>
 
-            <button class="btn btn-danger" type="button"><i class="bi bi-trash"></i> REMOVE</button>
+            <!--            <button class="btn btn-danger" type="button"><i class="bi bi-trash"></i> REMOVE</button>-->
+
+            <form action="RemoveCart" method="POST">
+                <input type=hidden name="cartid" value="${id}">
+                <input class="btn btn-danger" value="REMOVE" type="Submit">
+            </form>
         </div>
         <div>
-            price
+            ${price}
         </div>
     </div>
 

@@ -71,6 +71,7 @@ public class DBUtils {
                 String accountEmail = rs.getString("email");
                 String accountRole = rs.getString("role");
                 AccountInfo accountInfo = new AccountInfo();
+                accountInfo.setId(rs.getInt("id"));
                 accountInfo.setName(accountName);
                 accountInfo.setEmail(accountEmail);
                 accountInfo.setRole(accountRole);
@@ -223,6 +224,7 @@ public class DBUtils {
                 String accountRole = rs.getString("role");
 
                 AccountInfo accountInfo = new AccountInfo();
+                accountInfo.setId(rs.getInt("id"));
                 accountInfo.setName(user);
                 accountInfo.setFacebookID(faceId.trim());
                 accountInfo.setLink(faceLink);

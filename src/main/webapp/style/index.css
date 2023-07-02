@@ -336,6 +336,31 @@ and open the template in the editor.
   transform: scale(1.1);
   /* Set the scale transform to zoom in on the image */ }
 
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 17, 2023, 12:49:26 PM
+    Author     : 03lin
+*/
+.product {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 14rem;
+  background: transparent;
+  transition: 0.2s all;
+  border: none; }
+  .product .text-eclipse {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    color: #BC6EEE; }
+
 a {
   text-decoration: none; }
 

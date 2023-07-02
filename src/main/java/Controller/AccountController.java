@@ -8,6 +8,7 @@ package Controller;
 import DTO.AccountInfo;
 import Utils.DBUtils;
 import Utils.GoogleSignIn;
+import Utils.UserUtils;
 import Utils.Validation;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -93,6 +94,8 @@ public class AccountController extends HttpServlet {
                         request.setAttribute("message", "Email already exist");
                     } else {
                         DBUtils.register(username, password, email);
+                        AccountInfo accountInfo = DBUtils.login(email, password);
+                        UserUtils.createUser(accountInfo.getId());
                         request.setAttribute("message", "Register successfull");
                     }
                 }

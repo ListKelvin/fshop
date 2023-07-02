@@ -130,7 +130,7 @@ public class UpdateUserInfoController extends HttpServlet {
                 UserInfo user = new UserInfo();
                 user.setName(name);
                 user.setAddress(address);
-                user.setAccount_id(account_id);
+                user.setAccount_id(Integer.parseInt(account_id));
                 user.setPhone(phone);
                 if (avatar == null || avatar.trim().equals("")) {
                     user.setAvatar(avtTmp);

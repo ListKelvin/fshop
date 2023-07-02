@@ -1,3 +1,6 @@
+<%@page import="Utils.UserUtils"%>
+<%@page import="DTO.UserInfo"%>
+<%@page import="Utils.CartUtils"%>
 <%@page import="DTO.CartInfo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,6 +11,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
+<%
+    AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
+    UserInfo userinfo = null;
+    if (user == null) {
+        request.setAttribute("message", "Unauthentication!!");
+        response.sendRedirect("index.jsp");
+    } else {
+        userinfo = UserUtils.getUser(user.getId());
+        if (userinfo != null) {
+            CartUtils cartUtils = new CartUtils();
+            List<CartInfo> cartItems = cartUtils.getCartProduct(userinfo.getId());
+            request.setAttribute("cartItems", cartItems);
+            request.setAttribute("userinfo", userinfo);
+            float total = ProductUtils.getTotalCartPrice(cartItems);
+            request.setAttribute("total", total);
+        } else {
+            request.setAttribute("message", "sth wrong at user info!!");
+            response.sendRedirect("home.jsp");
+        }
+
+    }
+
+
+%> 
 
 
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
@@ -18,8 +45,12 @@
 
                 <div class="box " style="min-height: 75vh;">
                     <h1 class="text-center" style="color: #BC6EEE;">Cart Item</h1>
+                    <p>${requestScope.message}</p>
                     <div class="productList">
-                    <tag:cart_item category="test"  productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
+                    <c:forEach items="${cartItems}" var="cartItems">
+                        <tag:cart_item id="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="./assest/linn.jpg"/>
+                    </c:forEach>
+
 
                 </div>
 
@@ -36,8 +67,12 @@
 
                 </div>
                 <hr/>
-                <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>1000</span></div>
-                <button type="button" class=" btnPlaceOrder">Place Order</button>
+                <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>${total}</span></div>
+                <!--                <button type="button" class=" btnPlaceOrder">Place Order</button>-->
+                <form action="CreateOrder" method="POST">
+<!--                    <input type=hidden name="cartid" value="${id}">-->
+                    <input class=" btnPlaceOrder" value="Place Order" type="Submit">
+                </form>
             </div>
 
 

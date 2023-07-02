@@ -21,12 +21,80 @@ import java.util.List;
  * @author 03lin
  */
 public class UserUtils {
-
-    private static Connection con = null;
+     private static Connection con = null;
     private String query = null;
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
-
+    public static boolean createUser(int account ) {
+        try {
+            con = DBConnection.getConnection();
+            String sql = "INSERT INTO [user](account)" + "VALUES (?)";
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, account);
+            int row = stm.executeUpdate();
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public static UserInfo getUser(int account){
+        UserInfo userinfo = null;
+        try {
+            con = DBConnection.getConnection();
+            String sql = "SELECT * FROM [user] WHERE account = ?";
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, account);
+            rs = stm.executeQuery();
+             while (rs.next()) {
+                userinfo = new UserInfo();
+                userinfo.setId(rs.getInt("id"));
+                userinfo.setName(rs.getString("name"));
+                userinfo.setAvatar(rs.getString("avatar"));
+                userinfo.setDob(rs.getDate("dob"));
+                userinfo.setGender(rs.getString("gender"));
+                userinfo.setPhone(rs.getString("phone"));
+                userinfo.setAddress(rs.getString("address"));
+                userinfo.setAccount_id(rs.getInt("account"));
+}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return userinfo;
+    }
+   
     public List<UserInfo> getAllUserInfo() {
         List<UserInfo> users = new ArrayList<>();
         try {
@@ -37,7 +105,7 @@ public class UserUtils {
             while (rs.next()) {
                 UserInfo row = new UserInfo();
                 row.setId(rs.getInt("id"));
-                row.setAccount_id(rs.getString("account"));
+                row.setAccount_id(rs.getInt("account"));
                 row.setAddress(rs.getString("address"));
                 row.setAvatar(rs.getString("avatar"));
                 row.setDob(rs.getDate("dob"));
@@ -80,7 +148,7 @@ public class UserUtils {
             while (rs.next()) {
                 user = new UserInfo();
                 user.setId(rs.getInt("id"));
-                user.setAccount_id(rs.getString("account"));
+                user.setAccount_id(rs.getInt("account"));
                 user.setAddress(rs.getString("address"));
                 user.setAvatar(rs.getString("avatar"));
                 user.setDob(rs.getDate("dob"));
@@ -122,7 +190,7 @@ public class UserUtils {
             while (rs.next()) {
                 user = new UserInfo();
                 user.setId(rs.getInt("id"));
-                user.setAccount_id(rs.getString("account"));
+                user.setAccount_id(rs.getInt("account"));
                 user.setAddress(rs.getString("address"));
                 user.setAvatar(rs.getString("avatar"));
                 user.setDob(rs.getDate("dob"));
@@ -165,7 +233,7 @@ public class UserUtils {
                 UserInfo row = new UserInfo();
 
                 row.setId(rs.getInt("id"));
-                row.setAccount_id(rs.getString("account"));
+                row.setAccount_id(rs.getInt("account"));
                 row.setAddress(rs.getString("address"));
                 row.setAvatar(rs.getString("avatar"));
                 row.setDob(rs.getDate("dob"));
@@ -247,7 +315,7 @@ public class UserUtils {
             stm.setString(5, user.getPhone());
             stm.setString(6, user.getAddress());
 
-            stm.setString(7, user.getAccount_id());
+            stm.setInt(7, user.getAccount_id());
 
             stm.executeUpdate();
             result = true;
