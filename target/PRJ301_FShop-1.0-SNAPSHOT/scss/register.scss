@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2023, 9:20:57 PM
+    Author     : Minh
+*/
+
+.registerBg{
+    min-height: 100vh;
+    background-image: url(../assest/registerBg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .size{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        padding:1rem;
+        max-width: 500px;
+        background: $orange-200;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        box-shadow: 5px 4px 16px 4px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(11px);
+        /* Note: backdrop-filter has minimal browser support */
+
+        border-radius: 50px;
+    }
+    .btn-styled{
+        @include button($purple-primary, 200px);
+
+    }
+    .smallBtn{
+        @include buttonSmall($purple-primary, 150px);
+    }
+    .textStyled{
+        font-family: 'Play';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 65px;
+        color: #BC6EEE;
+        margin-bottom: 2rem;
+    }
+}

@@ -26,8 +26,12 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private static final String ERROR_PAGE = "error.jsp";
+        private static final String ERROR_LOGIN = "index.jsp";
+
     private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
-    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
+//    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
+        private static final String SHOP_PAGE = "create-product.jsp";
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,6 +54,7 @@ public class LoginController extends HttpServlet {
 
             if (accountInfo == null) {
                 request.setAttribute("message", "Wrong email or password");
+                url = ERROR_LOGIN;
             } else {
                 String role = accountInfo.getRole();
                 System.out.println("(accountController) userid:  " + accountInfo.getId());
