@@ -25,10 +25,11 @@ public class UserUtils {
     private String query = null;
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
+    
     public static boolean createUser(int account ) {
         try {
             con = DBConnection.getConnection();
-            String sql = "INSERT INTO [user](account)" + "VALUES (?)";
+            String sql = "INSERT INTO [user](account)" + "VALUES(?)";
             stm = con.prepareStatement(sql);
             stm.setInt(1, account);
             int row = stm.executeUpdate();

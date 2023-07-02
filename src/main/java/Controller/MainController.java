@@ -44,7 +44,7 @@ public class MainController extends HttpServlet {
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
     private static final String ADD_CATEGORY = "AddCategory";
     private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
-    private static final String SEARCH_PRODUCT = "Search";
+    private static final String SEARCH_PRODUCT = "SearchProduct";
     private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
     private static final String ADD_TO_CART = "ADD TO CART";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
@@ -65,32 +65,48 @@ public class MainController extends HttpServlet {
             log("check run");
             String action = request.getParameter("action");
     
-            if (LOGIN.equals(action)) {
-                url = LOGIN_CONTROLLER;
-            } else if (LOGOUT.equals(action)) {
-                url = LOGOUT_CONTROLLER;
-            } else if (DELETE_PRODUCT.equals(action)) {
-                url = DELETE_PRODUCT_CONTROLLER;
-            } else if (UPDATE_PRODUCT.equals(action)) {
-                url = UPDATE_PRODUCT_CONTROLLER;
-            } else if (UPDATE_CATEGORY.equals(action)) {
-                url = UPDATE_CATEGORY_CONTROLLER;
-            } else if (ADD_PRODUCT.equals(action)) {
-                url = ADD_PRODUCT_CONTROLLER;
-            } else if (ADD_CATEGORY.equals(action)) {
-                url = ADD_CATEGORY_CONTROLLER;
-            } else if (SEARCH_PRODUCT.equals(action)) {
-                url = SEARCH_PRODUCT_CONTROLLER;
-            } else if (ADD_TO_CART.equals(action)) {
-                url = ADD_TO_CART_CONTROLLER;
-            } else if (UPDATE_CART.equals(action)) {
-                url = UPDATE_CART_CONTROLLER;
-            } else if (DELETE_CART.equals(action)) {
-                url = DELETE_CART_CONTROLLER;
-            } else if (CHECKOUT.equals(action)) {
-                url = CHECKOUT_CONTROLLER;
-            } else if (UPDATE_USERINFO.equals(action)) {
-                url = UPDATE_USERINFO_CONTROLLER;
+            if (null != action) switch (action) {
+                case LOGIN:
+                    url = LOGIN_CONTROLLER;
+                    break;
+                case LOGOUT:
+                    url = LOGOUT_CONTROLLER;
+                    break;
+                case DELETE_PRODUCT:
+                    url = DELETE_PRODUCT_CONTROLLER;
+                    break;
+                case UPDATE_PRODUCT:
+                    url = UPDATE_PRODUCT_CONTROLLER;
+                    break;
+                case UPDATE_CATEGORY:
+                    url = UPDATE_CATEGORY_CONTROLLER;
+                    break;
+                case ADD_PRODUCT:
+                    url = ADD_PRODUCT_CONTROLLER;
+                    break;
+                case ADD_CATEGORY:
+                    url = ADD_CATEGORY_CONTROLLER;
+                    break;
+                case SEARCH_PRODUCT:
+                    url = SEARCH_PRODUCT_CONTROLLER;
+                    break;
+                case ADD_TO_CART:
+                    url = ADD_TO_CART_CONTROLLER;
+                    break;
+                case UPDATE_CART:
+                    url = UPDATE_CART_CONTROLLER;
+                    break;
+                case DELETE_CART:
+                    url = DELETE_CART_CONTROLLER;
+                    break;
+                case CHECKOUT:
+                    url = CHECKOUT_CONTROLLER;
+                    break;
+                case UPDATE_USERINFO:
+                    url = UPDATE_USERINFO_CONTROLLER;
+                    break;
+                default:
+                    break;
             }
         } catch (Exception e) {
             log("Error at MainController " + e.toString());

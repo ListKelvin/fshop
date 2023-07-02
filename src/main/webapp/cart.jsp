@@ -84,7 +84,7 @@
 
 </section>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 
     var product_total_amt = document.getElementById('product_total_amt');
     var shipping_charge = document.getElementById('shipping_charge');
@@ -125,5 +125,5 @@
     };
 
 
-</script>
+</script>-->
 <c:import url="page/Footer.jsp"></c:import>

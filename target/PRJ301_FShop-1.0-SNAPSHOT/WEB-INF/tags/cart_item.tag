@@ -29,12 +29,12 @@
 
             <ul class="pagination justify-content-end set_quantity w-100">
                 <li class="page-item">
-                    <button class="page-link " onclick="decreaseNumber('textbox1', 'itemval1')"> <i class="bi bi-dash"></i> </button>
+                    <a class="page-link "> <i class="bi bi-dash"></i> </a>
                 </li>
                 <li class="page-item"><input type="number" name="" class="page-link" value="${quantity}" id="textbox1" >
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="increaseNumber('textbox1', 'itemval1')"> <i class="bi bi-plus"></i></button>
+                    <a class="page-link" > <i class="bi bi-plus"></i></a>
 
                 </li>
             </ul>

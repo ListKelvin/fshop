@@ -47,9 +47,15 @@ public class AddToCartController extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
+
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+       
+            
             UserInfo userinfo = UserUtils.getUser(user.getId());
+
             int id = Integer.parseInt(request.getParameter("id"));
+            System.out.println("(addtocart) id product:  " + id);
+
             CartInfo ci = new CartInfo();
             ci.setUserId(userinfo.getId());
             ci.setId(id);
@@ -62,14 +68,14 @@ public class AddToCartController extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 result = CartUtils.addToCart(ci);
-                
+
                 if (result) {
                     request.setAttribute("message", "add to cart successfully");
                     RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
                     rd.forward(request, response);
                 } else {
                     request.setAttribute("message", "add to cart fail");
-                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
                     rd.forward(request, response);
 
                 }

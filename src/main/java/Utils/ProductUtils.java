@@ -27,7 +27,7 @@ public class ProductUtils {
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
 
-    public static List<ProductInfo> getAllProduct() {
+    public List<ProductInfo> getAllProduct() {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
@@ -117,14 +117,13 @@ public class ProductUtils {
 //        }
 //        return products;
 //    }
-    
-    public static List<ProductInfo> searchProduct(String title) {
+    public  List<ProductInfo> searchProduct(String title) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where title like ? " ;
+            String sql = "SELECT * FROM [product] where title like ? ";
             stm = con.prepareStatement(sql);
-            stm.setString(1,"%" + title + "%");
+            stm.setString(1, "%" + title + "%");
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();
@@ -160,15 +159,15 @@ public class ProductUtils {
         }
         return products;
     }
-    
+
     public static List<ProductInfo> searchProductCategory(String title, String cate) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? and title like ? " ;
+            String sql = "SELECT * FROM [product] where category =? and title like ? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
-            stm.setString(2,"%" + title + "%");
+            stm.setString(2, "%" + title + "%");
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();
@@ -255,7 +254,7 @@ public class ProductUtils {
             con = DBConnection.getConnection();
             if (cartList.size() > 0) {
                 for (CartInfo item : cartList) {
-                   String query = "SELECT price FROM product WHERE id=?";
+                    String query = "SELECT price FROM product WHERE id=?";
                     stm = con.prepareStatement(query);
                     stm.setInt(1, item.getId());
                     rs = stm.executeQuery();
@@ -360,7 +359,7 @@ public class ProductUtils {
         }
         return result;
     }
-    
+
     public boolean updateProductSold(ProductInfo product) {
         boolean result = false;
         try {
