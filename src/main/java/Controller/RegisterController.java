@@ -21,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Minh
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/RegisterController"})
+@WebServlet(name = "Register", urlPatterns = {"/RegisterController"})
 public class RegisterController extends HttpServlet {
 
     private static final String ERROR_REGISTER = "register.jsp";
     private static final String ERROR = "error.jsp";
-    private static final String LOGIN_PAGE = "login.jsp";
+    private static final String LOGIN_PAGE = "index.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

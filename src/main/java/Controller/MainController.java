@@ -32,6 +32,8 @@ public class MainController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
+    private static final String REGISTER = "Register";
+    private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     private static final String DELETE_PRODUCT = "DeleteProduct";
@@ -56,7 +58,7 @@ public class MainController extends HttpServlet {
     private static final String CHECKOUT_CONTROLLER = "CheckoutController";
     private static final String UPDATE_USERINFO = "UpdateUserInfo";
     private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -64,49 +66,54 @@ public class MainController extends HttpServlet {
         try {
             log("check run");
             String action = request.getParameter("action");
-    
-            if (null != action) switch (action) {
-                case LOGIN:
-                    url = LOGIN_CONTROLLER;
-                    break;
-                case LOGOUT:
-                    url = LOGOUT_CONTROLLER;
-                    break;
-                case DELETE_PRODUCT:
-                    url = DELETE_PRODUCT_CONTROLLER;
-                    break;
-                case UPDATE_PRODUCT:
-                    url = UPDATE_PRODUCT_CONTROLLER;
-                    break;
-                case UPDATE_CATEGORY:
-                    url = UPDATE_CATEGORY_CONTROLLER;
-                    break;
-                case ADD_PRODUCT:
-                    url = ADD_PRODUCT_CONTROLLER;
-                    break;
-                case ADD_CATEGORY:
-                    url = ADD_CATEGORY_CONTROLLER;
-                    break;
-                case SEARCH_PRODUCT:
-                    url = SEARCH_PRODUCT_CONTROLLER;
-                    break;
-                case ADD_TO_CART:
-                    url = ADD_TO_CART_CONTROLLER;
-                    break;
-                case UPDATE_CART:
-                    url = UPDATE_CART_CONTROLLER;
-                    break;
-                case DELETE_CART:
-                    url = DELETE_CART_CONTROLLER;
-                    break;
-                case CHECKOUT:
-                    url = CHECKOUT_CONTROLLER;
-                    break;
-                case UPDATE_USERINFO:
-                    url = UPDATE_USERINFO_CONTROLLER;
-                    break;
-                default:
-                    break;
+            log(action);
+            if (null != action) {
+                switch (action) {
+                    case LOGIN:
+                        url = LOGIN_CONTROLLER;
+                        break;
+                    case REGISTER:
+                        url = REGISTER_CONTROLLER;
+                        break;
+                    case LOGOUT:
+                        url = LOGOUT_CONTROLLER;
+                        break;
+                    case DELETE_PRODUCT:
+                        url = DELETE_PRODUCT_CONTROLLER;
+                        break;
+                    case UPDATE_PRODUCT:
+                        url = UPDATE_PRODUCT_CONTROLLER;
+                        break;
+                    case UPDATE_CATEGORY:
+                        url = UPDATE_CATEGORY_CONTROLLER;
+                        break;
+                    case ADD_PRODUCT:
+                        url = ADD_PRODUCT_CONTROLLER;
+                        break;
+                    case ADD_CATEGORY:
+                        url = ADD_CATEGORY_CONTROLLER;
+                        break;
+                    case SEARCH_PRODUCT:
+                        url = SEARCH_PRODUCT_CONTROLLER;
+                        break;
+                    case ADD_TO_CART:
+                        url = ADD_TO_CART_CONTROLLER;
+                        break;
+                    case UPDATE_CART:
+                        url = UPDATE_CART_CONTROLLER;
+                        break;
+                    case DELETE_CART:
+                        url = DELETE_CART_CONTROLLER;
+                        break;
+                    case CHECKOUT:
+                        url = CHECKOUT_CONTROLLER;
+                        break;
+                    case UPDATE_USERINFO:
+                        url = UPDATE_USERINFO_CONTROLLER;
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             log("Error at MainController " + e.toString());

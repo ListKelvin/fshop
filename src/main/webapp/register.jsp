@@ -21,7 +21,7 @@
                     <div class="card-body w-75 ">
 
                         <h3 class="card-title textStyled">Register</h3>
-                        <form action="Account" method="POST" class="w-100 d-flex align-items-center justify-content-center flex-column">
+                        <form action="MainController" method="POST" class="w-100 d-flex align-items-center justify-content-center flex-column">
                             <div class="form-floating w-100  mb-3">
                                 <input
 
@@ -88,12 +88,12 @@
                                         checked
                                         />
                                     <label class="form-check-label" For="rememberMe">
-                                       Confirm information
+                                        Confirm information
                                     </label>
                                 </div>
-                     
+
                             </div>
-                            <button class="btn btn-styled" type="submit" name="btAction" value="Register">Register </button> 
+                            <button class="btn btn-styled" type="Submit" name="action" value="Register">Register </button> 
                             <h4>${requestScope.message}</h4>   
                         </form>
 
