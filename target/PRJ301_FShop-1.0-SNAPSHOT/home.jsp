@@ -28,7 +28,7 @@
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
     <h1>Hello ${user.name}</h1>       
-<section class="container d-flex align-items-center justify-content-center flex-column mt-5 ">
+<section class="container d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled">
     <!--Carousel section-->
     <div id="carouselExample" class="carousel slide mt-auto">
         <div class="carousel-inner">

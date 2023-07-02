@@ -79,6 +79,15 @@ body{
         background-color:$Purple-400;   
     }
 }
+
+.btnCancelConfirmOrder{
+    @include buttonOutlined;
+
+    &:hover{
+        background-color:$Purple-400;   
+        color: white;
+    }
+}
 p { color: #6c757d; } 
 
 .main_cart { background: #fff; } 
@@ -96,3 +105,21 @@ p { color: #6c757d; }
 .page-link:focus { box-shadow: none; } 
 .price_indiv p { font-size: 1.1rem; } 
 .fa-heart:hover { color: red; }
+.textResponsive{
+    color:$white;
+    @media (max-width: 768px) { 
+
+        color:$dark 
+    }
+   
+}
+
+
+.minHeithStyled {
+    margin-top: 100px;
+    
+    min-height: 100vh;
+}
+.ms-n5 {
+    margin-left: -53px;
+}

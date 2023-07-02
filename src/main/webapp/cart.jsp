@@ -12,7 +12,7 @@
 
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
-    <section class="container p-5  mt-5 ">
+    <section class="container p-5   minHeithStyled">
         <div class="row g-4">
             <div class=" col-12 col-lg-8">
 

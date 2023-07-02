@@ -11,7 +11,7 @@
 
 
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
-    <section class="container  mt-5 mh-100">
+    <section class="container  mt-5 minHeithStyled">
         <div class="wrapperProductInfo">
             <div class="categoryTitle">Category: .......</div>
             <div class="productName">Áo nữ Libé Workshop</div>
