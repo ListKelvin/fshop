@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DTO.OrderInfo;
-import Utils.OrderUtils;
+import DTO.ProductInfo;
+import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "OrderHistoryController", urlPatterns = {"/OrderHistory"})
-public class OrderHistoryController extends HttpServlet {
+@WebServlet(name = "BestSellerContronller", urlPatterns = {"/BestSeller"})
+public class BestSellerContronller extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +37,10 @@ public class OrderHistoryController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String redirectPage = "order-history.jsp";
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            if (userId > 0) {
-                List<OrderInfo> orderList = OrderUtils.userOrders(userId);
-                if (!orderList.isEmpty()) {
-                    request.setAttribute("orders", orderList);
-                    redirectPage = "order-history.jsp";
-                } else {
-                    request.setAttribute("mess", "user not have any order yet");
-                    redirectPage = "order-history.jsp";
-                }
-            } else {
-                System.out.println("sth wrong with user Id");
-            }
+            /* TODO output your page here. You may use following sample code. */
+            String redirectPage = null;
+            List<ProductInfo> products = ProductUtils.getBestSeller();
+            request.setAttribute("best-seller", products);
             RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
             rd.forward(request, response);
         }

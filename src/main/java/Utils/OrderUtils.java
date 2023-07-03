@@ -186,13 +186,12 @@ public class OrderUtils {
         return list;
     }
 
-    
-     public static OrderInfo ViewOrdersDetail (int id) {
-          OrderInfo order = null;
+    public static OrderInfo ViewOrdersDetail(int id) {
+        OrderInfo order = null;
         try {
             con = DBConnection.getConnection();
-            query = "   SELECT o.id, o.order_number, o.[user], o.delivery, o.payment, o.create_at, o.status, o.total_bill,u.name, u.address, u.phone" +
-"  FROM [order] o JOIN [user] u ON o.[user] = u.id WHERE o.id=? ";
+            query = "   SELECT o.id, o.order_number, o.[user], o.delivery, o.payment, o.create_at, o.status, o.total_bill,u.name, u.address, u.phone"
+                    + "  FROM [order] o JOIN [user] u ON o.[user] = u.id WHERE o.id=? ";
             stm = con.prepareStatement(query);
             stm.setInt(1, id);
             rs = stm.executeQuery();
@@ -231,8 +230,8 @@ public class OrderUtils {
         }
         return order;
     }
-     
-     public static boolean updateOrderStatus(int id, String status) {
+
+    public static boolean updateOrderStatus(int id, String status) {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
@@ -262,6 +261,70 @@ public class OrderUtils {
             }
         }
         return result;
+    }
+
+    public static int countUser() {
+        int count = 0;
+        try {
+            con = DBConnection.getConnection();
+            query = " SELECT COUNT( DISTINCT [user]) AS count_user FROM [order] ";
+            stm = con.prepareStatement(query);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+            count = rs.getInt("count_user");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return count;
+    }
+    
+    public static int countOrder() {
+        int count = 0;
+        try {
+            con = DBConnection.getConnection();
+            query = " SELECT COUNT( DISTINCT [id]) AS count_order FROM [order] WHERE status = 'done' ";
+            stm = con.prepareStatement(query);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+            count = rs.getInt("count_order");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return count;
     }
 
 }

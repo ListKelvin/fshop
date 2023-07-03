@@ -59,7 +59,7 @@ public class CreateOrderController extends HttpServlet {
         float total = 0;
 
         try (PrintWriter out = response.getWriter()) {
-
+            String redirectPage = null;  //"create-order.jsp";
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -90,8 +90,7 @@ public class CreateOrderController extends HttpServlet {
                         checkResult = false;
                         System.out.println("Product " + checkProduct.getTitle() + " is not available for order");
                         request.setAttribute("message", "Product " + checkProduct.getTitle() + " is not available for order");
-                        RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-                        rd.forward(request, response);
+                        redirectPage = "cart.jsp";
                     }
                 }
                 if (checkResult) {
@@ -135,17 +134,22 @@ public class CreateOrderController extends HttpServlet {
                                 if (update) {
                                     CartUtils.removeCart(c.getCartId());
                                     System.out.println("its okiee !! ");
+                                    request.setAttribute("message", "create order successfull");
+                                    redirectPage = "cart.jsp";
                                 } else {
                                     System.out.println("sth is wrong when update quantity:((( ");
+                                    redirectPage = "cart.jsp";
                                 }
 
                             } else {
                                 System.out.println("sth is wrong :((( ");
+                                redirectPage = "cart.jsp";
                             }
                         }
                     } else {
                         System.out.println("create order fail");
-                        
+                        request.setAttribute("message", "create order fail");
+                        redirectPage = "cart.jsp";
                     }
 
                 } else {
@@ -154,7 +158,11 @@ public class CreateOrderController extends HttpServlet {
 
             } else {
                 System.out.println("cart or user is null");
+                request.setAttribute("message", "cart or user is null");
+                redirectPage = "home.jsp";
             }
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
 
         }
     }

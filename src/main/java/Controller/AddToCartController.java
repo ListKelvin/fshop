@@ -46,6 +46,7 @@ public class AddToCartController extends HttpServlet {
         boolean result = false;
 
         try (PrintWriter out = response.getWriter()) {
+            String redirectPage = null;
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
             UserInfo userinfo = UserUtils.getUser(user.getId());
@@ -58,23 +59,21 @@ public class AddToCartController extends HttpServlet {
             if (checkCart != null) {
                 CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
                 request.setAttribute("message", "add to cart successfully");
-                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-                rd.forward(request, response);
+                redirectPage = "home.jsp";
             } else {
                 result = CartUtils.addToCart(ci);
                 
                 if (result) {
                     request.setAttribute("message", "add to cart successfully");
-                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-                    rd.forward(request, response);
+                    redirectPage = "home.jsp";
                 } else {
                     request.setAttribute("message", "add to cart fail");
-                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-                    rd.forward(request, response);
+                    redirectPage = "home.jsp";
 
                 }
             }
-
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
         }
     }
 
