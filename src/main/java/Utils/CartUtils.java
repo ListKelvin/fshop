@@ -19,12 +19,13 @@ import java.util.List;
  * @author 03lin
  */
 public class CartUtils {
+
     private static Connection con = null;
     private String query = null;
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
-    
-    public static List<CartInfo> getCartProduct(int userId) {
+
+    public List<CartInfo> getCartProduct(int userId) {
         List<CartInfo> carts = new ArrayList<CartInfo>();
         try {
             con = DBConnection.getConnection();
@@ -69,7 +70,7 @@ public class CartUtils {
         }
         return carts;
     }
-    
+
     public static CartInfo checkCartProduct(CartInfo items) {
         CartInfo item = null;
         try {
@@ -107,8 +108,8 @@ public class CartUtils {
         }
         return item;
     }
-    
-     public static boolean addToCart(CartInfo items) {
+
+    public static boolean addToCart(CartInfo items) {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
@@ -139,8 +140,8 @@ public class CartUtils {
         }
         return result;
     }
-     
-     public static boolean updateCartQuantity(int id, int quantity) {
+
+    public static boolean updateCartQuantity(int id, int quantity) {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
@@ -171,8 +172,8 @@ public class CartUtils {
         }
         return result;
     }
-     
-      public static boolean removeCart(int id) {
+
+    public static boolean removeCart(int id) {
         boolean result = false;
         try {
             con = DBConnection.getConnection();

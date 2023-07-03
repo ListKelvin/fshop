@@ -30,35 +30,43 @@ public class MainController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String ERROR = "error.jsp";
+//ACTION
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
     private static final String REGISTER = "Register";
     private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
-    private static final String DELETE_PRODUCT = "DeleteProduct";
-    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
+    private static final String CHECKOUT = "Checkout";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
+    private static final String VIEW_CART = "ViewCart";
+    private static final String VIEW_CART_CONTROLLER = "ViewCartController";
+
+//    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
     private static final String UPDATE_CATEGORY = "UpdateCategory";
     private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
+    private static final String UPDATE_CART = "UpdateCart";
+    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
+    private static final String UPDATE_USERINFO = "UpdateUserInfo";
+    private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
+
+//  CREATE
     private static final String ADD_PRODUCT = "AddProduct";
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
     private static final String ADD_CATEGORY = "AddCategory";
     private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
     private static final String SEARCH_PRODUCT = "SearchProduct";
     private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
-    private static final String ADD_TO_CART = "ADD TO CART";
+    private static final String ADD_TO_CART = "AddToCart";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
-    private static final String UPDATE_CART = "UpdateCart";
-    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
-    private static final String DELETE_CART = "DeleteCart";
-    private static final String DELETE_CART_CONTROLLER = "DeleteCartController";
-    private static final String CHECKOUT = "Checkout";
-    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
-    private static final String UPDATE_USERINFO = "UpdateUserInfo";
-    private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
-    
+//DELETE
+    private static final String REMOVE_CART = "RemoveCart";
+    private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
+    private static final String DELETE_PRODUCT = "DeleteProduct";
+    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -77,6 +85,9 @@ public class MainController extends HttpServlet {
                         break;
                     case LOGOUT:
                         url = LOGOUT_CONTROLLER;
+                        break;
+                    case VIEW_CART:
+                        url = VIEW_CART_CONTROLLER;
                         break;
                     case DELETE_PRODUCT:
                         url = DELETE_PRODUCT_CONTROLLER;
@@ -102,8 +113,8 @@ public class MainController extends HttpServlet {
                     case UPDATE_CART:
                         url = UPDATE_CART_CONTROLLER;
                         break;
-                    case DELETE_CART:
-                        url = DELETE_CART_CONTROLLER;
+                    case REMOVE_CART:
+                        url = REMOVE_CART_CONTROLLER;
                         break;
                     case CHECKOUT:
                         url = CHECKOUT_CONTROLLER;

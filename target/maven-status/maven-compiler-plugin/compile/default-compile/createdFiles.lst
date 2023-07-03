@@ -10,6 +10,7 @@ Utils\Utility.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
 Controller\UpdateUserInfoController.class
+Controller\V?ewCartController.class
 DTO\CategoryInfo.class
 Utils\OrderUtils.class
 Controller\SearchProductController.class

@@ -7,7 +7,7 @@
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title text-danger">Something went wrong!</h5>
-                    <p class="text-danger">${requestScope.ERROR}</p>
+                    <p class="text-danger">${requestScope.message}</p>
                 <button type="button" onclick="goBack()" class="btn btn-primary btn-sm">Go Back</button>
                 <button type="button" onclick="goHome()" class="btn btn-primary btn-sm">Go Home</button>
             </div>

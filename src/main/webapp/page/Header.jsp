@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-md  fixed-top  bgNavbar shadow">
             <div class="container-fluid ">
                 <div class="w-25">
-                    <a class="navbar-brand text-white mx-3" href="#">F-SHOP</a>
+                    <a class="navbar-brand text-white mx-3" href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=">F-SHOP</a>
                 </div>
                 <!--Responsive navBar--> 
                 <button class="navbar-toggler border-light  p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                     <div class="offcanvas-body ">
                         <ul class="navbar-nav m-auto ">
                             <li class="nav-item ">
-                                <a class="nav-link textResponsive" aria-current="page" href="#">Home</a>
+                                <a class="nav-link textResponsive" aria-current="page" href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link textResponsive" href="#">Products</a>

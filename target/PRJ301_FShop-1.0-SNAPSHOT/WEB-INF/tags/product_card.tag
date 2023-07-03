@@ -25,8 +25,8 @@
         <p class="card-text price">${price}</p>
     </div>
     <!--    <button>Add to cart or ICOn</button>-->
-    <form action="AddToCart" method="POST">
+    <form action="MainController" method="POST">
         <input type=hidden name="id" value="${idProduct}">
-        <input value="Add to cart" type="Submit">
+        <input value="AddToCart" name="action" type="Submit">
     </form>
 </div>

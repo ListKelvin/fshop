@@ -9,6 +9,7 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <%
+    /*
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
     if (user != null) {
         request.setAttribute("user", user);
@@ -22,7 +23,7 @@
     if (carts != null) {
         request.setAttribute("carts", carts);
     }
-
+     */
 %> 
 
 <c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
