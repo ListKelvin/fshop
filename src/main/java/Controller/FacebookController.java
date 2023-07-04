@@ -8,6 +8,7 @@ package Controller;
 import DTO.AccountInfo;
 import Utils.APIWrapper;
 import Utils.DBUtils;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -43,8 +44,13 @@ public class FacebookController extends HttpServlet {
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
 
-            if (DBUtils.login(accountInfo.getFacebookID()) == null) {
-                DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+            if (DBUtils.login(accountInfo.getFacebookID().trim()) == null) {
+                boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+                if(register){
+                    AccountInfo LoginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
+                    UserUtils.createUser(LoginAccount.getId());
+                }
+                
             }
 
             HttpSession session = request.getSession();

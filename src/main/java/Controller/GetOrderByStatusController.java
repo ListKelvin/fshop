@@ -37,17 +37,18 @@ public class GetOrderByStatusController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String redirectPage = null;
             String status = request.getParameter("status");
             if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
                 List<OrderInfo> orderList = OrderUtils.getOrdersByStatus(status);
                 request.setAttribute("orders", orderList);
-                RequestDispatcher rd = request.getRequestDispatcher("manage-order-page.jsp");
-                rd.forward(request, response);
-            }else{
+                redirectPage = "manage-order.jsp";
+            } else {
                 request.setAttribute("mess", "status is not valid");
-                RequestDispatcher rd = request.getRequestDispatcher("manage-order-page.jsp");
-                rd.forward(request, response);
+                redirectPage = "manage-order.jsp";
             }
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
         }
     }
 

@@ -62,9 +62,10 @@ public class CreateOrderController extends HttpServlet {
         List<CartInfo> cartItems = null;
         float total = 0;
         String url = ERROR;
-        try {
 
-//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String redirectPage = null;  //"create-order.jsp";
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
@@ -164,6 +165,8 @@ public class CreateOrderController extends HttpServlet {
                 request.setAttribute("message", "ERROR CREATE ORDER 163");
                 url = ERROR;
             }
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
 
         } catch (Exception e) {
             log("Exception at CreateOrderController: " + e.getMessage());

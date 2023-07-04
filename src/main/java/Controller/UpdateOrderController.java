@@ -37,21 +37,22 @@ public class UpdateOrderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String redirectPage = null;
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("status");
             if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
                 boolean check = OrderUtils.updateOrderStatus(orderId, status);
                 if (check) {
                     request.setAttribute("mess", "update status successfully");
-                    RequestDispatcher rd = request.getRequestDispatcher("manage-order-page.jsp");
-                    rd.forward(request, response);
+                    redirectPage = "manage-order-page.jsp";
                 }
 
             } else {
                 request.setAttribute("mess", "status is not valid");
-                RequestDispatcher rd = request.getRequestDispatcher("manage-order-page.jsp");
-                rd.forward(request, response);
+                redirectPage = "manage-order-page.jsp";
             }
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+            rd.forward(request, response);
         }
     }
 
