@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "CreateOrder", urlPatterns = {"/CreateOrder"})
+@WebServlet(name = "CreateOrder", urlPatterns = {"/CreateOrderController"})
 public class CreateOrderController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
@@ -138,6 +138,7 @@ public class CreateOrderController extends HttpServlet {
                                 if (update) {
                                     CartUtils.removeCart(c.getCartId());
                                     System.out.println("its okiee !! ");
+                                    url = CART_PAGE;
                                 } else {
                                     request.setAttribute("message", "ERROR IN CREATE ORDER!!");
                                     url = ERROR;
@@ -155,8 +156,8 @@ public class CreateOrderController extends HttpServlet {
                     }
 
                 } else {
-                    request.setAttribute("message", "ERROR CREATE ORDER 158");
-                    url = ERROR;
+//                    request.setAttribute("message", "");
+                    url = CART_PAGE;
                 }
 
             } else {

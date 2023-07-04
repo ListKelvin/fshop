@@ -59,7 +59,7 @@
                 </c:if>
                 <c:if test="${ not empty user.name && not empty user.address && not empty user.phone }">
 
-                <form >
+                    <form method="post" action="MainController">
                     <div class="modal-body">
                         <div class="p-3">
                             <h2>Information</h2>
@@ -140,7 +140,7 @@
                                 </table>
                             </div>
                             <h1>
-                                Total price: 
+                                Total price: ${total}
 
                             </h1>
 
@@ -151,7 +151,7 @@
                     <div class="modal-footer mt-5">
                         <div class="d-flex align-items-center gap-2">
                             <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">No</button>
-                            <button type="submit" class="btnPlaceOrder">Yes</button>
+                            <button type="submit" name="action" value="CreateOrder" class="btnPlaceOrder">Yes</button>
                         </div>
                     </div>
                 </form>
