@@ -18,53 +18,76 @@
     </div>
     <div class="px-3 my-3 fs-4">Đơn hàng của bạn đã hoàn tất. Cảm ơn bạn đã mua sắm tại F-Shop</div>
     <div class="row g-4">
-        <div class="col-12 col-lg-7 p-4">
-            <div class="box " style="min-height: 75vh;">
+        <div class="col-12 col-lg-8 p-5">
+            <div class="box " >
                 <h3 class="" style="color: #BC6EEE;">Order Information</h3>
                 <p>${requestScope.message}</p>
                 <div class="productList">
                     <c:set var="cartItems" value="${requestScope.cartItems}"/>
                     <c:forEach items="${cartItems}" var="cartItems">
-                        <tag:cart_item id="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="${cartItems.image}"/>
+                        <tag:order_item    price="1" productName="2" quantity="3" srcImg="${cartItems.image}"/>
                     </c:forEach>
+                    <tag:order_item    price="1" productName="2" quantity="3" srcImg="${cartItems.image}"/>
+
                 </div>
+                <div>
+                    <div class="fw-semibold fs-5">Note:</div>
+                    <div class="fw-lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                </div>
+                <hr/>
+                <div class="fs-5">Phương thức thanh toán: TKNH</div>
+                <hr/>
+                <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">1000</span></div>
             </div>
+            <div class="d-flex align-items-center justify-content-around mt-5">
+                <button type="button" class=" btnCancelConfirmOrder" style="max-width: 120px;">Cancel</button>
+            </div>
+
         </div>
 
 
-        <div class="col-12 col-lg-5 p-4">
+        <div class="col-12 col-lg-4 p-5">
 
             <div class="box checkOutBox">
 
-                <h2>Information</h2>
-                <hr class="mt-0"/>
                 <div class="p-2 ">
-                    <div class="fw-semibold fs-5">Name:</div>
-                    <div class="fw-light">Nguyễn Gia Lin</div>
-                    <div class="fw-semibold fs-5">Phone:</div>
-                    <div class="fw-light">0348485167</div>
-                    <div class="fw-semibold fs-5">From:</div>
-                    <div class="fw-light">K3/81c BienHoa Dông nai  dK3/81c BienHoa Dông nai K3/81c BienHoa Dông nai </div>
+                    <div>
+                        <div class="fw-semibold fs-5">Order ID:</div>
+                        <div class="fw-light">1</div>
 
-                    <div class="fw-semibold fs-5">To:</div>
-                    <div class="fw-light">C2/27, KP10, P.Tân Phong, BH-ĐN</div>
+                    </div>
+                    <hr/>
+                    <div>
+                        <div class="fw-semibold fs-5">Address:</div>
+                        <div class="fw-light">FPT daigaku</div>
 
+                    </div>
+                    <hr/>
+                    <div>
+                        <div class="fw-semibold fs-5">Delivery:</div>
+                        <div class="fw-light">GHN</div>
+
+                    </div>
+                    <hr/>
+                    <div>
+                        <div class="fw-semibold fs-5">Order create at:</div>
+                        <div class="fw-light">Nguyễn Gia Lin</div>
+
+                    </div>
+                    <hr/>
+                    <div>
+                        <div class="fw-semibold fs-5">Time receive:</div>
+                        <div class="fw-light">31/02/2024</div>
+
+                    </div>
+                    <hr/>
+                    <div>
+                        <div class="fw-semibold fs-5">Order Status</div>
+                        <div class="fw-light" style="color: #BC6EEE;">Checking</div>
+
+                    </div>
 
                 </div>
-                <hr/>
-                <div class="p-3">
-
-                    <div class=" d-flex align-items-center justify-content-between fw-light">Amount Product <span>1000</span></div>
-
-                    <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span>1000</span></div>
-
-                </div>
-
-                <!--                <div class="d-flex align-items-center justify-content-around gap-3">
-                                    <button type="button" class=" btnCancelConfirmOrder">Cancel</button>
-                                    <button type="button" class=" btnPlaceOrder">Checkout</button>
-                
-                                </div>-->
 
             </div>
 
