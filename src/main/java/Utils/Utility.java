@@ -52,4 +52,16 @@ public class Utility {
     public static SimpleDateFormat getSdf() {
         return sdf;
     }
+
+    public static String getFileName(String fileName) {
+        try {
+            fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+            String tmpFileName = fileName.substring(0, fileName.lastIndexOf(".") - 1);
+            String imgType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            fileName = tmpFileName + new Date().getTime() + imgType;
+            return fileName;
+        } catch (Exception e) {
+            return "";
+        }
+    }
 }

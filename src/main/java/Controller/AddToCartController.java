@@ -31,7 +31,6 @@ public class AddToCartController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String ERROR_PAGE = "error.jsp";
 
-
     private static final String CART_PAGE = "MainController?action=ViewCart";
 
     /**
@@ -51,7 +50,6 @@ public class AddToCartController extends HttpServlet {
         String url = ERROR_PAGE;
         try {
             HttpSession session = request.getSession();
-
             AccountInfo user = (AccountInfo) session.getAttribute("user");
             if (user != null) {
                 UserInfo userinfo = UserUtils.getUser(user.getId());
@@ -65,6 +63,7 @@ public class AddToCartController extends HttpServlet {
                 if (checkCart != null) {
                     CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
                     request.setAttribute("message", "add to cart successfully");
+                    request.setAttribute("user", user);
                     System.out.println("(addtocart) add to cart successfully  ");
 
                     url = CART_PAGE;
@@ -72,7 +71,7 @@ public class AddToCartController extends HttpServlet {
                     result = CartUtils.addToCart(ci);
 
                     if (result) {
-
+                        request.setAttribute("user", user);
                         request.setAttribute("message", "add to cart successfully");
                         System.out.println("(addtocart) line 78 add to cart successfully  ");
 

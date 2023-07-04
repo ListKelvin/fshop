@@ -41,6 +41,8 @@ public class MainController extends HttpServlet {
     private static final String CHECKOUT_CONTROLLER = "CheckoutController";
     private static final String VIEW_CART = "ViewCart";
     private static final String VIEW_CART_CONTROLLER = "ViewCartController";
+    private static final String VIEW_USER_INFO = "ViewUserInfo";
+    private static final String VIEW_USER_INFO_CONTROLLER = "ViewUserInfoController";
 
 //    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
@@ -53,6 +55,8 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
 
 //  CREATE
+    private static final String CREATE_ORDER = "CreateOrder";
+    private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
     private static final String ADD_PRODUCT = "AddProduct";
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
     private static final String ADD_CATEGORY = "AddCategory";
@@ -89,6 +93,9 @@ public class MainController extends HttpServlet {
                     case VIEW_CART:
                         url = VIEW_CART_CONTROLLER;
                         break;
+                    case VIEW_USER_INFO:
+                        url = VIEW_USER_INFO_CONTROLLER;
+                        break;
                     case DELETE_PRODUCT:
                         url = DELETE_PRODUCT_CONTROLLER;
                         break;
@@ -100,6 +107,9 @@ public class MainController extends HttpServlet {
                         break;
                     case ADD_PRODUCT:
                         url = ADD_PRODUCT_CONTROLLER;
+                        break;
+                    case CREATE_ORDER:
+                        url = CREATE_ORDER_CONTROLLER;
                         break;
                     case ADD_CATEGORY:
                         url = ADD_CATEGORY_CONTROLLER;

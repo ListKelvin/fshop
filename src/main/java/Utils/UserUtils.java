@@ -307,7 +307,7 @@ public class UserUtils {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
-            query = "UPDATE user SET name=?, avatar=?,dob=?, gender=?, phone=?, address=?  WHERE account=?;";
+            query = "UPDATE [user] SET name=? , avatar=? , dob=? , gender=? , phone=? , address=?  WHERE account=?;";
             stm = con.prepareStatement(query);
             stm.setString(1, user.getName());
             stm.setString(2, user.getAvatar());

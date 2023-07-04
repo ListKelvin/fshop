@@ -25,12 +25,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Minh
  */
-@WebServlet(name = "ViewCart", urlPatterns = {"/ViewCartController"})
-public class VỉewCartController extends HttpServlet {
+@WebServlet(name = "ViewUserInfo", urlPatterns = {"/ViewUserInfoController"})
+public class ViewUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String CART_PAGE = "cart.jsp";
+    private static final String USER_INFO_PAGE = "test.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,33 +45,45 @@ public class VỉewCartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+
         try {
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
             UserInfo userinfo = null;
+            int status = Integer.parseInt(request.getParameter("updateStatus"));
+
             if (user == null) {
                 log("(ViewCartController) Unauthentication!!");
                 request.setAttribute("message", "Unauthentication!!");
                 url = ERROR_AUTHEN;
-            } else {
+            } else if (status == 0) {
                 userinfo = UserUtils.getUser(user.getId());
                 if (userinfo != null) {
-                    CartUtils cartUtils = new CartUtils();
-                    List<CartInfo> cartItems = cartUtils.getCartProduct(userinfo.getId());
-                    request.setAttribute("cartItems", cartItems);
+
                     request.setAttribute("userinfo", userinfo);
-                    float total = ProductUtils.getTotalCartPrice(cartItems);
-                    request.setAttribute("total", total);
-                    url = CART_PAGE;
+                    request.setAttribute("status", 0);
+
+                    url = USER_INFO_PAGE;
+                } else {
+                    request.setAttribute("message", "sth wrong at View User info!!");
+                    url = ERROR;
+                }
+
+            } else {
+                if (userinfo != null) {
+
+                    request.setAttribute("userinfo", userinfo);
+                    request.setAttribute("status", 1);
+
+                    url = USER_INFO_PAGE;
                 } else {
                     request.setAttribute("message", "sth wrong at user info!!");
                     url = ERROR;
                 }
-
             }
 
         } catch (Exception ex) {
-            log("Error in LoginController: " + ex.getMessage());
+            log("Error in ViewUserInfoController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
