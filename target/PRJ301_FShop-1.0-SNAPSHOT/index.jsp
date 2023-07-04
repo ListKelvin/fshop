@@ -30,8 +30,8 @@
                     >
                     <div class="col col-sm-7 col-md-6 col-lg-5  col-xxl-5 d-none d-sm-block">
                         <img
-                            src="./assest/Rectangle.png"
-                            class="object-fit-cover border rounded img-fluid"
+                            src="./assest/E-commerce_1.png"
+                            class="object-fit-cover  img-fluid"
                             alt="image"
                             />
                     </div>
@@ -41,7 +41,7 @@
                                   >Login</span
                             >
                         </div>
-                        <form id="login-form" action="AccountServlet" method="POST" onsubmit="return validateEmail() && validatePassword()" >
+                        <form id="login-form" action="MainController" method="POST" onsubmit="return validateEmail() && validatePassword()" >
                             <!-- Email input -->
                             <div class="form-floating mb-3">
                                 <input
@@ -93,7 +93,7 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-styled" name="btAction" value="Login">Sign in</button>
+                            <button type="submit" class="btn btn-styled" name="action" value="Login">Sign in</button>
                             <!-- this section for gg sign in or  -->
                             <hr />
                             <div
@@ -165,12 +165,12 @@
 
             function validatePassword() {
                 var pass = document.getElementById("txtPass").value;
-                if ( pass.length < 2 || pass.length > 120) {
+                if (pass.length < 2 || pass.length > 120) {
                     document.getElementById("passError").innerHTML = "Age must be a number between 18 and 120.";
                     return false;
                 } else {
                     console.log("check run");
-                     document.getElementById("passError").innerHTML = "";
+                    document.getElementById("passError").innerHTML = "";
                 }
                 return true;
             }

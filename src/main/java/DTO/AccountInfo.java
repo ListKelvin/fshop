@@ -15,7 +15,7 @@ import java.sql.Date;
 public class AccountInfo {
 
     @SerializedName(value = "accountId")
-    private String id;
+    private int id;
     @SerializedName(value = "id")
     private String facebookID;
     private String link;
@@ -31,11 +31,11 @@ public class AccountInfo {
         this.email = email;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

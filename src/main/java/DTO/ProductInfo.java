@@ -13,18 +13,20 @@ public class ProductInfo extends CategoryInfo{
         private int id;
 	private String title;
         private String description;
-        private int price;
+        private float price;
 	private String image;
         private int quantity;
-        private int soldOut;
+        private int sold;
+        private String soldOut;
 
-    public ProductInfo(int id, String title, String description, int price, String image, int quantity, int soldOut) {
+    public ProductInfo(int id, String title, String description, float price, String image, int quantity, int sold, String soldOut) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.image = image;
         this.quantity = quantity;
+        this.sold = sold;
         this.soldOut = soldOut;
     }
 
@@ -55,11 +57,11 @@ public class ProductInfo extends CategoryInfo{
         this.description = description;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -79,12 +81,20 @@ public class ProductInfo extends CategoryInfo{
         this.quantity = quantity;
     }
 
-    public int getSoldOut() {
+    public String getSoldOut() {
         return soldOut;
     }
 
-    public void setSoldOut(int soldOut) {
+    public void setSoldOut(String soldOut) {
         this.soldOut = soldOut;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
     }
         
         

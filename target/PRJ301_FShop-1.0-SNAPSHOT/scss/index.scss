@@ -7,10 +7,127 @@ and open the template in the editor.
     Created on : Jun 6, 2023, 12:52:25 PM
     Author     : Minh
 */
+
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Play:wght@400;700&display=swap');
-@import "variable.scss";
+@import "_variable.scss";
 /*components*/
 @import "components/_Button.scss";
 /*pages*/
+@import "home.scss";
 @import "login.scss";
 @import "register.scss";
+@import "navbar.scss";
+@import "productInfo.scss";
+@import "search.scss";
+
+a{
+    text-decoration: none;
+}
+body{
+    background-color: $green-primary;
+}
+.textHeading{
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    text-transform: uppercase;
+
+    color: #BC6EEE;
+
+}
+
+.linkStyled{
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: underline !important;
+    color: #BC6EEE;
+}
+.otherProduct{
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 1px solid $Purple-400;
+    border-radius: 10px;
+
+}
+.badgeStyle{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    color:$Purple-400;
+    border: 2px solid $Purple-400;
+    border-radius: 28px;
+}
+
+.cartItem{
+    width: 100%;
+    padding: .5rem 2rem;
+    border: 1px solid $Purple-400;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.btnPlaceOrder{
+    @include button;
+
+    &:hover{
+        background-color:$Purple-400;   
+    }
+}
+
+.btnCancelConfirmOrder{
+    @include buttonOutlined;
+
+    &:hover{
+        background-color:$Purple-400;   
+        color: white;
+    }
+}
+p { color: #6c757d; } 
+
+.main_cart { background: #fff; } 
+.card { border: none; } 
+.product_img img { min-width: 200px; max-height: 200px; }
+.product_name { color: black; font-size: 1.4rem; text-transform: capitalize; font-weight: 500; } 
+.card-title p { font-size: 0.9rem; font-weight: 500; } 
+.remove-and-wish p { font-size: 0.8rem; margin-bottom: 0; } 
+.price-money h3 { font-size: 1rem; font-weight: 600; } 
+
+
+.page-link { line-height: 16px; width: 45px; font-size: 1rem; display: flex; justify-content: center; align-items: center; color: #495057; }
+.page-item input { line-height: 22px; padding: 3px; font-size: 15px; display: flex; justify-content: center; align-items: center; text-align: center; } 
+.page-link:hover { text-decoration: none; color: #495057; outline: none !important; } 
+.page-link:focus { box-shadow: none; } 
+.price_indiv p { font-size: 1.1rem; } 
+.fa-heart:hover { color: red; }
+.textResponsive{
+    color:$white;
+    @media (max-width: 768px) { 
+
+        color:$dark 
+    }
+
+}
+.breadcrumbWrapper{
+    padding:.5rem 2rem;
+    border-radius: 1.25rem;
+    background:$orange-200;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+   
+}
+
+.minHeithStyled {
+    margin-top: 100px;
+
+    min-height: 100vh;
+}
+.ms-n5 {
+    margin-left: -53px;
+}
