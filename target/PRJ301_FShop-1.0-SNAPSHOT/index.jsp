@@ -121,7 +121,7 @@
                                         data-client_id="15935712647-nge50dcde86pqvnulkvpiumetofdu05r.apps.googleusercontent.com"
                                         data-context="signin"
                                         data-ux_mode="popup"
-                                        data-login_uri="http://localhost:8080/PRJ301_FShop/GoogleServlet"
+                                        data-login_uri="${pageContext.request.contextPath}/MainController?action=GoogleLogin"
                                         data-itp_support="true"
 
                                         ></div>
