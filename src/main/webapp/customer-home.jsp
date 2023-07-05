@@ -97,7 +97,7 @@
                     <h1 class="textHeading">Gợi ý cho bạn</h1>
                     <a class="linkStyled">Xem thêm</a>
                 </div>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-3 p-5 justify-content-center">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
                     <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="${product.image}" price="${product.price}"/>
