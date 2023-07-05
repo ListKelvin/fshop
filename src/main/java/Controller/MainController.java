@@ -43,7 +43,10 @@ public class MainController extends HttpServlet {
     private static final String VIEW_CART_CONTROLLER = "ViewCartController";
     private static final String VIEW_USER_INFO = "ViewUserInfo";
     private static final String VIEW_USER_INFO_CONTROLLER = "ViewUserInfoController";
-
+    private static final String VIEW_ORDER_HISTORY = "ViewOrderHistory";
+    private static final String VIEW_ORDER_HISTORY_CONTROLLER = "ViewOrderHistoryController";
+    private static final String VIEW_ORDER = "ViewOrder";
+    private static final String VIEW_ORDER_CONTROLLER = "ViewOrderController";
 //    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
@@ -92,6 +95,12 @@ public class MainController extends HttpServlet {
                         break;
                     case VIEW_CART:
                         url = VIEW_CART_CONTROLLER;
+                        break;
+                    case VIEW_ORDER_HISTORY:
+                        url = VIEW_ORDER_HISTORY_CONTROLLER;
+                        break;
+                    case VIEW_ORDER:
+                        url = VIEW_ORDER_CONTROLLER;
                         break;
                     case VIEW_USER_INFO:
                         url = VIEW_USER_INFO_CONTROLLER;

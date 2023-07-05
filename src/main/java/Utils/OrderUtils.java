@@ -15,10 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 03lin
- */
 public class OrderUtils {
 
     private static Connection con = null;

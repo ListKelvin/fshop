@@ -79,7 +79,7 @@
                                 </a>
                                 <ul class="dropdown-menu  dropdown-menu-end">
                                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Setting Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Order History</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${sessionScope.user.id}">Order History</a></li>
 
 
                                     <li>

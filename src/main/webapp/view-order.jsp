@@ -3,31 +3,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Cart Page"/></c:import>
-<c:set var="user" value="${requestScope.userinfo}"/>
+<c:import url="page/Header.jsp"><c:param name="title" value="View Order"/></c:import>
+<c:set var="orderDetails" value="${requestScope.orderDetails}"/>
+<c:set var="orderProducts" value="${requestScope.orderProducts}"/>
+
 <section class="container p-5 minHeithStyled">
 
     <div class="breadcrumbWrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item"><a href="#">Order-list</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Order - id</li>
+                <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}">Order-list</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Order - ${orderDetails.orderNumber}</li>
             </ol>
         </nav>
 
     </div>
-    <div class="px-3 my-3 fs-4">Đơn hàng của bạn đã hoàn tất. Cảm ơn bạn đã mua sắm tại F-Shop</div>
+<!--    <div class="px-3 my-3 fs-4">Đơn hàng của bạn đã hoàn tất. Cảm ơn bạn đã mua sắm tại F-Shop</div>-->
     <div class="row g-4">
-        <div class="col-12 col-lg-8 p-5">
+        <div class="col-12 col-lg-7 p-5">
             <div class="box " >
                 <h3 class="" style="color: #BC6EEE;">Order Information</h3>
                 <p>${requestScope.message}</p>
                 <div class="productList">
-                    <c:set var="cartItems" value="${requestScope.cartItems}"/>
-                    <c:forEach items="${cartItems}" var="cartItems">
-                        <tag:order_item    price="1" productName="2" quantity="3" srcImg="${cartItems.image}"/>
+     
+                    <c:forEach items="${orderProducts}" var="product">
+                        <tag:order_item    price="${product.total}" productName="${product.title}" quantity="${product.quantity}" srcImg="${product.image}"/>
                     </c:forEach>
-                    <tag:order_item    price="1" productName="2" quantity="3" srcImg="${cartItems.image}"/>
+
 
                 </div>
                 <div>
@@ -35,9 +37,9 @@
                     <div class="fw-lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                 </div>
                 <hr/>
-                <div class="fs-5">Phương thức thanh toán: TKNH</div>
+                <div class="fs-5">Phương thức thanh toán: ${orderDetails.payment}</div>
                 <hr/>
-                <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">1000</span></div>
+                <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">${orderDetails.totalBill}</span></div>
             </div>
             <div class="d-flex align-items-center justify-content-around mt-5">
                 <button type="button" class=" btnCancelConfirmOrder" style="max-width: 120px;">Cancel</button>
@@ -46,32 +48,32 @@
         </div>
 
 
-        <div class="col-12 col-lg-4 p-5">
+        <div class="col-12 col-lg-5 p-5">
 
             <div class="box checkOutBox">
 
                 <div class="p-2 ">
                     <div>
                         <div class="fw-semibold fs-5">Order ID:</div>
-                        <div class="fw-light">1</div>
+                        <div class="fw-light">${orderDetails.orderNumber}</div>
 
                     </div>
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Address:</div>
-                        <div class="fw-light">FPT daigaku</div>
+                        <div class="fw-light">${orderDetails.address}</div>
 
                     </div>
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Delivery:</div>
-                        <div class="fw-light">GHN</div>
+                        <div class="fw-light">${orderDetails.delivery}</div>
 
                     </div>
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Order create at:</div>
-                        <div class="fw-light">Nguyễn Gia Lin</div>
+                        <div class="fw-light">${orderDetails.createAt}</div>
 
                     </div>
                     <hr/>
@@ -83,7 +85,7 @@
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Order Status</div>
-                        <div class="fw-light" style="color: #BC6EEE;">Checking</div>
+                        <div class="fw-light" style="color: #BC6EEE;">${orderDetails.status}</div>
 
                     </div>
 
@@ -111,7 +113,6 @@
 
                 <div class="modal-body">
                     <p class="text-danger">Please Update your information before order <br> Press this Link: <a href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Update Information</a></p>
-
                 </div>
 
             </c:if>

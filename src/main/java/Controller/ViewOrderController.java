@@ -19,11 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 03lin
- */
-@WebServlet(name = "ViewOrderController", urlPatterns = {"/ViewOrder"})
+@WebServlet(name = "ViewOrder", urlPatterns = {"/ViewOrderController"})
 public class ViewOrderController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
@@ -50,8 +46,8 @@ public class ViewOrderController extends HttpServlet {
                 OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
 
                 if (!orderProduct.isEmpty() && order != null) {
-                    request.setAttribute("order-product", orderProduct);
-                    request.setAttribute("order-details", order);
+                    request.setAttribute("orderProducts", orderProduct);
+                    request.setAttribute("orderDetails", order);
                     url = VIEW_ORDER_PAGE;
                 }
             } 
