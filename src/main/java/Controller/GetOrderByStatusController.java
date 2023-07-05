@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "GetOrderByStatusController", urlPatterns = {"/GetOrderByStatus"})
+@WebServlet(name = "GetOrderByStatus", urlPatterns = {"/GetOrderByStatusController"})
 public class GetOrderByStatusController extends HttpServlet {
 
     /**

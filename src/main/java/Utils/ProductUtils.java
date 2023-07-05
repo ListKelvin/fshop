@@ -117,7 +117,7 @@ public class ProductUtils {
 //        }
 //        return products;
 //    }
-    public  List<ProductInfo> searchProduct(String title) {
+    public List<ProductInfo> searchProduct(String title) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
@@ -203,14 +203,15 @@ public class ProductUtils {
         }
         return products;
     }
-    
-     public static List<ProductInfo> getProductByCategory( String cate) {
+
+    public static List<ProductInfo> getProductByCategory(String cate, String search) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? " ;
+            String sql = "SELECT * FROM [product] where category=? and title=?";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
+            stm.setString(2, search);
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();
@@ -246,7 +247,6 @@ public class ProductUtils {
         }
         return products;
     }
-
 
     public ProductInfo getSingleProduct(int id) {
         ProductInfo product = null;
@@ -437,8 +437,8 @@ public class ProductUtils {
         }
         return result;
     }
-    
-     public static int countProduct() {
+
+    public static int countProduct() {
         int count = 0;
         try {
             con = DBConnection.getConnection();
@@ -446,7 +446,7 @@ public class ProductUtils {
             stm = con.prepareStatement(query);
             rs = stm.executeQuery();
             while (rs.next()) {
-            count = rs.getInt("count_product");
+                count = rs.getInt("count_product");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -468,13 +468,13 @@ public class ProductUtils {
             }
         }
         return count;
-     }
-     
-     public static List<ProductInfo> getBestSeller() {
+    }
+
+    public static List<ProductInfo> getBestSeller() {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT TOP 10  * FROM [product] WHERE sold_out='false' ORDER BY sold DESC " ;
+            String sql = "SELECT TOP 10  * FROM [product] WHERE sold_out='false' ORDER BY sold DESC ";
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {

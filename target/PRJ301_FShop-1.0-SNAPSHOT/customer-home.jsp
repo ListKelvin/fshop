@@ -9,12 +9,12 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <%
-    /*
+  
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
     if (user != null) {
         request.setAttribute("user", user);
     }
-
+  /*
     ProductUtils pu = new ProductUtils();
     List<ProductInfo> products = pu.getAllProduct();
     request.setAttribute("products", products);
