@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.OrderInfo;
 import Utils.OrderUtils;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UpdateOrderController", urlPatterns = {"/UpdateOrder"})
 public class UpdateOrderController extends HttpServlet {
+
+    private static final String ERROR_AUTHEN = "403.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,17 +44,41 @@ public class UpdateOrderController extends HttpServlet {
             String redirectPage = null;
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("status");
-            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
-                boolean check = OrderUtils.updateOrderStatus(orderId, status);
-                if (check) {
-                    request.setAttribute("mess", "update status successfully");
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
+            if (user == null) {
+                log("(ViewCartController) Unauthentication!!");
+                request.setAttribute("message", "Unauthentication!!");
+                redirectPage = ERROR_AUTHEN;
+            } else {
+                if (status.equals("checking") && user.getRole().equals("admin") || 
+                        status.equals("preparing") && user.getRole().equals("admin") || 
+                        status.equals("delivering") && user.getRole().equals("admin") || 
+                        status.equals("done") && user.getRole().equals("admin")) {
+                    boolean check = OrderUtils.updateOrderStatus(orderId, status);
+                    if (check) {
+                        request.setAttribute("mess", "update status successfully");
+                        redirectPage = "manage-order-page.jsp";
+                    }
+
+                } else if (status.equals("cancel")) {
+                    OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+                    if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
+                        boolean check = OrderUtils.cancelOrder(orderId);
+                        if (check && user.getRole().equals("admin")) {
+                            request.setAttribute("mess", "Cancel order successfully");
+                            redirectPage = "manage-order-page.jsp";
+                        } else {
+                            request.setAttribute("mess", "Cancel order fail");
+                            redirectPage = "order-history-page.jsp";
+                        }
+                    }
+                } else {
+                    request.setAttribute("mess", "status is not valid");
                     redirectPage = "manage-order-page.jsp";
                 }
-
-            } else {
-                request.setAttribute("mess", "status is not valid");
-                redirectPage = "manage-order-page.jsp";
             }
+
             RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
             rd.forward(request, response);
         }

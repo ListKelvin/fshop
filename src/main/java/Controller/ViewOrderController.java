@@ -19,12 +19,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 03lin
- */
-@WebServlet(name = "ViewOrderController", urlPatterns = {"/ViewOrder"})
+@WebServlet(name = "ViewOrder", urlPatterns = {"/ViewOrderController"})
 public class ViewOrderController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String VIEW_ORDER_PAGE = "view-order.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,19 +38,23 @@ public class ViewOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String url = ERROR;
+        try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             if (orderId > 0) {
                 List<OrderProductInfo> orderProduct = OrderProductUtils.viewOrderProduct(orderId);
                 OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
 
                 if (!orderProduct.isEmpty() && order != null) {
-                    request.setAttribute("order-product", orderProduct);
-                    request.setAttribute("order-details", order);
-                    RequestDispatcher rd = request.getRequestDispatcher("order-page.jsp");
-                    rd.forward(request, response);
+                    request.setAttribute("orderProducts", orderProduct);
+                    request.setAttribute("orderDetails", order);
+                    url = VIEW_ORDER_PAGE;
                 }
-            }
+            } 
+        } catch (Exception ex) {
+            log("Error in ViewOrderController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

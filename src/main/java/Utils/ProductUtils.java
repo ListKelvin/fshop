@@ -28,7 +28,7 @@ public class ProductUtils {
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
 
-    public static List<ProductInfo> getAllProduct() {
+    public List<ProductInfo> getAllProduct() {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
@@ -204,12 +204,12 @@ public class ProductUtils {
         }
         return products;
     }
-
-    public static List<ProductInfo> getProductByCategory(String cate) {
+    
+     public static List<ProductInfo> getProductByCategory( String cate) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? ";
+            String sql = "SELECT * FROM [product] where category =? " ;
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
             rs = stm.executeQuery();

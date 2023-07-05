@@ -25,10 +25,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author 03lin
  */
-@WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart"})
+@WebServlet(name = "AddToCart", urlPatterns = {"/AddToCartController"})
 public class AddToCartController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private static final String ERROR_PAGE = "error.jsp";
+
+    private static final String CART_PAGE = "MainController?action=ViewCart";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,36 +47,52 @@ public class AddToCartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         boolean result = false;
-
-        try (PrintWriter out = response.getWriter()) {
-            String redirectPage = null;
+        String url = ERROR_PAGE;
+        try {
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
-            UserInfo userinfo = UserUtils.getUser(user.getId());
-            int id = Integer.parseInt(request.getParameter("id"));
-            CartInfo ci = new CartInfo();
-            ci.setUserId(userinfo.getId());
-            ci.setId(id);
+            if (user != null) {
+                UserInfo userinfo = UserUtils.getUser(user.getId());
+                int id = Integer.parseInt(request.getParameter("id"));
 
-            CartInfo checkCart = (CartInfo) CartUtils.checkCartProduct(ci);
-            if (checkCart != null) {
-                CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
-                request.setAttribute("message", "add to cart successfully");
-                redirectPage = "home.jsp";
-            } else {
-                result = CartUtils.addToCart(ci);
-                
-                if (result) {
+                CartInfo ci = new CartInfo();
+                ci.setUserId(userinfo.getId());
+                ci.setId(id);
+
+                CartInfo checkCart = (CartInfo) CartUtils.checkCartProduct(ci);
+                if (checkCart != null) {
+                    CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
                     request.setAttribute("message", "add to cart successfully");
-                    redirectPage = "home.jsp";
-                } else {
-                    request.setAttribute("message", "add to cart fail");
-                    redirectPage = "home.jsp";
+                    request.setAttribute("user", user);
+                    System.out.println("(addtocart) add to cart successfully  ");
 
+                    url = CART_PAGE;
+                } else {
+                    result = CartUtils.addToCart(ci);
+
+                    if (result) {
+                        request.setAttribute("user", user);
+                        request.setAttribute("message", "add to cart successfully");
+                        System.out.println("(addtocart) line 78 add to cart successfully  ");
+
+                        url = CART_PAGE;
+                    } else {
+                        System.out.println("(addtocart) line 82 add to cart successfully  ");
+
+                        request.setAttribute("message", "add to cart fail");
+                        url = ERROR_PAGE;
+
+                    }
                 }
+            } else {
+                request.setAttribute("message", "CAN NOT FIND USER");
+                url = ERROR_PAGE;
             }
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+
+        } catch (Exception ex) {
+            log("Error in AddToCartController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

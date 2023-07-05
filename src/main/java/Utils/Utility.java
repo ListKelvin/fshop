@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class Utility {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private static final String pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
     public Utility() {
@@ -51,5 +51,17 @@ public class Utility {
 
     public static SimpleDateFormat getSdf() {
         return sdf;
+    }
+
+    public static String getFileName(String fileName) {
+        try {
+            fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+            String tmpFileName = fileName.substring(0, fileName.lastIndexOf(".") - 1);
+            String imgType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            fileName = tmpFileName + new Date().getTime() + imgType;
+            return fileName;
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

@@ -15,10 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 03lin
- */
 public class OrderUtils {
 
     private static Connection con = null;
@@ -235,7 +231,7 @@ public class OrderUtils {
         boolean result = false;
         try {
             con = DBConnection.getConnection();
-            query = "UPDATE order SET status=?  WHERE id=?;";
+            query = "UPDATE [order] SET status=?  WHERE id=?;";
             stm = con.prepareStatement(query);
             stm.setString(1, status);
             stm.setInt(2, id);
@@ -326,5 +322,35 @@ public class OrderUtils {
         }
         return count;
     }
-
+    
+    public static boolean cancelOrder(int id) {
+        boolean result = false;
+        try {
+            con = DBConnection.getConnection();
+            query = "UPDATE [order] SET status= 'cancel'  WHERE id=?;";
+            stm = con.prepareStatement(query);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            result = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
 }

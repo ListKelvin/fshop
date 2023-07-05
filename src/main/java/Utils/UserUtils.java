@@ -25,10 +25,11 @@ public class UserUtils {
     private String query = null;
     private static PreparedStatement stm = null;
     private static ResultSet rs = null;
+    
     public static boolean createUser(int account ) {
         try {
             con = DBConnection.getConnection();
-            String sql = "INSERT INTO [user](account)" + "VALUES (?)";
+            String sql = "INSERT INTO [user](account)" + "VALUES(?)";
             stm = con.prepareStatement(sql);
             stm.setInt(1, account);
             int row = stm.executeUpdate();
@@ -268,8 +269,9 @@ public class UserUtils {
     public boolean createUserInfo(String name, String avatar, Date dob, String gender, String phone, String address, String account_id) {
         boolean result = false;
         try {
+            con = DBConnection.getConnection();
             query = "insert into user(name, avatar, dob, gender, phone, address, account) values (?,?,?,?,?,?,?)";
-            stm = this.con.prepareStatement(query);
+            stm = con.prepareStatement(query);
             stm.setString(1, name);
             stm.setString(2, avatar);
             stm.setDate(3, dob);
@@ -304,8 +306,9 @@ public class UserUtils {
     public boolean updateUserInfo(UserInfo user) {
         boolean result = false;
         try {
-            query = "UPDATE user SET name=?, avatar=?,dob=?, gender=?, phone=?, address=?  WHERE account=?;";
-            stm = this.con.prepareStatement(query);
+            con = DBConnection.getConnection();
+            query = "UPDATE [user] SET name=? , avatar=? , dob=? , gender=? , phone=? , address=?  WHERE account=?;";
+            stm = con.prepareStatement(query);
             stm.setString(1, user.getName());
             stm.setString(2, user.getAvatar());
             stm.setDate(3, (Date) user.getDob());

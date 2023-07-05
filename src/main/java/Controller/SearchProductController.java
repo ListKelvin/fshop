@@ -21,8 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "SearchProduct", urlPatterns = {"/SearchProduct"})
+@WebServlet(name = "SearchProduct", urlPatterns = {"/SearchProductController"})
 public class SearchProductController extends HttpServlet {
+
+    private static final String ERROR_PAGE = "error.jsp";
+    private static final String CUSTOMER_HOME = "customer-home.jsp";
+    private static final String SEARCH = "search.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,22 +40,30 @@ public class SearchProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String url = ERROR_PAGE;
+        //String url = null;
+        try {
             request.setCharacterEncoding("UTF-8");
-            response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=UTF-8");
-            String search = request.getParameter("search");
+            String search = request.getParameter("searchTxt");
+            ProductUtils pu = new ProductUtils();
+            List<ProductInfo> products;
 //            request.setAttribute("search", search);
 //            response.sendRedirect("search.jsp");
-            if (search != null) {
-                ProductUtils pu = new ProductUtils();
-                List<ProductInfo> products = pu.searchProduct(search);
-                request.setAttribute("search-products", products);
-                RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
-                rd.forward(request, response);
+            if (search.isEmpty()) {
+                products = pu.getAllProduct();
+                url = CUSTOMER_HOME;
+//                  response.sendRedirect("home.jsp");
             } else {
-                response.sendRedirect("home.jsp");
+                products = pu.searchProduct(search);
+                url = SEARCH;
+
             }
+            request.setAttribute("LIST_PRODUCT", products);
+        } catch (Exception e) {
+            log("Error at Search Account Controller: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

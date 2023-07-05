@@ -29,11 +29,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author Minh
  */
-@WebServlet(name = "UpdateUserInfoController", urlPatterns = {"/UpdateUserInfoController"})
+@WebServlet(name = "UpdateUserInfo", urlPatterns = {"/UpdateUserInfoController"})
 public class UpdateUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "MainController";
+    private static final String SUCCESS = "MainController?action=SearchProduct&searchTxt=";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,17 +44,7 @@ public class UpdateUserInfoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private String getFileName(String fileName) {
-        try {
-            fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-            String tmpFileName = fileName.substring(0, fileName.lastIndexOf(".") - 1);
-            String imgType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-            fileName = tmpFileName + new Date().getTime() + imgType;
-            return fileName;
-        } catch (Exception e) {
-            return "";
-        }
-    }
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,7 +53,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
         boolean check = false;
         try {
-
+            log("test update");
             String name = "";
             String avatar = "";
             String dob = "";
@@ -112,7 +102,7 @@ public class UpdateUserInfoController extends HttpServlet {
                         if (fieldName.equals("avtUrl")) {
                             String fileName = item.getName();
                             if (!fileName.equals("")) {
-                                fileName = getFileName(fileName);
+                                fileName = Utility.getFileName(fileName);
                             }
 
                             if (!fileName.equals("") && (fileName.endsWith("png") || fileName.endsWith("bmp") || fileName.endsWith("jpg")
@@ -120,6 +110,7 @@ public class UpdateUserInfoController extends HttpServlet {
                                 String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
                                 File saveFile = new File(realPath);
                                 item.write(saveFile);
+                                log(saveFile.getPath());
                                 avatar = realPath.substring(realPath.lastIndexOf("\\") + 1);
                             }
                         }
@@ -134,19 +125,24 @@ public class UpdateUserInfoController extends HttpServlet {
                 if (avatar == null || avatar.trim().equals("")) {
                     user.setAvatar(avtTmp);
                 } else {
+
                     user.setAvatar(avatar);
                 }
                 user.setGender(gender);
                 user.setPhone(phone);
-                user.setDob(Utility.getSdf().parse(dob));
+
+                user.setDob(Utility.handleParseDate(dob));
 
                 UserUtils userDAO = new UserUtils();
                 check = userDAO.updateUserInfo(user);
+
                 if (check) {
+                    log("checkedddddd");
                     url = SUCCESS;
 
                 } else {
-                    request.setAttribute("ERROR", "Something wrong!");
+                    request.setAttribute("message", "Something wrong!");
+
                 }
             } catch (FileUploadException e) {
                 log("Cannot parse multipart request." + e.getMessage());

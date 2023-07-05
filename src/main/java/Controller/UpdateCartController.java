@@ -6,6 +6,7 @@
 package Controller;
 
 import DTO.CartInfo;
+import Utils.CartUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "UpdateCart", urlPatterns = {"/UpdateCart"})
+@WebServlet(name = "UpdateCart", urlPatterns = {"/UpdateCartController"})
 public class UpdateCartController extends HttpServlet {
 
+    private static final String ERROR_PAGE = "error.jsp";
+    private static final String CART_PAGE = "MainController?action=ViewCart";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,39 +37,36 @@ public class UpdateCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            ArrayList<CartInfo> sessionCart = (ArrayList<CartInfo>) request.getSession().getAttribute("cart-list");
-            String action = request.getParameter("action");
-            int id = Integer.parseInt(request.getParameter("id"));
+        String url = ERROR_PAGE;
+        try {
 
+            String action = request.getParameter("btnAction");
+            int id = Integer.parseInt(request.getParameter("cartid"));
+            int currentQuantiy = Integer.parseInt(request.getParameter("quantity"));
+            log(action);
             if (action != null && id >= 1) {
-                if (action.equals("inc")) {
-                    for (CartInfo c : sessionCart) {
-                        if (c.getId() == id) {
-                            int quantity = c.getQuantity();
-                            quantity++;
-                            c.setQuantity(quantity);
-                            break;
-                        }
-                    }
-                    response.sendRedirect("cart.jsp");
-                }
-                if (action.equals("dec")) {
-                    for (CartInfo c : sessionCart) {
-                        if (c.getId() == id && c.getQuantity() > 1) {
-                            int quantity = c.getQuantity();
-                            quantity--;
-                            c.setQuantity(quantity);
-                            break;
 
-                        }
-                    }
-                    response.sendRedirect("cart.jsp");
+                if (action.equals("inc")) {
+                    CartUtils.updateCartQuantity(id, currentQuantiy + 1);
+
+                    url = CART_PAGE;
+                } else if (action.equals("dec") & currentQuantiy > 1) {
+                    CartUtils.updateCartQuantity(id, currentQuantiy - 1);
+                    url = CART_PAGE;
+                } else {
+                    CartUtils.removeCart(id);
+                    url = CART_PAGE;
                 }
+
             } else {
-                response.sendRedirect("cart.jsp");
+                request.setAttribute("message", "Update cart faiiled ");
+                url = ERROR_PAGE;
             }
 
+        } catch (NumberFormatException ex) {
+            log("Error in UpdateCartController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

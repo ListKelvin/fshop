@@ -30,63 +30,120 @@ public class MainController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String ERROR = "error.jsp";
+//ACTION
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
+    private static final String REGISTER = "Register";
+    private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
-    private static final String DELETE_PRODUCT = "DeleteProduct";
-    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
+    private static final String CHECKOUT = "Checkout";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
+    private static final String VIEW_CART = "ViewCart";
+    private static final String VIEW_CART_CONTROLLER = "ViewCartController";
+    private static final String VIEW_USER_INFO = "ViewUserInfo";
+    private static final String VIEW_USER_INFO_CONTROLLER = "ViewUserInfoController";
+    private static final String VIEW_ORDER_HISTORY = "ViewOrderHistory";
+    private static final String VIEW_ORDER_HISTORY_CONTROLLER = "ViewOrderHistoryController";
+    private static final String VIEW_ORDER = "ViewOrder";
+    private static final String VIEW_ORDER_CONTROLLER = "ViewOrderController";
+//    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
     private static final String UPDATE_CATEGORY = "UpdateCategory";
     private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
+    private static final String UPDATE_CART = "UpdateCart";
+    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
+    private static final String UPDATE_USERINFO = "UpdateUserInfo";
+    private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
+
+//  CREATE
+    private static final String CREATE_ORDER = "CreateOrder";
+    private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
     private static final String ADD_PRODUCT = "AddProduct";
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
     private static final String ADD_CATEGORY = "AddCategory";
     private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
-    private static final String SEARCH_PRODUCT = "Search";
+    private static final String SEARCH_PRODUCT = "SearchProduct";
     private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
-    private static final String ADD_TO_CART = "ADD TO CART";
+    private static final String ADD_TO_CART = "AddToCart";
     private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
-    private static final String UPDATE_CART = "UpdateCart";
-    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
-    private static final String DELETE_CART = "DeleteCart";
-    private static final String DELETE_CART_CONTROLLER = "DeleteCartController";
-    private static final String CHECKOUT = "Checkout";
-    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
-    private static final String EDIT_USERINFO = "EditUserInfo";
-    private static final String EDIT_USERINFO_CONTROLLER = "EditUserInfoController";
+//DELETE
+    private static final String REMOVE_CART = "RemoveCart";
+    private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
+    private static final String DELETE_PRODUCT = "DeleteProduct";
+    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            log("check run");
             String action = request.getParameter("action");
-            if (LOGIN.equals(action)) {
-                url = LOGIN_CONTROLLER;
-            } else if (LOGOUT.equals(action)) {
-                url = LOGOUT_CONTROLLER;
-            } else if (DELETE_PRODUCT.equals(action)) {
-                url = DELETE_PRODUCT_CONTROLLER;
-            } else if (UPDATE_PRODUCT.equals(action)) {
-                url = UPDATE_PRODUCT_CONTROLLER;
-            } else if (UPDATE_CATEGORY.equals(action)) {
-                url = UPDATE_CATEGORY_CONTROLLER;
-            } else if (ADD_PRODUCT.equals(action)) {
-                url = ADD_PRODUCT_CONTROLLER;
-            } else if (ADD_CATEGORY.equals(action)) {
-                url = ADD_CATEGORY_CONTROLLER;
-            } else if (SEARCH_PRODUCT.equals(action)) {
-                url = SEARCH_PRODUCT_CONTROLLER;
-            } else if (ADD_TO_CART.equals(action)) {
-                url = ADD_TO_CART_CONTROLLER;
-            } else if (UPDATE_CART.equals(action)) {
-                url = UPDATE_CART_CONTROLLER;
-            } else if (DELETE_CART.equals(action)) {
-                url = DELETE_CART_CONTROLLER;
-            } else if (CHECKOUT.equals(action)) {
-                url = CHECKOUT_CONTROLLER;
+            log(action);
+            if (null != action) {
+                switch (action) {
+                    case LOGIN:
+                        url = LOGIN_CONTROLLER;
+                        break;
+                    case REGISTER:
+                        url = REGISTER_CONTROLLER;
+                        break;
+                    case LOGOUT:
+                        url = LOGOUT_CONTROLLER;
+                        break;
+                    case VIEW_CART:
+                        url = VIEW_CART_CONTROLLER;
+                        break;
+                    case VIEW_ORDER_HISTORY:
+                        url = VIEW_ORDER_HISTORY_CONTROLLER;
+                        break;
+                    case VIEW_ORDER:
+                        url = VIEW_ORDER_CONTROLLER;
+                        break;
+                    case VIEW_USER_INFO:
+                        url = VIEW_USER_INFO_CONTROLLER;
+                        break;
+                    case DELETE_PRODUCT:
+                        url = DELETE_PRODUCT_CONTROLLER;
+                        break;
+                    case UPDATE_PRODUCT:
+                        url = UPDATE_PRODUCT_CONTROLLER;
+                        break;
+                    case UPDATE_CATEGORY:
+                        url = UPDATE_CATEGORY_CONTROLLER;
+                        break;
+                    case ADD_PRODUCT:
+                        url = ADD_PRODUCT_CONTROLLER;
+                        break;
+                    case CREATE_ORDER:
+                        url = CREATE_ORDER_CONTROLLER;
+                        break;
+                    case ADD_CATEGORY:
+                        url = ADD_CATEGORY_CONTROLLER;
+                        break;
+                    case SEARCH_PRODUCT:
+                        url = SEARCH_PRODUCT_CONTROLLER;
+                        break;
+                    case ADD_TO_CART:
+                        url = ADD_TO_CART_CONTROLLER;
+                        break;
+                    case UPDATE_CART:
+                        url = UPDATE_CART_CONTROLLER;
+                        break;
+                    case REMOVE_CART:
+                        url = REMOVE_CART_CONTROLLER;
+                        break;
+                    case CHECKOUT:
+                        url = CHECKOUT_CONTROLLER;
+                        break;
+                    case UPDATE_USERINFO:
+                        url = UPDATE_USERINFO_CONTROLLER;
+                        break;
+                    default:
+                        break;
+                }
             }
         } catch (Exception e) {
             log("Error at MainController " + e.toString());

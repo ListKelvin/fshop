@@ -34,8 +34,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "CreateOrder", urlPatterns = {"/CreateOrder"})
+@WebServlet(name = "CreateOrder", urlPatterns = {"/CreateOrderController"})
 public class CreateOrderController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String CART_PAGE = "MainController?action=ViewCart";
+    private static final String ERROR_AUTHEN = "403.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,8 +61,9 @@ public class CreateOrderController extends HttpServlet {
         String uuid = null;
         List<CartInfo> cartItems = null;
         float total = 0;
+        String url = ERROR;
 
-        try (PrintWriter out = response.getWriter()) {
+        try {
             String redirectPage = null;  //"create-order.jsp";
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = new java.util.Date();
@@ -68,7 +73,7 @@ public class CreateOrderController extends HttpServlet {
             UserInfo userinfo = null;
             if (user == null) {
                 request.setAttribute("message", "Unauthentication!!");
-                response.sendRedirect("index.jsp");
+                url = ERROR_AUTHEN;
             } else {
                 userinfo = UserUtils.getUser(user.getId());
                 if (userinfo != null) {
@@ -76,8 +81,8 @@ public class CreateOrderController extends HttpServlet {
                     cartItems = cartUtils.getCartProduct(userinfo.getId());
                     total = ProductUtils.getTotalCartPrice(cartItems);
                 } else {
-                    request.setAttribute("message", "sth wrong at user info!!");
-                    response.sendRedirect("home.jsp");
+                    request.setAttribute("message", "ERROR IN CREATE ORDER !!");
+                    url = ERROR;
                 }
 
             }
@@ -90,7 +95,7 @@ public class CreateOrderController extends HttpServlet {
                         checkResult = false;
                         System.out.println("Product " + checkProduct.getTitle() + " is not available for order");
                         request.setAttribute("message", "Product " + checkProduct.getTitle() + " is not available for order");
-                        redirectPage = "cart.jsp";
+                        url = CART_PAGE;
                     }
                 }
                 if (checkResult) {
@@ -134,36 +139,39 @@ public class CreateOrderController extends HttpServlet {
                                 if (update) {
                                     CartUtils.removeCart(c.getCartId());
                                     System.out.println("its okiee !! ");
-                                    request.setAttribute("message", "create order successfull");
-                                    redirectPage = "cart.jsp";
+                                    url = CART_PAGE;
                                 } else {
-                                    System.out.println("sth is wrong when update quantity:((( ");
-                                    redirectPage = "cart.jsp";
+                                    request.setAttribute("message", "ERROR IN CREATE ORDER!!");
+                                    url = ERROR;
                                 }
 
                             } else {
-                                System.out.println("sth is wrong :((( ");
-                                redirectPage = "cart.jsp";
+                                request.setAttribute("message", "ERROR IN CREATE ORDER!!");
+                                url = ERROR;
                             }
                         }
                     } else {
-                        System.out.println("create order fail");
-                        request.setAttribute("message", "create order fail");
-                        redirectPage = "cart.jsp";
+                        request.setAttribute("message", "CREATE ORDER FAILED!!");
+                        url = ERROR;
+
                     }
 
                 } else {
-                    System.out.println("linngungok");
+//                    request.setAttribute("message", "");
+                    url = CART_PAGE;
                 }
 
             } else {
-                System.out.println("cart or user is null");
-                request.setAttribute("message", "cart or user is null");
-                redirectPage = "home.jsp";
+                request.setAttribute("message", "ERROR CREATE ORDER 163");
+                url = ERROR;
             }
             RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
             rd.forward(request, response);
 
+        } catch (Exception e) {
+            log("Exception at CreateOrderController: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

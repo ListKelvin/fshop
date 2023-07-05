@@ -21,8 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "RemoveCart", urlPatterns = {"/RemoveCart"})
+@WebServlet(name = "RemoveCart", urlPatterns = {"/RemoveCartController"})
 public class RemoveCartController extends HttpServlet {
+
+    private static final String ERROR_PAGE = "error.jsp";
+
+    private static final String CART_PAGE = "MainController?action=ViewCart";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,20 +40,23 @@ public class RemoveCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-           int id = Integer.parseInt(request.getParameter("cartid"));
-           boolean result = CartUtils.removeCart(id);
-            
-           if(result){
-               request.setAttribute("message", "remove successfully");
-               RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-               rd.forward(request, response);
-           }else{
-               request.setAttribute("message", "remove fail");
-               RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-               rd.forward(request, response);
-           }
-            
+        String url = ERROR_PAGE;
+        try  {
+            int id = Integer.parseInt(request.getParameter("cartid"));
+            boolean result = CartUtils.removeCart(id);
+
+            if (result) {
+                request.setAttribute("message", "remove successfully");
+                url = CART_PAGE;
+            } else {
+                request.setAttribute("message", "remove fail");
+                url = ERROR_PAGE;
+            }
+
+        } catch (Exception ex) {
+            log("Error in RemoveCartController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

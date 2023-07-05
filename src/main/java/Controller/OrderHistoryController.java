@@ -6,7 +6,9 @@
 package Controller;
 
 import DTO.OrderInfo;
+import DTO.UserInfo;
 import Utils.OrderUtils;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,8 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "OrderHistoryController", urlPatterns = {"/OrderHistory"})
+@WebServlet(name = "ViewOrderHistory", urlPatterns = {"/ViewOrderHistoryController"})
 public class OrderHistoryController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String ORDER_HISTORY_PAGE = "order-history.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,23 +42,31 @@ public class OrderHistoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String redirectPage = "order-history.jsp";
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            if (userId > 0) {
-                List<OrderInfo> orderList = OrderUtils.userOrders(userId);
+        String url = ERROR;
+        try {
+
+            int accountId = Integer.parseInt(request.getParameter("userId"));
+            UserInfo user = UserUtils.getUser(accountId);
+            if (user != null) {
+                List<OrderInfo> orderList = OrderUtils.userOrders(user.getId());
                 if (!orderList.isEmpty()) {
+                    
                     request.setAttribute("orders", orderList);
-                    redirectPage = "order-history.jsp";
+             
+
+                    url = ORDER_HISTORY_PAGE;
                 } else {
-                    request.setAttribute("mess", "user not have any order yet");
-                    redirectPage = "order-history.jsp";
+                    request.setAttribute("message", "user not have any order yet");
+                    url = ORDER_HISTORY_PAGE;
                 }
             } else {
-                System.out.println("sth wrong with user Id");
+                url = ERROR;
             }
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+
+        } catch (Exception ex) {
+            log("Error in OrderHistoryController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

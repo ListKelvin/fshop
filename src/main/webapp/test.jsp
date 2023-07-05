@@ -3,6 +3,7 @@
     Created on : Jun 30, 2023, 6:02:55 PM
     Author     : Minh
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,65 +19,62 @@
         <link href="https://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+
     <body>
 
         <%--<jsp:include page="header/authenticatedheader.jsp"></jsp:include>--%>
-            <div class="container-fluid">
-                <div class="row flex-xl-nowrap">
+        <div class="container-fluid">
+            <div class="row flex-xl-nowrap">
                 <%--<jsp:include page="utils/navigation.jsp"></jsp:include>--%>
-                <c:set value="${sessionScope.user}" var="user"/>
+                <c:set value="${requestScope.userinfo}" var="user"/>
                 <main class="col-md-9 col-xl-9 py-md-3 pl-md-5 bd-content" role="main">
-<!--                    <c:if test="${not empty user.avatar}">
+                    <p>${user.account_id}</p>
+                    <form id="update-form" method="post" action="${pageContext.request.contextPath}/MainController?action=UpdateUserInfo" enctype="multipart/form-data">
+                        <!--                    <c:if test="${not empty user.avatar}">
                         <img src="images/${user.avatar}" width="300" height="300" class="rounded mx-auto d-block rounded-circle" alt="logo">
                     </c:if>
                     <c:if test="${empty user.avatar}">
                         <img src="images/anonymous_avatar.jpg" width="300" height="300" class="rounded mx-auto d-block rounded-circle" alt="logo">
                     </c:if>-->
-                    <form id="update-form" method="post" action="${pageContext.request.contextPath}/MainController?btnAction=EditProfile" enctype="multipart/form-data">
-                          <input type="hidden" name="accountId" value="some thing" />
+                        <input type="hidden" name="accountId" value="${user.account_id}" />
                         <div class="form-group">
                             <label for="file">Avatar</label>
                             <input name="avtUrl" accept="image/*" type="file" value="${user.avatar}" class="form-control-file" id="file">
                         </div>
                         <input type="hidden" name="avtStr" value="${user.avatar}" />
+
                         <div class="form-group">
-                            <label for="studentID">Student ID</label>
-                            <input readonly type="text" class="form-control" name="studentIDTxt" value="${user.studentID}" id="studentID" aria-describedby="studentID">
-                        </div>
-                        <div class="form-group">
-                            <label for="fullname">Full Name</label>
-                            <input type="text" class="form-control" id="fullname" name="fullnameTxt" value="${user.fullname}" aria-describedby="fullname">
+                            <label for="nameTxt"> Name</label>
+                            <input type="text" class="form-control" id="nameTxt" name="nameTxt" value="${user.name}" aria-describedby="nameTxt">
                             <p id="fullnameErr" style="color: white"></p>
                         </div>
                         <div class="form-group">
-                            <label for="dobTxt">DOB</label>
-                            <input  type="date" class="form-control" name="dobTxt"  id="dobTxt" aria-describedby="dobTxt">
+                            <label for="dobTxt">DoB</label>
+                            <input  type="date" class="form-control" name="dobTxt" placeholder="dd/mm/yyyy" id="dobTxt"  value="${user.dob}" aria-describedby="dobTxt">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
                             <input type="text" class="form-control" id="phone" name="phoneTxt" value="${user.phone}" aria-describedby="phone">
                             <p id="phoneErr" style="color: white"></p>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="notiCkb" value="true" id="notificationCb" ${user.getNotification ? 'checked':''}>
-                            <label class="form-check-label" for="notificationCb">Get Notification</label>
-                        </div>
+
                         <div class="split-pane-divider"></div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="passwordTxt" aria-describedby="password">
-                            <p id="passErr" style="color: white"></p>
+                            <label for="genderTxt">Gender</label>
+                            <input type="text" class="form-control" id="genderTxt" name="genderTxt"  value="${user.gender}" aria-describedby="genderTxt">
+
                         </div>
                         <div class="form-group">
-                            <label for="confirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm" name="confirmTxt" aria-describedby="confirm">
-                            <p id="confirmErr" style="color: white"></p>
+                            <label for="addressTxt">Address</label>
+                            <input type="text" class="form-control" id="addressTxt" name="addressTxt" value="${user.address}" aria-describedby="addressTxt">
                         </div>
+                        <!--<input value="UpdateUserInfo" name="action" type="hidden">-->
                         <button type="submit" class="btn btn-primary">Update Profile</button>
                     </form>
                 </main>
             </div>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>            
@@ -93,17 +91,18 @@
                     let count = 0;
                     if (fullname.val().length === 0) {
                         $('#fullnameErr').text("Fullname is not null");
-                        $('#fullnameErr').addClass("text-danger")
+                        $('#fullnameErr').addClass("text-danger");
                         count++;
                     } else {
-                        $('#fullnameErr').removeClass("text-danger")
+                        $('#fullnameErr').removeClass("text-danger");
                     }
+                    ;
                     if (!isVietnamesePhoneNumber(phone.val())) {
                         count++;
                         $('#phoneErr').text("Phone is not correct");
                         $('#phoneErr').addClass("text-danger");
                     } else {
-                        $('#phoneErr').removeClass("text-danger")
+                        $('#phoneErr').removeClass("text-danger");
                     }
                     if (phone.val().length === 0) {
                         count++;
@@ -131,7 +130,8 @@
                     if (count > 0) {
                         e.preventDefault();
                     }
-                })
+                    ;
+                });
             });
         </script>
     </body>

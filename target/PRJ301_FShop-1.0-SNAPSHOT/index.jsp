@@ -41,7 +41,7 @@
                                   >Login</span
                             >
                         </div>
-                        <form id="login-form" action="Account" method="POST" onsubmit="return validateEmail() && validatePassword()" >
+                        <form id="login-form" action="MainController" method="POST" onsubmit="return validateEmail() && validatePassword()" >
                             <!-- Email input -->
                             <div class="form-floating mb-3">
                                 <input
@@ -93,7 +93,7 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-styled" name="btAction" value="Login">Sign in</button>
+                            <button type="submit" class="btn btn-styled" name="action" value="Login">Sign in</button>
                             <!-- this section for gg sign in or  -->
                             <hr />
                             <div

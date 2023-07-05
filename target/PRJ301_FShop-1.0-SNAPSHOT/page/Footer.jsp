@@ -113,12 +113,13 @@
 
     function validateEmail() {
         var email = document.getElementById("txtEmail").value;
-        if (email.indexOf("@") == -1) {
+        if (email.indexOf("@") === -1) {
             document.getElementById("emailError").innerHTML = "Email must contain the @ symbol.";
             return false;
         }
         return true;
     }
+    ;
 
     function validatePassword() {
         var pass = document.getElementById("txtPass").value;
@@ -132,25 +133,28 @@
         return true;
     }
 
-    let items = document.querySelectorAll('.carousel .carousel-item')
+    let items = document.querySelectorAll('.carousel .carousel-item');
 
     items.forEach((el) => {
-        const minPerSlide = 5
-        let next = el.nextElementSibling
-                for (var i = 1; i < minPerSlide;
+        const minPerSlide = 5;
+        let next = el.nextElementSibling;
+        for (var i = 1; i < minPerSlide;
                 i++
                 ) {
-        if (!next) {
-            // wrap carousel by using first child
-            next = items[0]
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0];
+            }
+            let cloneChild = next.cloneNode(true);
+            el.appendChild(cloneChild.children[0]);
+            next = next.nextElementSibling;
         }
-        let cloneChild = next.cloneNode(true)
-        el.appendChild(cloneChild.children[0])
-        next = next.nextElementSibling
-        }
-    })
+    });
+
+
 
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>

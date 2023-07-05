@@ -22,12 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-//import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-//import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-//
-//import java.util.Collections;
-//import org.codehaus.jackson.JsonFactory;
 /**
  *
  * @author 03lin
@@ -54,18 +48,25 @@ public class AccountController extends HttpServlet {
 
             if (action.equals("Login")) {
                 AccountInfo accountInfo = DBUtils.login(email, password);
+
                 if (accountInfo == null) {
                     request.setAttribute("message", "Wrong email or password");
                 } else {
                     String role = accountInfo.getRole();
+                    System.out.println("(accountController) userid:  " + accountInfo.getId());
+
                     HttpSession session = request.getSession();
                     session.setAttribute("user", accountInfo);
+
 //                    if ((accountInfo.getEmail()).equals("admin123@gmail.com")) {
 //                        redirectPage = "ADMIN_PAGE";
 //                    }
                     if (ADMIN.equals(role)) {
+
                         redirectPage = ADMIN_PAGE;
                     } else if (USER.equals(role)) {
+
+ 
                         redirectPage = USER_PAGE;
                     } else {
                         request.setAttribute("ERROR", "Role is not support");
@@ -94,7 +95,9 @@ public class AccountController extends HttpServlet {
                     } else {
                         DBUtils.register(username, password, email);
                         AccountInfo accountInfo = DBUtils.login(email, password);
+
                         UserUtils.createUser(accountInfo.getId());
+
                         request.setAttribute("message", "Register successfull");
                     }
                 }
