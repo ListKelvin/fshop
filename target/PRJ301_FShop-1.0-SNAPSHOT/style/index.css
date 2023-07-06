@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : Minh
 */
 @import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Play:wght@400;700&display=swap");
+/*$table-striped-bg:            rgba($black, $table-striped-bg-factor);*/
+/*$table-active-bg:             rgba($black, $table-active-bg-factor);*/
+/*$table-hover-bg:              rgba($black, $table-hover-bg-factor);*/
 /*components*/
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -37,12 +40,15 @@ and open the template in the editor.
     padding: 3rem 4rem 0 4rem; }
 
 .product {
+  padding: 0;
   border-radius: 10px;
-  width: 100%;
+  width: 75%;
   max-width: 14rem;
   background: transparent;
   transition: 0.2s all;
-  border: none; }
+  border: 1px solid #BC6EEE !important;
+  overflow: hidden !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
   .product .text-eclipse {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -66,9 +72,31 @@ and open the template in the editor.
     font-weight: 700;
     font-size: 20px;
     line-height: 23px; }
+  .product .btnAddToCart {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*change to variable*/
+    gap: 10px;
+    padding: .75rem;
+    background: #DFBAF7;
+    color: #1B171E;
+    /*change to variable*/
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 10px;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 42px;
+    transition: 0.3s; }
+    .product .btnAddToCart:hover {
+      background-color: #C37DF0; }
   .product:hover {
-    background: red;
-    opacity: 0.75; }
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transform: translateY(-20px); }
 
 .category {
   margin: 100px 0px;
@@ -539,5 +567,26 @@ p {
 
 .ms-n5 {
   margin-left: -53px; }
+
+/*///////////// sidebar //////////////////*/
+.sideBar {
+  width: 200px;
+  max-width: 200px;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #C37DF0; }
+
+.disabled {
+  color: #d4d4d4;
+  opacity: 0.7;
+  pointer-events: none; }
 
 /*# sourceMappingURL=index.css.map */

@@ -9,12 +9,12 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <%
-    /*
+
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
     if (user != null) {
         request.setAttribute("user", user);
     }
-
+    /*
     ProductUtils pu = new ProductUtils();
     List<ProductInfo> products = pu.getAllProduct();
     request.setAttribute("products", products);
@@ -26,7 +26,7 @@
      */
 %> 
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
 
     <section class="container d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled" onload="init()">
@@ -97,11 +97,19 @@
                     <h1 class="textHeading">Gợi ý cho bạn</h1>
                     <a class="linkStyled">Xem thêm</a>
                 </div>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-3 p-5 justify-content-center">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
                     <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="${product.image}" price="${product.price}"/>
                 </c:forEach>
+
+                <c:if test="${listProduct.size() ==0 }">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                    </div>
+
+
+                </c:if>
 
             </div>
 
@@ -132,7 +140,7 @@
 </section>
 
 
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>
 
     <script>
 

@@ -17,12 +17,15 @@ and open the template in the editor.
     /*padding: 1rem 2rem;*/
 }
 .product{
+    padding: 0;
     border-radius: 10px;
-    width: 100%;
+    width: 75%;
     max-width: 14rem;
     background: transparent;
     transition: 0.2s all;
-    border: none;
+    border: 1px solid $purple-500 !important;
+    overflow: hidden !important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     .text-eclipse{
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -50,9 +53,15 @@ and open the template in the editor.
         font-size: 20px;
         line-height: 23px;
     }
-    &:hover{
-        background: red;
-        opacity: 0.75;
+    .btnAddToCart{
+        @include buttonSmall;
+        &:hover{
+            background-color:$Purple-400;   
+        }         
+    }
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        transform: translateY(-20px);
     }
 
 }

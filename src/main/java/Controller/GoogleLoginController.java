@@ -8,6 +8,7 @@ package Controller;
 import DTO.AccountInfo;
 import Utils.DBUtils;
 import Utils.GoogleSignIn;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +23,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Minh
  */
-@WebServlet(name = "GoogleServlet", urlPatterns = {"/GoogleServlet"})
-public class GoogleServlet extends HttpServlet {
+@WebServlet(name = "GoogleLogin", urlPatterns = {"/GoogleLoginController"})
+public class GoogleLoginController extends HttpServlet {
+
+    private static final String ERROR_PAGE = "error.jsp";
+    private static final String ERROR_LOGIN = "index.jsp";
+    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,25 +42,39 @@ public class GoogleServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String url = ERROR_PAGE;
+        try {
+            HttpSession session = request.getSession();
             /* TODO output your page here. You may use following sample code. */
             String credential = request.getParameter("credential");
-   
+
             AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
-            if (DBUtils.checkEmail(ggAcc.getEmail()) == null) {
-                DBUtils.registerByGG(ggAcc.getEmail(), ggAcc.getName().trim());
-            }
-            if (ggAcc == null) {
-              request.setAttribute("message", "Somethine wrong with GG please try later!");
-                
+            log(ggAcc.getEmail());
+            if (ggAcc.getEmail() != null) {
+
+                AccountInfo accDB = DBUtils.checkEmail(ggAcc.getEmail());
+                if (accDB != null) {
+                    session.setAttribute("user", ggAcc);
+                    url = CUSTOMER_PAGE;
+                } else{
+                    boolean registerSuccess = DBUtils.registerByGG(ggAcc.getEmail(), ggAcc.getName().trim());
+                    if (registerSuccess) {
+                        UserUtils.createUser(accDB.getId());
+                        session.setAttribute("user", ggAcc);
+                        url = CUSTOMER_PAGE;
+                    }
+                }
+              
+
             } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", ggAcc);
-
-                RequestDispatcher rd = request.getRequestDispatcher("logined.jsp");
-                rd.forward(request, response);
+                request.setAttribute("message", "Something wrong with GG please try later!");
+                url = ERROR_LOGIN;
             }
 
+        } catch (Exception ex) {
+            log("Error in GoogleLoginController: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

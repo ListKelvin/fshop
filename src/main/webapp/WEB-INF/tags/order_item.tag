@@ -18,15 +18,11 @@
     <div class="d-flex align-items-center justify-content-between w-100  p-3">
         <div >
             <div class="">${productName}</div>        
-            <div class="" >${price}</div>
+            <div class="" >Quantity: ${quantity}</div>
         </div>
-        <!--        <div class="d-flex align-items-center flex-column ">
-        
-        
-        
-                </div>-->
+
         <div>
-            Quantity:....
+            Total Price: ${price}
         </div>
     </div>
 

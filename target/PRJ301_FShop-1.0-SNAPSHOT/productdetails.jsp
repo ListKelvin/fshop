@@ -10,7 +10,7 @@
 
 
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
     <section class="container  mt-5 minHeithStyled">
         <div class="wrapperProductInfo">
             <div class="categoryTitle">Category: .......</div>
@@ -103,4 +103,4 @@
 </section>
 
 
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>

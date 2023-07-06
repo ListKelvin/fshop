@@ -8,11 +8,14 @@ D:\Code\Java\prj301-se1714-10\src\main\java\Controller\RegisterController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\LoginController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\CategoryUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\OrderProductUtils.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ProductByCategoryController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateCartController.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\BestSellerContronller.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\OrderUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AddToCartController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\RemoveCartController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\CreateCategoryController.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\GoogleLoginController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\ProductInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\Validation.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\CartUtils.java
@@ -25,6 +28,7 @@ D:\Code\Java\prj301-se1714-10\src\main\java\Utils\ProductUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\CreateOrderController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AdminController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\NetUtils.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ShopAnalysisController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AccountController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\GetOrderByStatusController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateOrderController.java
@@ -32,7 +36,6 @@ D:\Code\Java\prj301-se1714-10\src\main\java\Utils\DBUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\UserInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\AccountInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Connection\DBConnection.java
-D:\Code\Java\prj301-se1714-10\src\main\java\Controller\GoogleServlet.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\UserUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\CreateProductController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateUserInfoController.java
@@ -41,3 +44,4 @@ D:\Code\Java\prj301-se1714-10\src\main\java\DTO\CategoryInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\MainController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateProductController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\V?ewCartController.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ViewUserInfoController.java

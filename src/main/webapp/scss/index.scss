@@ -120,7 +120,7 @@ p { color: #6c757d; }
     background:$orange-200;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
-   
+  
 }
 
 .minHeithStyled {
@@ -130,4 +130,27 @@ p { color: #6c757d; }
 }
 .ms-n5 {
     margin-left: -53px;
+}
+/*///////////// sidebar //////////////////*/
+.sideBar{
+    width: 200px;
+    max-width: 200px;
+    min-height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom:0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background: $Purple-400;
+}
+
+.disabled{
+    
+    color: #d4d4d4 ;
+  opacity: 0.7;
+  pointer-events: none;
 }

@@ -65,6 +65,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
             try {
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                
                 for (FileItem item : items) {
                     if (item.isFormField()) {
                         // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
@@ -117,6 +118,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
                     }
                 }
+                
                 UserInfo user = new UserInfo();
                 user.setName(name);
                 user.setAddress(address);
@@ -137,7 +139,7 @@ public class UpdateUserInfoController extends HttpServlet {
                 check = userDAO.updateUserInfo(user);
 
                 if (check) {
-                    log("checkedddddd");
+             
                     url = SUCCESS;
 
                 } else {
