@@ -29,7 +29,7 @@ public class MainController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "404.jsp";
 //ACTION
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";

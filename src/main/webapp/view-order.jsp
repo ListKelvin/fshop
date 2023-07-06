@@ -3,7 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
-<c:import url="page/Header.jsp"><c:param name="title" value="View Order"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="View Order"/></c:import>
 <c:set var="orderDetails" value="${requestScope.orderDetails}"/>
 <c:set var="orderProducts" value="${requestScope.orderProducts}"/>
 
@@ -116,4 +116,4 @@
         </div>
     </div>
 </div>
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>

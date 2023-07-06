@@ -9,7 +9,7 @@
         request.setAttribute("user", user);
     }
 %> 
-<c:import url="page/Header.jsp"><c:param name="title" value="Order history"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="Order history"/></c:import>
     <section class="container p-5 minHeithStyled">
         <div class="breadcrumbWrapper">
             <nav aria-label="breadcrumb">
@@ -87,4 +87,4 @@
         </div>
     </div>
 </section>
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>

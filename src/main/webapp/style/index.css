@@ -568,4 +568,25 @@ p {
 .ms-n5 {
   margin-left: -53px; }
 
+/*///////////// sidebar //////////////////*/
+.sideBar {
+  width: 200px;
+  max-width: 200px;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #C37DF0; }
+
+.disabled {
+  color: #d4d4d4;
+  opacity: 0.7;
+  pointer-events: none; }
+
 /*# sourceMappingURL=index.css.map */

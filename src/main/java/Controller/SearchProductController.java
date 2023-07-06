@@ -57,6 +57,8 @@ public class SearchProductController extends HttpServlet {
                 int numberOfProducts = products.size();
                 List<CategoryInfo> categories = CategoryUtils.getAllCategory();
                 request.setAttribute("numberOfProducts", numberOfProducts);
+                request.setAttribute("category", "all");
+
                 request.setAttribute("categories", categories);
                 url = SEARCH;
             }

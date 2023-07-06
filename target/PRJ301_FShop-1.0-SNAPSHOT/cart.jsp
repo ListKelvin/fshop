@@ -1,10 +1,16 @@
+<%@page import="DTO.AccountInfo"%>
+<%
 
+    AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
+    if (user != null) {
+        request.setAttribute("user", user);
+    }%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Cart Page"/></c:import>
-<c:set var="user" value="${requestScope.userinfo}"/>
+<c:import url="include/Header.jsp"><c:param name="title" value="Cart Page"/></c:import>
+<c:set var="user" value="${requestScope.user}"/>
 <section class="container p-5 minHeithStyled">
     <div class="row g-4">
         <div class=" col-12 col-lg-8">
@@ -16,6 +22,14 @@
                     <c:forEach items="${cartItems}" var="cartItems">
                         <tag:cart_item id="${cartItems.cartId}" category="${cartItems.categoryName}" price="${cartItems.price}" productName="${cartItems.title}" quantity="${cartItems.cartQuantity}" srcImg="${cartItems.image}"/>
                     </c:forEach>
+
+                    <c:if test="${cartItems.size() ==0 }">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="assest/emptyCart.png" width="400" alt="empty cart"/>
+                        </div>
+
+
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -32,7 +46,7 @@
                                     <input type=hidden name="cartid" value="${id}">
                                     <input class="btnPlaceOrder" value="Place Order" type="Submit">
                                 </form>-->
-                <a href="#minh" class="btnPlaceOrder" data-bs-toggle="modal" data-bs-target="#exampleModal" >Place Order</a>
+                <a href="#minh" class="btnPlaceOrder ${cartItems.size() == 0 ? 'disabled':''}" data-bs-toggle="modal" data-bs-target="#exampleModal" >Place Order</a>
             </div>
         </div>
     </div>
@@ -50,16 +64,16 @@
 
 
             <c:if test="${ empty user.name || empty user.address || empty user.phone }">
-        
+
                 <div class="modal-body">
                     <p class="text-danger">Please Update your information before order <br> Press this Link: <a href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Update Information</a></p>
-                    
-                </div>
-        
-                </c:if>
-                <c:if test="${ not empty user.name && not empty user.address && not empty user.phone }">
 
-                    <form method="post" action="MainController">
+                </div>
+
+            </c:if>
+            <c:if test="${ not empty user.name && not empty user.address && not empty user.phone }">
+
+                <form method="post" action="MainController">
                     <div class="modal-body">
                         <div class="p-3">
                             <h2>Information</h2>

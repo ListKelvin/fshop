@@ -9,12 +9,12 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <%
-  
+
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
     if (user != null) {
         request.setAttribute("user", user);
     }
-  /*
+    /*
     ProductUtils pu = new ProductUtils();
     List<ProductInfo> products = pu.getAllProduct();
     request.setAttribute("products", products);
@@ -26,7 +26,7 @@
      */
 %> 
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
 
     <section class="container d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled" onload="init()">
@@ -103,6 +103,14 @@
                     <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="${product.image}" price="${product.price}"/>
                 </c:forEach>
 
+                <c:if test="${listProduct.size() ==0 }">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                    </div>
+
+
+                </c:if>
+
             </div>
 
 
@@ -132,7 +140,7 @@
 </section>
 
 
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>
 
     <script>
 

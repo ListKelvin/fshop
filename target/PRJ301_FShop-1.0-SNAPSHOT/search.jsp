@@ -19,7 +19,7 @@
         request.setAttribute("user", user);
     }
 %> 
-<c:import url="page/Header.jsp"><c:param name="title" value="Search"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="Search"/></c:import>
 
     <section class="container g-4   minHeithStyled">
         <div class="row">
@@ -44,9 +44,9 @@
     <h1 class="search-result-heading text-center mb-3">${param.searchTxt}</h1>
     <div class="search-result-description text-center">${requestScope.numberOfProducts} sản phẩm tìm được</div>
 
-    <div class="mb-4 p-4">
+    <div class="m-4 p-3 rounded"  style="background: #BC6EEE;">
         <nav class="nav nav-pills flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page"  href="#2">ALL</a> 
+            <a class="flex-sm-fill text-sm-center nav-link ${requestScope.category == 'all' ? 'active':''}" aria-current="page"  href="${pageContext.request.contextPath}/MainController?action=SearchProduct&category=all&searchTxt=${param.searchTxt}">ALL</a> 
 
             <c:forEach items="${requestScope.categories}" var="category">
                 <a class="flex-sm-fill text-sm-center nav-link ${param.category == category.categoryName ? 'active':''} "  href="${pageContext.request.contextPath}/MainController?action=ProductByCategory&category=${category.categoryName}&searchTxt=${param.searchTxt}">${category.categoryName}</a> 
@@ -61,11 +61,18 @@
         <c:forEach items="${requestScope.LIST_PRODUCT}" var="products" varStatus="counter">
             <tag:product_card className="col-md-4" idProduct="${products.id}" id="${counter.count}" category="${products.categoryName}" productName="${products.title}" img="./assest/linn.jpg" price="${products.price}"/>
         </c:forEach>
+        <c:if test="${requestScope.LIST_PRODUCT.size() == 0 }">
+            <div class="d-flex align-items-center justify-content-center flex-column">
+                <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                <p>Empty</p>
+            </div>
 
+
+        </c:if>
     </div>
 
 </section>
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>
 <script>
     document.querySelectorAll('.nav-link').forEach(function (link) {
         link.addEventListener('click', function () {

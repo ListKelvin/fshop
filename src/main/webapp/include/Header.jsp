@@ -47,6 +47,7 @@
                             <div class="input-group ">
                                 <i class="bi bi-search input-group-text"></i>
                                 <input class="form-control me-2 border-rounded" type="search" name="searchTxt" value="" placeholder="Search" aria-label="Search">
+           
                                 <input  type="hidden" name="action" value="SearchProduct">
 
                             </div>
