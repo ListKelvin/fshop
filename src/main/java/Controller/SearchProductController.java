@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import DTO.CategoryInfo;
 import DTO.ProductInfo;
+import Utils.CategoryUtils;
 import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,20 +50,22 @@ public class SearchProductController extends HttpServlet {
             String search = request.getParameter("searchTxt");
             ProductUtils pu = new ProductUtils();
             List<ProductInfo> products;
-//            request.setAttribute("search", search);
-//            response.sendRedirect("search.jsp");
             if (search.isEmpty()) {
                 products = pu.getAllProduct();
                 url = CUSTOMER_HOME;
-//                  response.sendRedirect("home.jsp");
             } else {
                 products = pu.searchProduct(search);
-                url = SEARCH;
+                int numberOfProducts = products.size();
+                List<CategoryInfo> categories = CategoryUtils.getAllCategory();
+                request.setAttribute("numberOfProducts", numberOfProducts);
+                request.setAttribute("category", "all");
 
+                request.setAttribute("categories", categories);
+                url = SEARCH;
             }
             request.setAttribute("LIST_PRODUCT", products);
         } catch (Exception e) {
-            log("Error at Search Account Controller: " + e.getMessage());
+            log("Error at Search Product Controller: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

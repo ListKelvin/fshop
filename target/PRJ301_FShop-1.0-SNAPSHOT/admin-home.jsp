@@ -1,17 +1,8 @@
-<%-- 
-    Document   : adminHome
-    Created on : Jun 19, 2023, 3:42:12 PM
-    Author     : 03lin
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello admin!</h1>
+<c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
+<div class="" style="margin-left: 200px;"> Container here</div>
+
+
     </body>
 </html>

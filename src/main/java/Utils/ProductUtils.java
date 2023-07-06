@@ -118,7 +118,7 @@ public class ProductUtils {
 //        }
 //        return products;
 //    }
-    public static List<ProductInfo> searchProduct(String title) {
+    public List<ProductInfo> searchProduct(String title) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
@@ -204,14 +204,15 @@ public class ProductUtils {
         }
         return products;
     }
-    
-     public static List<ProductInfo> getProductByCategory( String cate) {
+
+    public static List<ProductInfo> getProductByCategory(String cate, String search) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? " ;
+            String sql = "SELECT * FROM [product] where category=? and title=?";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
+            stm.setString(2, search);
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();

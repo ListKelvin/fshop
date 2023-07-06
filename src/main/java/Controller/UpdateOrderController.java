@@ -23,10 +23,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author 03lin
  */
-@WebServlet(name = "UpdateOrderController", urlPatterns = {"/UpdateOrder"})
+@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrderController"})
 public class UpdateOrderController extends HttpServlet {
 
+    private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String MANAGE_ORDER_PAGE = "manage-order-page.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,8 +42,9 @@ public class UpdateOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String redirectPage = null;
+        String url = ERROR;
+        try {
+
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("status");
             HttpSession session = request.getSession();
@@ -49,7 +52,7 @@ public class UpdateOrderController extends HttpServlet {
             if (user == null) {
                 log("(ViewCartController) Unauthentication!!");
                 request.setAttribute("message", "Unauthentication!!");
-                redirectPage = ERROR_AUTHEN;
+                url = ERROR_AUTHEN;
             } else {
                 if (status.equals("checking") && user.getRole().equals("admin") || 
                         status.equals("preparing") && user.getRole().equals("admin") || 
@@ -58,7 +61,7 @@ public class UpdateOrderController extends HttpServlet {
                     boolean check = OrderUtils.updateOrderStatus(orderId, status);
                     if (check) {
                         request.setAttribute("mess", "update status successfully");
-                        redirectPage = "manage-order-page.jsp";
+                        url = "manage-order-page.jsp";
                     }
 
                 } else if (status.equals("cancel")) {
@@ -67,20 +70,23 @@ public class UpdateOrderController extends HttpServlet {
                         boolean check = OrderUtils.cancelOrder(orderId);
                         if (check && user.getRole().equals("admin")) {
                             request.setAttribute("mess", "Cancel order successfully");
-                            redirectPage = "manage-order-page.jsp";
+                            url = MANAGE_ORDER_PAGE;
                         } else {
                             request.setAttribute("mess", "Cancel order fail");
-                            redirectPage = "order-history-page.jsp";
+                            url = MANAGE_ORDER_PAGE;
                         }
                     }
                 } else {
                     request.setAttribute("mess", "status is not valid");
-                    redirectPage = "manage-order-page.jsp";
+                    url = MANAGE_ORDER_PAGE;
                 }
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+          
+        }catch (Exception e) {
+            log("Error at UpdateOrderController " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

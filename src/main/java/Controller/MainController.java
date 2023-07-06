@@ -29,16 +29,19 @@ public class MainController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "404.jsp";
 //ACTION
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
+    private static final String LOGIN_GG = "GoogleLogin";
+    private static final String LOGIN_GG_CONTROLLER = "GoogleLoginController";
+    private static final String LOGIN_FB = "FaceBook";
+    private static final String LOGIN_FB_CONTROLLER = "FaceBookController";
     private static final String REGISTER = "Register";
     private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
-    private static final String CHECKOUT = "Checkout";
-    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
+//view
     private static final String VIEW_CART = "ViewCart";
     private static final String VIEW_CART_CONTROLLER = "ViewCartController";
     private static final String VIEW_USER_INFO = "ViewUserInfo";
@@ -47,6 +50,10 @@ public class MainController extends HttpServlet {
     private static final String VIEW_ORDER_HISTORY_CONTROLLER = "ViewOrderHistoryController";
     private static final String VIEW_ORDER = "ViewOrder";
     private static final String VIEW_ORDER_CONTROLLER = "ViewOrderController";
+    private static final String PRODUCT_BY_CATEGORY = "ProductByCategory";
+    private static final String PRODUCT_BY_CATEGORY_CONTROLLER = "ProductByCategoryController";
+    private static final String GET_ORDER_BY_STATUS = "GetOrderByStatus";
+    private static final String GET_ORDER_BY_STATUS_CONTROLLER = "GetOrderByStatusController";
 //    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
@@ -56,7 +63,8 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
     private static final String UPDATE_USERINFO = "UpdateUserInfo";
     private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
-
+    private static final String UPDATE_ORDER_STATUS = "UpdateOrder";
+    private static final String UPDATE_ORDER_STATUS_CONTROLLER = "UpdateOrderController";
 //  CREATE
     private static final String CREATE_ORDER = "CreateOrder";
     private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
@@ -87,6 +95,12 @@ public class MainController extends HttpServlet {
                     case LOGIN:
                         url = LOGIN_CONTROLLER;
                         break;
+                    case LOGIN_GG:
+                        url = LOGIN_GG_CONTROLLER;
+                        break;
+                    case LOGIN_FB:
+                        url = LOGIN_FB_CONTROLLER;
+                        break;
                     case REGISTER:
                         url = REGISTER_CONTROLLER;
                         break;
@@ -111,6 +125,9 @@ public class MainController extends HttpServlet {
                     case UPDATE_PRODUCT:
                         url = UPDATE_PRODUCT_CONTROLLER;
                         break;
+                    case UPDATE_ORDER_STATUS:
+                        url = UPDATE_ORDER_STATUS_CONTROLLER;
+                        break;
                     case UPDATE_CATEGORY:
                         url = UPDATE_CATEGORY_CONTROLLER;
                         break;
@@ -126,6 +143,12 @@ public class MainController extends HttpServlet {
                     case SEARCH_PRODUCT:
                         url = SEARCH_PRODUCT_CONTROLLER;
                         break;
+                    case PRODUCT_BY_CATEGORY:
+                        url = PRODUCT_BY_CATEGORY_CONTROLLER;
+                        break;
+                    case GET_ORDER_BY_STATUS:
+                        url = GET_ORDER_BY_STATUS_CONTROLLER;
+                        break;
                     case ADD_TO_CART:
                         url = ADD_TO_CART_CONTROLLER;
                         break;
@@ -134,9 +157,6 @@ public class MainController extends HttpServlet {
                         break;
                     case REMOVE_CART:
                         url = REMOVE_CART_CONTROLLER;
-                        break;
-                    case CHECKOUT:
-                        url = CHECKOUT_CONTROLLER;
                         break;
                     case UPDATE_USERINFO:
                         url = UPDATE_USERINFO_CONTROLLER;

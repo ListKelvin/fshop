@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import DTO.CategoryInfo;
 import DTO.ProductInfo;
+import Utils.CategoryUtils;
 import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,12 +19,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 03lin
- */
-@WebServlet(name = "ProductByCategoryController", urlPatterns = {"/ProductByCategory"})
+@WebServlet(name = "ProductByCategory", urlPatterns = {"/ProductByCategoryController"})
 public class ProductByCategoryController extends HttpServlet {
+
+    private static final String ERROR_PAGE = "error.jsp";
+
+    private static final String SEARCH = "search.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +38,21 @@ public class ProductByCategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String redirectPage = null;
+        String url = ERROR_PAGE;
+        try {
             String cate = request.getParameter("category");
-            List<ProductInfo> products = ProductUtils.getProductByCategory(cate);
-            request.setAttribute("products", products);
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+            String search = request.getParameter("searchTxt");
+            List<ProductInfo> products = ProductUtils.getProductByCategory(cate, search);
+            List<CategoryInfo> categories = CategoryUtils.getAllCategory();
+            int numberOfProducts = products.size();
+            request.setAttribute("LIST_PRODUCT", products);
+            request.setAttribute("numberOfProducts", numberOfProducts);
+            request.setAttribute("categories", categories);
+            url = SEARCH;
+        } catch (Exception e) {
+            log("Error at Search Product by category Controller: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

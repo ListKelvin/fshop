@@ -25,26 +25,30 @@ import javax.servlet.http.HttpSession;
  *
  * @author 03lin
  */
-@WebServlet("/Facebook")
+@WebServlet(name = "FaceBook", urlPatterns = {"/FaceBookController"})
 public class FacebookController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private static final String ERROR_PAGE = "error.jsp";
+    private static final String ERROR_LOGIN = "index.jsp";
+    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR_PAGE;
 
-        PrintWriter out = response.getWriter();
         try {
             String code = request.getParameter("code");
             String redirectPage = null;
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
+
             wrapper.setAccessToken(accessToken);
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
             AccountInfo loginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
-            System.out.println("the id1: " + loginAccount.getId());
+            
             if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
                 System.out.println("the id2: " + loginAccount.getId());
@@ -53,23 +57,22 @@ public class FacebookController extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loginAccount);
                     System.out.println("the id3: " + loginAccount.getId());
-                    redirectPage = "MainController?action=SearchProduct&searchTxt=";
+                    url = CUSTOMER_PAGE;
                 } else {
                     request.setAttribute("mess", "register account fail");
-                    redirectPage = "index.jsp";
+                    url= ERROR_LOGIN;
                 }
 
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", loginAccount);
                 System.out.println("the id4: " + loginAccount.getId());
-                redirectPage = "MainController?action=SearchProduct&searchTxt=";
+                url = CUSTOMER_PAGE;
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+            
         } finally {
-            out.close();
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

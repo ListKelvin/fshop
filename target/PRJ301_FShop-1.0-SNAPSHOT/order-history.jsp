@@ -1,48 +1,49 @@
-
+<%@page import="DTO.AccountInfo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
+<%
 
-<c:import url="page/Header.jsp"><c:param name="title" value="Order history"/></c:import>
-
-
-<section class="container p-5 minHeithStyled">
-
-    <div class="breadcrumbWrapper">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item"><a href="#">Order-list</a></li>
-           
+    AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
+    if (user != null) {
+        request.setAttribute("user", user);
+    }
+%> 
+<c:import url="include/Header.jsp"><c:param name="title" value="Order history"/></c:import>
+    <section class="container p-5 minHeithStyled">
+        <div class="breadcrumbWrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${requestScope.user.id}">Order-list</a></li>
             </ol>
         </nav>
-
     </div>
     <div class="row g-4">
         <div class="col-12  p-5">
             <div class="box " >
                 <h3 class="" style="color: #BC6EEE;">Order History</h3>
                 <p>${requestScope.message}</p>
-
                 <c:if test=" not empty ${requestScope.message}">
                     <p>${requestScope.message}</p>
-
-
                 </c:if>
-
                 <c:if test="${requestScope.orders != null}">
                     <c:set var="orders" value="${requestScope.orders}"/>
                     <p>${requestScope.message}</p>
-
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Active</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link ${param.action == 'ViewOrderHistory' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&status=all&userId=${requestScope.user.id}">ALL</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ">Disabled</a>
+                            <a class="nav-link ${param.status == 'checking' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=checking&userId=${requestScope.user.id}">Checking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${param.status == 'preparing' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=preparing&userId=${requestScope.user.id}">Preparing</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link ${param.status == 'delivering' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=delivering&userId=${requestScope.user.id}">Delivering</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${param.status == 'done' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=done&userId=${requestScope.user.id}">Done</a>
                         </li>
                     </ul>
                     <div>
@@ -57,13 +58,10 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Total</th>
                                     <th scope="col"></th>
-
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach var="order" items="${orders}" varStatus="counter">
-
                                     <tr>
                                         <th scope="row">${counter.count}</th>
                                         <td>${order.orderNumber}</td>
@@ -79,24 +77,14 @@
                                                 </svg>
                                             </a>
                                         </td>
-
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                     </div>
-
                 </c:if>
-
             </div>
-
-
         </div>
-
-
-
     </div>
 </section>
-
-
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>

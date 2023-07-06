@@ -140,13 +140,15 @@ public class OrderUtils {
         return list;
     }
 
-    public static List<OrderInfo> getOrdersByStatus(String status) {
+    public static List<OrderInfo> getOrdersByStatus(String status, String userId) {
         List<OrderInfo> list = new ArrayList<OrderInfo>();
         try {
             con = DBConnection.getConnection();
-            query = " SELECT * FROM [order] o  WHERE o.[status]=? ORDER BY o.id DESC";
+            query = " SELECT * FROM [order] o  WHERE o.[status]=? and o.[user]=? ORDER BY o.id DESC";
             stm = con.prepareStatement(query);
             stm.setString(1, status);
+            stm.setString(2, userId);
+
             rs = stm.executeQuery();
             while (rs.next()) {
                 OrderInfo order = new OrderInfo();
@@ -267,7 +269,7 @@ public class OrderUtils {
             stm = con.prepareStatement(query);
             rs = stm.executeQuery();
             while (rs.next()) {
-            count = rs.getInt("count_user");
+                count = rs.getInt("count_user");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -290,7 +292,7 @@ public class OrderUtils {
         }
         return count;
     }
-    
+
     public static int countOrder() {
         int count = 0;
         try {
@@ -299,7 +301,7 @@ public class OrderUtils {
             stm = con.prepareStatement(query);
             rs = stm.executeQuery();
             while (rs.next()) {
-            count = rs.getInt("count_order");
+                count = rs.getInt("count_order");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

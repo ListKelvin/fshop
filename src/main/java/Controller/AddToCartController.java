@@ -30,6 +30,7 @@ public class AddToCartController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String ERROR_PAGE = "error.jsp";
+    private static final String UNAUTHEN_PAGE = "403.jsp";
 
     private static final String CART_PAGE = "MainController?action=ViewCart";
 
@@ -85,8 +86,8 @@ public class AddToCartController extends HttpServlet {
                     }
                 }
             } else {
-                request.setAttribute("message", "CAN NOT FIND USER");
-                url = ERROR_PAGE;
+                request.setAttribute("message", "Unauthentication!!");
+                url = UNAUTHEN_PAGE;
             }
 
         } catch (Exception ex) {
