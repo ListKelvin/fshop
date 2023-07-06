@@ -49,7 +49,7 @@
 
 <div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <!--// want to center modal-dialog-centered modal-dialog-scrollable-->
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 text-center" id="exampleModalLabel" style="color: #BC6EEE;">Order Summary</h1>
@@ -128,8 +128,8 @@
                                     </div>
                                 </div>
 
-
-                                <table class="table mt-3">
+                                <div class="overflow-y-auto" style="max-height: 250px;">
+                                         <table class="table mt-3 ">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -148,9 +148,11 @@
                                             </tr>
 
                                         </c:forEach>
-
+                                        
                                     </tbody>
-                                </table>
+                                </table> 
+                                </div>
+                          
                             </div>
                             <h1>
                                 Total price: ${total}

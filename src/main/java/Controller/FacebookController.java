@@ -40,9 +40,10 @@ public class FacebookController extends HttpServlet {
 
         try {
             String code = request.getParameter("code");
-        
+
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
+
             wrapper.setAccessToken(accessToken);
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
