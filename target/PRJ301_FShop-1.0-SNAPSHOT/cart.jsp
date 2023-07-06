@@ -1,16 +1,11 @@
 <%@page import="DTO.AccountInfo"%>
-<%
-
-    AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
-    if (user != null) {
-        request.setAttribute("user", user);
-    }%> 
+ 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <c:import url="include/Header.jsp"><c:param name="title" value="Cart Page"/></c:import>
-<c:set var="user" value="${requestScope.user}"/>
+<c:set var="user" value="${requestScope.userinfo}"/>
 <section class="container p-5 minHeithStyled">
     <div class="row g-4">
         <div class=" col-12 col-lg-8">
@@ -37,8 +32,8 @@
         <div class="col-12 col-lg-4">
             <div class="box checkOutBox">
                 <div class="p-3 ">
-                    <div class="mb-3 d-flex align-items-center justify-content-between">Amount: <span>30</span></div>
-                    <div class="d-flex align-items-center justify-content-between"> Subtotal: <span>13000VND</span></div>
+                    <div class="mb-3 d-flex align-items-center justify-content-between">Amount in cart: <span>${cartItems.size()}</span></div>
+                    <div class="d-flex align-items-center justify-content-between"> Subtotal: <span>${total}</span></div>
                 </div>
                 <hr/>
                 <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>${total}</span></div>
@@ -46,7 +41,7 @@
                                     <input type=hidden name="cartid" value="${id}">
                                     <input class="btnPlaceOrder" value="Place Order" type="Submit">
                                 </form>-->
-                <a href="#minh" class="btnPlaceOrder ${cartItems.size() == 0 ? 'disabled':''}" data-bs-toggle="modal" data-bs-target="#exampleModal" >Place Order</a>
+                <button  class="btnPlaceOrder ${cartItems.size() == 0 ? 'disabled':''} " data-bs-toggle="modal" data-bs-target="#exampleModal">Place Order</button>
             </div>
         </div>
     </div>
@@ -63,7 +58,7 @@
             </div>
 
 
-            <c:if test="${ empty user.name || empty user.address || empty user.phone }">
+            <c:if test="${ user.name == null||  user.address == null|| user.phone == null}">
 
                 <div class="modal-body">
                     <p class="text-danger">Please Update your information before order <br> Press this Link: <a href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Update Information</a></p>
@@ -82,22 +77,22 @@
                                 <div class="col">
                                     <div class="">
                                         <div class="fw-semibold fs-5">Name:</div>
-                                        <div class="fw-light">Nguyễn Gia Lin</div> 
+                                        <div class="fw-light">${user.name}</div> 
                                     </div>
                                     <div class="">
                                         <div class="fw-semibold fs-5">From:</div>
-                                        <div class="fw-light text-break">K3/81c BienHoa Dông nai  dK3/81c BienHoa Dông nai K3/81c BienHoa Dông nai </div>
+                                        <div class="fw-light text-break">F-SHOP</div>
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="">
                                         <div class="fw-semibold fs-5">Phone:</div>
-                                        <div class="fw-light">0348485167</div>
+                                        <div class="fw-light">${user.phone}</div>
                                     </div>
                                     <div class="">
                                         <div class="fw-semibold fs-5">To:</div>
-                                        <div class="fw-light">C2/27, KP10, P.Tân Phong, BH-ĐN</div>
+                                        <div class="fw-light">${user.address}</div>
                                     </div>
                                 </div>
                             </div>
@@ -109,9 +104,9 @@
 
                                         <select class="form-select" id="delivery" aria-label="Delivery" name="delivery">
                                             <option selected>Open this select delivery</option>
-                                            <option value="1">GHN</option>
-                                            <option value="2">TIKI</option>
-                                            <option value="3">Lazada</option>
+                                            <option value="COD">COD</option>
+                                            <option value="TIKI">TIKI</option>
+                                            <option value="LAZADA">Lazada</option>
                                         </select>
                                     </div>
                                 </div>
@@ -122,9 +117,9 @@
 
                                         <select class="form-select" id="payment" aria-label="Payment" name="payment">
                                             <option selected>Open this select Payment</option>
-                                            <option value="1">Banking</option>
-                                            <option value="2">COD</option>
-                                            <option value="3">tien măt</option>
+                                            <option value="cash">Cash</option>
+                                            <option value="momo">Momo</option>
+                                            <option value="banking">Banking</option>
                                         </select>
                                     </div>
                                 </div>
@@ -179,4 +174,4 @@
     </div>
 </div>
 
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>

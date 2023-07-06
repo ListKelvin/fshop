@@ -47,7 +47,7 @@
                             <div class="input-group ">
                                 <i class="bi bi-search input-group-text"></i>
                                 <input class="form-control me-2 border-rounded" type="search" name="searchTxt" value="" placeholder="Search" aria-label="Search">
-           
+
                                 <input  type="hidden" name="action" value="SearchProduct">
 
                             </div>
@@ -56,7 +56,9 @@
 
                         <ul class="navbar-nav  pe-3 ">
                             <li class="nav-item">
-                                <a class="nav-link  textResponsive" aria-current="page" href="${pageContext.request.contextPath}/MainController?action=ViewCart"><i class="bi bi-cart3"></i> Cart</a>
+                                <a class="nav-link  textResponsive " aria-current="page" href="${pageContext.request.contextPath}/MainController?action=ViewCart"><i class="bi bi-cart3"></i> Cart 
+                                
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle textResponsive" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +67,7 @@
                                 </a>
                                 <ul class="dropdown-menu  dropdown-menu-end">
                                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Setting Profile</a></li>
-                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${user.id}">Order History</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${requestScope.user.id}">Order History</a></li>
 
 
                                     <li>
