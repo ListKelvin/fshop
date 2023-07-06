@@ -3,6 +3,8 @@ Utils\NetUtils.class
 Controller\LogoutController.class
 Utils\DBUtils.class
 Utils\ProductUtils.class
+Utils\Utility.class
+Controller\ShopAnalysisController.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
 Controller\UpdateUserInfoController.class
@@ -35,11 +37,15 @@ Controller\GoogleLoginController.class
 Utils\Validation.class
 Controller\AdminController.class
 Controller\CreateCategoryController.class
+Controller\ProductByCategoryController.class
 Utils\OrderProductUtils.class
 Controller\FacebookController.class
 Controller\UpdateProductController.class
+Controller\BestSellerContronller.class
 Controller\CreateOrderController.class
 Controller\ViewOrderController.class
+Utils\UserUtils.class
+Controller\AccountController.class
 Controller\ViewUserInfoController.class
 DTO\AccountInfo.class
 Controller\GetOrderByStatusController.class

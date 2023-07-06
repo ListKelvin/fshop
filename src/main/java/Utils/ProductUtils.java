@@ -9,6 +9,7 @@ import Connection.DBConnection;
 import DTO.AccountInfo;
 import DTO.CartInfo;
 import DTO.ProductInfo;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -336,8 +337,8 @@ public class ProductUtils {
             con = DBConnection.getConnection();
             query = "insert into product(title, description, price, category, image, quantity) values (?,?,?,?,?,?)";
             stm = con.prepareStatement(query);
-            stm.setString(1, product.getTitle());
-            stm.setString(2, product.getDescription());
+            stm.setString(1,  product.getTitle());
+            stm.setString(2,  product.getDescription());
             stm.setFloat(3, product.getPrice());
             stm.setString(4, product.getCategoryName().toLowerCase());
             stm.setString(5, product.getImage());

@@ -6,7 +6,9 @@
 package Controller;
 
 import DTO.OrderInfo;
+import DTO.UserInfo;
 import Utils.OrderUtils;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,9 +45,10 @@ public class OrderHistoryController extends HttpServlet {
         String url = ERROR;
         try {
 
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            if (userId > 0) {
-                List<OrderInfo> orderList = OrderUtils.userOrders(userId);
+            int accountId = Integer.parseInt(request.getParameter("userId"));
+            UserInfo user = UserUtils.getUser(accountId);
+            if (user != null) {
+                List<OrderInfo> orderList = OrderUtils.userOrders(user.getId());
                 if (!orderList.isEmpty()) {
                     
                     request.setAttribute("orders", orderList);

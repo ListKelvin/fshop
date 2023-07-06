@@ -43,6 +43,7 @@ public class SearchProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR_PAGE;
+        //String url = null;
         try {
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=UTF-8");
