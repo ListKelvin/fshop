@@ -37,26 +37,36 @@ public class FacebookController extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String code = request.getParameter("code");
-
+            String redirectPage = null;
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
             wrapper.setAccessToken(accessToken);
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
-
-            if (DBUtils.login(accountInfo.getFacebookID().trim()) == null) {
+            AccountInfo loginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
+            System.out.println("the id1: " + loginAccount.getId());
+            if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
-                if(register){
-                    AccountInfo LoginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
-                    UserUtils.createUser(LoginAccount.getId());
+                System.out.println("the id2: " + loginAccount.getId());
+                if (register) {
+                    UserUtils.createUser(loginAccount.getId());
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", loginAccount);
+                    System.out.println("the id3: " + loginAccount.getId());
+                    redirectPage = "MainController?action=SearchProduct&searchTxt=";
+                } else {
+                    request.setAttribute("mess", "register account fail");
+                    redirectPage = "index.jsp";
                 }
-                
+
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", loginAccount);
+                System.out.println("the id4: " + loginAccount.getId());
+                redirectPage = "MainController?action=SearchProduct&searchTxt=";
             }
 
-            HttpSession session = request.getSession();
-            session.setAttribute("user", accountInfo);
-
-            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
             rd.forward(request, response);
         } finally {
             out.close();
