@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.OrderInfo;
 import Utils.OrderUtils;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,20 +47,44 @@ public class UpdateOrderController extends HttpServlet {
 
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("status");
-            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
-                boolean check = OrderUtils.updateOrderStatus(orderId, status);
-                if (check) {
-                    request.setAttribute("message", "update status successfully");
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
+            if (user == null) {
+                log("(ViewCartController) Unauthentication!!");
+                request.setAttribute("message", "Unauthentication!!");
+                url = ERROR_AUTHEN;
+            } else {
+                if (status.equals("checking") && user.getRole().equals("admin") || 
+                        status.equals("preparing") && user.getRole().equals("admin") || 
+                        status.equals("delivering") && user.getRole().equals("admin") || 
+                        status.equals("done") && user.getRole().equals("admin")) {
+                    boolean check = OrderUtils.updateOrderStatus(orderId, status);
+                    if (check) {
+                        request.setAttribute("mess", "update status successfully");
+                        url = "manage-order-page.jsp";
+                    }
+
+                } else if (status.equals("cancel")) {
+                    OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+                    if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
+                        boolean check = OrderUtils.cancelOrder(orderId);
+                        if (check && user.getRole().equals("admin")) {
+                            request.setAttribute("mess", "Cancel order successfully");
+                            url = MANAGE_ORDER_PAGE;
+                        } else {
+                            request.setAttribute("mess", "Cancel order fail");
+                            url = MANAGE_ORDER_PAGE;
+                        }
+                    }
+                } else {
+                    request.setAttribute("mess", "status is not valid");
                     url = MANAGE_ORDER_PAGE;
                 }
-
-            } else {
-                request.setAttribute("message", "status is not valid");
-                url = MANAGE_ORDER_PAGE;
             }
 
-        } catch (Exception ex) {
-            log("Error in UpdateOrderController: " + ex.getMessage());
+          
+        }catch (Exception e) {
+            log("Error at UpdateOrderController " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

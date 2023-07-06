@@ -12,7 +12,7 @@
     <div class="breadcrumbWrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}">Order-list</a></li>
+                <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${sessionScope.user.id}">Order-list</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Order - ${orderDetails.orderNumber}</li>
             </ol>
         </nav>

@@ -46,6 +46,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR_PAGE;
+        //String url = null;
         try {
 
             String password = request.getParameter("txtPass");

@@ -104,10 +104,10 @@ public class CreateOrderController extends HttpServlet {
                     oi.setOrderNumber(uuid);
                     oi.setCreateAt(sqlDate);
                     oi.setUserId(userinfo.getId());
-//                oi.setDelivery(request.getParameter("delivery"));
-//                oi.setPayment(request.getParameter("payment"));
-                    oi.setDelivery("COD");
-                    oi.setPayment("cash");
+                    oi.setDelivery(request.getParameter("delivery"));
+                    oi.setPayment(request.getParameter("payment"));
+//                    oi.setDelivery("COD");
+//                    oi.setPayment("cash");
                     oi.setTotalBill(total);
 
                     boolean result = ou.insertOrder(oi);

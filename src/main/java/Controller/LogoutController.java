@@ -5,30 +5,24 @@
  */
 package Controller;
 
-import DTO.OrderInfo;
-import DTO.UserInfo;
-import Utils.OrderUtils;
-import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 03lin
+ * @author Minh
  */
-@WebServlet(name = "ViewOrderHistory", urlPatterns = {"/ViewOrderHistoryController"})
-public class OrderHistoryController extends HttpServlet {
+@WebServlet(name = "Logout", urlPatterns = {"/LogoutController"})
+public class LogoutController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String ORDER_HISTORY_PAGE = "order-history.jsp";
+    public static final String LOGOUT_SUCCESS = "index.jsp";
+    public static final String LOGOUT_FAIL = "error.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,31 +36,18 @@ public class OrderHistoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = LOGOUT_FAIL;
         try {
-
-            int accountId = Integer.parseInt(request.getParameter("userId"));
-            UserInfo user = UserUtils.getUser(accountId);
-            if (user != null) {
-                List<OrderInfo> orderList = OrderUtils.userOrders(user.getId());
-                if (!orderList.isEmpty()) {
-                    
-                    request.setAttribute("orders", orderList);
-             
-
-                    url = ORDER_HISTORY_PAGE;
-                } else {
-                    request.setAttribute("message", "user not have any order yet");
-                    url = ORDER_HISTORY_PAGE;
-                }
-            } else {
-                url = ERROR;
+            HttpSession session = request.getSession();
+            if (session != null) {
+                session.invalidate();
             }
+            url = LOGOUT_SUCCESS;
 
-        } catch (Exception ex) {
-            log("Error in OrderHistoryController: " + ex.getMessage());
+        } catch (Exception e) {
+            log("Error at LogoutController: " + e.getMessage());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

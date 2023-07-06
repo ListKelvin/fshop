@@ -25,41 +25,45 @@ import javax.servlet.http.HttpSession;
  *
  * @author 03lin
  */
-@WebServlet("/Facebook")
+@WebServlet(name = "FaceBook", urlPatterns = {"/FaceBookController"})
 public class FacebookController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private static final String ERROR_PAGE = "error.jsp";
+    private static final String ERROR_LOGIN = "index.jsp";
+    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR_PAGE;
 
-        PrintWriter out = response.getWriter();
         try {
             String code = request.getParameter("code");
 
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
+
             wrapper.setAccessToken(accessToken);
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
 
             if (DBUtils.login(accountInfo.getFacebookID().trim()) == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
-                if(register){
+                if (register) {
                     AccountInfo LoginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
                     UserUtils.createUser(LoginAccount.getId());
                 }
-                
+
             }
 
             HttpSession session = request.getSession();
             session.setAttribute("user", accountInfo);
-
-            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-            rd.forward(request, response);
+            url = CUSTOMER_PAGE;
+        } catch (Exception e) {
+            log("Error at FaceBookController: " + e.getMessage());
         } finally {
-            out.close();
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

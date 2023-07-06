@@ -1,16 +1,11 @@
 <%@page import="DTO.AccountInfo"%>
-<%
 
-    AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
-    if (user != null) {
-        request.setAttribute("user", user);
-    }%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <c:import url="include/Header.jsp"><c:param name="title" value="Cart Page"/></c:import>
-<c:set var="user" value="${requestScope.user}"/>
+<c:set var="user" value="${requestScope.userinfo}"/>
 <section class="container p-5 minHeithStyled">
     <div class="row g-4">
         <div class=" col-12 col-lg-8">
@@ -37,8 +32,8 @@
         <div class="col-12 col-lg-4">
             <div class="box checkOutBox">
                 <div class="p-3 ">
-                    <div class="mb-3 d-flex align-items-center justify-content-between">Amount: <span>30</span></div>
-                    <div class="d-flex align-items-center justify-content-between"> Subtotal: <span>13000VND</span></div>
+                    <div class="mb-3 d-flex align-items-center justify-content-between">Amount in cart: <span>${cartItems.size()}</span></div>
+                    <div class="d-flex align-items-center justify-content-between"> Subtotal: <span>${total}</span></div>
                 </div>
                 <hr/>
                 <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>${total}</span></div>
@@ -46,7 +41,7 @@
                                     <input type=hidden name="cartid" value="${id}">
                                     <input class="btnPlaceOrder" value="Place Order" type="Submit">
                                 </form>-->
-                <a href="#minh" class="btnPlaceOrder ${cartItems.size() == 0 ? 'disabled':''}" data-bs-toggle="modal" data-bs-target="#exampleModal" >Place Order</a>
+                <button  class="btnPlaceOrder ${cartItems.size() == 0 ? 'disabled':''} " data-bs-toggle="modal" data-bs-target="#exampleModal">Place Order</button>
             </div>
         </div>
     </div>
@@ -54,7 +49,7 @@
 
 <div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <!--// want to center modal-dialog-centered modal-dialog-scrollable-->
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 text-center" id="exampleModalLabel" style="color: #BC6EEE;">Order Summary</h1>
@@ -63,7 +58,7 @@
             </div>
 
 
-            <c:if test="${ empty user.name || empty user.address || empty user.phone }">
+            <c:if test="${ user.name == null||  user.address == null|| user.phone == null}">
 
                 <div class="modal-body">
                     <p class="text-danger">Please Update your information before order <br> Press this Link: <a href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Update Information</a></p>
@@ -73,7 +68,7 @@
             </c:if>
             <c:if test="${ not empty user.name && not empty user.address && not empty user.phone }">
 
-                <form method="post" action="MainController">
+                <form method="post" action="MainController" id="edit-profile">
                     <div class="modal-body">
                         <div class="p-3">
                             <h2>Information</h2>
@@ -82,37 +77,39 @@
                                 <div class="col">
                                     <div class="">
                                         <div class="fw-semibold fs-5">Name:</div>
-                                        <div class="fw-light">Nguyễn Gia Lin</div> 
+                                        <div class="fw-light">${user.name}</div> 
                                     </div>
                                     <div class="">
                                         <div class="fw-semibold fs-5">From:</div>
-                                        <div class="fw-light text-break">K3/81c BienHoa Dông nai  dK3/81c BienHoa Dông nai K3/81c BienHoa Dông nai </div>
+                                        <div class="fw-light text-break">F-SHOP</div>
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="">
                                         <div class="fw-semibold fs-5">Phone:</div>
-                                        <div class="fw-light">0348485167</div>
+                                        <div class="fw-light">${user.phone}</div>
                                     </div>
                                     <div class="">
                                         <div class="fw-semibold fs-5">To:</div>
-                                        <div class="fw-light">C2/27, KP10, P.Tân Phong, BH-ĐN</div>
+                                        <div class="fw-light">${user.address}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class=" row ">
                                 <div class="col">
+
                                     <div class="">
                                         <label class="fw-semibold fs-5" for="delivery">Delivery</label>
 
 
-                                        <select class="form-select" id="delivery" aria-label="Delivery" name="delivery">
-                                            <option selected>Open this select delivery</option>
-                                            <option value="1">GHN</option>
-                                            <option value="2">TIKI</option>
-                                            <option value="3">Lazada</option>
+                                        <select class="form-select " id="delivery" required  aria-label="Delivery" name="delivery">
+                                            <option value="">Open this select delivery</option>
+                                            <option value="COD">COD</option>
+                                            <option value="TIKI">TIKI</option>
+                                            <option value="LAZADA">Lazada</option>
                                         </select>
+                                        <div class="invalid-feedback">Not Empty</div>
                                     </div>
                                 </div>
 
@@ -120,17 +117,19 @@
                                     <div class="">
                                         <label class="fw-semibold fs-5" for="payment">Payment</label>
 
-                                        <select class="form-select" id="payment" aria-label="Payment" name="payment">
-                                            <option selected>Open this select Payment</option>
-                                            <option value="1">Banking</option>
-                                            <option value="2">COD</option>
-                                            <option value="3">tien măt</option>
+                                        <select class="form-select" id="payment" required aria-label="Payment" name="payment">
+                                            <option value="">Open this select Payment</option>
+                                            <option value="cash">Cash</option>
+                                            <option value="momo">Momo</option>
+                                            <option value="banking">Banking</option>
+
                                         </select>
+                                        <div class="invalid-feedback">More example invalid feedback text</div>
                                     </div>
                                 </div>
 
-
-                                <table class="table mt-3">
+                                <div class="overflow-y-auto" style="max-height: 250px;">
+                                         <table class="table mt-3 ">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -149,9 +148,11 @@
                                             </tr>
 
                                         </c:forEach>
-
+                                        
                                     </tbody>
-                                </table>
+                                </table> 
+                                </div>
+                          
                             </div>
                             <h1>
                                 Total price: ${total}
@@ -179,4 +180,34 @@
     </div>
 </div>
 
-<c:import url="page/Footer.jsp"></c:import>
+<c:import url="include/Footer.jsp"></c:import>
+<script>
+
+    $(document).ready(function () {
+        $('#edit-profile').submit(function (e) {
+            let delivery = $('#delivery');
+            let payment = $('#payment');
+
+            let count = 0;
+            if (delivery.val().length === 0) {
+
+                $('#delivery').addClass("is-invalid")
+                count++;
+            } else {
+                $('#delivery').removeClass("is-invalid")
+            }
+            if (payment.val().length === 0)) {
+                count++;
+
+                $('#payment').addClass("is-invalid");
+            } else {
+                $('#payment').removeClass("is-invalid")
+            }
+
+
+            if (count > 0) {
+                e.preventDefault();
+            }
+        })
+    });
+</script>
