@@ -35,10 +35,13 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_CONTROLLER = "LoginController";
     private static final String LOGIN_GG = "GoogleLogin";
     private static final String LOGIN_GG_CONTROLLER = "GoogleLoginController";
+    private static final String LOGIN_FB = "FaceBook";
+    private static final String LOGIN_FB_CONTROLLER = "FaceBookController";
     private static final String REGISTER = "Register";
     private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
+//view
     private static final String VIEW_CART = "ViewCart";
     private static final String VIEW_CART_CONTROLLER = "ViewCartController";
     private static final String VIEW_USER_INFO = "ViewUserInfo";
@@ -94,6 +97,9 @@ public class MainController extends HttpServlet {
                         break;
                     case LOGIN_GG:
                         url = LOGIN_GG_CONTROLLER;
+                        break;
+                    case LOGIN_FB:
+                        url = LOGIN_FB_CONTROLLER;
                         break;
                     case REGISTER:
                         url = REGISTER_CONTROLLER;

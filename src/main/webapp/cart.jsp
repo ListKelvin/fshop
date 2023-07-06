@@ -1,5 +1,5 @@
 <%@page import="DTO.AccountInfo"%>
- 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
@@ -68,7 +68,7 @@
             </c:if>
             <c:if test="${ not empty user.name && not empty user.address && not empty user.phone }">
 
-                <form method="post" action="MainController">
+                <form method="post" action="MainController" id="edit-profile">
                     <div class="modal-body">
                         <div class="p-3">
                             <h2>Information</h2>
@@ -98,16 +98,18 @@
                             </div>
                             <div class=" row ">
                                 <div class="col">
+
                                     <div class="">
                                         <label class="fw-semibold fs-5" for="delivery">Delivery</label>
 
 
-                                        <select class="form-select" id="delivery" aria-label="Delivery" name="delivery">
-                                            <option selected>Open this select delivery</option>
+                                        <select class="form-select " id="delivery" required  aria-label="Delivery" name="delivery">
+                                            <option value="">Open this select delivery</option>
                                             <option value="COD">COD</option>
                                             <option value="TIKI">TIKI</option>
                                             <option value="LAZADA">Lazada</option>
                                         </select>
+                                        <div class="invalid-feedback">Not Empty</div>
                                     </div>
                                 </div>
 
@@ -115,12 +117,14 @@
                                     <div class="">
                                         <label class="fw-semibold fs-5" for="payment">Payment</label>
 
-                                        <select class="form-select" id="payment" aria-label="Payment" name="payment">
-                                            <option selected>Open this select Payment</option>
+                                        <select class="form-select" id="payment" required aria-label="Payment" name="payment">
+                                            <option value="">Open this select Payment</option>
                                             <option value="cash">Cash</option>
                                             <option value="momo">Momo</option>
                                             <option value="banking">Banking</option>
+
                                         </select>
+                                        <div class="invalid-feedback">More example invalid feedback text</div>
                                     </div>
                                 </div>
 
@@ -175,3 +179,33 @@
 </div>
 
 <c:import url="include/Footer.jsp"></c:import>
+<script>
+
+    $(document).ready(function () {
+        $('#edit-profile').submit(function (e) {
+            let delivery = $('#delivery');
+            let payment = $('#payment');
+
+            let count = 0;
+            if (delivery.val().length === 0) {
+
+                $('#delivery').addClass("is-invalid")
+                count++;
+            } else {
+                $('#delivery').removeClass("is-invalid")
+            }
+            if (payment.val().length === 0)) {
+                count++;
+
+                $('#payment').addClass("is-invalid");
+            } else {
+                $('#payment').removeClass("is-invalid")
+            }
+
+
+            if (count > 0) {
+                e.preventDefault();
+            }
+        })
+    });
+</script>
