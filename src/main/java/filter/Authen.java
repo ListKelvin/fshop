@@ -37,7 +37,7 @@ public class Authen implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    public static final String GUEST_FIRST_PAGE = "";
+    public static final String GUEST_FIRST_PAGE = "MainController";
 
     public static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
     public static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
@@ -50,7 +50,6 @@ public class Authen implements Filter {
     public Authen() {
         customer = new ArrayList<>();
         shop = new ArrayList<>();
-
         guest = new ArrayList<>();
         //shop
         shop.add("MainController");
@@ -98,8 +97,28 @@ public class Authen implements Filter {
 
         //guest
         guest.add("MainController");
-        guest.add("LoginController");
-        guest.add("RegisterController");
+
+//        guest.add("LoginController");
+//        guest.add("GoogleLoginController");
+//        guest.add("FaceBookController");
+//        guest.add("RegisterController");
+//        guest.add("LogoutController");
+//        guest.add("ViewCartController");
+//        guest.add("ViewUserInfoController");
+//        guest.add("ViewOrderHistoryController");
+//        guest.add("ViewOrderController");
+//        guest.add("ProductByCategoryController");
+//        guest.add("GetOrderByStatusController");
+//        guest.add("UpdateCartController");
+//        guest.add("UpdateUserInfoController");
+//
+//        guest.add("UpdateOrderController");
+//        guest.add("CreateOrderController");
+//        guest.add("SearchProductController");
+//        guest.add("AddToCartController");
+//
+//        guest.add("RemoveCartController");
+//        guest.add("AddToCartController");
         guest.add("");
 
     }
@@ -180,9 +199,9 @@ public class Authen implements Filter {
                 HttpSession session = req.getSession();
                 AccountInfo user = (AccountInfo) session.getAttribute("user");
                 int index = uri.lastIndexOf("/");
-             
+
                 String resource = uri.substring(index + 1);
-                   log(resource);
+                log(resource);
                 if (user == null) {
                     if (guest.contains(resource)) {
                         chain.doFilter(request, response);

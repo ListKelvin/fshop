@@ -40,28 +40,37 @@ public class FacebookController extends HttpServlet {
 
         try {
             String code = request.getParameter("code");
-
+            String redirectPage = null;
             APIWrapper wrapper = new APIWrapper();
             String accessToken = wrapper.getAccessToken(code);
 
             wrapper.setAccessToken(accessToken);
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
-
-            if (DBUtils.login(accountInfo.getFacebookID().trim()) == null) {
+            AccountInfo loginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
+            
+            if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+                System.out.println("the id2: " + loginAccount.getId());
                 if (register) {
-                    AccountInfo LoginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
-                    UserUtils.createUser(LoginAccount.getId());
+                    UserUtils.createUser(loginAccount.getId());
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", loginAccount);
+                    System.out.println("the id3: " + loginAccount.getId());
+                    url = CUSTOMER_PAGE;
+                } else {
+                    request.setAttribute("mess", "register account fail");
+                    url= ERROR_LOGIN;
                 }
 
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", loginAccount);
+                System.out.println("the id4: " + loginAccount.getId());
+                url = CUSTOMER_PAGE;
             }
 
-            HttpSession session = request.getSession();
-            session.setAttribute("user", accountInfo);
-            url = CUSTOMER_PAGE;
-        } catch (Exception e) {
-            log("Error at FaceBookController: " + e.getMessage());
+            
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
