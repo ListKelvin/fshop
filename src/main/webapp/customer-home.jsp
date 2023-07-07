@@ -29,72 +29,15 @@
 <c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
 
-    <section class="container d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled" onload="init()">
-        <!--Carousel section-->
-        <div id="carouselExample" class="carousel slide mt-auto">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assest/banner/Banner-1.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assest/banner/ad50db56090205.5bec77ea750ce.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assest/banner/banner-3.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assest/banner/banner-4.png" class="d-block w-100" alt="...">
-                </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <!--Category section-->
-        <div class="category">
-            <h1>khám phá danh mục</h1>
-            <div class="categories">
-                <div class="categories_card">
-                    <img src="assest/EARPHONE.png" className="noi" alt="" />
-                    <h5>Đồ Công Nghệ</h5>
-                </div>
-
-                <div class="categories_card">
-                    <img src="assest/BEAUTY.png" className="noi" alt="" />
-                    <h5>Đồ Làm Đẹp</h5>
-                </div>
-                <div class="categories_card">
-                    <img src="assest/JACKET.png" className="noi" alt="" />
-                    <h5>Thời Trang</h5>
-                </div>
-                <div class="categories_card">
-                    <img src="assest/NOI.png" className="noi" alt="" />
-                    <h5>Gia Dụng</h5>
-                </div>
-                <div class="categories_card">
-                    <img src="assest/NOTEBOOK.png" className="noi" alt="" />
-                    <h5>Văn Phòng phẩm</h5>
-                </div>
-                <div class="categories_card">
-                    <img src="assest/SPORT.png" className="noi" alt="" />
-                    <h5>Thể Thao</h5>
-                </div>
-            </div>
-
-        </div>
+    <section class="container-fluid d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled " onload="init()">
 
         <!--Product suggestion section-->
-        <div class="w-100 bgProduct h-100 mb-3">
+        <div class="w-100 bgProduct h-100 mb-3 row gap-4  justify-content-center">
 
-            <div class="wrapper px-2">
+
+            <div class="wrapper col-8 px-2">
                 <div class="d-flex justify-content-between align-items-center headWrapper">
-                    <h1 class="textHeading">Gợi ý cho bạn</h1>
+                    <h1 class="textHeading">Sản Phẩm của shop</h1>
                     <a class="linkStyled">Xem thêm</a>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
@@ -135,6 +78,22 @@
                 </ul>
             </nav>
         </div>
+
+        <div class="col-3 wrapper p-3"> 
+            <span class="productName">Other products</span>
+            <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
+
+                <a href="#" style="width: 100%;">
+                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
+                </a>
+
+
+
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>

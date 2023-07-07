@@ -15,7 +15,7 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="otherProduct d-flex align-items-center ">
-    <img src="${srcImg}" alt="${productName}" class="productImg"/>
+    <img src="${srcImg}" alt="${productName}" class="productImg" width="100"/>
     <div class="">
         <div >
             <div class="">${productName}</div>
