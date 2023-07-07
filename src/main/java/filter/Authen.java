@@ -37,7 +37,7 @@ public class Authen implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    public static final String GUEST_FIRST_PAGE = "MainController";
+    public static final String GUEST_FIRST_PAGE = "";
 
     public static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
     public static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
@@ -64,9 +64,12 @@ public class Authen implements Filter {
         shop.add("UpdateCategoryController");
         shop.add("UpdateOrderController");
         shop.add("AddProductController");
+        shop.add("CreateProductController");
+
         shop.add("AddCategoryController");
         shop.add("SearchProductController");
         shop.add("DeleteProductController");
+        shop.add("create-product.jsp");
 
         //??///
         shop.add("UpdateUserInfoController");
@@ -97,28 +100,17 @@ public class Authen implements Filter {
 
         //guest
         guest.add("MainController");
+        guest.add("index.jsp");
+        guest.add("LoginController");
+        guest.add("GoogleLoginController");
+        guest.add("FaceBookController");
+        guest.add("RegisterController");
+        guest.add("ProductByCategoryController");
+        guest.add("SearchProductController");
+        guest.add("AddToCartController");
 
-//        guest.add("LoginController");
-//        guest.add("GoogleLoginController");
-//        guest.add("FaceBookController");
-//        guest.add("RegisterController");
-//        guest.add("LogoutController");
-//        guest.add("ViewCartController");
-//        guest.add("ViewUserInfoController");
-//        guest.add("ViewOrderHistoryController");
-//        guest.add("ViewOrderController");
-//        guest.add("ProductByCategoryController");
-//        guest.add("GetOrderByStatusController");
-//        guest.add("UpdateCartController");
-//        guest.add("UpdateUserInfoController");
-//
-//        guest.add("UpdateOrderController");
-//        guest.add("CreateOrderController");
-//        guest.add("SearchProductController");
-//        guest.add("AddToCartController");
-//
-//        guest.add("RemoveCartController");
-//        guest.add("AddToCartController");
+        guest.add("RemoveCartController");
+        guest.add("AddToCartController");
         guest.add("");
 
     }
@@ -201,7 +193,7 @@ public class Authen implements Filter {
                 int index = uri.lastIndexOf("/");
 
                 String resource = uri.substring(index + 1);
-                log(resource);
+                log(user.getRole());
                 if (user == null) {
                     if (guest.contains(resource)) {
                         chain.doFilter(request, response);

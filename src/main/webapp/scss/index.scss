@@ -16,6 +16,8 @@ and open the template in the editor.
 @import "home.scss";
 @import "login.scss";
 @import "register.scss";
+@import "admin.scss";
+
 @import "navbar.scss";
 @import "productInfo.scss";
 @import "search.scss";
@@ -121,7 +123,7 @@ p { color: #6c757d; }
     background:$orange-200;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
-  
+
 }
 
 .minHeithStyled {
@@ -150,8 +152,8 @@ p { color: #6c757d; }
 }
 
 .disabled{
-    
+
     color: #d4d4d4 ;
-  opacity: 0.7;
-  pointer-events: none;
+    opacity: 0.7;
+    pointer-events: none;
 }
