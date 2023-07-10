@@ -51,7 +51,7 @@ public class ViewOrderController extends HttpServlet {
                     url = VIEW_ORDER_PAGE;
                 }
             } 
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             log("Error in ViewOrderController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

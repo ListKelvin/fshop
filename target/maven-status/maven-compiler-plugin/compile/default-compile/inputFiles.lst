@@ -15,15 +15,17 @@ D:\Code\Java\prj301-se1714-10\src\main\java\Utils\RoleConstant.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\FacebookController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\Utility.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\OrderProductInfo.java
-D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AdminController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\NetUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\GetOrderByStatusController.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ViewAllProductsController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateOrderController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\UserInfo.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ViewAllOrdersController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateUserInfoController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\UpdateProductController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\V?ewCartController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\GoogleSignIn.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ViewShopAnalysisController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\CartInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\OrderHistoryController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\LoginController.java
@@ -36,7 +38,6 @@ D:\Code\Java\prj301-se1714-10\src\main\java\DTO\ProductInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\Validation.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\ProductUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\CreateOrderController.java
-D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ShopAnalysisController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AccountController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\DBUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\AccountInfo.java

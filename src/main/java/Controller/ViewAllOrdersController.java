@@ -41,6 +41,7 @@ public class ViewAllOrdersController extends HttpServlet {
             } else if (status.equals("all")) {
                 List<OrderInfo> orderList = OrderUtils.getALLOrders();
                 request.setAttribute("orders", orderList);
+                
                 url = ADMIN_HOME_PAGE;
 
             } else {

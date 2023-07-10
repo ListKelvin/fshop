@@ -30,8 +30,7 @@ public class LoginController extends HttpServlet {
 
     private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
 //    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
-    private static final String SHOP_PAGE = "MainController?action=ViewAllOrders";
-
+    private static final String SHOP_PAGE = "MainController?action=ViewShopAnalysis&active=0";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,12 +61,9 @@ public class LoginController extends HttpServlet {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("user", accountInfo);
-
                 if (RoleConstant.SHOP.equals(role)) {
-
                     url = SHOP_PAGE;
                 } else if (RoleConstant.CUSTOMER.equals(role)) {
-
                     url = CUSTOMER_PAGE;
                 } else {
                     request.setAttribute("message", "Role is not support");

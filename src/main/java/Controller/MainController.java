@@ -1,5 +1,6 @@
 package Controller;
 
+import DTO.AccountInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -7,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
@@ -21,6 +23,7 @@ public class MainController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String ERROR = "404.jsp";
+
 //ACTION
     private static final String LOGIN = "Login";
     private static final String LOGIN_CONTROLLER = "LoginController";
@@ -47,8 +50,12 @@ public class MainController extends HttpServlet {
     private static final String GET_ORDER_BY_STATUS_CONTROLLER = "GetOrderByStatusController";
     private static final String VIEW_ALL_ORDERS = "ViewAllOrders";
     private static final String VIEW_ALL_ORDERS_CONTROLLER = "ViewAllOrdersController";
+    private static final String VIEW_SHOP_ANALYSIS = "ViewShopAnalysis";
+    private static final String VIEW_SHOP_ANALYSIS_CONTROLLER = "ViewShopAnalysisController";
+    private static final String VIEW_ALL_PRODUCTS = "ViewAllProducts";
+    private static final String VIEW_ALL_PRODUCTS_CONTROLLER = "ViewAllProductsController";
 //    UPDATE
-    private static final String UPDATE_PRODUCT = "Update";
+    private static final String UPDATE_PRODUCT = "UpdateProduct";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
     private static final String UPDATE_CATEGORY = "UpdateCategory";
     private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
@@ -82,9 +89,12 @@ public class MainController extends HttpServlet {
         try {
             log("check run");
             String action = request.getParameter("action");
+            HttpSession session = request.getSession();
             log(action);
+
             if (null != action) {
                 switch (action) {
+
                     case LOGIN:
                         url = LOGIN_CONTROLLER;
                         break;
@@ -114,6 +124,12 @@ public class MainController extends HttpServlet {
                         break;
                     case VIEW_USER_INFO:
                         url = VIEW_USER_INFO_CONTROLLER;
+                        break;
+                    case VIEW_SHOP_ANALYSIS:
+                        url = VIEW_SHOP_ANALYSIS_CONTROLLER;
+                        break;
+                    case VIEW_ALL_PRODUCTS:
+                        url = VIEW_ALL_PRODUCTS_CONTROLLER;
                         break;
                     case DELETE_PRODUCT:
                         url = DELETE_PRODUCT_CONTROLLER;
