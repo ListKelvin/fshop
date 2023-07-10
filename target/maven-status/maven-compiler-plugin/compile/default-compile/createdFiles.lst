@@ -23,12 +23,12 @@ Controller\UserController.class
 Controller\UpdateCartController.class
 Controller\CreateProductController.class
 Controller\AddToCartController.class
+Controller\ViewShopAnalysisController.class
 Utils\CartUtils.class
 Controller\RegisterController.class
 DTO\ProductInfo.class
 Controller\MainController.class
 Utils\Utility.class
-Controller\ShopAnalysisController.class
 DTO\CategoryInfo.class
 Utils\OrderUtils.class
 Controller\GoogleLoginController.class
@@ -46,4 +46,5 @@ Controller\GetOrderByStatusController.class
 Utils\CategoryUtils.class
 Connection\DBConnection.class
 Controller\LoginController.class
+Controller\ViewAllOrdersController.class
 DTO\OrderInfo.class

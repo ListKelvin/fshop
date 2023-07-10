@@ -32,7 +32,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class CreateProductController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "MainController?action=SearchOrdert&searchTxt=";
+    private static final String ERROR_CREATE_PRODUCT = "PRJ301_FShop/create-product.jsp";
+    private static final String SHOP_PRODUCT_PAGE = "MainController?action=ViewAllProducts&active=1";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,30 +48,19 @@ public class CreateProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-
         String url = ERROR;
-
-        boolean check = false;
-
-        String redirectPage = null;
-
-        PrintWriter out = response.getWriter();
         ProductUtils pu = new ProductUtils();
-        CategoryUtils ca = new CategoryUtils();
-        Validation va = new Validation();
+
         try {
 
-            log("test update");
             String title = "";
             String description = "";
             String category = "";
             String priceStr = "";
             String quantityStr = "";
             String image = "";
-
             float price = 0;
             int quantity = 0;
-
 
             try {
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -128,18 +118,18 @@ public class CreateProductController extends HttpServlet {
             } catch (Exception e) {
                 // TODO: handle exception
             }
-            if (!va.readNonBlank(title)) {
+            if (!Validation.readNonBlank(title)) {
                 request.setAttribute("message", "Title is required");
-                redirectPage = "create-product.jsp";
-            } else if (ca.checkCategory(category) == null) {
+                url = ERROR_CREATE_PRODUCT;
+            } else if (CategoryUtils.checkCategory(category) == null) {
                 request.setAttribute("message", "category not exist");
-                redirectPage = "create-product.jsp";
-            } else if (!va.readInteger(quantity)) {
+                url = ERROR_CREATE_PRODUCT;
+            } else if (!Validation.readInteger(quantity)) {
                 request.setAttribute("message", "quantity must be a number greater than 0");
-                redirectPage = "create-product.jsp";
-            } else if (!va.readFloat(priceStr)) {
+                url = ERROR_CREATE_PRODUCT;
+            } else if (!Validation.readFloat(priceStr)) {
                 request.setAttribute("message", "price must be number");
-                redirectPage = "create-product.jsp";
+                url = ERROR_CREATE_PRODUCT;
             } else {
                 try {
                     boolean result = false;
@@ -154,21 +144,21 @@ public class CreateProductController extends HttpServlet {
                     if (result) {
                         log("true");
                         request.setAttribute("message", "Create Product successfull");
-                        redirectPage = "admin-home.jsp";
+                        url = SHOP_PRODUCT_PAGE;
                     } else {
                         log("false");
 
                         request.setAttribute("message", "Create Product fail");
-                        redirectPage = "create-product.jsp";
+                        url = ERROR_CREATE_PRODUCT;
                     }
                 } catch (Exception e) {
                 }
             }
 
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+        } catch (Exception e) {
+            log("Error at Create Product Controller: " + e.getMessage());
         } finally {
-            out.close();
+            request.getRequestDispatcher(url).forward(request, response);
         }
 
     }

@@ -5,10 +5,11 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.OrderInfo;
-import DTO.OrderProductInfo;
-import Utils.OrderProductUtils;
 import Utils.OrderUtils;
+import Utils.ProductUtils;
+import Utils.RoleConstant;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,13 +19,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "ViewOrder", urlPatterns = {"/ViewOrderController"})
-public class ViewOrderController extends HttpServlet {
+/**
+ *
+ * @author 03lin
+ */
+@WebServlet(name = "ViewShopAnalysis", urlPatterns = {"/ViewShopAnalysisController"})
+public class ViewShopAnalysisController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
+
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String VIEW_ORDER_PAGE = "view-order.jsp";
+    private static final String SHOP_HOME_PAGE = "shop-home.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,22 +47,50 @@ public class ViewOrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
-            if (orderId > 0) {
-                List<OrderProductInfo> orderProduct = OrderProductUtils.viewOrderProduct(orderId);
-                OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+            HttpSession session = request.getSession(true);
+            AccountInfo account = (AccountInfo) session.getAttribute("user");
 
-                if (!orderProduct.isEmpty() && order != null) {
-                    request.setAttribute("orderProducts", orderProduct);
-                    request.setAttribute("orderDetails", order);
-                    url = VIEW_ORDER_PAGE;
-                }
-            } 
-        } catch (NumberFormatException ex) {
-            log("Error in ViewOrderController: " + ex.getMessage());
+            if (account.getRole().equals(RoleConstant.SHOP)) {
+                log(account.getName());
+                List<OrderInfo> orderList = OrderUtils.getALLOrdersByStatus("checking");
+                int totalOrder = OrderUtils.countOrder();
+                int totalProduct = ProductUtils.countProduct();
+                int totalUser = OrderUtils.countUser();
+                request.setAttribute("totalUser", totalUser);
+                request.setAttribute("totalProduct", totalProduct);
+                request.setAttribute("totalOrder", totalOrder);
+                request.setAttribute("orders", orderList);
+                url = SHOP_HOME_PAGE;
+            } else {
+                log(account.getRole());
+                url = ERROR_AUTHEN;
+            }
+
+        } catch (Exception e) {
+            log("Error at ViewShopAnalysisController " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+//        try (PrintWriter out = response.getWriter()) {
+//            String redirectPage = "dashboard-admin.jsp";
+//            String term = request.getParameter("term");
+//            if (term.equals("order")) {
+//                int total = OrderUtils.countOrder();
+//                request.setAttribute("total", total);
+//                redirectPage = "dashboard-admin.jsp";
+//            } else if (term.equals("product")) {
+//                int total = ProductUtils.countProduct();
+//                request.setAttribute("total", total);
+//                redirectPage = "dashboard-admin.jsp";
+//            } else if (term.equals("customer")) {
+//                int total = OrderUtils.countUser();
+//                request.setAttribute("total", total);
+//                redirectPage = "dashboard-admin.jsp";
+//            }
+//
+//            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
+//            rd.forward(request, response);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

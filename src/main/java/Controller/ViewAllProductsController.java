@@ -5,23 +5,29 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
+import DTO.ProductInfo;
+import Utils.ProductUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Minh
  */
-@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
-public class AdminController extends HttpServlet {
+@WebServlet(name = "ViewAllProducts", urlPatterns = {"/ViewAllProductsController"})
+public class ViewAllProductsController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "admin.jsp";
+
+    private static final String SHOP_PRODUCT_PAGE = "shop-product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +42,13 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            //fetch data need for admin here
-            url = SUCCESS;
-        } catch (IOException e) {
-            log("Error at AdminController " + e.toString());
+        try {
+            ProductUtils pu = new ProductUtils();
+            List<ProductInfo> products = pu.getAllProduct();
+            request.setAttribute("LIST_PRODUCT", products);
+            url = SHOP_PRODUCT_PAGE;
+        } catch (Exception e) {
+            log("Error at Search Product Controller: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
