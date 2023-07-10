@@ -55,7 +55,7 @@ public class MainController extends HttpServlet {
     private static final String VIEW_ALL_PRODUCTS = "ViewAllProducts";
     private static final String VIEW_ALL_PRODUCTS_CONTROLLER = "ViewAllProductsController";
 //    UPDATE
-    private static final String UPDATE_PRODUCT = "Update";
+    private static final String UPDATE_PRODUCT = "UpdateProduct";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
     private static final String UPDATE_CATEGORY = "UpdateCategory";
     private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";

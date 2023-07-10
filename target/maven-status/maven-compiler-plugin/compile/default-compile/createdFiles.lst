@@ -6,7 +6,6 @@ Utils\ProductUtils.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
 Controller\UpdateUserInfoController.class
-Controller\V?ewCartController.class
 Controller\SearchProductController.class
 Controller\ProductByCategoryController.class
 filter\Authen.class
@@ -14,6 +13,7 @@ Controller\BestSellerContronller.class
 Controller\UpdateOrderController.class
 Utils\UserUtils.class
 Controller\AccountController.class
+Controller\ViewAllProductsController.class
 Utils\GoogleSignIn.class
 Controller\RemoveCartController.class
 Controller\OrderHistoryController.class
@@ -33,7 +33,6 @@ DTO\CategoryInfo.class
 Utils\OrderUtils.class
 Controller\GoogleLoginController.class
 Utils\Validation.class
-Controller\AdminController.class
 Controller\CreateCategoryController.class
 Utils\OrderProductUtils.class
 Controller\FacebookController.class
