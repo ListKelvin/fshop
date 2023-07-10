@@ -8,22 +8,31 @@ package Controller;
 import DTO.ProductInfo;
 import Utils.CategoryUtils;
 import Utils.ProductUtils;
+import Utils.Utility;
 import Utils.Validation;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author 03lin
  */
-@WebServlet(name = "CreateProduct", urlPatterns = {"/CreateProduct"})
+@WebServlet(name = "CreateProduct", urlPatterns = {"/CreateProductController"})
 public class CreateProductController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "MainController?action=SearchOrdert&searchTxt=";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,6 +47,11 @@ public class CreateProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
+
+        String url = ERROR;
+
+        boolean check = false;
+
         String redirectPage = null;
 
         PrintWriter out = response.getWriter();
@@ -46,18 +60,71 @@ public class CreateProductController extends HttpServlet {
         Validation va = new Validation();
         try {
 
-            String title = request.getParameter("title");
-            String description = request.getParameter("description");
-            String category = request.getParameter("category");
-            String priceStr = request.getParameter("priceStr");
-            String quantityStr = request.getParameter("quantityStr");
-            String image = request.getParameter("image");
+            log("test update");
+            String title = "";
+            String description = "";
+            String category = "";
+            String priceStr = "";
+            String quantityStr = "";
+            String image = "";
+
             float price = 0;
             int quantity = 0;
-            try {
-                price = Float.parseFloat(priceStr);
-                quantity = Integer.parseInt(quantityStr);
 
+
+            try {
+                List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+
+                for (FileItem item : items) {
+                    if (item.isFormField()) {
+                        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+                        String fieldName = item.getFieldName();
+                        String fieldValue = item.getString("utf-8");
+                        switch (fieldName) {
+                            case "title":
+                                title = fieldValue;
+                                break;
+                            case "description":
+                                description = fieldValue;
+                                break;
+                            case "category":
+                                category = fieldValue;
+                                break;
+                            case "priceStr":
+                                priceStr = fieldValue;
+                                price = Float.parseFloat(priceStr);
+                                break;
+                            case "quantityStr":
+                                quantityStr = fieldValue;
+                                quantity = Integer.parseInt(quantityStr);
+
+                                break;
+                            case "image":
+                                image = fieldValue;
+                                break;
+
+                        }
+                    } else {
+                        // Process form file field (input type="file").
+                        String fieldName = item.getFieldName();
+                        if (fieldName.equals("image")) {
+                            String fileName = item.getName();
+                            if (!fileName.equals("")) {
+                                fileName = Utility.getFileName(fileName);
+                            }
+
+                            if (!fileName.equals("") && (fileName.endsWith("png") || fileName.endsWith("bmp") || fileName.endsWith("jpg")
+                                    || fileName.endsWith("PNG") || fileName.endsWith("BMP") || fileName.endsWith("JPG"))) {
+                                String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
+                                File saveFile = new File(realPath);
+                                item.write(saveFile);
+                                log(saveFile.getPath());
+                                image = realPath.substring(realPath.lastIndexOf("\\") + 1);
+                            }
+                        }
+
+                    }
+                }
             } catch (Exception e) {
                 // TODO: handle exception
             }
@@ -85,9 +152,12 @@ public class CreateProductController extends HttpServlet {
                     newProduct.setImage(image);
                     result = pu.insertProduct(newProduct);
                     if (result) {
+                        log("true");
                         request.setAttribute("message", "Create Product successfull");
                         redirectPage = "admin-home.jsp";
                     } else {
+                        log("false");
+
                         request.setAttribute("message", "Create Product fail");
                         redirectPage = "create-product.jsp";
                     }

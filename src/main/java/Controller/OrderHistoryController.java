@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.OrderInfo;
 import DTO.UserInfo;
 import Utils.OrderUtils;
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,15 +46,15 @@ public class OrderHistoryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
+            AccountInfo account = (AccountInfo) session.getAttribute("user");
 
-            int accountId = Integer.parseInt(request.getParameter("userId"));
-            UserInfo user = UserUtils.getUser(accountId);
+            UserInfo user = UserUtils.getUser(account.getId());
             if (user != null) {
                 List<OrderInfo> orderList = OrderUtils.userOrders(user.getId());
                 if (!orderList.isEmpty()) {
-                    
+
                     request.setAttribute("orders", orderList);
-             
 
                     url = ORDER_HISTORY_PAGE;
                 } else {

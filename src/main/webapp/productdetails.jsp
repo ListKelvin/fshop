@@ -49,11 +49,8 @@
                             <div class="fs-6 fw-semibold">Quantity: <span class="fw-light"> 100</span></div>
                             <div class="fs-6 fw-semibold">Sold: <span class="fw-light">120</span></div>
                         </div>
-
-
                         <!--seperator-->
                         <div class="fakeData p-3">
-
                             <div> fake information</div>
                             <div> fake information</div>
                         </div>

@@ -44,14 +44,11 @@
                     <div class="offcanvas-body justify-content-around">
                         <form class="d-flex w-50" action="MainController" role="search">
 
-                            <div class="input-group ">
+                            <div class="input-group rounded-circle">
                                 <i class="bi bi-search input-group-text"></i>
                                 <input class="form-control me-2 border-rounded" type="search" name="searchTxt" value="" placeholder="Search" aria-label="Search">
-
                                 <input  type="hidden" name="action" value="SearchProduct">
-
                             </div>
-                            <!--<button class="btn btn-outline-light" type="submit">Search</button>-->
                         </form>
 
                         <ul class="navbar-nav  pe-3 ">
@@ -67,7 +64,7 @@
                                 </a>
                                 <ul class="dropdown-menu  dropdown-menu-end">
                                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Setting Profile</a></li>
-                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${requestScope.user.id}">Order History</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory">Order History</a></li>
 
 
                                     <li>

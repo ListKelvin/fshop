@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import java.io.IOException;
@@ -13,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Minh
- */
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 
@@ -54,6 +45,8 @@ public class MainController extends HttpServlet {
     private static final String PRODUCT_BY_CATEGORY_CONTROLLER = "ProductByCategoryController";
     private static final String GET_ORDER_BY_STATUS = "GetOrderByStatus";
     private static final String GET_ORDER_BY_STATUS_CONTROLLER = "GetOrderByStatusController";
+    private static final String VIEW_ALL_ORDERS = "ViewAllOrders";
+    private static final String VIEW_ALL_ORDERS_CONTROLLER = "ViewAllOrdersController";
 //    UPDATE
     private static final String UPDATE_PRODUCT = "Update";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
@@ -68,8 +61,8 @@ public class MainController extends HttpServlet {
 //  CREATE
     private static final String CREATE_ORDER = "CreateOrder";
     private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
-    private static final String ADD_PRODUCT = "AddProduct";
-    private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
+    private static final String CREATE_PRODUCT = "CreateProduct";
+    private static final String CREATE_PRODUCT_CONTROLLER = "CreateProductController";
     private static final String ADD_CATEGORY = "AddCategory";
     private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
     private static final String SEARCH_PRODUCT = "SearchProduct";
@@ -116,6 +109,9 @@ public class MainController extends HttpServlet {
                     case VIEW_ORDER:
                         url = VIEW_ORDER_CONTROLLER;
                         break;
+                    case VIEW_ALL_ORDERS:
+                        url = VIEW_ALL_ORDERS_CONTROLLER;
+                        break;
                     case VIEW_USER_INFO:
                         url = VIEW_USER_INFO_CONTROLLER;
                         break;
@@ -131,8 +127,8 @@ public class MainController extends HttpServlet {
                     case UPDATE_CATEGORY:
                         url = UPDATE_CATEGORY_CONTROLLER;
                         break;
-                    case ADD_PRODUCT:
-                        url = ADD_PRODUCT_CONTROLLER;
+                    case CREATE_PRODUCT:
+                        url = CREATE_PRODUCT_CONTROLLER;
                         break;
                     case CREATE_ORDER:
                         url = CREATE_ORDER_CONTROLLER;

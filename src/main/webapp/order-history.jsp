@@ -14,7 +14,7 @@
         <div class="breadcrumbWrapper">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${requestScope.user.id}">Order-list</a></li>
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory">Order-list</a></li>
             </ol>
         </nav>
     </div>

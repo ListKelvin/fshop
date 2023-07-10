@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
 
     private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
 //    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
-    private static final String SHOP_PAGE = "create-product.jsp";
+    private static final String SHOP_PAGE = "MainController?action=ViewAllOrders";
 
 
     /**

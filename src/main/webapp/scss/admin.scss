@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 7, 2023, 6:55:13 PM
+    Author     : Minh
+*/
+
+.adminWrapper{
+    min-height: 100vh;
+    padding: 1rem;
+
+    .boxAdmin{
+        padding: 1rem;
+        background: $orange-200;
+        border-radius: 0.625rem;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);
+        width: 75%;
+        min-height: 75vh;
+
+
+    }
+    .analysBox{
+
+        padding: 1rem;
+        background: $orange-200;
+        border-radius: 0.625rem;
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);
+
+        .content{
+            color:$purple-500;
+
+
+        }
+        .svgStyle{
+            color:$purple-500;
+
+            font-size: 40px;
+        }
+    }
+}
+

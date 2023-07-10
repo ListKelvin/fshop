@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<c:import url="include/Header.jsp"><c:param name="title" value="403"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="404"/></c:import>
     <div class="container minHeithStyled ">
         <div class="row">
             <div class="card text-center" style="background: transparent;">
