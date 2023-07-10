@@ -1,37 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
-import DTO.AccountInfo;
-import Utils.DBUtils;
-import Utils.RoleConstant;
+import DTO.OrderInfo;
+import Utils.OrderUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.persistence.NoResultException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Minh
- */
-@WebServlet(name = "Login", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "ViewAllOrders", urlPatterns = {"/ViewAllOrdersController"})
+public class ViewAllOrdersController extends HttpServlet {
 
-    private static final String ERROR_PAGE = "error.jsp";
-    private static final String ERROR_LOGIN = "index.jsp";
-
-    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
-//    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
-    private static final String SHOP_PAGE = "MainController?action=ViewAllOrders";
-
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String ADMIN_HOME_PAGE = "admin-home.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,37 +30,26 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR_PAGE;
-        //String url = null;
+        String url = ERROR;
         try {
+            String status = request.getParameter("status");
 
-            String password = request.getParameter("txtPass");
-            String email = request.getParameter("txtEmail");
-            AccountInfo accountInfo = DBUtils.login(email, password);
+            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
+                List<OrderInfo> orderList = OrderUtils.getALLOrdersByStatus(status);
+                request.setAttribute("orders", orderList);
+                url = ADMIN_HOME_PAGE;
+            } else if (status.equals("all")) {
+                List<OrderInfo> orderList = OrderUtils.getALLOrders();
+                request.setAttribute("orders", orderList);
+                url = ADMIN_HOME_PAGE;
 
-            if (accountInfo == null) {
-                request.setAttribute("message", "Wrong email or password");
-                url = ERROR_LOGIN;
             } else {
-                String role = accountInfo.getRole();
-                System.out.println("(accountController) userid:  " + accountInfo.getId());
-
-                HttpSession session = request.getSession();
-                session.setAttribute("user", accountInfo);
-
-                if (RoleConstant.SHOP.equals(role)) {
-
-                    url = SHOP_PAGE;
-                } else if (RoleConstant.CUSTOMER.equals(role)) {
-
-                    url = CUSTOMER_PAGE;
-                } else {
-                    request.setAttribute("message", "Role is not support");
-                }
-
+                request.setAttribute("message", "status is not valid");
+                url = ERROR;
             }
+
         } catch (Exception ex) {
-            log("Error in LoginController: " + ex.getMessage());
+            log("Error in ViewAllOrdersByStatus: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -31,7 +31,7 @@
             <h2 style="color: #BC6EEE;">Product Information</h2>
             <hr style="color: #BC6EEE;" class="mt-0"/>
             <p>${requestScope.message}</p>
-            <form method="post" action="MainController" id="edit-profile">
+            <form method="post" action="${pageContext.request.contextPath}/MainController?action=CreateProduct" id="edit-profile" enctype="multipart/form-data">
 
                 <div class="p-3">
 
@@ -90,15 +90,9 @@
 
 
             </div>
-
-
-
-
             <div class="d-flex align-items-center gap-2">
-
-                <button type="submit" name="action" value="CreateOrder" class="btnPlaceOrder">Yes</button>
+                <button type="Submit"  class="btnPlaceOrder">Yes</button>
             </div>
-
         </form>
 
 

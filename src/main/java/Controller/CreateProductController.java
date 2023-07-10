@@ -28,7 +28,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author 03lin
  */
-@WebServlet(name = "CreateProduct", urlPatterns = {"/CreateProduct"})
+@WebServlet(name = "CreateProduct", urlPatterns = {"/CreateProductController"})
 public class CreateProductController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
@@ -70,14 +70,7 @@ public class CreateProductController extends HttpServlet {
 
             float price = 0;
             int quantity = 0;
-            /////////////////////////////
-//            String title = request.getParameter("title");
-//
-//            String description = request.getParameter("description");
-//            String category = request.getParameter("category");
-//            String priceStr = request.getParameter("priceStr");
-//            String quantityStr = request.getParameter("quantityStr");
-//            String image = request.getParameter("image");
+
 
             try {
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);

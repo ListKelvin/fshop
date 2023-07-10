@@ -4,6 +4,7 @@
     Author     : Minh
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@tag description="cart item" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
@@ -17,7 +18,7 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="cartItem d-flex align-items-center ">
-    <img src="${srcImg}" alt="${productName}" class="productImg"/>
+    <img src="images/${srcImg}" alt="${productName}" class="productImg"/>
     <div class="d-flex align-items-center justify-content-between w-100">
         <div >
             <div class="">${productName}</div>        
@@ -34,6 +35,7 @@
                 <li class="page-item"><input type="number" name="" class="page-link" value="${quantity}" id="textbox1" >
                 </li>
                 <li class="page-item">
+                    
                     <a class="page-link" href="${pageContext.request.contextPath}/MainController?action=UpdateCart&cartid=${id}&btnAction=inc&quantity=${quantity}"> <i class="bi bi-plus"></i></a>
 
                 </li>

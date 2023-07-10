@@ -1,61 +1,51 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
-    <div class="adminWrapper  d-flex align-items-center justify-content-center flex-column gap-5" style="margin-left: 200px;"> 
-        <div class="d-flex align-items-center justify-content-between gap-3" >
-            <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
-                <div class="analysBox d-flex align-items-center justify-content-between gap-3" >
-                    <i class="bi bi-people svgStyle"></i>
-                    <div class="">
-                        <h3 class="content">Customer</h3>
-                        <span class="content">100</span>
-                    </div>
 
-
-                </div>
-                <div class="analysBox d-flex align-items-center justify-content-between gap-3" >
-                    <i class="bi bi-receipt svgStyle"></i>
-                    <div class="">
-                        <h3 class="content">Customer</h3>
-                        <span class="content">100</span>
-                    </div>
-                </div>       
-                <div class="analysBox d-flex align-items-center justify-content-between gap-3">
-                    <i class="bi bi-database svgStyle"></i>
-                    <div class="">
-                        <h3 class="content">Customer</h3>
-                        <span class="content">100</span>
-                    </div>
-                </div>
-                <div class="analysBox" >
-                    <h1 class="content p-1">Xin chào F-SHOP</h1>
-                </div>
-            </div>
-
-        </div>  
+    <div class="adminWrapper d-flex align-items-center justify-content-center" style="margin-left: 200px;"> 
         <div class="boxAdmin">
-            <div class="d-flex align-items-center justify-content-center mb-2 px-2">
-                <h1 style="color: #BC6EEE;">Order Waiting</h1  >
+
+            <div class="d-flex align-items-center justify-content-between mb-2 px-2">
+                <h2 style="color: #BC6EEE;">Order List</h2>
 
 
 
 
             </div>
-            <div class="overflow-y-auto" style="max-height: 250px;">
-                <table class="table mt-3 table-hover ">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Sold</th>
-                            <th scope="col">Sold Out</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <hr style="color: #BC6EEE;" class="mt-0"/>
+
+            <ul class="nav nav-tabs">
+               <li class="nav-item">
+                    <a class="nav-link ${param.action == 'ViewOrderHistory' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&status=all&userId=${requestScope.user.id}">ALL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ${param.status == 'checking' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=checking&userId=${requestScope.user.id}">Checking</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ${param.status == 'preparing' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=preparing&userId=${requestScope.user.id}">Preparing</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link ${param.status == 'delivering' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=delivering&userId=${requestScope.user.id}">Delivering</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ${param.status == 'done' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=done&userId=${requestScope.user.id}">Done</a>
+            </li>
+        </ul>
+        <div class="overflow-y-auto" style="max-height: 250px;">
+            <table class="table mt-3 table-hover ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Sold</th>
+                        <th scope="col">Sold Out</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
                     <c:forEach items="${cartItems}" var="cartItems" varStatus="counter">
                         <tr>
                             <th scope="row">${counter.count}</th>
@@ -114,6 +104,14 @@
 
 
     </div>
+
+
+
+
+
+
+
+
 </div>
 
 

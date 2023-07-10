@@ -337,8 +337,8 @@ public class ProductUtils {
             con = DBConnection.getConnection();
             query = "insert into product(title, description, price, category, image, quantity) values (?,?,?,?,?,?)";
             stm = con.prepareStatement(query);
-            stm.setString(1,  product.getTitle());
-            stm.setString(2,  product.getDescription());
+            stm.setString(1, product.getTitle());
+            stm.setString(2, product.getDescription());
             stm.setFloat(3, product.getPrice());
             stm.setString(4, product.getCategoryName().toLowerCase());
             stm.setString(5, product.getImage());
@@ -492,9 +492,11 @@ public class ProductUtils {
                 products.add(row);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+
         } finally {
             try {
                 if (rs != null) {
@@ -507,7 +509,7 @@ public class ProductUtils {
                     con.close();
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
         }
         return products;

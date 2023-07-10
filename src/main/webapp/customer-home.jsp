@@ -14,22 +14,13 @@
     if (user != null) {
         request.setAttribute("user", user);
     }
-    /*
-    ProductUtils pu = new ProductUtils();
-    List<ProductInfo> products = pu.getAllProduct();
-    request.setAttribute("products", products);
 
-    ArrayList<CartInfo> carts = (ArrayList<CartInfo>) session.getAttribute("cart-list");
-    if (carts != null) {
-        request.setAttribute("carts", carts);
-    }
-     */
 %> 
 
 <c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
 
-    <section class="container-fluid d-flex align-items-center justify-content-center flex-column mt-5 minHeithStyled " onload="init()">
+    <section class="container-fluid d-flex align-items-center justify-content-center flex-column  minHeithStyled " onload="init()">
 
         <!--Product suggestion section-->
         <div class="w-100 bgProduct h-100 mb-3 row gap-4  justify-content-center">
@@ -43,7 +34,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
-                    <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="${product.image}" price="${product.price}"/>
+                    <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
                 </c:forEach>
 
                 <c:if test="${listProduct.size() ==0 }">
@@ -54,8 +45,7 @@
 
                 </c:if>
 
-            </div>
-
+                </div>
 
             <nav aria-label="Page navigation" class="p-2">
                 <ul class="pagination justify-content-center">
@@ -82,20 +72,12 @@
         <div class="col-3 wrapper p-3"> 
             <span class="productName">Other products</span>
             <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
-
                 <a href="#" style="width: 100%;">
                     <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
                 </a>
-
-
-
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 

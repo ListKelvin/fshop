@@ -308,6 +308,16 @@ and open the template in the editor.
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);
     width: 75%;
     min-height: 75vh; }
+  .adminWrapper .analysBox {
+    padding: 1rem;
+    background: #FFD5AA;
+    border-radius: 0.625rem;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14); }
+    .adminWrapper .analysBox .content {
+      color: #BC6EEE; }
+    .adminWrapper .analysBox .svgStyle {
+      color: #BC6EEE;
+      font-size: 40px; }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -502,6 +512,35 @@ body {
   border-radius: 42px;
   transition: 0.3s; }
   .btnCancelConfirmOrder:hover {
+    background-color: #C37DF0;
+    color: white; }
+
+.btnCreateProduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*change to variable*/
+  gap: 10px;
+  padding: 1.035rem;
+  background: transparent;
+  border: 2px solid #DFBAF7;
+  color: #1B171E;
+  /*change to variable*/
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 10px;
+  width: 100%;
+  /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+  border-radius: 42px;
+  transition: 0.3s;
+  width: fit-content;
+  padding: .75rem;
+  color: #BC6EEE;
+  border-radius: 10px; }
+  .btnCreateProduct:hover {
     background-color: #C37DF0;
     color: white; }
 

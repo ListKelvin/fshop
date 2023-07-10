@@ -4,7 +4,7 @@ Error: Undefined variable: "$orange-200".
 
 12:     min-height: 100vh;
 13:     padding: 1rem;
-14:     
+14: 
 15:     .boxAdmin{
 16:         padding: 1rem;
 17:         background: $orange-200;
@@ -12,7 +12,7 @@ Error: Undefined variable: "$orange-200".
 19:         box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);
 20:         width: 75%;
 21:         min-height: 75vh;
-22:         
+22: 
 
 Backtrace:
 D:\Code\Java\prj301-se1714-10\src\main\webapp\scss\admin.scss:17
@@ -73,4 +73,4 @@ C:/Ruby32-x64/bin/sass:32:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$orange-200\".\A         on line 17 of D:\Code\Java\prj301-se1714-10\src\main\webapp\scss\admin.scss\A \A 12:     min-height: 100vh;\A 13:     padding: 1rem;\A 14:     \A 15:     .boxAdmin{\A 16:         padding: 1rem;\A 17:         background: $orange-200;\A 18:         border-radius: 0.625rem;\A 19:         box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);\A 20:         width: 75%;\A 21:         min-height: 75vh;\A 22:         "; }
+  content: "Error: Undefined variable: \"$orange-200\".\A         on line 17 of D:\Code\Java\prj301-se1714-10\src\main\webapp\scss\admin.scss\A \A 12:     min-height: 100vh;\A 13:     padding: 1rem;\A 14: \A 15:     .boxAdmin{\A 16:         padding: 1rem;\A 17:         background: $orange-200;\A 18:         border-radius: 0.625rem;\A 19:         box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.20), 0px 3px 1px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14);\A 20:         width: 75%;\A 21:         min-height: 75vh;\A 22: "; }

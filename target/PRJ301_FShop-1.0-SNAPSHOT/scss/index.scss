@@ -18,6 +18,7 @@ and open the template in the editor.
 @import "register.scss";
 @import "admin.scss";
 
+
 @import "navbar.scss";
 @import "productInfo.scss";
 @import "search.scss";
@@ -87,6 +88,17 @@ body{
 .btnCancelConfirmOrder{
     @include buttonOutlined;
 
+    &:hover{
+        background-color:$Purple-400;   
+        color: white;
+    }
+}
+.btnCreateProduct{
+    @include buttonOutlined;
+    width: fit-content;
+    padding: .75rem;
+    color: $purple-500;
+    border-radius: 10px;
     &:hover{
         background-color:$Purple-400;   
         color: white;

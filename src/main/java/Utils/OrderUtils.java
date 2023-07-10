@@ -183,6 +183,91 @@ public class OrderUtils {
         }
         return list;
     }
+public static List<OrderInfo> getALLOrders() {
+        List<OrderInfo> list = new ArrayList<OrderInfo>();
+        try {
+            con = DBConnection.getConnection();
+            query = " SELECT * FROM [order] o  ORDER BY o.id DESC";
+            stm = con.prepareStatement(query);
+          
+
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                OrderInfo order = new OrderInfo();
+                order.setOrderId(rs.getInt("id"));
+                order.setOrderNumber(rs.getString("order_number"));
+                order.setUserId(rs.getInt("user"));
+                order.setDelivery(rs.getString("delivery"));
+                order.setPayment(rs.getString("payment"));
+                order.setCreateAt(rs.getDate("create_at"));
+                order.setStatus(rs.getString("status"));
+                order.setTotalBill(rs.getFloat("total_bill"));
+                list.add(order);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public static List<OrderInfo> getALLOrdersByStatus(String status) {
+        List<OrderInfo> list = new ArrayList<OrderInfo>();
+        try {
+            con = DBConnection.getConnection();
+            query = " SELECT * FROM [order] o  WHERE o.[status]=?  ORDER BY o.id DESC";
+            stm = con.prepareStatement(query);
+            stm.setString(1, status);
+
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                OrderInfo order = new OrderInfo();
+                order.setOrderId(rs.getInt("id"));
+                order.setOrderNumber(rs.getString("order_number"));
+                order.setUserId(rs.getInt("user"));
+                order.setDelivery(rs.getString("delivery"));
+                order.setPayment(rs.getString("payment"));
+                order.setCreateAt(rs.getDate("create_at"));
+                order.setStatus(rs.getString("status"));
+                order.setTotalBill(rs.getFloat("total_bill"));
+                list.add(order);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return list;
+    }
 
     public static OrderInfo ViewOrdersDetail(int id) {
         OrderInfo order = null;
@@ -324,7 +409,7 @@ public class OrderUtils {
         }
         return count;
     }
-    
+
     public static boolean cancelOrder(int id) {
         boolean result = false;
         try {
