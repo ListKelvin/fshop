@@ -1,5 +1,7 @@
 <%@page import="DTO.AccountInfo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
 
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
