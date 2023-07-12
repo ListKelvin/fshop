@@ -7,8 +7,10 @@ package Controller;
 
 import DTO.AccountInfo;
 import DTO.ProductInfo;
+import DTO.UserInfo;
 import Utils.ProductUtils;
 import Utils.RoleConstant;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -47,8 +49,10 @@ public class ViewProductController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+            UserInfo userInfo = UserUtils.getUser(user.getId());
             ProductInfo po = ProductUtils.getSingleProduct(id);
 
+            request.setAttribute("userInfo", userInfo);
             request.setAttribute("product", po);
 
             if (user.getRole().equals(RoleConstant.CUSTOMER)) {
