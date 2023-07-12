@@ -44,13 +44,8 @@ and open the template in the editor.
     font-weight: 700;
 }
 .productName{
-    display: flex;
-    /*width: 30.5625rem;
-    height: 3.8125rem;*/
-    flex-direction: column;
-    align-self: start;
-    color: $dark;
-    font-size: 2.25rem;
+    color: $purple-500;
+    font-size: 2rem;
     font-family: Roboto;
     font-weight: 700;
 }
@@ -60,10 +55,19 @@ and open the template in the editor.
     border-radius: 100px;
     overflow: hidden;
     margin-right: 1rem;
-    min-width: 80px; 
+    width: 100px;
+    max-width: 100px; 
+
     max-height: 100px;
     object-fit: cover;
 }
-.carousel-item:hover img {
-    transform: scale(1.1); /* Set the scale transform to zoom in on the image */
+/*.carousel-item:hover img {
+    transform: scale(1.1);  Set the scale transform to zoom in on the image 
+}*/
+
+.carouselStyled{
+    
+    width: 50vh;
+    border-radius: 10px;
+    overflow: hidden;
 }

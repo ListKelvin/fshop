@@ -5,30 +5,32 @@
  */
 package Controller;
 
-import DTO.CategoryInfo;
+import DTO.AccountInfo;
 import DTO.ProductInfo;
-import Utils.CategoryUtils;
+import DTO.UserInfo;
 import Utils.ProductUtils;
+import Utils.RoleConstant;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 03lin
+ * @author Minh
  */
-@WebServlet(name = "SearchProduct", urlPatterns = {"/SearchProductController"})
-public class SearchProductController extends HttpServlet {
+@WebServlet(name = "ViewProduct", urlPatterns = {"/ViewProductController"})
+public class ViewProductController extends HttpServlet {
 
-    private static final String ERROR_PAGE = "error.jsp";
-    private static final String CUSTOMER_HOME = "customer-home.jsp";
-    private static final String SEARCH = "search.jsp";
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String VIEW_PRODUCT_CUSTORMER_PAGE = "productdetails.jsp";
+    private static final String VIEW_PRODUCT_ADMIN_PAGE = "shop-product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,32 +44,27 @@ public class SearchProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR_PAGE;
-        //String url = null;
+        String url = ERROR;
         try {
-            request.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html; charset=UTF-8");
-            String search = request.getParameter("searchTxt");
-            ProductUtils pu = new ProductUtils();
-            List<ProductInfo> products;
-            if (search.isEmpty()) {
-                products = pu.getAllProduct();
-                List<ProductInfo> bestSeller = ProductUtils.getBestSeller();
-                System.out.println(bestSeller.size());
-                request.setAttribute("best_seller", bestSeller);
-                url = CUSTOMER_HOME;
+            int id = Integer.parseInt(request.getParameter("id"));
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
+            UserInfo userInfo = UserUtils.getUser(user.getId());
+            ProductInfo po = ProductUtils.getSingleProduct(id);
+
+            request.setAttribute("userInfo", userInfo);
+            request.setAttribute("product", po);
+
+            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                url = VIEW_PRODUCT_CUSTORMER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                url = VIEW_PRODUCT_ADMIN_PAGE;
             } else {
-                products = pu.searchProduct(search);
-                int numberOfProducts = products.size();
-                List<CategoryInfo> categories = CategoryUtils.getAllCategory();
-                request.setAttribute("numberOfProducts", numberOfProducts);
-                request.setAttribute("category", "all");
-                request.setAttribute("categories", categories);
-                url = SEARCH;
+                url = ERROR_AUTHEN;
             }
-            request.setAttribute("LIST_PRODUCT", products);
-        } catch (Exception e) {
-            log("Error at Search Product Controller: " + e.getMessage());
+        } catch (NumberFormatException ex) {
+            request.setAttribute("message", "id invalid");
+            log("Error in ViewOrderController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

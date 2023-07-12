@@ -8,6 +8,7 @@ package Controller;
 import DTO.AccountInfo;
 import DTO.OrderInfo;
 import Utils.OrderUtils;
+import Utils.RoleConstant;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,7 +29,7 @@ public class UpdateOrderController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String MANAGE_ORDER_PAGE = "manage-order-page.jsp";
+    private static final String MANAGE_ORDER_PAGE = "MainController?action=ViewAllOrders&active=2&status=all";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,41 +50,47 @@ public class UpdateOrderController extends HttpServlet {
             String status = request.getParameter("status");
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+
             if (user == null) {
                 log("(ViewCartController) Unauthentication!!");
                 request.setAttribute("message", "Unauthentication!!");
                 url = ERROR_AUTHEN;
             } else {
-                if (status.equals("checking") && user.getRole().equals("admin") || 
-                        status.equals("preparing") && user.getRole().equals("admin") || 
-                        status.equals("delivering") && user.getRole().equals("admin") || 
-                        status.equals("done") && user.getRole().equals("admin")) {
+                log(status);
+
+                if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
+                        || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
+                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)
+                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP)) {
+                    log("get data successfully");
                     boolean check = OrderUtils.updateOrderStatus(orderId, status);
                     if (check) {
+                        log("update status successfully");
                         request.setAttribute("mess", "update status successfully");
-                        url = "manage-order-page.jsp";
+                        url = MANAGE_ORDER_PAGE;
                     }
 
                 } else if (status.equals("cancel")) {
                     OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
                     if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
                         boolean check = OrderUtils.cancelOrder(orderId);
-                        if (check && user.getRole().equals("admin")) {
-                            request.setAttribute("mess", "Cancel order successfully");
+                        if (check && user.getRole().equals(RoleConstant.SHOP)) {
+                            request.setAttribute("message", "Cancel order successfully");
                             url = MANAGE_ORDER_PAGE;
                         } else {
-                            request.setAttribute("mess", "Cancel order fail");
+                            request.setAttribute("message", "Cancel order fail");
                             url = MANAGE_ORDER_PAGE;
                         }
                     }
                 } else {
-                    request.setAttribute("mess", "status is not valid");
+                    request.setAttribute("message", "status is not valid");
                     url = MANAGE_ORDER_PAGE;
                 }
             }
 
-          
-        }catch (Exception e) {
+        } catch (Exception e) {
+                request.setAttribute("message", "get data failed");
+
             log("Error at UpdateOrderController " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

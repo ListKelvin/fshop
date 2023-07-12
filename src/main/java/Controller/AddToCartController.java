@@ -49,6 +49,7 @@ public class AddToCartController extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         boolean result = false;
         String url = ERROR_PAGE;
+        System.out.println("run");
         try {
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
@@ -61,6 +62,7 @@ public class AddToCartController extends HttpServlet {
                 ci.setId(id);
 
                 CartInfo checkCart = (CartInfo) CartUtils.checkCartProduct(ci);
+                System.out.println(checkCart);
                 if (checkCart != null) {
                     CartUtils.updateCartQuantity(checkCart.getCartId(), checkCart.getCartQuantity() + 1);
                     request.setAttribute("message", "add to cart successfully");
@@ -70,7 +72,7 @@ public class AddToCartController extends HttpServlet {
                     url = CART_PAGE;
                 } else {
                     result = CartUtils.addToCart(ci);
-
+                    System.out.println(result);
                     if (result) {
                         request.setAttribute("user", user);
                         request.setAttribute("message", "add to cart successfully");
@@ -91,6 +93,8 @@ public class AddToCartController extends HttpServlet {
             }
 
         } catch (Exception ex) {
+            request.setAttribute("message", "add to cart fail");
+
             log("Error in AddToCartController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

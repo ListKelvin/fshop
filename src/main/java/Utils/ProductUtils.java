@@ -209,10 +209,10 @@ public class ProductUtils {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category=? and title=?";
+            String sql = "SELECT * FROM [product] where category=? and title like ? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
-            stm.setString(2, search);
+            stm.setString(2, "%" + search + "%");
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();
@@ -249,7 +249,7 @@ public class ProductUtils {
         return products;
     }
 
-    public ProductInfo getSingleProduct(int id) {
+    public static ProductInfo getSingleProduct(int id) {
         ProductInfo product = null;
         try {
             con = DBConnection.getConnection();

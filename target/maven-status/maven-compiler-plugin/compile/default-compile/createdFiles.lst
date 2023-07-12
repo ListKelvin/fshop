@@ -6,7 +6,9 @@ Utils\ProductUtils.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
 Controller\UpdateUserInfoController.class
+Controller\V?ewCartController.class
 Controller\SearchProductController.class
+Controller\BuyNowController.class
 Controller\ProductByCategoryController.class
 filter\Authen.class
 Controller\BestSellerContronller.class
@@ -39,6 +41,7 @@ Controller\FacebookController.class
 Controller\UpdateProductController.class
 Controller\CreateOrderController.class
 Controller\ViewOrderController.class
+Controller\ViewProductController.class
 Controller\ViewUserInfoController.class
 DTO\AccountInfo.class
 Controller\GetOrderByStatusController.class

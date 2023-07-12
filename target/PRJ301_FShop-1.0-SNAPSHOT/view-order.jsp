@@ -12,7 +12,7 @@
     <div class="breadcrumbWrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory}">Order-list</a></li>
+                <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory">Order-list</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Order - ${orderDetails.orderNumber}</li>
             </ol>
         </nav>
@@ -74,19 +74,16 @@
                     <div>
                         <div class="fw-semibold fs-5">Order create at:</div>
                         <div class="fw-light">${orderDetails.createAt}</div>
-
                     </div>
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Time receive:</div>
                         <div class="fw-light">31/02/2024</div>
-
                     </div>
                     <hr/>
                     <div>
-                        <div class="fw-semibold fs-5">Order Status</div>
+                        <div class="fw-semibold fs-5">Order Status:</div>
                         <div class="fw-light" style="color: #BC6EEE;">${orderDetails.status}</div>
-
                     </div>
 
                 </div>

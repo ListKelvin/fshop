@@ -54,8 +54,8 @@ public class UpdateProductController extends HttpServlet {
 
             switch (update) {
                 case 0:
-                    ProductUtils productDAO = new ProductUtils();
-                    ProductInfo product = productDAO.getSingleProduct(id);
+//                    ProductUtils productDAO = new ProductUtils();
+                    ProductInfo product = ProductUtils.getSingleProduct(id);
                     request.setAttribute("product", product);
                     url = UPDATE_PRODUCT_PAGE;
                     break;
@@ -186,6 +186,8 @@ public class UpdateProductController extends HttpServlet {
             log("Error at Update Product Controller: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
+//            response.sendRedirect(url);
+
         }
     }
 

@@ -16,7 +16,7 @@ public class ViewAllOrdersController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String ADMIN_HOME_PAGE = "admin-home.jsp";
+    private static final String SHOP_ORDER_PAGE = "shop-order.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +37,17 @@ public class ViewAllOrdersController extends HttpServlet {
             if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
                 List<OrderInfo> orderList = OrderUtils.getALLOrdersByStatus(status);
                 request.setAttribute("orders", orderList);
-                url = ADMIN_HOME_PAGE;
+                url = SHOP_ORDER_PAGE;
             } else if (status.equals("all")) {
                 List<OrderInfo> orderList = OrderUtils.getALLOrders();
                 request.setAttribute("orders", orderList);
-                
-                url = ADMIN_HOME_PAGE;
 
-            } else {
-                request.setAttribute("message", "status is not valid");
-                url = ERROR;
+                url = SHOP_ORDER_PAGE;
+
             }
 
         } catch (Exception ex) {
+            request.setAttribute("message", "status is not valid");
             log("Error in ViewAllOrdersByStatus: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

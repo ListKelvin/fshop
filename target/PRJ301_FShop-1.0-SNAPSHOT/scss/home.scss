@@ -26,6 +26,10 @@ and open the template in the editor.
     border: 1px solid $purple-500 !important;
     overflow: hidden !important;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex; 
+    /*align-items: center;*/ 
+    justify-content: space-between;
+    flex-direction: column;
     .text-eclipse{
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -126,22 +130,22 @@ and open the template in the editor.
         transform: translateY(-20px);
     }
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     .carousel-inner .carousel-item > div {
         display: none;
     }
     .carousel-inner .carousel-item > div:first-child {
         display: block;
     }
-}
-
+}*/
+/*
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
     display: flex;
 }
 
-/* medium and up screens */
+ medium and up screens 
 @media (min-width: 768px) {
 
     .carousel-inner .carousel-item-end.active,
@@ -159,4 +163,4 @@ and open the template in the editor.
 .carousel-inner .carousel-item-start { 
     transform: translateX(0);
 }
-
+*/

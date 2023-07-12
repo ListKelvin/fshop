@@ -15,11 +15,12 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="otherProduct d-flex align-items-center ">
-    <img src="images/${srcImg}" alt="${productName}" class="productImg" width="100"/>
+    
+    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg" width="100"/>
     <div class="">
         <div >
-            <div class="">${productName}</div>
-            <div class="d-inline-block text-truncate" style="max-width: 150px;">${description}</div>
+            <div  class="d-inline-block text-truncate" style="max-width: 200px;">${productName}</div><br/>
+            <div class="d-inline-block text-truncate" style="max-width: 200px;">${description}</div>
         </div>
         <div class="badge rounded-pill badgeStyle d-inline-block text-truncate" style="max-width: 70px;">${category}</div>
     </div>

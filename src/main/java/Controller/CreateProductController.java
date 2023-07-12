@@ -158,7 +158,8 @@ public class CreateProductController extends HttpServlet {
         } catch (Exception e) {
             log("Error at Create Product Controller: " + e.getMessage());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+//            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
         }
 
     }

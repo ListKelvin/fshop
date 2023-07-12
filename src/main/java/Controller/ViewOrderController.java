@@ -5,10 +5,12 @@
  */
 package Controller;
 
+import DTO.AccountInfo;
 import DTO.OrderInfo;
 import DTO.OrderProductInfo;
 import Utils.OrderProductUtils;
 import Utils.OrderUtils;
+import Utils.RoleConstant;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,13 +20,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ViewOrder", urlPatterns = {"/ViewOrderController"})
 public class ViewOrderController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String VIEW_ORDER_PAGE = "view-order.jsp";
+    private static final String VIEW_ORDER_CUSTOMER_PAGE = "view-order.jsp";
+    private static final String VIEW_ORDER_SHOP_PAGE = "shop-viewOrder.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,6 +45,8 @@ public class ViewOrderController extends HttpServlet {
         String url = ERROR;
         try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
             if (orderId > 0) {
                 List<OrderProductInfo> orderProduct = OrderProductUtils.viewOrderProduct(orderId);
                 OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
@@ -48,9 +54,18 @@ public class ViewOrderController extends HttpServlet {
                 if (!orderProduct.isEmpty() && order != null) {
                     request.setAttribute("orderProducts", orderProduct);
                     request.setAttribute("orderDetails", order);
-                    url = VIEW_ORDER_PAGE;
+
                 }
-            } 
+            }
+            
+            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                url = VIEW_ORDER_CUSTOMER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.SHOP)){
+                url = VIEW_ORDER_SHOP_PAGE;
+            } else{
+               url = ERROR_AUTHEN;
+            }
+
         } catch (NumberFormatException ex) {
             log("Error in ViewOrderController: " + ex.getMessage());
         } finally {

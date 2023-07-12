@@ -26,61 +26,61 @@ public class MainController extends HttpServlet {
 
 //ACTION
     private static final String LOGIN = "Login";
-    private static final String LOGIN_CONTROLLER = "LoginController";
+    /*1*/ private static final String LOGIN_CONTROLLER = "LoginController";
     private static final String LOGIN_GG = "GoogleLogin";
-    private static final String LOGIN_GG_CONTROLLER = "GoogleLoginController";
+    /*2*/ private static final String LOGIN_GG_CONTROLLER = "GoogleLoginController";
     private static final String LOGIN_FB = "FaceBook";
-    private static final String LOGIN_FB_CONTROLLER = "FaceBookController";
+    /*3*/ private static final String LOGIN_FB_CONTROLLER = "FaceBookController";
     private static final String REGISTER = "Register";
-    private static final String REGISTER_CONTROLLER = "RegisterController";
+    /*4*/ private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT = "Logout";
-    private static final String LOGOUT_CONTROLLER = "LogoutController";
+    /*5*/ private static final String LOGOUT_CONTROLLER = "LogoutController";
 //view
     private static final String VIEW_CART = "ViewCart";
-    private static final String VIEW_CART_CONTROLLER = "ViewCartController";
+    /*6*/ private static final String VIEW_CART_CONTROLLER = "ViewCartController";
     private static final String VIEW_USER_INFO = "ViewUserInfo";
-    private static final String VIEW_USER_INFO_CONTROLLER = "ViewUserInfoController";
+    /*7*/ private static final String VIEW_USER_INFO_CONTROLLER = "ViewUserInfoController";
+    private static final String VIEW_PRODUCT = "ViewProduct";
+    /*7*/ private static final String VIEW_PRODUCT_CONTROLLER = "ViewProductController";
     private static final String VIEW_ORDER_HISTORY = "ViewOrderHistory";
-    private static final String VIEW_ORDER_HISTORY_CONTROLLER = "ViewOrderHistoryController";
+    /*8*/ private static final String VIEW_ORDER_HISTORY_CONTROLLER = "ViewOrderHistoryController";
     private static final String VIEW_ORDER = "ViewOrder";
-    private static final String VIEW_ORDER_CONTROLLER = "ViewOrderController";
+    /*9*/ private static final String VIEW_ORDER_CONTROLLER = "ViewOrderController";
     private static final String PRODUCT_BY_CATEGORY = "ProductByCategory";
-    private static final String PRODUCT_BY_CATEGORY_CONTROLLER = "ProductByCategoryController";
+    /*10*/ private static final String PRODUCT_BY_CATEGORY_CONTROLLER = "ProductByCategoryController";
     private static final String GET_ORDER_BY_STATUS = "GetOrderByStatus";
-    private static final String GET_ORDER_BY_STATUS_CONTROLLER = "GetOrderByStatusController";
+    /*11*/ private static final String GET_ORDER_BY_STATUS_CONTROLLER = "GetOrderByStatusController";
     private static final String VIEW_ALL_ORDERS = "ViewAllOrders";
-    private static final String VIEW_ALL_ORDERS_CONTROLLER = "ViewAllOrdersController";
+    /*12*/ private static final String VIEW_ALL_ORDERS_CONTROLLER = "ViewAllOrdersController";
     private static final String VIEW_SHOP_ANALYSIS = "ViewShopAnalysis";
-    private static final String VIEW_SHOP_ANALYSIS_CONTROLLER = "ViewShopAnalysisController";
+    /*13*/ private static final String VIEW_SHOP_ANALYSIS_CONTROLLER = "ViewShopAnalysisController";
     private static final String VIEW_ALL_PRODUCTS = "ViewAllProducts";
-    private static final String VIEW_ALL_PRODUCTS_CONTROLLER = "ViewAllProductsController";
+    /*14*/ private static final String VIEW_ALL_PRODUCTS_CONTROLLER = "ViewAllProductsController";
 //    UPDATE
     private static final String UPDATE_PRODUCT = "UpdateProduct";
-    private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
+    /*15*/ private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
     private static final String UPDATE_CATEGORY = "UpdateCategory";
-    private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
+    /*16*/ private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
     private static final String UPDATE_CART = "UpdateCart";
-    private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
+    /*17*/ private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
     private static final String UPDATE_USERINFO = "UpdateUserInfo";
-    private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
+    /*18*/ private static final String UPDATE_USERINFO_CONTROLLER = "UpdateUserInfoController";
     private static final String UPDATE_ORDER_STATUS = "UpdateOrder";
-    private static final String UPDATE_ORDER_STATUS_CONTROLLER = "UpdateOrderController";
+    /*19*/ private static final String UPDATE_ORDER_STATUS_CONTROLLER = "UpdateOrderController";
 //  CREATE
     private static final String CREATE_ORDER = "CreateOrder";
-    private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
+    /*20*/ private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
     private static final String CREATE_PRODUCT = "CreateProduct";
-    private static final String CREATE_PRODUCT_CONTROLLER = "CreateProductController";
+    /*21*/ private static final String CREATE_PRODUCT_CONTROLLER = "CreateProductController";
     private static final String ADD_CATEGORY = "AddCategory";
-    private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
+    /*22*/ private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
     private static final String SEARCH_PRODUCT = "SearchProduct";
-    private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
-    private static final String ADD_TO_CART = "AddToCart";
-    private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
+    /*23*/ private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
+    private static final String ADD_TO_CART = "Add To Cart";
+    /*24*/ private static final String ADD_TO_CART_CONTROLLER = "AddToCartController";
 //DELETE
     private static final String REMOVE_CART = "RemoveCart";
-    private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
-    private static final String DELETE_PRODUCT = "DeleteProduct";
-    private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
+    /*25*/ private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -89,7 +89,7 @@ public class MainController extends HttpServlet {
         try {
             log("check run");
             String action = request.getParameter("action");
-            HttpSession session = request.getSession();
+
             log(action);
 
             if (null != action) {
@@ -125,14 +125,14 @@ public class MainController extends HttpServlet {
                     case VIEW_USER_INFO:
                         url = VIEW_USER_INFO_CONTROLLER;
                         break;
+                    case VIEW_PRODUCT:
+                        url = VIEW_PRODUCT_CONTROLLER;
+                        break;
                     case VIEW_SHOP_ANALYSIS:
                         url = VIEW_SHOP_ANALYSIS_CONTROLLER;
                         break;
                     case VIEW_ALL_PRODUCTS:
                         url = VIEW_ALL_PRODUCTS_CONTROLLER;
-                        break;
-                    case DELETE_PRODUCT:
-                        url = DELETE_PRODUCT_CONTROLLER;
                         break;
                     case UPDATE_PRODUCT:
                         url = UPDATE_PRODUCT_CONTROLLER;

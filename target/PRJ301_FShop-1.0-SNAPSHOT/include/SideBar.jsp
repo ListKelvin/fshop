@@ -25,16 +25,16 @@
     </head>
     <!--navbar-expand-lg-->
     <body >
-     <div class="sideBar">
+        <div class="sideBar">
             <div class="d-flex flex-column gap-4">
                 <h1 style="color: #fff;">F-SHOP</h1>
                 <div class="nav flex-column nav-pills gap-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link ${param.active == "0" ? 'active':''}" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis"  role="tab" aria-controls="v-pills-DashBoard" href="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=0">DashBoard</a>
                     <a class="nav-link ${param.active == "1" ? 'active':''}" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewAllProducts"  role="tab" aria-controls="v-pills-Product" href="${pageContext.request.contextPath}/MainController?action=ViewAllProducts&active=1" >Product</a>
-                    <a class="nav-link ${param.active == "2" ? 'active':''}" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Order"  role="tab" aria-controls="v-pills-Order" href="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=2">Order</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-someThing"  role="tab" aria-controls="v-pills-someThing">Some thing</a>
+                    <a class="nav-link ${param.active == "2" ? 'active':''}" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=2"  role="tab" aria-controls="v-pills-Order" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&active=2&status=all">Order</a>
+
                 </div>  
 
             </div>
-            <button class="btn btn-danger mb-3">Logout</button>
+                    <button type="button" class="btn btn-danger mb-3" onclick="location.href='${pageContext.request.contextPath}/MainController?action=Logout'">Logout</button>
         </div>
