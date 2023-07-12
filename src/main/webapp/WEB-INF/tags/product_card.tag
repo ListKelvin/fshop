@@ -18,7 +18,8 @@
 
 <div class=" product card ${className}" id="${id}">
     <a href="${pageContext.request.contextPath}/MainController?action=ViewProduct&id=${idProduct}" style="cursor: pointer" >
-        <img src="${img}" class="card-img-top " alt="${productName}" style="height: 150px; object-fit: cover; min-height: 150px"> 
+        
+        <img src="${img}" onError="this.onerror=null;this.src='./assest/linn.jpg';" class="card-img-top " alt="${productName}" style="height: 150px; object-fit: cover; min-height: 150px"> 
         <div class="p-2">
             <div class="card-body">
                 <p class="badge rounded-pill badgeStyle ">${category}</p>

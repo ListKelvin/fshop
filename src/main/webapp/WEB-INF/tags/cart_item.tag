@@ -18,7 +18,7 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="cartItem d-flex align-items-center ">
-    <img src="images/${srcImg}" alt="${productName}" class="productImg"/>
+    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg"/>
     <div class="d-flex align-items-center justify-content-between w-100">
         <div >
             <div class="">${productName}</div>        
