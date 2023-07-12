@@ -81,8 +81,6 @@ public class MainController extends HttpServlet {
 //DELETE
     private static final String REMOVE_CART = "RemoveCart";
     /*25*/ private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
-    private static final String DELETE_PRODUCT = "DeleteProduct";
-    /*26*/ private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -135,9 +133,6 @@ public class MainController extends HttpServlet {
                         break;
                     case VIEW_ALL_PRODUCTS:
                         url = VIEW_ALL_PRODUCTS_CONTROLLER;
-                        break;
-                    case DELETE_PRODUCT:
-                        url = DELETE_PRODUCT_CONTROLLER;
                         break;
                     case UPDATE_PRODUCT:
                         url = UPDATE_PRODUCT_CONTROLLER;

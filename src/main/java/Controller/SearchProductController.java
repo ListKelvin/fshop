@@ -52,6 +52,9 @@ public class SearchProductController extends HttpServlet {
             List<ProductInfo> products;
             if (search.isEmpty()) {
                 products = pu.getAllProduct();
+                List<ProductInfo> bestSeller = ProductUtils.getBestSeller();
+                System.out.println(bestSeller.size());
+                request.setAttribute("best_seller", bestSeller);
                 url = CUSTOMER_HOME;
             } else {
                 products = pu.searchProduct(search);

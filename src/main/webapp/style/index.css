@@ -152,30 +152,40 @@ and open the template in the editor.
   .categories_card:hover {
     transform: translateY(-20px); }
 
-@media (max-width: 767px) {
-  .carousel-inner .carousel-item > div {
-    display: none; }
-
-  .carousel-inner .carousel-item > div:first-child {
-    display: block; } }
+/*@media (max-width: 767px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}*/
+/*
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
-  display: flex; }
+    display: flex;
+}
 
-/* medium and up screens */
+ medium and up screens 
 @media (min-width: 768px) {
-  .carousel-inner .carousel-item-end.active,
-  .carousel-inner .carousel-item-next {
-    transform: translateX(25%); }
 
-  .carousel-inner .carousel-item-start.active,
-  .carousel-inner .carousel-item-prev {
-    transform: translateX(-25%); } }
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(25%);
+    }
+
+    .carousel-inner .carousel-item-start.active, 
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-25%);
+    }
+}
+
 .carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start {
-  transform: translateX(0); }
-
+.carousel-inner .carousel-item-start { 
+    transform: translateX(0);
+}
+*/
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -376,13 +386,8 @@ and open the template in the editor.
   font-weight: 700; }
 
 .productName {
-  display: flex;
-  /*width: 30.5625rem;
-  height: 3.8125rem;*/
-  flex-direction: column;
-  align-self: start;
-  color: #000;
-  font-size: 2.25rem;
+  color: #BC6EEE;
+  font-size: 2rem;
   font-family: Roboto;
   font-weight: 700; }
 
@@ -390,13 +395,18 @@ and open the template in the editor.
   border-radius: 100px;
   overflow: hidden;
   margin-right: 1rem;
-  min-width: 80px;
+  width: 100px;
+  max-width: 100px;
   max-height: 100px;
   object-fit: cover; }
 
-.carousel-item:hover img {
-  transform: scale(1.1);
-  /* Set the scale transform to zoom in on the image */ }
+/*.carousel-item:hover img {
+    transform: scale(1.1);  Set the scale transform to zoom in on the image 
+}*/
+.carouselStyled {
+  width: 50vh;
+  border-radius: 10px;
+  overflow: hidden; }
 
 /*
 To change this license header, choose License Headers in Project Properties.
