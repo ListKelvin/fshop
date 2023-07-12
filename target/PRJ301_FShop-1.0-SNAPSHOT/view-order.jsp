@@ -74,19 +74,16 @@
                     <div>
                         <div class="fw-semibold fs-5">Order create at:</div>
                         <div class="fw-light">${orderDetails.createAt}</div>
-
                     </div>
                     <hr/>
                     <div>
                         <div class="fw-semibold fs-5">Time receive:</div>
                         <div class="fw-light">31/02/2024</div>
-
                     </div>
                     <hr/>
                     <div>
-                        <div class="fw-semibold fs-5">Order Status</div>
+                        <div class="fw-semibold fs-5">Order Status:</div>
                         <div class="fw-light" style="color: #BC6EEE;">${orderDetails.status}</div>
-
                     </div>
 
                 </div>

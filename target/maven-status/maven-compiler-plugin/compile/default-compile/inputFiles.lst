@@ -30,11 +30,13 @@ D:\java\PRJ301_FShop\src\main\java\DTO\UserInfo.java
 D:\java\PRJ301_FShop\src\main\java\Controller\CreateOrderController.java
 D:\java\PRJ301_FShop\src\main\java\DTO\CategoryInfo.java
 D:\java\PRJ301_FShop\src\main\java\Controller\UpdateCartController.java
+D:\java\PRJ301_FShop\src\main\java\Controller\ViewProductController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\DBUtils.java
 D:\java\PRJ301_FShop\src\main\java\DTO\OrderInfo.java
 D:\java\PRJ301_FShop\src\main\java\Controller\UpdateOrderController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\UpdateUserInfoController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\NetUtils.java
+D:\java\PRJ301_FShop\src\main\java\Controller\BuyNowController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\SearchProductController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\RegisterController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\BestSellerContronller.java

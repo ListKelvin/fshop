@@ -6,13 +6,13 @@
 package Controller;
 
 import DTO.AccountInfo;
-import DTO.OrderInfo;
-import Utils.OrderUtils;
+import DTO.ProductInfo;
+import DTO.UserInfo;
+import Utils.ProductUtils;
 import Utils.RoleConstant;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +22,15 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 03lin
+ * @author Minh
  */
-@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrderController"})
-public class UpdateOrderController extends HttpServlet {
+@WebServlet(name = "ViewProduct", urlPatterns = {"/ViewProductController"})
+public class ViewProductController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String MANAGE_ORDER_PAGE = "MainController?action=ViewAllOrders&active=2&status=all";
+    private static final String VIEW_PRODUCT_CUSTORMER_PAGE = "productdetails.jsp";
+    private static final String VIEW_PRODUCT_ADMIN_PAGE = "shop-product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,53 +46,25 @@ public class UpdateOrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
-            String status = request.getParameter("status");
+            int id = Integer.parseInt(request.getParameter("id"));
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+            UserInfo userInfo = UserUtils.getUser(user.getId());
+            ProductInfo po = ProductUtils.getSingleProduct(id);
 
-            if (user == null) {
-                log("(ViewCartController) Unauthentication!!");
-                request.setAttribute("message", "Unauthentication!!");
-                url = ERROR_AUTHEN;
+            request.setAttribute("userInfo", userInfo);
+            request.setAttribute("product", po);
+
+            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                url = VIEW_PRODUCT_CUSTORMER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                url = VIEW_PRODUCT_ADMIN_PAGE;
             } else {
-                log(status);
-
-                if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP)) {
-                    log("get data successfully");
-                    boolean check = OrderUtils.updateOrderStatus(orderId, status);
-                    if (check) {
-                        log("update status successfully");
-                        request.setAttribute("mess", "update status successfully");
-                        url = MANAGE_ORDER_PAGE;
-                    }
-
-                } else if (status.equals("cancel")) {
-                    OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
-                    if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
-                        boolean check = OrderUtils.cancelOrder(orderId);
-                        if (check && user.getRole().equals(RoleConstant.SHOP)) {
-                            request.setAttribute("message", "Cancel order successfully");
-                            url = MANAGE_ORDER_PAGE;
-                        } else {
-                            request.setAttribute("message", "Cancel order fail");
-                            url = MANAGE_ORDER_PAGE;
-                        }
-                    }
-                } else {
-                    request.setAttribute("message", "status is not valid");
-                    url = MANAGE_ORDER_PAGE;
-                }
+                url = ERROR_AUTHEN;
             }
-
-        } catch (Exception e) {
-                request.setAttribute("message", "get data failed");
-
-            log("Error at UpdateOrderController " + e.toString());
+        } catch (NumberFormatException ex) {
+            request.setAttribute("message", "id invalid");
+            log("Error in ViewOrderController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

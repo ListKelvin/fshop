@@ -36,5 +36,5 @@
                 </div>  
 
             </div>
-            <button class="btn btn-danger mb-3">Logout</button>
+                    <button type="button" class="btn btn-danger mb-3" onclick="location.href='${pageContext.request.contextPath}/MainController?action=Logout'">Logout</button>
         </div>
