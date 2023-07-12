@@ -51,8 +51,6 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
                     </div>
-
-
                 </c:if>
 
             </div>
