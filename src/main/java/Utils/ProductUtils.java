@@ -122,7 +122,7 @@ public class ProductUtils {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where title like ? ";
+            String sql = "SELECT * FROM [product] where sold_out= 'false' and title like ? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, "%" + title + "%");
             rs = stm.executeQuery();
@@ -161,14 +161,13 @@ public class ProductUtils {
         return products;
     }
 
-    public static List<ProductInfo> searchProductCategory(String title, String cate) {
+    public static List<ProductInfo> searchProductCategory(String cate) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? and title like ? ";
+            String sql = "SELECT * FROM [product] where sold_out= 'false' and category =? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
-            stm.setString(2, "%" + title + "%");
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();
@@ -209,7 +208,7 @@ public class ProductUtils {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category=? and title like ? ";
+            String sql = "SELECT * FROM [product] where sold_out= 'false' and category=? and title like ? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
             stm.setString(2, "%" + search + "%");
