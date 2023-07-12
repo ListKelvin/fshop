@@ -47,6 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
+             
                     <c:forEach items="${requestScope.LIST_PRODUCT}" var="product" varStatus="counter">
                         <tr>
                             <th scope="row">${counter.count}</th>

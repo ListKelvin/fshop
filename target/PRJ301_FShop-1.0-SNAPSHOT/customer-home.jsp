@@ -28,8 +28,8 @@
 
             <div class="wrapper col-8 px-2">
                 <div class="d-flex justify-content-between align-items-center headWrapper">
-                    <h1 class="textHeading">Sản Phẩm của shop</h1>
-                    <a class="linkStyled">Xem thêm</a>
+                    <h1 class="textHeading">Shop Product</h1>
+                    <a class="linkStyled">more</a>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
@@ -45,7 +45,7 @@
 
                 </c:if>
 
-                </div>
+            </div>
 
             <nav aria-label="Page navigation" class="p-2">
                 <ul class="pagination justify-content-center">
@@ -70,7 +70,10 @@
         </div>
 
         <div class="col-3 wrapper p-3"> 
-            <span class="productName">Other products</span>
+            <div class="d-flex justify-content-center align-items-center headWrapper">
+                <h1 class="textHeading">Best Seller</h1>
+                
+            </div>
             <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
                 <a href="#" style="width: 100%;">
                     <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>

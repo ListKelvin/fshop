@@ -26,6 +26,10 @@ and open the template in the editor.
     border: 1px solid $purple-500 !important;
     overflow: hidden !important;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex; 
+    /*align-items: center;*/ 
+    justify-content: space-between;
+    flex-direction: column;
     .text-eclipse{
         display: -webkit-box;
         -webkit-line-clamp: 2;

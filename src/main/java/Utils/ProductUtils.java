@@ -249,7 +249,7 @@ public class ProductUtils {
         return products;
     }
 
-    public ProductInfo getSingleProduct(int id) {
+    public static ProductInfo getSingleProduct(int id) {
         ProductInfo product = null;
         try {
             con = DBConnection.getConnection();
