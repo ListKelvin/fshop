@@ -404,7 +404,8 @@ and open the template in the editor.
     transform: scale(1.1);  Set the scale transform to zoom in on the image 
 }*/
 .carouselStyled {
-  width: 50vh;
+  width: 60vh;
+  height: 60vh;
   border-radius: 10px;
   overflow: hidden; }
 
@@ -528,6 +529,35 @@ body {
   .btnCancelConfirmOrder:hover {
     background-color: #C37DF0;
     color: white; }
+
+.btnEditAvatar {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*change to variable*/
+  gap: 10px;
+  padding: 1.035rem;
+  background: #DFBAF7;
+  color: #1B171E;
+  /*change to variable*/
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 10px;
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 42px;
+  transition: 0.3s;
+  width: 50px;
+  color: #fff;
+  border: none; }
+  .btnEditAvatar:hover {
+    background-color: #C37DF0; }
 
 .btnCreateProduct {
   display: flex;

@@ -416,7 +416,7 @@ public static List<OrderInfo> getALLOrders() {
             con = DBConnection.getConnection();
             query = "UPDATE [order] SET status= 'cancel'  WHERE id=?;";
             stm = con.prepareStatement(query);
-            stm.setInt(2, id);
+            stm.setInt(1, id);
             stm.executeUpdate();
             result = true;
         } catch (SQLException ex) {

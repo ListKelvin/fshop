@@ -56,8 +56,7 @@ public class UpdateOrderController extends HttpServlet {
                 request.setAttribute("message", "Unauthentication!!");
                 url = ERROR_AUTHEN;
             } else {
-                log(status);
-
+               
                 if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
                         || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
                         || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)

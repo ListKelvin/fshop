@@ -16,22 +16,22 @@
     <section class="container  mt-5 minHeithStyled">
         <div class="wrapperProductInfo">
 
-            <div class="productName d-inline-block text-truncate">${product.title}</div>
+            <div class="productName d-inline-block text-truncate"  style="max-width: 250px;">${product.title}</div>
         <div class="row mb-4">
             <div class="col-md-7 d-flex justify-content-center align-items-center"> 
                 <div id="carouselExample" class="carousel slide carouselStyled">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="image/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100" style="transform: scale(1.5) translate(80px, 70px);" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100" style="transform: scale(1.5) translate(80px, 70px);" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="image/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, 70px);"  class="d-block w-100" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, 70px);"  class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="image/${product.image}" onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, -70px);"  class="d-block w-100" alt="...">
+                            <img src="images/${product.image}" onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, -70px);"  class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="image/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(80px, -70px);" class="d-block w-100" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(80px, -70px);" class="d-block w-100" alt="...">
                         </div>
                     </div>
 
@@ -196,8 +196,8 @@
                                         <tbody>
 
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>${product.title}</td>
+                                                <th scope="row" >1</th>
+                                                <td class=" text-truncate"  style="max-width: 200px;">${product.title}</td>
                                                 <td>1</td>
                                                 <td>${product.price}</td>
                                             </tr>
@@ -215,12 +215,12 @@
 
                         </div>
 
-
+                        <input name="id" value="${product.id}" type="hidden"/>
                     </div>
                     <div class="modal-footer mt-5">
                         <div class="d-flex align-items-center gap-2">
-                            <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">No</button>
-                            <button type="submit" name="action" value="CreateOrder" class="btnPlaceOrder">Yes</button>
+                            <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" name="action" value="Buy Now" class="btnPlaceOrder">Buy</button>
                         </div>
                     </div>
                 </form>

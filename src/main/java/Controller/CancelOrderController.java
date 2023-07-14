@@ -6,13 +6,11 @@
 package Controller;
 
 import DTO.AccountInfo;
-import DTO.UserInfo;
-import Utils.DBUtils;
+import DTO.OrderInfo;
+import Utils.OrderUtils;
 import Utils.RoleConstant;
-import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,15 +22,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Minh
  */
-@WebServlet(name = "Login", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "CancelOrder", urlPatterns = {"/CancelOrderController"})
+public class CancelOrderController extends HttpServlet {
 
-    private static final String ERROR_PAGE = "error.jsp";
-    private static final String ERROR_LOGIN = "index.jsp";
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String MANAGE_ORDER_PAGE = "MainController?action=ViewAllOrders&active=2&status=all";
 
-    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
-//    private static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
-    private static final String SHOP_PAGE = "MainController?action=ViewShopAnalysis&active=0";
+    private static final String CUSTOMER_ORDER_PAGE = "MainController?action=ViewOrderHistory";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,36 +43,37 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR_PAGE;
-        //String url = null;
+        String url = ERROR;
+
         try {
-
-            String password = request.getParameter("txtPass");
-            String email = request.getParameter("txtEmail");
-            AccountInfo accountInfo = DBUtils.login(email, password);
-
-            if (accountInfo == null) {
-                request.setAttribute("message", "Wrong email or password");
-                url = ERROR_LOGIN;
-            } else {
-                String role = accountInfo.getRole();
-                System.out.println("(accountController) userid:  " + accountInfo.getId());
-                UserInfo userInfo = UserUtils.getUser(accountInfo.getId());
-                HttpSession session = request.getSession();
-                session.setAttribute("user", accountInfo);
-                session.setAttribute("userInfo", userInfo);
-
-                if (RoleConstant.SHOP.equals(role)) {
-                    url = SHOP_PAGE;
-                } else if (RoleConstant.CUSTOMER.equals(role)) {
-                    url = CUSTOMER_PAGE;
-                } else {
-                    request.setAttribute("message", "Role is not support");
+            HttpSession session = request.getSession();
+            AccountInfo user = (AccountInfo) session.getAttribute("user");
+            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            String status = request.getParameter("status");
+            if (status.equals("cancel")) {
+                OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+                if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
+                    boolean check = OrderUtils.cancelOrder(orderId);
+                    if (check) {
+                        request.setAttribute("message", "Cancel order successfully");
+                    } else {
+                        request.setAttribute("message", "Cancel order fail");
+                    }
                 }
+            } else {
+                request.setAttribute("message", "status is not valid");
 
             }
-        } catch (Exception ex) {
-            log("Error in LoginController: " + ex.getMessage());
+
+            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                url = CUSTOMER_ORDER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                url = MANAGE_ORDER_PAGE;
+            } else {
+                url = ERROR_AUTHEN;
+            }
+        } catch (NumberFormatException ex) {
+            log("Error in CancelOrderController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
