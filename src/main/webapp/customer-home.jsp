@@ -29,7 +29,17 @@
             <div class="wrapper col-8 px-2">
                 <div class="d-flex justify-content-between align-items-center headWrapper">
                     <h1 class="textHeading">Shop Product</h1>
-                    <a class="linkStyled">more</a>
+                    <!-- Example single danger button -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
@@ -72,12 +82,18 @@
         <div class="col-3 wrapper p-3"> 
             <div class="d-flex justify-content-center align-items-center headWrapper">
                 <h1 class="textHeading">Best Seller</h1>
-                
+
             </div>
             <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
-                <a href="#" style="width: 100%;">
-                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
-                </a>
+
+
+                <c:forEach items="${requestScope.best_seller}" var="bestSeller" >
+
+                    <a href="${pageContext.request.contextPath}/MainController?action=ViewProduct&id=${bestSeller.id}" style="cursor: pointer; width: 100%;" >
+                        <tag:OtherProductCard  category="${bestSeller.categoryName}" description="${bestSeller.description}" productName="${bestSeller.title}" srcImg="${bestSeller.image}"/>
+                    </a>
+                </c:forEach>
+
             </div>
         </div>
     </div>

@@ -30,10 +30,10 @@
                     <hr/>
                     <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">${orderDetails.totalBill}</span></div>
                 </div>
-                <div class="d-flex align-items-center justify-content-around mt-5">
-                    <a  class=" btnCancelConfirmOrder" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}" style="max-width: 120px; cursor: pointer;">Cancel</a>
+                <div class="d-flex align-items-center justify-content-center mt-5 gap-2">
+                    <a  class=" btnCancelConfirmOrder" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}" style="max-width: 180px; cursor: pointer;">Cancel Order</a>
+                    <a  class=" btnPlaceOrder" href="${pageContext.request.contextPath}/MainController?action=Export&id=${orderDetails.orderId}" style="max-width: 180px; cursor: pointer;">Export PDF</a>
                 </div>
-
             </div>
 
 

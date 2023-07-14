@@ -18,7 +18,7 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="cartItem d-flex align-items-center ">
-    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg"/>
+    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg" style="height: 150px; object-fit: cover;"/>
     <div class="d-flex align-items-center justify-content-between w-100">
         <div >
             <div class="">${productName}</div>        
@@ -32,12 +32,9 @@
                 <li class="page-item">
                     <a class="page-link " href="${pageContext.request.contextPath}/MainController?action=UpdateCart&cartid=${id}&btnAction=dec&quantity=${quantity}"> <i class="bi bi-dash"></i> </a>
                 </li>
-                <li class="page-item"><input type="number" name="" class="page-link" value="${quantity}" id="textbox1" >
-                </li>
+                <li class="page-item"><input type="number" name="" class="page-link" value="${quantity}" id="textbox1" ></li>
                 <li class="page-item">
-                    
                     <a class="page-link" href="${pageContext.request.contextPath}/MainController?action=UpdateCart&cartid=${id}&btnAction=inc&quantity=${quantity}"> <i class="bi bi-plus"></i></a>
-
                 </li>
             </ul>
 

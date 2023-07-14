@@ -15,22 +15,23 @@
 <c:import url="include/Header.jsp"><c:param name="title" value="product Page"/></c:import>
     <section class="container  mt-5 minHeithStyled">
         <div class="wrapperProductInfo">
-            <div class="categoryTitle">Category: ${product.categoryName}</div>
-        <div class="productName">${product.title}</div>
+
+            <div class="productName d-inline-block text-truncate">${product.title}</div>
         <div class="row mb-4">
-            <div class="col-md-7 d-flex justify-content-center align-items-center">  <div id="carouselExample" class="carousel slide">
+            <div class="col-md-7 d-flex justify-content-center align-items-center"> 
+                <div id="carouselExample" class="carousel slide carouselStyled">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="assest/banner/Banner-1.png" class="d-block w-100" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100" style="transform: scale(1.5) translate(80px, 70px);" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="assest/banner/ad50db56090205.5bec77ea750ce.png" class="d-block w-100" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, 70px);"  class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="assest/banner/banner-3.png" class="d-block w-100" alt="...">
+                            <img src="images/${product.image}" onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(-80px, -70px);"  class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="assest/banner/banner-4.png" class="d-block w-100" alt="...">
+                            <img src="images/${product.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" style="transform: scale(1.5) translate(80px, -70px);" class="d-block w-100" alt="...">
                         </div>
                     </div>
 
@@ -43,13 +44,14 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div></div>
-            <div class="col-md-5 m-auto"> 
+            <div class="col-md-5 m-auto p-5"> 
                 <div class="box">
-                    <span class="productName">${product.title}</span>
+                    <span class="productName d-inline-block text-truncate">${product.title}</span>
                     <span class="productName ">${product.price}</span>
                     <div class="p-4">
                         <div class="fs-4 fw-semibold">Quantity: <span class="fw-light"> ${product.quantity}</span></div>
                         <div class="fs-4 fw-semibold">Sold: <span class="fw-light">${product.sold}</span></div>
+                        <div class=" fs-4 fw-semibold">Category:  <span class="fw-light">${product.categoryName}</span></div>
                     </div>
                     <!--seperator-->
                     <div class="fakeData p-4">
@@ -61,8 +63,8 @@
                     <!--seperator-->
 
                     <div class=" p-4 d-flex align-items-center justify-content-center gap-3">
-                        <button type="button" class=" btnCancelConfirmOrder">Add to Cart</button>
-                        <button type="button" class="btnPlaceOrder" data-bs-toggle="modal" data-bs-target="#exampleModal">Buy Now</button>
+                        <button type="button" class=" btnCancelConfirmOrder" style="font-size: 17px">Add to Cart</button>
+                        <button type="button" class="btnPlaceOrder" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 17px">Buy Now</button>
                     </div>
 
 
@@ -76,7 +78,7 @@
         <div class="row">
             <div class="col-7">
                 <span class="productName">Description</span>
-                <div>
+                <div class="lh-base">
                     ${product.description}
 
                 </div>
@@ -192,15 +194,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                  
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>${product.title}</td>
-                                                    <td>1</td>
-                                                    <td>${product.price}</td>
-                                                </tr>
 
-                           
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>${product.title}</td>
+                                                <td>1</td>
+                                                <td>${product.price}</td>
+                                            </tr>
+
+
                                         </tbody>
                                     </table> 
                                 </div>
