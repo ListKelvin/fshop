@@ -11,8 +11,6 @@ import Utils.OrderUtils;
 import Utils.RoleConstant;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +20,16 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 03lin
+ * @author Minh
  */
-@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrderController"})
-public class UpdateOrderController extends HttpServlet {
+@WebServlet(name = "CancelOrder", urlPatterns = {"/CancelOrderController"})
+public class CancelOrderController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
     private static final String MANAGE_ORDER_PAGE = "MainController?action=ViewAllOrders&active=2&status=all";
+
+    private static final String CUSTOMER_ORDER_PAGE = "MainController?action=ViewOrderHistory";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,53 +44,36 @@ public class UpdateOrderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
 
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
-            String status = request.getParameter("status");
+        try {
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
-
-            if (user == null) {
-                log("(ViewCartController) Unauthentication!!");
-                request.setAttribute("message", "Unauthentication!!");
-                url = ERROR_AUTHEN;
-            } else {
-               
-                if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP)) {
-                    log("get data successfully");
-                    boolean check = OrderUtils.updateOrderStatus(orderId, status);
+            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            String status = request.getParameter("status");
+            if (status.equals("cancel")) {
+                OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+                if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
+                    boolean check = OrderUtils.cancelOrder(orderId);
                     if (check) {
-                        log("update status successfully");
-                        request.setAttribute("mess", "update status successfully");
-                        url = MANAGE_ORDER_PAGE;
+                        request.setAttribute("message", "Cancel order successfully");
+                    } else {
+                        request.setAttribute("message", "Cancel order fail");
                     }
-
-                } else if (status.equals("cancel")) {
-                    OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
-                    if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
-                        boolean check = OrderUtils.cancelOrder(orderId);
-                        if (check && user.getRole().equals(RoleConstant.SHOP)) {
-                            request.setAttribute("message", "Cancel order successfully");
-                            url = MANAGE_ORDER_PAGE;
-                        } else {
-                            request.setAttribute("message", "Cancel order fail");
-                            url = MANAGE_ORDER_PAGE;
-                        }
-                    }
-                } else {
-                    request.setAttribute("message", "status is not valid");
-                    url = MANAGE_ORDER_PAGE;
                 }
+            } else {
+                request.setAttribute("message", "status is not valid");
+
             }
 
-        } catch (Exception e) {
-                request.setAttribute("message", "get data failed");
-
-            log("Error at UpdateOrderController " + e.toString());
+            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                url = CUSTOMER_ORDER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                url = MANAGE_ORDER_PAGE;
+            } else {
+                url = ERROR_AUTHEN;
+            }
+        } catch (NumberFormatException ex) {
+            log("Error in CancelOrderController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

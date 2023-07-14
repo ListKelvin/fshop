@@ -22,7 +22,7 @@
         <div class="col-12  p-5">
             <div class="box " >
                 <h3 class="" style="color: #BC6EEE;">Order History</h3>
-                <p>${requestScope.message}</p>
+<!--                <p>${requestScope.message}</p>-->
                 <c:if test=" not empty ${requestScope.message}">
                     <p>${requestScope.message}</p>
                 </c:if>

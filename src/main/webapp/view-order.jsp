@@ -37,12 +37,12 @@
                     <div class="fw-lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                 </div>
                 <hr/>
-                <div class="fs-5">Phương thức thanh toán: ${orderDetails.payment}</div>
+                <div class="fs-5">Phương thức thanh toán:<strong> ${orderDetails.payment} </strong></div>
                 <hr/>
                 <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">${orderDetails.totalBill}</span></div>
             </div>
             <div class="d-flex align-items-center justify-content-around mt-5">
-                <a  class=" btnCancelConfirmOrder" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}" style="max-width: 120px; cursor: pointer;">Cancel</a>
+                <a  class=" btnCancelConfirmOrder" href="${pageContext.request.contextPath}/MainController?action=CancelOrder&orderId=${orderDetails.orderId}&status=cancel" style="max-width: 120px; cursor: pointer;">Cancel</a>
             </div>
 
         </div>
@@ -94,8 +94,8 @@
         </div>
     </div>
 </section>
-                        
-                        
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
