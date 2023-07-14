@@ -6,8 +6,10 @@
 <%
 
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
-    if (user != null) {
-        UserInfo userInfo = UserUtils.getUser(user.getId());
+    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+
+    if (user != null && userInfo != null) {
+
         request.setAttribute("user", userInfo);
     }
 

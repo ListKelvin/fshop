@@ -6,8 +6,10 @@ Utils\ProductUtils.class
 DTO\OrderProductInfo.class
 DTO\UserInfo.class
 Controller\UpdateUserInfoController.class
+Controller\V?ewCartController.class
 Controller\SearchProductController.class
 Controller\BuyNowController.class
+Controller\CancelOrderController.class
 Controller\ProductByCategoryController.class
 filter\Authen.class
 Controller\BestSellerContronller.class

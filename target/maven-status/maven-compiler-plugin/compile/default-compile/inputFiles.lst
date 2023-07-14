@@ -31,6 +31,7 @@ D:\Code\Java\prj301-se1714-10\src\main\java\Controller\ViewShopAnalysisControlle
 D:\Code\Java\prj301-se1714-10\src\main\java\DTO\CartInfo.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\OrderHistoryController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\LoginController.java
+D:\Code\Java\prj301-se1714-10\src\main\java\Controller\CancelOrderController.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\OrderProductUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Utils\OrderUtils.java
 D:\Code\Java\prj301-se1714-10\src\main\java\Controller\AddToCartController.java

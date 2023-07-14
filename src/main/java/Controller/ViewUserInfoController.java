@@ -30,7 +30,7 @@ public class ViewUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String USER_INFO_PAGE = "test.jsp";
+    private static final String USER_INFO_PAGE = "editUserProfile.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,10 +53,12 @@ public class ViewUserInfoController extends HttpServlet {
             int status = Integer.parseInt(request.getParameter("updateStatus"));
 
             if (user == null) {
-                log("(ViewCartController) Unauthentication!!");
+
                 request.setAttribute("message", "Unauthentication!!");
                 url = ERROR_AUTHEN;
             } else if (status == 0) {
+                System.out.println(status);
+
                 userinfo = UserUtils.getUser(user.getId());
                 if (userinfo != null) {
 
@@ -70,6 +72,7 @@ public class ViewUserInfoController extends HttpServlet {
                 }
 
             } else {
+                userinfo = UserUtils.getUser(user.getId());
                 if (userinfo != null) {
 
                     request.setAttribute("userinfo", userinfo);
