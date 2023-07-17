@@ -85,5 +85,6 @@
 
 </div>
 
+<script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>
 </body>
 </html>

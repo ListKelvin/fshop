@@ -94,4 +94,6 @@
 
 
 </body>
+
+<script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>
 </html>

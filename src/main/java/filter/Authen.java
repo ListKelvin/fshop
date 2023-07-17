@@ -63,10 +63,14 @@ public class Authen implements Filter {
 
 //        shop.add("Login");
         shop.add("ViewAllOrders");
+        shop.add("ViewOrder");
+
         shop.add("ViewShopAnalysis");
         shop.add("UpdateProduct");
         shop.add("CreateProduct");
         shop.add("AddCategory");
+        shop.add("ViewAllProducts");
+        shop.add("CancelOrder");
 
         //customer
         customer.add("cart.jsp");
@@ -208,7 +212,7 @@ public class Authen implements Filter {
                     AccountInfo loginUser = (AccountInfo) session.getAttribute("user");
                     String role = loginUser.getRole();
                     log("check role: " + role);
-                    if (RoleConstant.SHOP.equals(role) && shop.contains(action)) {
+                    if (RoleConstant.SHOP.equals(role) && shop.contains(action) || shop.contains(resource)) {
                         log("shop check");
 
                         chain.doFilter(request, response);

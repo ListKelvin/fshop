@@ -31,7 +31,7 @@
                     <div class=" d-flex align-items-center justify-content-between fw-semibold  fs-5">Total: <span style="color: #BC6EEE;">${orderDetails.totalBill}</span></div>
                 </div>
                 <div class="d-flex align-items-center justify-content-around mt-5">
-                    <a  class=" btnCancelConfirmOrder" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory&userId=${orderDetails.userId}" style="max-width: 120px; cursor: pointer;">Cancel</a>
+                    <a  class=" btnCancelConfirmOrder ${orderDetails.status == 'cancel' ?'disabled':''}" href="${pageContext.request.contextPath}/MainController?action=CancelOrder&orderId=${orderDetails.orderId}&status=cancel" style="max-width: 120px; cursor: pointer;">Cancel</a>
                 </div>
 
             </div>
@@ -97,6 +97,6 @@
 
 </div>
 
-
+<script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>
 </body>
 </html>
