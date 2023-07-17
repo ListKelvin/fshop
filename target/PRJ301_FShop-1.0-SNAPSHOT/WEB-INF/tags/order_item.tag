@@ -17,8 +17,8 @@
     <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg"/>
     <div class="d-flex align-items-center justify-content-between w-100  p-3">
         <div >
-            <div class="">${productName}</div>        
-            <div class="" >Quantity: ${quantity}</div>
+            <div class=" text-truncate"  style="max-width: 200px;">${productName}</div>        
+            <div class="" >Quantity: <strong> ${quantity} </strong></div>
         </div>
 
         <div>

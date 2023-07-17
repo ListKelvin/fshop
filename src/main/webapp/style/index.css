@@ -404,7 +404,8 @@ and open the template in the editor.
     transform: scale(1.1);  Set the scale transform to zoom in on the image 
 }*/
 .carouselStyled {
-  width: 50vh;
+  width: 60vh;
+  height: 60vh;
   border-radius: 10px;
   overflow: hidden; }
 

@@ -9,8 +9,10 @@ D:\java\PRJ301_FShop\src\main\java\Controller\RemoveCartController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\GoogleSignIn.java
 D:\java\PRJ301_FShop\src\main\java\Utils\APIWrapper.java
 D:\java\PRJ301_FShop\src\main\java\Utils\OrderUtils.java
+D:\java\PRJ301_FShop\src\main\java\Controller\ExportPDFController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\LoginController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\ViewAllProductsController.java
+D:\java\PRJ301_FShop\src\main\java\Controller\CancelOrderController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\ViewOrderController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\LogoutController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\CategoryUtils.java
@@ -48,6 +50,5 @@ D:\java\PRJ301_FShop\src\main\java\Controller\ViewAllOrdersController.java
 D:\java\PRJ301_FShop\src\main\java\Utils\CartUtils.java
 D:\java\PRJ301_FShop\src\main\java\Controller\GoogleLoginController.java
 D:\java\PRJ301_FShop\src\main\java\Controller\UpdateProductController.java
-D:\java\PRJ301_FShop\src\main\java\Controller\ExportPDFServlet.java
 D:\java\PRJ301_FShop\src\main\java\DTO\OrderProductInfo.java
 D:\java\PRJ301_FShop\src\main\java\filter\Authen.java

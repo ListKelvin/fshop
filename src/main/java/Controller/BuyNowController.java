@@ -6,12 +6,12 @@
 package Controller;
 
 import DTO.AccountInfo;
-import DTO.CartInfo;
+
 import DTO.OrderInfo;
 import DTO.OrderProductInfo;
 import DTO.ProductInfo;
 import DTO.UserInfo;
-import Utils.CartUtils;
+
 import Utils.OrderProductUtils;
 import Utils.OrderUtils;
 import Utils.ProductUtils;
@@ -30,11 +30,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "BuyNowController", urlPatterns = {"/BuyNow"})
+@WebServlet(name = "Buy Now", urlPatterns = {"/BuyNowController"})
 public class BuyNowController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String CART_PAGE = "MainController?action=ViewCart";
+    private static final String CART_PAGE = "MainController?action=ViewOrderHistory";
     private static final String ERROR_AUTHEN = "403.jsp";
 
     /**
@@ -56,10 +56,10 @@ public class BuyNowController extends HttpServlet {
         OrderUtils ou = new OrderUtils();
         OrderProductUtils opu = new OrderProductUtils();
         ProductUtils pu = new ProductUtils();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date date = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        try (PrintWriter out = response.getWriter()) {
+        try {
             AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
             UserInfo userinfo = null;
             ProductInfo product = null;
@@ -68,7 +68,7 @@ public class BuyNowController extends HttpServlet {
                 url = ERROR_AUTHEN;
             } else {
                 userinfo = UserUtils.getUser(user.getId());
-                product = pu.getSingleProduct(productId);
+                product = ProductUtils.getSingleProduct(productId);
             }
             if (product != null && userinfo != null) {
                 if (product.getSoldOut().equals("false") && product.getQuantity() >= 1 && userinfo.getPhone() != null && userinfo.getAddress() != null && userinfo.getName() != null) {
@@ -131,7 +131,7 @@ public class BuyNowController extends HttpServlet {
             }
 
         } catch (Exception e) {
-            log("Exception at CreateOrderController: " + e.getMessage());
+            log("Exception at BuyNowController: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

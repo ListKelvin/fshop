@@ -6,8 +6,10 @@
 package Controller;
 
 import DTO.AccountInfo;
+import DTO.UserInfo;
 import Utils.DBUtils;
 import Utils.RoleConstant;
+import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.persistence.NoResultException;
@@ -58,9 +60,10 @@ public class LoginController extends HttpServlet {
             } else {
                 String role = accountInfo.getRole();
                 System.out.println("(accountController) userid:  " + accountInfo.getId());
-
+                UserInfo userInfo = UserUtils.getUser(accountInfo.getId());
                 HttpSession session = request.getSession();
                 session.setAttribute("user", accountInfo);
+                session.setAttribute("userInfo", userInfo);
                 if (RoleConstant.SHOP.equals(role)) {
                     url = SHOP_PAGE;
                 } else if (RoleConstant.CUSTOMER.equals(role)) {

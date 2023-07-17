@@ -1,11 +1,18 @@
+<%@page import="DTO.UserInfo"%>
+<%@page import="Utils.UserUtils"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page import="DTO.AccountInfo"%>
 <%
 
     AccountInfo user = (AccountInfo) request.getSession().getAttribute("user");
-    if (user != null) {
-        request.setAttribute("user", user);
-    }%> 
+    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+    if (user != null && userInfo != null) {
+        request.setAttribute("user", userInfo);
+    }
+
+
+%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,30 +57,48 @@
                                 <input  type="hidden" name="action" value="SearchProduct">
                             </div>
                         </form>
+                        <c:if test="${ empty user}">
 
-                        <ul class="navbar-nav  pe-3 ">
-                            <li class="nav-item">
-                                <a class="nav-link  textResponsive " aria-current="page" href="${pageContext.request.contextPath}/MainController?action=ViewCart"><i class="bi bi-cart3"></i> Cart 
-                                
+                            <div class="d-flex gap-3">
+                                <a class="btnCancelConfirmOrder" href="index.jsp">
+                                    login
                                 </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle textResponsive" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
-                                         width="22" height="22" alt="Avatar" loading="lazy" />
+                                <a class="btnPlaceOrder" href="register.jsp">
+
+
+                                    register
                                 </a>
-                                <ul class="dropdown-menu  dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Setting Profile</a></li>
-                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory">Order History</a></li>
+                            </div>
+
+                        </c:if>
+                        <c:if test="${not empty user}">
 
 
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item text-danger" href="${pageContext.request.contextPath}/MainController?action=Logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                            <ul class="navbar-nav  pe-3 ">
+                                <li class="nav-item">
+                                    <a class="nav-link  textResponsive " aria-current="page" href="${pageContext.request.contextPath}/MainController?action=ViewCart"><i class="bi bi-cart3"></i> Cart 
+
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle textResponsive" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="images/${user.avatar}" onError="this.onerror=null;this.src='./assest/linn.jpg';" class="rounded-circle"
+                                             width="22" height="22" alt="Avatar" loading="lazy" />
+                                    </a>
+                                    <ul class="dropdown-menu  dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewUserInfo&updateStatus=0">Setting Profile</a></li>
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/MainController?action=ViewOrderHistory">Order History</a></li>
+
+
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-danger" href="${pageContext.request.contextPath}/MainController?action=Logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </c:if>
+
                     </div>
                 </div>
             </div>

@@ -9,12 +9,14 @@ Controller\UpdateUserInfoController.class
 Controller\V?ewCartController.class
 Controller\SearchProductController.class
 Controller\BuyNowController.class
+Controller\CancelOrderController.class
 Controller\ProductByCategoryController.class
 filter\Authen.class
 Controller\BestSellerContronller.class
 Controller\UpdateOrderController.class
 Utils\UserUtils.class
 Controller\AccountController.class
+Controller\ExportPDFController.class
 Controller\ViewAllProductsController.class
 Utils\GoogleSignIn.class
 Controller\RemoveCartController.class
@@ -31,7 +33,6 @@ Controller\RegisterController.class
 DTO\ProductInfo.class
 Controller\MainController.class
 Utils\Utility.class
-Controller\ExportPDFServlet.class
 DTO\CategoryInfo.class
 Utils\OrderUtils.class
 Controller\GoogleLoginController.class
