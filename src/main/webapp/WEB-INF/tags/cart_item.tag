@@ -18,10 +18,10 @@
 <%-- any content can be specified here e.g.: --%>
 
 <div class="cartItem d-flex align-items-center ">
-    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg" style="height: 150px; object-fit: cover;"/>
+    <img src="images/${srcImg}" onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${productName}"  class="productImg" style="height: 150px; width: 150px; object-fit: cover;"/>
     <div class="d-flex align-items-center justify-content-between w-100">
-        <div >
-            <div class="">${productName}</div>        
+        <div class="w-50">
+            <div class=""  >${productName}</div>        
             <div class="badge rounded-pill badgeStyle d-inline-block text-truncate" style="max-width: 70px;">${category}</div>
 
 
@@ -38,14 +38,13 @@
                 </li>
             </ul>
 
-            <!--            <button class="btn btn-danger" type="button"><i class="bi bi-trash"></i> REMOVE</button>-->
 
             <form action="MainController" method="POST">
                 <input type=hidden name="cartid" value="${id}">
                 <input class="btn btn-danger" value="RemoveCart" name="action" type="Submit">
             </form>
         </div>
-        <div>
+        <div class="w-25 text-center">
             ${price}
         </div>
     </div>

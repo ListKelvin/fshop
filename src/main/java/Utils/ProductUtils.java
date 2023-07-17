@@ -118,7 +118,7 @@ public class ProductUtils {
 //        }
 //        return products;
 //    }
-    public List<ProductInfo> searchProduct(String title) {
+    public static List<ProductInfo> searchProduct(String title) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
@@ -161,14 +161,14 @@ public class ProductUtils {
         return products;
     }
 
-    public static List<ProductInfo> searchProductCategory(String title, String cate) {
+    public static List<ProductInfo> searchProductCategory( String cate) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();
-            String sql = "SELECT * FROM [product] where category =? and title like ? ";
+            String sql = "SELECT * FROM [product] where category =?  ";
             stm = con.prepareStatement(sql);
             stm.setString(1, cate);
-            stm.setString(2, "%" + title + "%");
+ 
             rs = stm.executeQuery();
             while (rs.next()) {
                 ProductInfo row = new ProductInfo();

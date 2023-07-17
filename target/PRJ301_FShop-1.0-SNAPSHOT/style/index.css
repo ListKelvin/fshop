@@ -671,6 +671,9 @@ p {
 .ms-n5 {
   margin-left: -53px; }
 
+.price {
+  color: #FF9B33; }
+
 /*///////////// sidebar //////////////////*/
 .sideBar {
   width: 200px;

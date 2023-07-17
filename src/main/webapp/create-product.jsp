@@ -40,11 +40,11 @@
                         <div class="col">
                             <div class="">
                                 <label  for="title" class="form-label fw-semibold fs-5">Title:</label>
-                                <input class="form-control" type="text" name="title" id="title"  aria-label="title product input" >
+                                <input class="form-control" type="text" name="title" id="title" maxlength="200"  aria-label="title product input" >
                             </div>
                             <div class="">
                                 <label  for="priceStr" class="form-label fw-semibold fs-5">Price:</label>
-                                <input class="form-control" type="number" name="priceStr" id="priceStr"  aria-label="price product input" >
+                                <input class="form-control" type="number" name="priceStr" id="priceStr" min="10" max="100000" aria-label="price product input" >
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@
                         </div>
                         <div class="">
                             <label  for="quantityStr" class="form-label fw-semibold fs-5">Quantity:</label>
-                            <input class="form-control" type="number" name="quantityStr" id="quantityStr"  aria-label="quantity product input" >
+                            <input class="form-control" type="number" name="quantityStr" id="quantityStr" min="1" max="100000"  aria-label="quantity product input" >
                         </div>
                     </div>
                 </div>

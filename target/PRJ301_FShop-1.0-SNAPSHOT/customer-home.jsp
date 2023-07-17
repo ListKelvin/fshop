@@ -32,27 +32,38 @@
                     <!-- Example single danger button -->
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+                        ${param.cate != ""  ? param.cate : "Select category"} 
+                    </button>
+                    <!--                        <form action="MainController">
+                                                <select class="form-select form-select-lg mb-3" >
+                    <c:forEach items="${requestScope.categories}" var="category">
+                        <option value="">Open this select menu</option>
+                    </c:forEach>
+                </select>-->
+
+                    </form>
+
+                    <ul class="dropdown-menu">
+
+                        <c:forEach items="${requestScope.categories}" var="category">
+                            <li><a class="dropdown-item"  href="${pageContext.request.contextPath}/MainController?action=SearchProduct&cate=${category.categoryName}&searchTxt=">${category.categoryName}</a> </li>
+                            </c:forEach>
+
+                    </ul>
                 </div>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
                     <tag:product_card className="col-md-4" disabled="${requestScope.user == null ?'disabled': ''}" id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
                 </c:forEach>
 
                 <c:if test="${listProduct.size() ==0 }">
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
                         <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                        <p>Empty</p>
                     </div>
                 </c:if>
-
             </div>
 
             <nav aria-label="Page navigation" class="p-2">

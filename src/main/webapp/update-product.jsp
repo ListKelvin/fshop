@@ -74,7 +74,7 @@
            
             </div>
             <div class="d-flex align-items-center gap-2">
-                <button type="Submit"  class="btnPlaceOrder">Cancel</button>
+                <button type="button" onClick="window.location.href='${pageContext.request.contextPath}/MainController?action=ViewAllProducts&active=1'" class="btnPlaceOrder">Cancel</button>
                 <button type="Submit"  class="btnPlaceOrder">Yes</button>
             </div>
         </form>

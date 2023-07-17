@@ -18,15 +18,19 @@ public class Utility {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private static final String pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+;
 
     public Utility() {
     }
 
     public static Date handleParseDate(String inputDate) {
         try {
-            sdf.setLenient(false);
-            Date date = sdf.parse(inputDate);
-            return date;
+            formatter.setLenient(false);
+            Date date = formatter.parse(inputDate);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+            return sqlDate;
         } catch (ParseException e) {
             return null;
         }

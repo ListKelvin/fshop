@@ -12,7 +12,7 @@ import Utils.Utility;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
+import  java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UpdateUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "MainController?action=SearchProduct&searchTxt=";
+    private static final String SUCCESS = "MainController?action=SearchProduct&searchTxt=&cate=";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

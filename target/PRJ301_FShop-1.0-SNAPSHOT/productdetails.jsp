@@ -16,7 +16,7 @@
     <section class="container  mt-5 minHeithStyled">
         <div class="wrapperProductInfo">
 
-            <div class="productName d-inline-block text-truncate"  style="max-width: 250px;">${product.title}</div>
+            <div class="productName mb-3"  >${product.title}</div>
         <div class="row mb-4">
             <div class="col-md-7 d-flex justify-content-center align-items-center"> 
                 <div id="carouselExample" class="carousel slide carouselStyled">
@@ -46,17 +46,21 @@
                 </div></div>
             <div class="col-md-5 m-auto p-5"> 
                 <div class="box">
-                    <span class="productName d-inline-block text-truncate">${product.title}</span>
-                    <span class="productName ">${product.price}</span>
+                    <span class="productName ">${product.title}</span>
+                    <span class="productName price">${product.price}</span>
                     <div class="p-4">
-                        <div class="fs-4 fw-semibold">Quantity: <span class="fw-light"> ${product.quantity}</span></div>
-                        <div class="fs-4 fw-semibold">Sold: <span class="fw-light">${product.sold}</span></div>
-                        <div class=" fs-4 fw-semibold">Category:  <span class="fw-light">${product.categoryName}</span></div>
+                        <div class="fs-4 fw-semibold">Quantity: <span class="fw-light" style="color:#BC6EEE"> ${product.quantity}</span></div>
+                        <div class="fs-4 fw-semibold">Sold: <span class="fw-light" style="color:#BC6EEE">${product.sold}</span></div>
+                        <div class=" fs-4 fw-semibold">Category:  <span class="fw-light" style="color:#BC6EEE">${product.categoryName}</span></div>
                     </div>
                     <!--seperator-->
                     <div class="fakeData p-4">
-                        <div class="fs-4 fw-semibold"> Payment: ....</div>
-                        <div class="fs-4 fw-semibold"> Delivery:....</div>
+                        <div class="fs-4 fw-semibold"> Payment: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#BC6EEE" class="bi bi-wallet" viewBox="0 0 16 16">
+                            <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"/>
+                            </svg></div>
+                        <div class="fs-4 fw-semibold"> Delivery:  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#BC6EEE" class="bi bi-truck" viewBox="0 0 16 16">
+                            <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg></div>
                     </div>
 
 
@@ -72,7 +76,14 @@
                     <c:if test="${userInfo != null}">
 
                         <div class=" p-4 d-flex align-items-center justify-content-center gap-3">
-                            <button type="button" class=" btnCancelConfirmOrder  " style="font-size: 17px" >Add to Cart</button>
+                            <div class="px-2 ${disabled}">
+                                <!--    <button>Add to cart or ICOn</button>-->
+                                <form action="MainController" method="POST">
+                                    <input type=hidden name="id" value="${product.id}">
+                                    <input class="btnCancelConfirmOrder " value="Add To Cart" name="action" type="Submit" style="font-size: 17px">
+                                </form>
+                            </div>
+<!--                            <button type="button" onClick="window.location.href = '${pageContext.request.contextPath}/MainController?action=ViewAllProducts&active=1'" class=" btnCancelConfirmOrder  " style="font-size: 17px" >Add to Cart</button>-->
                             <button type="button" class="btnPlaceOrder  " data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 17px" >Buy Now</button>
                         </div>
                     </c:if>
@@ -88,25 +99,25 @@
         </div>
 
         <div class="row">
-            <div class="col-7">
+            <div class="col-12 p-4">
                 <span class="productName">Description</span>
                 <div class="lh-base">
                     ${product.description}
 
                 </div>
             </div>
-            <div class="col-5"> 
+            <div class="col-12 mt-5"> 
                 <span class="productName">Other products</span>
-                <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
+                <div class=" row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
 
 
-                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
-                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
-                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
-                    <tag:OtherProductCard category="test" description="fdsalkjjjjjjjjjjjjjjjjjj" productName="minh pham" srcImg="./assest/E-commerce_1.png"/>
+                    <c:forEach items="${requestScope.best_seller}" var="product" varStatus="counter">
+
+                        <tag:product_card className="col-md-4" disabled="${requestScope.user == null ?'disabled': ''}" id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
+
+                    </c:forEach>
 
                 </div>
-
             </div>
 
 
