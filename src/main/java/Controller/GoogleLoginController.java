@@ -6,6 +6,7 @@
 package Controller;
 
 import DTO.AccountInfo;
+import DTO.UserInfo;
 import Utils.DBUtils;
 import Utils.GoogleSignIn;
 import Utils.UserUtils;
@@ -49,22 +50,27 @@ public class GoogleLoginController extends HttpServlet {
             String credential = request.getParameter("credential");
 
             AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
-            log(ggAcc.getEmail());
+        
             if (ggAcc.getEmail() != null) {
 
                 AccountInfo accDB = DBUtils.checkEmail(ggAcc.getEmail());
                 if (accDB != null) {
-                    session.setAttribute("user", ggAcc);
+                    UserInfo userInfo2 = UserUtils.getUser(accDB.getId());
+
+                    session.setAttribute("userInfo", userInfo2);
+                    session.setAttribute("user", accDB);
                     url = CUSTOMER_PAGE;
-                } else{
+                } else {
                     boolean registerSuccess = DBUtils.registerByGG(ggAcc.getEmail(), ggAcc.getName().trim());
                     if (registerSuccess) {
                         UserUtils.createUser(accDB.getId());
-                        session.setAttribute("user", ggAcc);
+                        UserInfo userInfo2 = UserUtils.getUser(accDB.getId());
+                        session.setAttribute("userInfo", userInfo2);
+
+                        session.setAttribute("user", accDB);
                         url = CUSTOMER_PAGE;
                     }
                 }
-              
 
             } else {
                 request.setAttribute("message", "Something wrong with GG please try later!");

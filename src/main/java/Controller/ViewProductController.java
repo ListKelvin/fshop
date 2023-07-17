@@ -49,15 +49,25 @@ public class ViewProductController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
-            UserInfo userInfo = UserUtils.getUser(user.getId());
-            ProductInfo po = ProductUtils.getSingleProduct(id);
 
-            request.setAttribute("userInfo", userInfo);
-            request.setAttribute("product", po);
+            if (user == null) {
+                ProductInfo po = ProductUtils.getSingleProduct(id);
 
-            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                request.setAttribute("product", po);
+                url = VIEW_PRODUCT_CUSTORMER_PAGE;
+            } else if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                UserInfo userInfo = UserUtils.getUser(user.getId());
+                ProductInfo po = ProductUtils.getSingleProduct(id);
+
+                request.setAttribute("userInfo", userInfo);
+                request.setAttribute("product", po);
                 url = VIEW_PRODUCT_CUSTORMER_PAGE;
             } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                UserInfo userInfo = UserUtils.getUser(user.getId());
+                ProductInfo po = ProductUtils.getSingleProduct(id);
+
+                request.setAttribute("userInfo", userInfo);
+                request.setAttribute("product", po);
                 url = VIEW_PRODUCT_ADMIN_PAGE;
             } else {
                 url = ERROR_AUTHEN;

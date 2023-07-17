@@ -61,11 +61,23 @@
 
 
                     <!--seperator-->
+                    <c:if test="${userInfo == null}">
 
-                    <div class=" p-4 d-flex align-items-center justify-content-center gap-3">
-                        <button type="button" class=" btnCancelConfirmOrder" style="font-size: 17px">Add to Cart</button>
-                        <button type="button" class="btnPlaceOrder" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 17px">Buy Now</button>
-                    </div>
+                        <span class="p-4 d-flex align-items-center justify-content-center gap-3 text-danger">
+
+                            Please Login/register to shopping
+                        </span>
+                    </c:if>
+
+                    <c:if test="${userInfo != null}">
+
+                        <div class=" p-4 d-flex align-items-center justify-content-center gap-3">
+                            <button type="button" class=" btnCancelConfirmOrder  " style="font-size: 17px" >Add to Cart</button>
+                            <button type="button" class="btnPlaceOrder  " data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 17px" >Buy Now</button>
+                        </div>
+                    </c:if>
+
+
 
 
                 </div>

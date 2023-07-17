@@ -44,7 +44,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
-                    <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
+                    <tag:product_card className="col-md-4" disabled="${requestScope.user == null ?'disabled': ''}" id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
                 </c:forEach>
 
                 <c:if test="${listProduct.size() ==0 }">

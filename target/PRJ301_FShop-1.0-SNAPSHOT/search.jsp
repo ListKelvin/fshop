@@ -59,7 +59,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-3 p-5 justify-content-center"> 
 
         <c:forEach items="${requestScope.LIST_PRODUCT}" var="products" varStatus="counter">
-            <tag:product_card className="col-md-4" idProduct="${products.id}" id="${counter.count}" category="${products.categoryName}" productName="${products.title}" img="./assest/linn.jpg" price="${products.price}"/>
+            <tag:product_card className="col-md-4" idProduct="${products.id}" disabled="${requestScope.user == null ?'disabled': ''}" id="${counter.count}" category="${products.categoryName}" productName="${products.title}" img="./assest/linn.jpg" price="${products.price}"/>
         </c:forEach>
         <c:if test="${requestScope.LIST_PRODUCT.size() == 0 }">
             <div class="d-flex align-items-center justify-content-center flex-column">

@@ -60,12 +60,12 @@
                         <div class="col-12 col-md-6 p-3">
                             <div class="form-group">
                                 <label for="nameTxt"> Name</label>
-                                <input type="text" class="form-control  form-control-lg" id="nameTxt" name="nameTxt" value="${user.name}" aria-describedby="nameTxt"  ${param.updateStatus == 0 ?readonly: "" }>
+                                <input type="text" class="form-control  form-control-lg" id="nameTxt" name="nameTxt" value="${user.name}" aria-describedby="nameTxt"  ${param.updateStatus == 0 ? "readonly" : "" }>
                                     <p id="fullnameErr" style="color: white"></p>
                             </div>
                             <div class="form-group">
                                 <label for="dobTxt">Date of birth</label>
-                                <input  type="date" class="form-control  form-control-lg" name="dobTxt" placeholder="dd/mm/yyyy" id="dobTxt"  value="${user.dob}" aria-describedby="dobTxt"  ${param.updateStatus == 0 ?readonly: "" }>
+                                <input  type="date" class="form-control  form-control-lg" name="dobTxt" placeholder="dd/mm/yyyy" id="dobTxt"  value="${user.dob}" aria-describedby="dobTxt"  ${param.updateStatus == 0 ?"readonly" : "" }>
                             </div>
 
 
@@ -73,7 +73,7 @@
                         <div class="col-12 col-md-6 p-3">
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="number" class="form-control  form-control-lg" id="phone" name="phoneTxt" value="${user.phone}" aria-describedby="phone"  ${param.updateStatus == 0 ?readonly: "" }>
+                                <input type="number" class="form-control  form-control-lg" id="phone" name="phoneTxt" value="${user.phone}" aria-describedby="phone"  ${param.updateStatus == 0 ? "readonly" : "" }>
                                     <p id="phoneErr" style="color: white"></p>
                             </div>
 
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="genderTxt">Gender</label>
 <!--                                <input type="text" class="form-control  form-control-lg" id="genderTxt" name="genderTxt"  value="${user.gender}" aria-describedby="genderTxt">-->
-                                <select  class="form-select form-control-lg" id="genderTxt"   name="genderTxt" aria-label="Default select example"  ${param.updateStatus == 0 ? disabled: "" }>
+                                <select  class="form-select form-control-lg" id="genderTxt"   name="genderTxt" aria-label="Default select example"  ${param.updateStatus == 0 ? "disabled ": "" }>
                                     <option value="${user.gender}">${user.gender}</option>
                                     <option value="male">Male</option>
                                     <option value="femal">Female</option>
@@ -94,7 +94,7 @@
 
                     <div class="form-group ">
                         <label for="addressTxt">Address</label>
-                        <input type="text" class="form-control  form-control-lg" id="addressTxt" name="addressTxt" value="${user.address}" aria-describedby="addressTxt" ${param.updateStatus == 0 ?readonly: "" }>
+                        <input type="text" class="form-control  form-control-lg" id="addressTxt" name="addressTxt" value="${user.address}" aria-describedby="addressTxt" ${param.updateStatus == 0 ? "readonly": "" }>
                     </div> 
 
                 </div>
