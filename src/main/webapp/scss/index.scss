@@ -93,6 +93,19 @@ body{
         color: white;
     }
 }
+.btnEditAvatar{
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    @include button;
+
+    width: 50px;
+    color:$white;
+    border: none;
+    &:hover{
+        background-color:$Purple-400;   
+    } 
+}
 .btnCreateProduct{
     @include buttonOutlined;
     width: fit-content;

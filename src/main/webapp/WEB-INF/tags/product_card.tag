@@ -14,6 +14,8 @@
 <%@attribute name="img" required="true"%>
 <%@attribute name="price" required="true"%>
 <%@attribute name="className" %>
+<%@attribute name="disabled" %>
+
 <%-- any content can be specified here e.g.: --%>
 
 <div class=" product card ${className}" id="${id}">
@@ -31,7 +33,7 @@
     </a>
 
 
-    <div class="px-2 pb-3">
+    <div class="px-2 pb-3 ${disabled}">
         <!--    <button>Add to cart or ICOn</button>-->
         <form action="MainController" method="POST">
             <input type=hidden name="id" value="${idProduct}">

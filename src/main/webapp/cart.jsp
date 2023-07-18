@@ -166,6 +166,7 @@
 
 
                     </div>
+                    <input type="hidden" name="action" value="CreateOrder" />
                     <div class="modal-footer mt-5">
                         <div class="d-flex align-items-center gap-2">
                             <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">No</button>

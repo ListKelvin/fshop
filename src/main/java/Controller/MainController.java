@@ -186,6 +186,7 @@ public class MainController extends HttpServlet {
                         break;
                     case CANCEL_ORDER:
                         url = CANCEL_ORDER_CONTROLLER;
+                        break;
                     case EXPORT_PDF:
                         url = EXPORT_PDF_CONTROLLER;
                         break;

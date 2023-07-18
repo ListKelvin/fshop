@@ -12,8 +12,8 @@
                 <div class="card-body">
                 
                     <p class="text-danger">${requestScope.message}</p>
-                <button type="button" onclick="goBack()" class="btn btn-primary btn-sm">Go Back</button>
-                <button type="button" onclick="goHome()" class="btn btn-primary btn-sm">Go Home</button>
+                <button type="button" onClick="goBack()" class="btn btn-primary btn-sm">Go Back</button>
+                <button type="button" onClick="goHome()" class="btn btn-primary btn-sm">Go Home</button>
             </div>
         </div>
     </div>

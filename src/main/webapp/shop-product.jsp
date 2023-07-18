@@ -17,12 +17,14 @@
                 <h2 style="color: #BC6EEE;">Product List</h2>
                 <div class="d-flex align-items-center justify-content-between gap-2">
                     <a class="btnCreateProduct" href="${pageContext.request.contextPath}/create-product.jsp">+</a>
-                <form action="MainController" class="d-flex">
-                    <input name="action" value="UpdateProduct" type="hidden"/>
-                    <input name="status" value="0" type="hidden"/>
-                    <input class="btnCreateProduct" value="New Category" type="submit"/>
+                <!--                <form action="MainController" class="d-flex">
+                                    <input name="action" value="UpdateProduct" type="hidden"/>
+                                    <input name="status" value="0" type="hidden"/>
+                                    <input class="btnCreateProduct"  data-bs-toggle="modal" data-bs-target="#exampleModal" value="New Category" type="submit"/>
+                
+                                </form>-->
+                <button type="button" class="btnCreateProduct" data-bs-toggle="modal" data-bs-target="#exampleModal">New Category</button>
 
-                </form>
             </div>
 
 
@@ -47,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-             
+
                     <c:forEach items="${requestScope.LIST_PRODUCT}" var="product" varStatus="counter">
                         <tr>
                             <th scope="row">${counter.count}</th>
@@ -95,6 +97,42 @@
 
 </div>
 
+<div class="modal fade modal-lg " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <form method="post" action="MainController" class="w-100">
 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create new category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+               
+
+
+                    <input
+        
+                        id="txtPass"
+                        class="form-control-lg w-100"
+                        name="categoy" 
+                        value=""
+                        placeholder="please enter new category"
+               
+                        />
+
+                </div>
+                <div class="modal-footer ">
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">No</button>
+                        <button type="Submit"  class="btnPlaceOrder">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>
 </body>
 </html>

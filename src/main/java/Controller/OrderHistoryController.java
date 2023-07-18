@@ -59,10 +59,11 @@ public class OrderHistoryController extends HttpServlet {
                     url = ORDER_HISTORY_PAGE;
                 } else {
                     request.setAttribute("message", "user not have any order yet");
+                    
                     url = ORDER_HISTORY_PAGE;
                 }
             } else {
-                url = ERROR;
+                url = ERROR_AUTHEN;
             }
 
         } catch (Exception ex) {
