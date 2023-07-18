@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link ${param.status == 'done' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=done&userId=${requestScope.user.id}">Done</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${param.status == 'cancel' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=GetOrderByStatus&status=cancel&userId=${requestScope.user.id}">Cancel</a>
+                        </li>
                     </ul>
                     <div>
                         <table class="table table-hover">
@@ -79,8 +82,15 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
+
                             </tbody>
                         </table>
+                    </div>
+                </c:if>
+                <c:if test="${requestScope.orders.size() == 0 }">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
+                        <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                        <p>Empty</p>
                     </div>
                 </c:if>
             </div>

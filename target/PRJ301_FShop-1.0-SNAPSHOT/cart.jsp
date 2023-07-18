@@ -1,4 +1,7 @@
+<%@page import="DTO.CartInfo"%>
+<%@page import="java.util.List"%>
 <%@page import="DTO.AccountInfo"%>
+<%@page import="DTO.ProductInfo"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,8 +35,33 @@
         <div class="col-12 col-lg-4">
             <div class="box checkOutBox">
                 <div class="p-3 ">
-                    <div class="mb-3 d-flex align-items-center justify-content-between">Amount in cart: <span>${cartItems.size()}</span></div>
-                    <div class="d-flex align-items-center justify-content-between"> Subtotal: <span>${total}</span></div>
+                    <h1 class="text-center" style="color: #BC6EEE;">F-SHOP</h1>
+
+
+                    <div class="d-flex align-items-center justify-content-between"> Phone: <span>0348485167</span></div>
+                    <div class="d-flex align-items-center justify-content-between"> Address: <span>Q1, tp HCM</span></div>
+              
+                </div>
+                <hr/>
+                <div class="p-3 ">
+
+
+                    <div class=" d-flex align-items-center justify-content-between">Amount in cart: <span><%                        List<CartInfo> cartItems = (List<CartInfo>) request.getAttribute("cartItems");
+                        int totalIncart = 0;
+                        for (CartInfo product : cartItems) {
+                            totalIncart = totalIncart + product.getCartQuantity();
+                        }
+
+                        out.print(totalIncart);
+
+                            %></span></div>
+
+                    <div class="d-flex align-items-center justify-content-between"> Payment: <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#BC6EEE" class="bi bi-wallet" viewBox="0 0 16 16">
+                                <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"/>
+                            </svg></span></div>
+                    <div class="d-flex align-items-center justify-content-between"> Delivery: <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#BC6EEE" class="bi bi-truck" viewBox="0 0 16 16">
+                                <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg></span></div>
                 </div>
                 <hr/>
                 <div class="p-3 d-flex align-items-center justify-content-between">Total: <span>${total}</span></div>
@@ -166,6 +194,7 @@
 
 
                     </div>
+                    <input type="hidden" name="action" value="CreateOrder" />
                     <div class="modal-footer mt-5">
                         <div class="d-flex align-items-center gap-2">
                             <button type="button" class="btnCancelConfirmOrder" data-bs-dismiss="modal">No</button>

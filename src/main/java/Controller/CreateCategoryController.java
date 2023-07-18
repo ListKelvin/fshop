@@ -22,8 +22,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 03lin
  */
-@WebServlet(name = "CreateCategory", urlPatterns = {"/CreateCategory"})
+@WebServlet(name = "CreateCategory", urlPatterns = {"/CreateCategoryController"})
 public class CreateCategoryController extends HttpServlet {
+
+    private static final String ERROR = "error.jsp";
+    private static final String ERROR_AUTHEN = "403.jsp";
+    private static final String MANAGE_PRODUCT_PAGE = "MainController?action=ViewAllProducts&active=2&status=all";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,9 +42,11 @@ public class CreateCategoryController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         CategoryUtils ca = new CategoryUtils();
-        Validation va = new Validation();
-        try (PrintWriter out = response.getWriter()) {
-            String redirectPage = "create-category.jsp";
+
+        String url = ERROR;
+
+        try {
+
             String categoryName = request.getParameter("category");
             if (ca.checkCategory(categoryName.toLowerCase()) == null) {
                 boolean result = false;
@@ -49,20 +55,24 @@ public class CreateCategoryController extends HttpServlet {
                 result = ca.insertCategory(categoryName.toLowerCase());
                 if (result) {
                     request.setAttribute("message", "create category successfully");
-                    redirectPage = "admin-home.jsp";
+                    url = MANAGE_PRODUCT_PAGE;
                 } else {
                     request.setAttribute("message", "create category fail");
-                    redirectPage = "create-category.jsp";
+                    url = MANAGE_PRODUCT_PAGE;
+
                 }
 
             } else {
                 request.setAttribute("message", "category already exist");
-                redirectPage = "create-category.jsp";
+                url = MANAGE_PRODUCT_PAGE;
             }
-            RequestDispatcher rd = request.getRequestDispatcher(redirectPage);
-            rd.forward(request, response);
+     
+        } catch (NumberFormatException ex) {
+            log("Error in CreateCategory: " + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -19,40 +19,104 @@
 
 <c:import url="include/Header.jsp"><c:param name="title" value="Home Page"/></c:import>
 
+    <div id="carouselExample" class="carousel slide " style=" margin-top: 70px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assest/banner/Banner-1.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover"  alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assest/banner/ad50db56090205.5bec77ea750ce.png" width="1920" height="600"   onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assest/banner/banner-3.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"   class="d-block w-100 object-fit-cover" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assest/banner/banner-4.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
+            </div>
+        </div>
 
-    <section class="container-fluid d-flex align-items-center justify-content-center flex-column  minHeithStyled " onload="init()">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
-        <!--Product suggestion section-->
-        <div class="w-100 bgProduct h-100 mb-3 row gap-4  justify-content-center">
+    <!-- End Carousel -->
+    <div style="background: #ECFFC1">
+        <div class=" container py-5" > 
+            <div class="d-flex justify-content-center flex-column align-items-center headWrapper">
+                <h1 class="textHeading">Best Seller</h1> <div>        <h3 class="textHeading3">Top 10</h3></div>
 
 
-            <div class="wrapper col-8 px-2">
-                <div class="d-flex justify-content-between align-items-center headWrapper">
-                    <h1 class="textHeading">Shop Product</h1>
-                    <!-- Example single danger button -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 gap-4 p-5 justify-content-center"> 
+            <c:forEach items="${requestScope.best_seller}" var="bestSeller" varStatus="counter" >
+
+
+                <tag:product_card   className="col-md-4" disabled="${requestScope.user == null ?'disabled': ''}" id="product-${counter.count}" idProduct="${bestSeller.id}" category="${bestSeller.categoryName}" productName="${bestSeller.title}" img="images/${bestSeller.image}" price="${bestSeller.price}"/>
+
+            </c:forEach>
+
+        </div>
+        <div class=" d-flex align-items-center  flex-wrap gap-4 justify-content-center">
+
+
+
+
+
+        </div>
+    </div>
+    </div>
+    
+<section class="container-xl d-flex align-items-center justify-content-center flex-column  minHeithStyled py-5 " onLoad="init()">
+
+
+    <!--Product suggestion section-->
+    <div class="w-100 bgProduct h-100 mb-3 row gap-4  justify-content-center">
+
+
+        <div class="wrapper col-12 px-2">
+            <div class="d-flex justify-content-between align-items-center headWrapper">
+                <h1 class="textHeading">Shop Product</h1>
+                <!-- Example single danger button -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ${param.cate != ""  ? param.cate : "Select category"} 
+                    </button>
+                    <!--                        <form action="MainController">
+                                                <select class="form-select form-select-lg mb-3" >
+                    <c:forEach items="${requestScope.categories}" var="category">
+                        <option value="">Open this select menu</option>
+                    </c:forEach>
+                </select>-->
+
+                    </form>
+
+                    <ul class="dropdown-menu">
+
+                        <c:forEach items="${requestScope.categories}" var="category">
+                            <li><a class="dropdown-item"  href="${pageContext.request.contextPath}/MainController?action=SearchProduct&cate=${category.categoryName}&searchTxt=">${category.categoryName}</a> </li>
+                            </c:forEach>
+
+                    </ul>
                 </div>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gap-4 p-5 justify-content-center">
                 <c:set var="listProduct" value="${requestScope.LIST_PRODUCT}"/>
                 <c:forEach items="${listProduct}" var="product" varStatus="counter">
-                    <tag:product_card className="col-md-4"  id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
+                    <tag:product_card className="col-md-4" disabled="${requestScope.user == null ?'disabled': ''}" id="product-${counter.count}" idProduct="${product.id}" category="${product.categoryName}" productName="${product.title}" img="images/${product.image}" price="${product.price}"/>
                 </c:forEach>
 
                 <c:if test="${listProduct.size() ==0 }">
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
                         <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                        <p>Empty</p>
                     </div>
                 </c:if>
-
             </div>
 
             <nav aria-label="Page navigation" class="p-2">
@@ -77,23 +141,7 @@
             </nav>
         </div>
 
-        <div class="col-3 wrapper p-3"> 
-            <div class="d-flex justify-content-center align-items-center headWrapper">
-                <h1 class="textHeading">Best Seller</h1>
 
-            </div>
-            <div class=" d-flex align-items-center flex-column justify-content-center gap-4">
-
-
-                <c:forEach items="${requestScope.best_seller}" var="bestSeller" >
-
-                    <a href="${pageContext.request.contextPath}/MainController?action=ViewProduct&id=${bestSeller.id}" style="cursor: pointer; width: 100%;" >
-                        <tag:OtherProductCard  category="${bestSeller.categoryName}" description="${bestSeller.description}" productName="${bestSeller.title}" srcImg="${bestSeller.image}"/>
-                    </a>
-                </c:forEach>
-
-            </div>
-        </div>
     </div>
 </section>
 

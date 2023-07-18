@@ -186,6 +186,13 @@ and open the template in the editor.
     transform: translateX(0);
 }
 */
+.bestSellers {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto; }
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -449,6 +456,15 @@ body {
   text-transform: uppercase;
   color: #BC6EEE; }
 
+.textHeading3 {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 46px;
+  text-transform: uppercase;
+  color: #FF9B33; }
+
 .linkStyled {
   font-family: 'Play';
   font-style: normal;
@@ -665,11 +681,14 @@ p {
   margin-bottom: 10px; }
 
 .minHeithStyled {
-  margin-top: 100px;
+  /*margin-top: 100px;*/
   min-height: 100vh; }
 
 .ms-n5 {
   margin-left: -53px; }
+
+.price {
+  color: #FF9B33; }
 
 /*///////////// sidebar //////////////////*/
 .sideBar {

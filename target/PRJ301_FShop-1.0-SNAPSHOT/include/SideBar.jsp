@@ -29,9 +29,9 @@
             <div class="d-flex flex-column gap-4">
                 <h1 style="color: #fff;">F-SHOP</h1>
                 <div class="nav flex-column nav-pills gap-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link ${param.active == "0" ? 'active':''}" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis"  role="tab" aria-controls="v-pills-DashBoard" href="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=0">DashBoard</a>
-                    <a class="nav-link ${param.active == "1" ? 'active':''}" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewAllProducts"  role="tab" aria-controls="v-pills-Product" href="${pageContext.request.contextPath}/MainController?action=ViewAllProducts&active=1" >Product</a>
-                    <a class="nav-link ${param.active == "2" ? 'active':''}" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=2"  role="tab" aria-controls="v-pills-Order" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&active=2&status=all">Order</a>
+                    <a class="nav-link ${param.active == "0" ? 'active':''}" role="tab" aria-controls="v-pills-DashBoard" href="${pageContext.request.contextPath}/MainController?action=ViewShopAnalysis&active=0">DashBoard</a>
+                    <a class="nav-link ${param.active == "1" ? 'active':''}"  role="tab" aria-controls="v-pills-Product" href="${pageContext.request.contextPath}/MainController?action=ViewAllProducts&active=1" >Product</a>
+                    <a class="nav-link ${param.active == "2" ? 'active':''}"   role="tab" aria-controls="v-pills-Order" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&active=2&status=all">Order</a>
 
                 </div>  
 

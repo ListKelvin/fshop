@@ -50,21 +50,28 @@ public class SearchProductController extends HttpServlet {
             String search = request.getParameter("searchTxt");
             ProductUtils pu = new ProductUtils();
             List<ProductInfo> products;
+            List<CategoryInfo> categories = CategoryUtils.getAllCategory();
             if (search.isEmpty()) {
+                String cate = request.getParameter("cate");
                 products = pu.getAllProduct();
                 List<ProductInfo> bestSeller = ProductUtils.getBestSeller();
-                System.out.println(bestSeller.size());
+                if (cate != "") {
+         
+                    List<ProductInfo> cateFilter = ProductUtils.searchProductCategory(cate);
+                    products = cateFilter;
+                }
+
                 request.setAttribute("best_seller", bestSeller);
+
                 url = CUSTOMER_HOME;
             } else {
                 products = pu.searchProduct(search);
                 int numberOfProducts = products.size();
-                List<CategoryInfo> categories = CategoryUtils.getAllCategory();
                 request.setAttribute("numberOfProducts", numberOfProducts);
                 request.setAttribute("category", "all");
-                request.setAttribute("categories", categories);
                 url = SEARCH;
             }
+            request.setAttribute("categories", categories);
             request.setAttribute("LIST_PRODUCT", products);
         } catch (Exception e) {
             log("Error at Search Product Controller: " + e.getMessage());

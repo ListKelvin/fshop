@@ -37,9 +37,9 @@ public class Authen implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    public static final String GUEST_FIRST_PAGE = "";
+    public static final String GUEST_FIRST_PAGE = "index.jsp";
 
-    public static final String SHOP_PAGE = "MainController?action=SearchOrder&searchTxt=";
+    public static final String SHOP_PAGE = "MainController?action=ViewShopAnalysis&active=0";
     public static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
     private ArrayList<String> shop = null;
     private ArrayList<String> customer = null;
@@ -52,67 +52,71 @@ public class Authen implements Filter {
         shop = new ArrayList<>();
         guest = new ArrayList<>();
         //shop
-        shop.add("MainController");
-        shop.add("LoginController");
-        shop.add("LogoutController");
-        shop.add("ViewUserInfoController");
-        shop.add("ViewOrderHistoryController");
-        shop.add("ViewOrderController");
-        shop.add("ProductByCategoryController");
-        shop.add("GetOrderByStatusController");
-        shop.add("UpdateProductController");
-        shop.add("UpdateCategoryController");
-        shop.add("UpdateOrderController");
-        shop.add("AddProductController");
-        shop.add("CreateProductController");
 
-        shop.add("AddCategoryController");
-        shop.add("SearchProductController");
-        shop.add("DeleteProductController");
         shop.add("create-product.jsp");
+        shop.add("shop-home.jsp");
+        shop.add("shop-order.jsp");
+        shop.add("shop-product.jsp");
+        shop.add("shop-view-product.jsp");
+        shop.add("shop-viewOrder.jsp");
+        shop.add("update-product.jsp");
 
-        //??///
-        shop.add("UpdateUserInfoController");
-        //??///
-        customer.add("MainController");
+//        shop.add("Login");
+        shop.add("ViewAllOrders");
+        shop.add("ViewOrder");
 
-        customer.add("LoginController");
-        customer.add("GoogleLoginController");
-        customer.add("FaceBookController");
-        customer.add("RegisterController");
-        customer.add("LogoutController");
-        customer.add("ViewCartController");
-        customer.add("ViewUserInfoController");
-        customer.add("ViewOrderHistoryController");
-        customer.add("ViewOrderController");
-        customer.add("ProductByCategoryController");
-        customer.add("GetOrderByStatusController");
-        customer.add("UpdateCartController");
-        customer.add("UpdateUserInfoController");
+        shop.add("ViewShopAnalysis");
+        shop.add("UpdateProduct");
+        shop.add("CreateProduct");
+        shop.add("CreateCategory");
+        shop.add("ViewAllProducts");
+        shop.add("CancelOrder");
 
-        customer.add("UpdateOrderController");
-        customer.add("CreateOrderController");
-        customer.add("SearchProductController");
-        customer.add("AddToCartController");
+        //customer
+        customer.add("cart.jsp");
+        customer.add("customer-home.jsp");
+        customer.add("editUserProfile.jsp");
+        customer.add("order-history.jsp");
+        customer.add("productdetails.jsp");
+        customer.add("search.jsp");
+        customer.add("view-order.jsp");
 
-        customer.add("RemoveCartController");
-        customer.add("AddToCartController");
+        customer.add("Logout");
+        customer.add("ViewCart");
+        customer.add("ViewUserInfo");
+        customer.add("ViewProduct");
+        customer.add("ViewOrderHistory");
+        customer.add("ViewOrder");
+        customer.add("ProductByCategory");
+        customer.add("GetOrderByStatus");
+        customer.add("UpdateCart");
+        customer.add("UpdateUserInfo");
+        customer.add("UpdateOrder");
+        customer.add("CreateOrder");
+        customer.add("SearchProduct");
+        customer.add("Add To Cart");
+        customer.add("Buy Now");
+        customer.add("RemoveCart");
+        customer.add("CancelOrder");
 
         //guest
-        guest.add("MainController");
+        guest.add("customer-home.jsp");
+        guest.add("403.jsp");
+        guest.add("404.jsp");
+        guest.add("error.jsp");
         guest.add("index.jsp");
-        guest.add("LoginController");
-        guest.add("GoogleLoginController");
-        guest.add("FaceBookController");
-        guest.add("RegisterController");
-        guest.add("ProductByCategoryController");
-        guest.add("SearchProductController");
-        guest.add("AddToCartController");
+        guest.add("productdetails.jsp");
+        guest.add("register.jsp");
+        guest.add("search.jsp");
+        guest.add("Login");
+        guest.add("GoogleLogin");
+        guest.add("FaceBook");
+        guest.add("Register");
+        guest.add("SearchProduct");
+        guest.add("ProductByCategory");
+        guest.add("ViewProduct");
 
-        guest.add("RemoveCartController");
-        guest.add("AddToCartController");
-        guest.add("");
-
+//        guest.add("MainController");
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -185,45 +189,47 @@ public class Authen implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
             String uri = req.getRequestURI();
-            if (uri.endsWith(".jpg") || uri.endsWith(".png") || uri.endsWith(".jpeg") || uri.endsWith(".js") || uri.endsWith(".css")) {
+            String action = req.getParameter("action");
+
+            int index = uri.lastIndexOf("/");
+            String resource = uri.substring(index + 1);
+
+//            log("test actiono: " + action);
+            boolean checkContain = false;
+            for (String value : guest) {
+                if (value.equals(action) || uri.contains(value)) {
+                    checkContain = true;
+                    break;
+                }
+            }
+            if (checkContain || uri.endsWith(".jpg") || uri.endsWith(".png") || uri.endsWith(".jpeg") || uri.endsWith(".js") || uri.endsWith(".css")) {
                 chain.doFilter(request, response);
             } else {
                 HttpSession session = req.getSession();
-                AccountInfo user = (AccountInfo) session.getAttribute("user");
-                int index = uri.lastIndexOf("/");
+                if (session == null || session.getAttribute("user") == null) {
+                    res.sendRedirect(LOGIN_PAGE);
+                } else {
+                    AccountInfo loginUser = (AccountInfo) session.getAttribute("user");
+                    String role = loginUser.getRole();
+                    log("check role: " + role);
+                    if (RoleConstant.SHOP.equals(role) && shop.contains(action) || shop.contains(resource)) {
+                        log("shop check");
 
-                String resource = uri.substring(index + 1);
-                log(user.getRole());
-                if (user == null) {
-                    if (guest.contains(resource)) {
+                        chain.doFilter(request, response);
+                    } else if (RoleConstant.CUSTOMER.equals(role) && customer.contains(action)) {
+                        log("cusotemr check");
+                        chain.doFilter(request, response);
+                    } else if (guest.contains(resource)) {
+                        log("guest check");
+
                         chain.doFilter(request, response);
                     } else {
-                        res.sendRedirect(GUEST_FIRST_PAGE);
-                    }
-                } else {
-                    String role = user.getRole();
-                    switch (role) {
-                        case RoleConstant.SHOP:
-                            if (shop.contains(resource)) {
-                                chain.doFilter(request, response);
-                            } else {
-                                res.sendRedirect(LOGIN_PAGE);
-                            }
-                            break;
-                        case RoleConstant.CUSTOMER:
-                            if (customer.contains(resource)) {
-                                chain.doFilter(request, response);
-                            } else {
-                                res.sendRedirect(CUSTOMER_PAGE);
-                            }
-                            break;
-                        default:
-                            res.sendRedirect(GUEST_FIRST_PAGE);
-                            break;
+                        res.sendRedirect(LOGIN_PAGE);
                     }
                 }
             }
-        } catch (Exception e) {
+
+        } catch (IOException | ServletException e) {
             log("Exception at AuthenFilter: " + e.getMessage());
         }
     }

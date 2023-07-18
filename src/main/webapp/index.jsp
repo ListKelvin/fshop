@@ -89,7 +89,7 @@
                                         Remember me
                                     </label>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=">Continue with out login</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=&cate=">Continue with out login</a>
                             </div>
 
                             <!-- Submit button -->
