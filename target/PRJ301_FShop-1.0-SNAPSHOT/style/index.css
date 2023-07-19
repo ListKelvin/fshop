@@ -690,6 +690,25 @@ p {
 .price {
   color: #FF9B33; }
 
+.page h1 {
+  margin: 20px 20px 40px; }
+
+.page h1::before,
+.page h1::after {
+  content: "";
+  height: 3px;
+  position: absolute;
+  bottom: -10px;
+  left: 0; }
+
+.page h1::before {
+  background-color: white;
+  width: 120px; }
+
+.page h1::after {
+  background-color: #BC6EEE;
+  width: 40px; }
+
 /*///////////// sidebar //////////////////*/
 .sideBar {
   width: 200px;
@@ -710,5 +729,49 @@ p {
   color: #d4d4d4;
   opacity: 0.7;
   pointer-events: none; }
+
+.wrapperDashBoard {
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px; }
+  .wrapperDashBoard .boxStatic {
+    border: 1px solid #BC6EEE;
+    width: calc(50% - 10px);
+    border-radius: 10px;
+    padding: 20px;
+    color: grey;
+    font-size: 13px; }
+
+@media (max-width: 767px) {
+  .wrapperDashBoard {
+    grid-template-columns: minmax(200px, 1fr);
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 10px; } }
+.latest-news .news-row:not(:last-of-type) {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee; }
+
+.latest-news .news-row img {
+  width: 100px;
+  border-radius: 6px;
+  margin-right: 15px; }
+
+.latest-news .info {
+  flex-grow: 1; }
+
+.latest-news .info h3 {
+  margin: 0 0 6px;
+  font-size: 16px; }
+
+@media (max-width: 767px) {
+  .latest-news .news-row {
+    display: block; }
+
+  .latest-news .news-row .label {
+    margin: 10px auto;
+    width: fit-content; } }
 
 /*# sourceMappingURL=index.css.map */
