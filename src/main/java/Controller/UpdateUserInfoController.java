@@ -12,7 +12,7 @@ import Utils.Utility;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import  java.sql.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UpdateUserInfoController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "MainController?action=SearchProduct&searchTxt=&cate=";
+    private static final String SUCCESS = "MainController?action=ViewUserInfo&updateStatus=0";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,8 +44,6 @@ public class UpdateUserInfoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,7 +63,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
             try {
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-                
+
                 for (FileItem item : items) {
                     if (item.isFormField()) {
                         // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
@@ -118,7 +116,7 @@ public class UpdateUserInfoController extends HttpServlet {
 
                     }
                 }
-                
+
                 UserInfo user = new UserInfo();
                 user.setName(name);
                 user.setAddress(address);
@@ -139,7 +137,8 @@ public class UpdateUserInfoController extends HttpServlet {
                 check = userDAO.updateUserInfo(user);
 
                 if (check) {
-             
+                    request.setAttribute("message", "Update success");
+
                     url = SUCCESS;
 
                 } else {

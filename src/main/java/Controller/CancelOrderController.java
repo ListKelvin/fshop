@@ -59,8 +59,12 @@ public class CancelOrderController extends HttpServlet {
                     } else {
                         request.setAttribute("message", "Cancel order fail");
                     }
+                }else{
+                    System.out.println("cannot cancel");
+                    request.setAttribute("message", "order cannot cancel");
                 }
             } else {
+                
                 request.setAttribute("message", "status is not valid");
 
             }

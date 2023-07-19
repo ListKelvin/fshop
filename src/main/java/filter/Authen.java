@@ -71,6 +71,8 @@ public class Authen implements Filter {
         shop.add("CreateCategory");
         shop.add("ViewAllProducts");
         shop.add("CancelOrder");
+        shop.add("UpdateOrder");
+        shop.add("Export");
 
         //customer
         customer.add("cart.jsp");
@@ -91,7 +93,6 @@ public class Authen implements Filter {
         customer.add("GetOrderByStatus");
         customer.add("UpdateCart");
         customer.add("UpdateUserInfo");
-        customer.add("UpdateOrder");
         customer.add("CreateOrder");
         customer.add("SearchProduct");
         customer.add("Add To Cart");

@@ -7,6 +7,7 @@ package Controller;
 
 import DTO.AccountInfo;
 import DTO.OrderInfo;
+import DTO.ProductInfo;
 import Utils.OrderUtils;
 import Utils.ProductUtils;
 import Utils.RoleConstant;
@@ -52,6 +53,8 @@ public class ViewShopAnalysisController extends HttpServlet {
 
             if (account.getRole().equals(RoleConstant.SHOP)) {
                 log(account.getName());
+                List<ProductInfo> products = ProductUtils.getBestSeller();
+                request.setAttribute("bestSeller", products.subList(0, 5));
                 List<OrderInfo> orderList = OrderUtils.getALLOrdersByStatus("checking");
                 int totalOrder = OrderUtils.countOrder();
                 int totalProduct = ProductUtils.countProduct();
