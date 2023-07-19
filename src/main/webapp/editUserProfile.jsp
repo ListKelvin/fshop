@@ -19,7 +19,7 @@
     }
 %> 
 
-<c:import url="include/Header.jsp"><c:param name="title" value="Setting Profile"/></c:import>
+<c:import url="include/Header.jsp"><c:param name="title" value="${param.status ==0 ?'Setting Profile': 'Update Profile'}"/></c:import>
     <section class="container p-5 minHeithStyled d-flex align-items-start justify-content-center">
 
 

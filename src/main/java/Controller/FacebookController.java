@@ -32,7 +32,7 @@ public class FacebookController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String ERROR_PAGE = "error.jsp";
     private static final String ERROR_LOGIN = "index.jsp";
-    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
+    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=&cate=";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

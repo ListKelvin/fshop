@@ -8,6 +8,7 @@ package Controller;
 import DTO.AccountInfo;
 import DTO.OrderInfo;
 import DTO.OrderProductInfo;
+import DTO.UserInfo;
 import Utils.OrderProductUtils;
 import Utils.OrderUtils;
 import Utils.RoleConstant;
@@ -47,23 +48,27 @@ public class ViewOrderController extends HttpServlet {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+            UserInfo u = (UserInfo) session.getAttribute("userInfo");
             if (orderId > 0) {
                 List<OrderProductInfo> orderProduct = OrderProductUtils.viewOrderProduct(orderId);
                 OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+                if (user.getRole().equals(RoleConstant.CUSTOMER) && order.getUserId() != u.getId()) {
+                    System.out.println("wrong user");
+                    request.setAttribute("message", "Unauthen");
+                    url = ERROR_AUTHEN;
+                } else {
+                    if (!orderProduct.isEmpty() && order != null) {
+                        request.setAttribute("orderProducts", orderProduct);
+                        request.setAttribute("orderDetails", order);
 
-                if (!orderProduct.isEmpty() && order != null) {
-                    request.setAttribute("orderProducts", orderProduct);
-                    request.setAttribute("orderDetails", order);
-
+                    }
+                    if (user.getRole().equals(RoleConstant.CUSTOMER)) {
+                        url = VIEW_ORDER_CUSTOMER_PAGE;
+                    } else if (user.getRole().equals(RoleConstant.SHOP)) {
+                        url = VIEW_ORDER_SHOP_PAGE;
+                    }
                 }
-            }
-            
-            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
-                url = VIEW_ORDER_CUSTOMER_PAGE;
-            } else if (user.getRole().equals(RoleConstant.SHOP)){
-                url = VIEW_ORDER_SHOP_PAGE;
-            } else{
-               url = ERROR_AUTHEN;
+
             }
 
         } catch (NumberFormatException ex) {
