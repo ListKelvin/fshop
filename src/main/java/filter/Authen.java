@@ -68,7 +68,7 @@ public class Authen implements Filter {
         shop.add("ViewShopAnalysis");
         shop.add("UpdateProduct");
         shop.add("CreateProduct");
-        shop.add("AddCategory");
+        shop.add("CreateCategory");
         shop.add("ViewAllProducts");
         shop.add("CancelOrder");
         shop.add("UpdateOrder");

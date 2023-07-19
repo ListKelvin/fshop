@@ -59,8 +59,6 @@ public class MainController extends HttpServlet {
 //    UPDATE
     private static final String UPDATE_PRODUCT = "UpdateProduct";
     /*15*/ private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
-    private static final String UPDATE_CATEGORY = "UpdateCategory";
-    /*16*/ private static final String UPDATE_CATEGORY_CONTROLLER = "UpdateCategoryController";
     private static final String UPDATE_CART = "UpdateCart";
     /*17*/ private static final String UPDATE_CART_CONTROLLER = "UpdateCartController";
     private static final String UPDATE_USERINFO = "UpdateUserInfo";
@@ -72,8 +70,8 @@ public class MainController extends HttpServlet {
     /*20*/ private static final String CREATE_ORDER_CONTROLLER = "CreateOrderController";
     private static final String CREATE_PRODUCT = "CreateProduct";
     /*21*/ private static final String CREATE_PRODUCT_CONTROLLER = "CreateProductController";
-    private static final String ADD_CATEGORY = "AddCategory";
-    /*22*/ private static final String ADD_CATEGORY_CONTROLLER = "AddCategoryController";
+    private static final String CREATE_CATEGORY = "CreateCategory";
+    /*22*/ private static final String CREATE_CATEGORY_CONTROLLER = "CreateCategoryController";
     private static final String SEARCH_PRODUCT = "SearchProduct";
     /*23*/ private static final String SEARCH_PRODUCT_CONTROLLER = "SearchProductController";
     private static final String ADD_TO_CART = "Add To Cart";
@@ -95,7 +93,7 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            log("check run");
+      
             String action = request.getParameter("action");
 
             log(action);
@@ -148,9 +146,6 @@ public class MainController extends HttpServlet {
                     case UPDATE_ORDER_STATUS:
                         url = UPDATE_ORDER_STATUS_CONTROLLER;
                         break;
-                    case UPDATE_CATEGORY:
-                        url = UPDATE_CATEGORY_CONTROLLER;
-                        break;
                     case CREATE_PRODUCT:
                         url = CREATE_PRODUCT_CONTROLLER;
                         break;
@@ -160,8 +155,8 @@ public class MainController extends HttpServlet {
                     case CREATE_ORDER:
                         url = CREATE_ORDER_CONTROLLER;
                         break;
-                    case ADD_CATEGORY:
-                        url = ADD_CATEGORY_CONTROLLER;
+                    case CREATE_CATEGORY:
+                        url = CREATE_CATEGORY_CONTROLLER;
                         break;
                     case SEARCH_PRODUCT:
                         url = SEARCH_PRODUCT_CONTROLLER;

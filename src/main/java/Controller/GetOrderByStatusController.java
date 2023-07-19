@@ -45,7 +45,7 @@ public class GetOrderByStatusController extends HttpServlet {
             String status = request.getParameter("status");
             String userId = request.getParameter("userId");
 
-            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
+            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")|| status.equals("cancel")) {
                 List<OrderInfo> orderList = OrderUtils.getOrdersByStatus(status, userId);
                 request.setAttribute("orders", orderList);
                 url = ORDER_HISTORY_PAGE;

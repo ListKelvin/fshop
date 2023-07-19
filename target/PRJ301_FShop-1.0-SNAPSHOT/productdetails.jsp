@@ -43,7 +43,10 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                </div></div>
+                </div>
+            
+            
+            </div>
             <div class="col-md-5 m-auto p-5"> 
                 <div class="box">
                     <span class="productName ">${product.title}</span>

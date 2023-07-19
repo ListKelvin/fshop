@@ -31,7 +31,7 @@ public class ViewProductController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String ERROR_AUTHEN = "403.jsp";
     private static final String VIEW_PRODUCT_CUSTORMER_PAGE = "productdetails.jsp";
-    private static final String VIEW_PRODUCT_ADMIN_PAGE = "shop-product.jsp";
+    private static final String VIEW_PRODUCT_ADMIN_PAGE = "shop-view-product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

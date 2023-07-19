@@ -28,7 +28,7 @@
                 <a class="nav-link ${param.status == 'done' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=done">Done</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link ${param.status == 'cancel' ? 'cancel': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=cancel">Cancel</a>
+                <a class="nav-link ${param.status == 'cancel' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=cancel">Cancel</a>
             </li>
         </ul>
         <c:set  var="listOrder" value="${requestScope.orders}"/>
