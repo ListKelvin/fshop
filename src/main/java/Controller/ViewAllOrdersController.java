@@ -34,7 +34,7 @@ public class ViewAllOrdersController extends HttpServlet {
         try {
             String status = request.getParameter("status");
 
-            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done")) {
+            if (status.equals("checking") || status.equals("preparing") || status.equals("delivering") || status.equals("done") || status.equals("cancel")) {
                 List<OrderInfo> orderList = OrderUtils.getALLOrdersByStatus(status);
                 request.setAttribute("orders", orderList);
                 url = SHOP_ORDER_PAGE;

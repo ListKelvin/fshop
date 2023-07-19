@@ -13,6 +13,7 @@ import Utils.RoleConstant;
 import Utils.UserUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +50,7 @@ public class ViewProductController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
-
+            List<ProductInfo> bestSeller = ProductUtils.getBestSeller();
             if (user == null) {
                 ProductInfo po = ProductUtils.getSingleProduct(id);
 
@@ -72,6 +73,7 @@ public class ViewProductController extends HttpServlet {
             } else {
                 url = ERROR_AUTHEN;
             }
+            request.setAttribute("best_seller", bestSeller);
         } catch (NumberFormatException ex) {
             request.setAttribute("message", "id invalid");
             log("Error in ViewOrderController: " + ex.getMessage());

@@ -40,7 +40,7 @@
             <nav class="navbar navbar-expand-md  fixed-top  bgNavbar shadow">
                 <div class="container-fluid align-items-center">
                     <div class="w-25">
-                        <a class="navbar-brand text-white mx-3" href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=">F-SHOP</a>
+                        <a class="navbar-brand text-white mx-3" href="${pageContext.request.contextPath}/MainController?action=SearchProduct&searchTxt=&cate=">F-SHOP</a>
                     </div>
                     <!--Responsive navBar--> 
                     <button class="navbar-toggler border-light  p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">

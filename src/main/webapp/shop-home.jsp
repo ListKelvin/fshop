@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="analysBox" >
-                <h1 class="content p-1">Xin chào F-SHOP</h1>
+                <h1 class="content p-1">Welcome F-SHOP</h1>
             </div>
         </div>
 
@@ -62,7 +62,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Create At</th>
                         <th scope="col">Total Bill</th>
-                        <th scope="col"></th>
+                 
 
                     </tr>
                 </thead>
@@ -77,7 +77,7 @@
                             <td scope="row">${orderItem.status}</td>
                             <td scope="row">${orderItem.createAt}</td>
                             <td scope="row">${orderItem.totalBill}</td>
-                            <td scope="row">action</td>
+                   
 
                         </tr>
 

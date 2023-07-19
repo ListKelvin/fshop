@@ -118,7 +118,7 @@ public class ProductUtils {
 //        }
 //        return products;
 //    }
-    public List<ProductInfo> searchProduct(String title) {
+    public static List<ProductInfo> searchProduct(String title) {
         List<ProductInfo> products = new ArrayList<ProductInfo>();
         try {
             con = DBConnection.getConnection();

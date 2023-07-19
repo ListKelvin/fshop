@@ -79,8 +79,15 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
+
                             </tbody>
                         </table>
+                    </div>
+                </c:if>
+                <c:if test="${requestScope.orders.size() == null }">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
+                        <img src="assest/emptyStore.png" width="400" alt="empty cart"/>
+                        <p>Empty</p>
                     </div>
                 </c:if>
             </div>
