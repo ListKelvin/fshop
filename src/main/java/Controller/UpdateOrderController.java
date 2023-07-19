@@ -47,9 +47,15 @@ public class UpdateOrderController extends HttpServlet {
         try {
 
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            OrderInfo o = OrderUtils.ViewOrdersDetail(orderId);
             String status = request.getParameter("status");
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+            if(o.getStatus().equals("cancel")){
+                log("order is already cancel!");
+                request.setAttribute("message", "order is cancel!!!");
+                url = MANAGE_ORDER_PAGE;
+            }
 
             if (user == null) {
                 log("(ViewCartController) Unauthentication!!");
@@ -57,10 +63,9 @@ public class UpdateOrderController extends HttpServlet {
                 url = ERROR_AUTHEN;
             } else {
                
-                if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP)) {
+                if (      status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("checking")
+                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("preparing")
+                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("delivering")) {
                     log("get data successfully");
                     boolean check = OrderUtils.updateOrderStatus(orderId, status);
                     if (check) {

@@ -6,6 +6,7 @@
 package Controller;
 
 import DTO.AccountInfo;
+import DTO.UserInfo;
 import Utils.APIWrapper;
 import Utils.DBUtils;
 import Utils.UserUtils;
@@ -51,12 +52,14 @@ public class FacebookController extends HttpServlet {
             
             if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
-                System.out.println("the id2: " + loginAccount.getId());
+                
                 if (register) {
                     UserUtils.createUser(loginAccount.getId());
+                    UserInfo userInfo = UserUtils.getUser(loginAccount.getId());
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loginAccount);
-                    System.out.println("the id3: " + loginAccount.getId());
+                    session.setAttribute("userInfo", userInfo);
+                   
                     url = CUSTOMER_PAGE;
                 } else {
                     request.setAttribute("mess", "register account fail");
@@ -64,9 +67,10 @@ public class FacebookController extends HttpServlet {
                 }
 
             } else {
+                UserInfo userInfo = UserUtils.getUser(loginAccount.getId());
                 HttpSession session = request.getSession();
                 session.setAttribute("user", loginAccount);
-                System.out.println("the id4: " + loginAccount.getId());
+                session.setAttribute("userInfo", userInfo);
                 url = CUSTOMER_PAGE;
             }
 
