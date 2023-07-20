@@ -10,45 +10,68 @@
 %> 
 <c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
 
-    <div class="adminWrapper  d-flex align-items-center justify-content-center flex-column gap-5" style="margin-left: 200px;"> 
-        <div class="d-flex align-items-center justify-content-between gap-3" >
-            <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
-                <div class="analysBox d-flex align-items-center justify-content-between gap-3" >
+    <div class="adminWrapper page  d-flex align-items-center justify-content-center flex-column gap-5" style="margin-left: 200px;"> 
+        <h1 class="position-relative me-auto " style="margin: 20px 20px 40px; color: #BC6EEE;">Dashboard</h1>
+        <div class="wrapperDashBoard container " style="display: grid; width: 100%; gap: 20px;">
+
+
+            <div class=" analysBox" style="color: #BC6EEE;">
+                <h2 class="mt-0 mb-1">Shop Statistics</h2>
+                <p class="mt-0 mb-2">Everything About Shop</p>
+                <div class="d-flex text-center gap-3 flex-wrap">
+                    <div class="boxStatic ">
+                        <i class="bi bi-receipt svgStyle"></i>
+                        <!--<i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>-->
+                        <h3 class="content">Orders</h3>
+                        <span class="content">${requestScope.totalOrder}</span>
+                </div>
+                <div class="boxStatic">
                     <i class="bi bi-people svgStyle"></i>
-                    <div class="">
-                        <h3 class="content">Customer</h3>
-                        <span class="content">${requestScope.totalUser}</span>
-                </div>
 
-
-            </div>
-            <div class="analysBox d-flex align-items-center justify-content-between gap-3" >
-                <i class="bi bi-receipt svgStyle"></i>
-                <div class="">
-                    <h3 class="content">Orders</h3>
-                    <span class="content">${requestScope.totalOrder}</span>
+                    <h3 class="content">Customer</h3>
+                    <span class="content">${requestScope.totalUser}</span>
                 </div>
-            </div>       
-            <div class="analysBox d-flex align-items-center justify-content-between gap-3">
-                <i class="bi bi-database svgStyle"></i>
-                <div class="">
+                <div class="boxStatic ">
+                    <i class="bi bi-database svgStyle"></i>
+
                     <h3 class="content">Products</h3>
                     <span class="content">${requestScope.totalProduct}</span>
                 </div>
-            </div>
-            <div class="analysBox" >
-                <h1 class="content p-1">Welcome F-SHOP</h1>
+                <div class="boxStatic">
+                    <i class="bi bi-bug-fill svgStyle"></i>
+                    <h3 class="content">Something</h3>
+                    <span class="content">${requestScope.totalProduct}</span>
+                </div>
             </div>
         </div>
 
-    </div>  
+
+
+        <div class="analysBox latest-news" style="color: #BC6EEE;">
+            <h2 class="mt-0 mb-4">Latest News</h2>
+
+
+            <c:forEach items="${requestScope.bestSeller}" var="bestSeller2" >
+                <div class="news-row d-flex align-center">
+                    <img src="images/${bestSeller2.image}" alt="${bestSeller2.title}"/>
+                    <div class="info">
+                        <h3>${bestSeller2.title}</h3>
+                        <p class="m-0">Sold: ${bestSeller2.sold}</p>
+                    </div>
+                    <div class="btn-shape  label">${bestSeller2.price}</div>
+                </div>
+
+            </c:forEach>
+
+        </div>
+
+
+    </div>
+
+
     <div class="boxAdmin">
         <div class="d-flex align-items-center justify-content-center mb-2 px-2">
-            <h1 style="color: #BC6EEE;">Order Waiting</h1  >
-
-
-
-
+            <h1 style="color: #BC6EEE;">Order Waiting</h1>
         </div>
         <div class="overflow-y-auto table-responsive" style="max-height: 610px;">
             <table class="table mt-3 table-hover">
@@ -62,7 +85,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Create At</th>
                         <th scope="col">Total Bill</th>
-                 
+
 
                     </tr>
                 </thead>
@@ -77,7 +100,7 @@
                             <td scope="row">${orderItem.status}</td>
                             <td scope="row">${orderItem.createAt}</td>
                             <td scope="row">${orderItem.totalBill}</td>
-                   
+
 
                         </tr>
 
