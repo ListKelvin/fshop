@@ -63,6 +63,8 @@ public class Utility {
             String tmpFileName = fileName.substring(0, fileName.lastIndexOf(".") - 1);
             String imgType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
             fileName = tmpFileName + new Date().getTime() + imgType;
+//            fileName = tmpFileName + new Date().getTime() + imgType + imgType;
+
             return fileName;
         } catch (Exception e) {
             return "";

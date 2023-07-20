@@ -49,13 +49,17 @@ public class FacebookController extends HttpServlet {
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
             AccountInfo loginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
+            log("fb id: " + accountInfo.getFacebookID().trim());
             
             if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
+                log("register: " + register);
                 
                 if (register) {
-                    UserUtils.createUser(loginAccount.getId());
-                    UserInfo userInfo = UserUtils.getUser(loginAccount.getId());
+                    AccountInfo login = DBUtils.login(accountInfo.getFacebookID().trim());
+                    log("account id: " + login.getId());
+                    UserUtils.createUser(login.getId());
+                    UserInfo userInfo = UserUtils.getUser(login.getId());
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loginAccount);
                     session.setAttribute("userInfo", userInfo);

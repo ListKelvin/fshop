@@ -23,7 +23,7 @@ public class DBConnection {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=fshop";
-            Connection conn = DriverManager.getConnection(dbURL,"sa","12345");
+            Connection conn = DriverManager.getConnection(dbURL,"sa","Tho2003@");
             return conn;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();

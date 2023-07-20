@@ -106,11 +106,11 @@ public class UpdateUserInfoController extends HttpServlet {
 
                             if (!fileName.equals("") && (fileName.endsWith("png") || fileName.endsWith("bmp") || fileName.endsWith("jpg")
                                     || fileName.endsWith("PNG") || fileName.endsWith("BMP") || fileName.endsWith("JPG"))) {
-                                String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
+                                String realPath = getServletContext().getRealPath("/") + "/images/" + fileName;
                                 File saveFile = new File(realPath);
                                 item.write(saveFile);
                                 log(saveFile.getPath());
-                                avatar = realPath.substring(realPath.lastIndexOf("\\") + 1);
+                                avatar = realPath.substring(realPath.lastIndexOf("/") + 1);
                             }
                         }
 
