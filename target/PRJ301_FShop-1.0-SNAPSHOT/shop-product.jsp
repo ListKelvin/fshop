@@ -10,7 +10,9 @@
     }%> 
 <c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
 
-    <div class="adminWrapper d-flex align-items-center justify-content-center" style="margin-left: 200px;"> 
+    <div class="adminWrapper page d-flex align-items-center justify-content-center flex-column" style="margin-left: 200px;"> 
+        <h1 class="position-relative me-auto headingStyled" style="margin: 20px 20px 40px; color: #BC6EEE;">Product</h1>
+
         <div class="boxAdmin">
 
             <div class="d-flex align-items-center justify-content-between mb-2 px-2">
@@ -23,7 +25,7 @@
                                     <input class="btnCreateProduct"  data-bs-toggle="modal" data-bs-target="#exampleModal" value="New Category" type="submit"/>
                 
                                 </form>-->
-                <button type="button" class="btnCreateProduct" data-bs-toggle="modal" data-bs-target="#exampleModal">New Category</button>
+                <!--<button type="button" class="btnCreateProduct" data-bs-toggle="modal" data-bs-target="#exampleModal">New Category</button>-->
 
             </div>
 
@@ -125,9 +127,9 @@
                         <input type="hidden" name="action" value="CreateCategory"/>
                     </div>
 
-                 
-                    
-                    
+
+
+
                 </div>
                 <div class="modal-footer ">
                     <div class="d-flex align-items-center gap-2">

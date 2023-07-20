@@ -3,17 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
 
-    <div class="adminWrapper d-flex align-items-center justify-content-center" style="margin-left: 200px;"> 
-        <div class="boxAdmin">
+    <div class="adminWrapper page d-flex align-items-center justify-content-center flex-column" style="margin-left: 200px;"> 
+        <h1 class="position-relative me-auto headingStyled" style="margin: 20px 20px 40px; color: #BC6EEE;">Order</h1>
+
+        <div class="boxAdmin ">
 
             <div class="d-flex align-items-center justify-content-between mb-2 px-2">
                 <h2 style="color: #BC6EEE;">Order List</h2>
             </div>
-            <hr style="color: #BC6EEE;" class="mt-0"/>
 
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link ${param.status == 'all' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=all">ALL</a>
+            <p class="">Please check status in order</p>
+
+            <hr style="color: #BC6EEE; margin-bottom: 0" class="mt-0"/>
+            <p class="text-danger">${requestScope.message}</p>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link ${param.status == 'all' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=all">ALL</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link ${param.status == 'checking' ? 'active': ''}" href="${pageContext.request.contextPath}/MainController?action=ViewAllOrders&status=checking">Checking</a>

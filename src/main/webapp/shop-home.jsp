@@ -11,7 +11,7 @@
 <c:import url="include/SideBar.jsp"><c:param name="title" value="Admin Page"/></c:import>
 
     <div class="adminWrapper page  d-flex align-items-center justify-content-center flex-column gap-5" style="margin-left: 200px;"> 
-        <h1 class="position-relative me-auto " style="margin: 20px 20px 40px; color: #BC6EEE;">Dashboard</h1>
+        <h1 class="position-relative me-auto headingStyled" style="margin: 20px 20px 40px; color: #BC6EEE;">Dashboard</h1>
         <div class="wrapperDashBoard container " style="display: grid; width: 100%; gap: 20px;">
 
 
@@ -20,27 +20,29 @@
                 <p class="mt-0 mb-2">Everything About Shop</p>
                 <div class="d-flex text-center gap-3 flex-wrap">
                     <div class="boxStatic ">
-                        <i class="bi bi-receipt svgStyle"></i>
+                        <!--<i class="bi bi-receipt svgStyle"></i>-->
                         <!--<i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>-->
-                        <h3 class="content">Orders</h3>
-                        <span class="content">${requestScope.totalOrder}</span>
+                        <i class="bi bi-house svgStyle"></i>
+                        <h3 class="content ">F-SHOP</h3>
+                        <!--<span class="content">${requestScope.totalOrder}</span>-->
                 </div>
                 <div class="boxStatic">
                     <i class="bi bi-people svgStyle"></i>
 
                     <h3 class="content">Customer</h3>
-                    <span class="content">${requestScope.totalUser}</span>
+                    <span class="content fs-5 fw-bolder" style="color: #FF9B33;">${requestScope.totalUser}</span>
                 </div>
                 <div class="boxStatic ">
                     <i class="bi bi-database svgStyle"></i>
 
                     <h3 class="content">Products</h3>
-                    <span class="content">${requestScope.totalProduct}</span>
+                    <span class="content fs-5 fw-bolder" style="color: #FF9B33;">${requestScope.totalProduct}</span>
                 </div>
                 <div class="boxStatic">
-                    <i class="bi bi-bug-fill svgStyle"></i>
-                    <h3 class="content">Something</h3>
-                    <span class="content">${requestScope.totalProduct}</span>
+                    <i class="bi bi-receipt svgStyle"></i>
+                    <!--<i class="fa-regular fa-rectangle-list fa-2x mb-10 c-orange"></i>-->
+                    <h3 class="content ">Orders</h3>
+                    <span class="content fs-5 fw-bolder" style="color: #FF9B33;">${requestScope.totalOrder}</span>
                 </div>
             </div>
         </div>
@@ -48,12 +50,12 @@
 
 
         <div class="analysBox latest-news" style="color: #BC6EEE;">
-            <h2 class="mt-0 mb-4">Latest News</h2>
+            <h2 class="mt-0 mb-4">Best Seller</h2>
 
 
             <c:forEach items="${requestScope.bestSeller}" var="bestSeller2" >
                 <div class="news-row d-flex align-center">
-                    <img src="images/${bestSeller2.image}" alt="${bestSeller2.title}"/>
+                    <img src="images/${bestSeller2.image}"  onError="this.onerror=null;this.src='./assest/linn.jpg';" alt="${bestSeller2.title}"/>
                     <div class="info">
                         <h3>${bestSeller2.title}</h3>
                         <p class="m-0">Sold: ${bestSeller2.sold}</p>

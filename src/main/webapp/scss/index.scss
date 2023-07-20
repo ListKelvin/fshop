@@ -173,19 +173,19 @@ p { color: #6c757d; }
 
     margin: 20px 20px 40px;
 }
-.page h1::before,
-.page h1::after {
+.page .headingStyled::before,
+.page .headingStyled::after {
     content: "";
     height: 3px;
     position: absolute;
     bottom: -10px;
     left: 0;
 }
-.page h1::before {
+.page .headingStyled::before {
     background-color: white;
     width: 120px;
 }
-.page h1::after {
+.page .headingStyled::after {
     background-color: #BC6EEE;
     width: 40px;
 }

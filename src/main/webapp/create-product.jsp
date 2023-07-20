@@ -44,7 +44,7 @@
                             </div>
                             <div class="">
                                 <label  for="priceStr" class="form-label fw-semibold fs-5">Price:</label>
-                                <input class="form-control" type="number" name="priceStr" id="priceStr" min="10" max="100000" aria-label="price product input" >
+                                <input class="form-control" type="number" name="priceStr" id="priceStr" min="1" max="100000" aria-label="price product input" >
                             </div>
                         </div>
 

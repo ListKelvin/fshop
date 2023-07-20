@@ -113,6 +113,8 @@ public class DBUtils {
                 String accountEmail = rs.getString("email");
                 AccountInfo accountInfo = new AccountInfo();
                 accountInfo.setEmail(accountEmail);
+                accountInfo.setName(rs.getString("user_name"));
+
                 accountInfo.setId(rs.getInt("id"));
                 accountInfo.setRole(rs.getString("role"));
 
