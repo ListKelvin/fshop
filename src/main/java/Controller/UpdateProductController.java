@@ -115,11 +115,11 @@ public class UpdateProductController extends HttpServlet {
 
                                     if (!fileName.equals("") && (fileName.endsWith("png") || fileName.endsWith("bmp") || fileName.endsWith("jpg")
                                             || fileName.endsWith("PNG") || fileName.endsWith("BMP") || fileName.endsWith("JPG"))) {
-                                        String realPath = getServletContext().getRealPath("/") + "images\\" + fileName;
+                                        String realPath = getServletContext().getRealPath("/") + "/images/" + fileName;
                                         File saveFile = new File(realPath);
                                         item.write(saveFile);
                                         log(saveFile.getPath());
-                                        image = realPath.substring(realPath.lastIndexOf("\\") + 1);
+                                        image = realPath.substring(realPath.lastIndexOf("/") + 1);
                                     }
                                 }
 

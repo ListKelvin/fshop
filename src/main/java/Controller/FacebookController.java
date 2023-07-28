@@ -6,6 +6,7 @@
 package Controller;
 
 import DTO.AccountInfo;
+import DTO.UserInfo;
 import Utils.APIWrapper;
 import Utils.DBUtils;
 import Utils.UserUtils;
@@ -31,7 +32,7 @@ public class FacebookController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String ERROR_PAGE = "error.jsp";
     private static final String ERROR_LOGIN = "index.jsp";
-    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=";
+    private static final String CUSTOMER_PAGE = "MainController?action=SearchProduct&searchTxt=&cate=";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -48,15 +49,21 @@ public class FacebookController extends HttpServlet {
 
             AccountInfo accountInfo = wrapper.getAccountInfo();
             AccountInfo loginAccount = DBUtils.login(accountInfo.getFacebookID().trim());
+            log("fb id: " + accountInfo.getFacebookID().trim());
             
             if (loginAccount == null) {
                 boolean register = DBUtils.registerByFB(accountInfo.getName(), accountInfo.getFacebookID().trim(), accountInfo.getLink());
-                System.out.println("the id2: " + loginAccount.getId());
+                log("register: " + register);
+                
                 if (register) {
-                    UserUtils.createUser(loginAccount.getId());
+                    AccountInfo login = DBUtils.login(accountInfo.getFacebookID().trim());
+                    log("account id: " + login.getId());
+                    UserUtils.createUser(login.getId());
+                    UserInfo userInfo = UserUtils.getUser(login.getId());
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loginAccount);
-                    System.out.println("the id3: " + loginAccount.getId());
+                    session.setAttribute("userInfo", userInfo);
+                   
                     url = CUSTOMER_PAGE;
                 } else {
                     request.setAttribute("mess", "register account fail");
@@ -64,9 +71,10 @@ public class FacebookController extends HttpServlet {
                 }
 
             } else {
+                UserInfo userInfo = UserUtils.getUser(loginAccount.getId());
                 HttpSession session = request.getSession();
                 session.setAttribute("user", loginAccount);
-                System.out.println("the id4: " + loginAccount.getId());
+                session.setAttribute("userInfo", userInfo);
                 url = CUSTOMER_PAGE;
             }
 

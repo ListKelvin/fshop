@@ -113,6 +113,8 @@ public class DBUtils {
                 String accountEmail = rs.getString("email");
                 AccountInfo accountInfo = new AccountInfo();
                 accountInfo.setEmail(accountEmail);
+                accountInfo.setName(rs.getString("user_name"));
+
                 accountInfo.setId(rs.getInt("id"));
                 accountInfo.setRole(rs.getString("role"));
 
@@ -220,9 +222,9 @@ public class DBUtils {
             stm.setString(1, facebookID);
             rs = stm.executeQuery();
             if (rs.next()) {
-                String user = rs.getString(2);
-                String faceId = rs.getString(4);
-                String faceLink = rs.getString(5);
+                String user = rs.getString("user_name");
+                String faceId = rs.getString("facebook_id");
+                String faceLink = rs.getString("facebook_link");
                 String accountEmail = rs.getString("email");
                 String accountRole = rs.getString("role");
 

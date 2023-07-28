@@ -19,7 +19,7 @@ import com.restfb.Version;
 public class APIWrapper {
     private static String appID = "6126359010808248";
     private static String appSerect = "914d2033816e46ae3d8c0b6ea0347cf6";
-    private static String redirectURL = "http://localhost:8080/PRJ301_FShop/MainController?action=FaceBook";
+    private static String redirectURL = "https://prj.f-code.tech/MainController?action=FaceBook";
     private String accessToken;
     private Gson gson;
 

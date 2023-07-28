@@ -34,7 +34,7 @@
                                 <label for="txtUser">User Name</label>
 
                             </div>
-                            <h4>${requestScope.messageUserName}</h4> 
+                            <p class="text-danger me-auto">${requestScope.messageUserName}</p> 
                             <div class="form-floating w-100 mb-3">
                                 <input
                                     type="email"
@@ -49,7 +49,7 @@
                                 <label for="email">Email</label>
 
                             </div>
-                            <h4>${requestScope.messageEmail}</h4> 
+                            <p class="text-danger me-auto">${requestScope.messageEmail}</p> 
                             <div class="form-floating w-100 mb-3">
                                 <input
                                     type="password"
@@ -74,7 +74,7 @@
                                     />
                                 <label for="confirmPassword">Confirm Password</label>
                             </div>
-                            <h4>${requestScope.messagePassword}</h4> 
+                            <p class="text-danger me-auto">${requestScope.messagePassword}</p> 
                             <div
                                 class="d-flex justify-content-start align-items-start mb-4 w-100"
                                 >
@@ -94,7 +94,7 @@
 
                             </div>
                             <button class="btn btn-styled" type="Submit" name="action" value="Register">Register </button> 
-                            <h4>${requestScope.message}</h4>   
+                            <p class="text-danger me-auto">${requestScope.message}</p>   
                         </form>
 
                         <div

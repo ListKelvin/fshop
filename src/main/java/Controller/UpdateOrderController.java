@@ -47,25 +47,30 @@ public class UpdateOrderController extends HttpServlet {
         try {
 
             int orderId = Integer.parseInt(request.getParameter("orderId"));
+            OrderInfo o = OrderUtils.ViewOrdersDetail(orderId);
             String status = request.getParameter("status");
             HttpSession session = request.getSession();
             AccountInfo user = (AccountInfo) session.getAttribute("user");
+            if (o.getStatus().equals("cancel")) {
+                log("order is already cancel!");
+                request.setAttribute("message", "order is cancel!!!");
+                url = MANAGE_ORDER_PAGE;
+            }
 
             if (user == null) {
                 log("(ViewCartController) Unauthentication!!");
                 request.setAttribute("message", "Unauthentication!!");
                 url = ERROR_AUTHEN;
             } else {
-               
-                if (status.equals("checking") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP)
-                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP)) {
+
+                if (status.equals("preparing") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("checking")
+                        || status.equals("delivering") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("preparing")
+                        || status.equals("done") && user.getRole().equals(RoleConstant.SHOP) && o.getStatus().equals("delivering")) {
                     log("get data successfully");
                     boolean check = OrderUtils.updateOrderStatus(orderId, status);
                     if (check) {
                         log("update status successfully");
-                        request.setAttribute("mess", "update status successfully");
+                        request.setAttribute("message", "update status successfully");
                         url = MANAGE_ORDER_PAGE;
                     }
 
@@ -80,6 +85,9 @@ public class UpdateOrderController extends HttpServlet {
                             request.setAttribute("message", "Cancel order fail");
                             url = MANAGE_ORDER_PAGE;
                         }
+                    } else {
+                        request.setAttribute("message", "Cannot Cancel Order");
+                        url = MANAGE_ORDER_PAGE;
                     }
                 } else {
                     request.setAttribute("message", "status is not valid");
@@ -88,7 +96,7 @@ public class UpdateOrderController extends HttpServlet {
             }
 
         } catch (Exception e) {
-                request.setAttribute("message", "get data failed");
+            request.setAttribute("message", "get data failed");
 
             log("Error at UpdateOrderController " + e.toString());
         } finally {

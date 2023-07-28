@@ -5,31 +5,29 @@
  */
 package Controller;
 
-import DTO.AccountInfo;
 import DTO.OrderInfo;
+import DTO.OrderProductInfo;
+import Utils.OrderProductUtils;
 import Utils.OrderUtils;
-import Utils.RoleConstant;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Minh
+ * @author 03lin
  */
-@WebServlet(name = "CancelOrder", urlPatterns = {"/CancelOrderController"})
-public class CancelOrderController extends HttpServlet {
-
-    private static final String ERROR = "error.jsp";
-    private static final String ERROR_AUTHEN = "403.jsp";
-    private static final String MANAGE_ORDER_PAGE = "MainController?action=ViewAllOrders&active=2&status=all";
-
-    private static final String CUSTOMER_ORDER_PAGE = "MainController?action=ViewOrderHistory";
+@WebServlet(name = "ExportPDFServlet", urlPatterns = {"/ExportPDF"})
+public class ExportPDFController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,45 +40,51 @@ public class CancelOrderController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+
+        response.setContentType("application/pdf");
+
+        response.setHeader(
+                "Content-disposition",
+                "inline; filename=ExportOrder.pdf");
+
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
+        List<OrderProductInfo> orderProduct = OrderProductUtils.viewOrderProduct(orderId);
 
         try {
-            HttpSession session = request.getSession();
-            AccountInfo user = (AccountInfo) session.getAttribute("user");
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
-            String status = request.getParameter("status");
-            if (status.equals("cancel")) {
-                OrderInfo order = OrderUtils.ViewOrdersDetail(orderId);
-                if (order.getStatus().equals("checking") || order.getStatus().equals("preparing")) {
-                    boolean check = OrderUtils.cancelOrder(orderId);
-                    if (check) {
-                        request.setAttribute("message", "Cancel order successfully");
-                    } else {
-                        request.setAttribute("message", "Cancel order fail");
-                    }
-                }else{
-                    System.out.println("cannot cancel");
-                    request.setAttribute("message", "order cannot cancel");
-                }
-            } else {
-                
-                request.setAttribute("message", "status is not valid");
 
+            Document document = new Document();
+
+            PdfWriter.getInstance(
+                    document, response.getOutputStream());
+
+            document.open();
+
+            document.add(new Paragraph("***************************ORDER INFORMATION***************************"));
+            document.add(new Paragraph(
+                    "Order ID: " + order.getOrderNumber() + ".\n"
+                    + "Address: " + order.getAddress() + ".\n"
+                    + "Delivery: " + order.getDelivery() + ".\n"
+                    + "Payment: " + order.getPayment() + ".\n"
+                    + "Total Bill: " + order.getTotalBill() + ".\n"
+                    + "Order create at: " + order.getCreateAt() + ".\n" + "\n"
+            ));
+            document.add(new Paragraph("***************************ORDER PRODUCT***************************"));
+            for (OrderProductInfo op : orderProduct) {
+                document.add(new Paragraph(
+                        "Product Name: " + op.getTitle() + ".\n"
+                        + "Product Category: " + op.getCategoryName() + ".\n"
+                        + "Order Quantity: " + op.getQuantity() + ".\n"
+                        + "Subtotal: " + op.getTotal() + ".\n"
+                        + "---------------------------------------------------------------------------------\n"
+                ));
             }
 
-            if (user.getRole().equals(RoleConstant.CUSTOMER)) {
-                url = CUSTOMER_ORDER_PAGE;
-            } else if (user.getRole().equals(RoleConstant.SHOP)) {
-                url = MANAGE_ORDER_PAGE;
-            } else {
-                url = ERROR_AUTHEN;
-            }
-        } catch (NumberFormatException ex) {
-            log("Error in CancelOrderController: " + ex.getMessage());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            document.close();
+        } catch (DocumentException de) {
+            throw new IOException(de.getMessage());
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

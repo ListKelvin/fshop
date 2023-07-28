@@ -25,14 +25,12 @@
                 <img src="assest/banner/Banner-1.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover"  alt="...">
             </div>
             <div class="carousel-item">
-                <img src="assest/banner/ad50db56090205.5bec77ea750ce.png" width="1920" height="600"   onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
+                <img src="assest/banner/banner-5.jpg" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="assest/banner/banner-3.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"   class="d-block w-100 object-fit-cover" alt="...">
+                <img src="assest/banner/banner-7.jpg" width="1920" height="600"   onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="assest/banner/banner-4.png" width="1920" height="600"  onError="this.onerror=null;this.src='./assest/linn.jpg';"  class="d-block w-100 object-fit-cover" alt="...">
-            </div>
+     
         </div>
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -70,8 +68,8 @@
 
         </div>
     </div>
-    </div>
-    
+</div>
+
 <section class="container-xl d-flex align-items-center justify-content-center flex-column  minHeithStyled py-5 " onLoad="init()">
 
 

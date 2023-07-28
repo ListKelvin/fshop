@@ -16,6 +16,7 @@ Controller\BestSellerContronller.class
 Controller\UpdateOrderController.class
 Utils\UserUtils.class
 Controller\AccountController.class
+Controller\ExportPDFController.class
 Controller\ViewAllProductsController.class
 Utils\GoogleSignIn.class
 Controller\RemoveCartController.class

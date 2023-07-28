@@ -64,6 +64,7 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", accountInfo);
                 session.setAttribute("userInfo", userInfo);
+                
 
                 if (RoleConstant.SHOP.equals(role)) {
                     url = SHOP_PAGE;

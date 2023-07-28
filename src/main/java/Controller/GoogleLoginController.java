@@ -50,7 +50,7 @@ public class GoogleLoginController extends HttpServlet {
             String credential = request.getParameter("credential");
 
             AccountInfo ggAcc = GoogleSignIn.authenticate(credential);
-        
+
             if (ggAcc.getEmail() != null) {
 
                 AccountInfo accDB = DBUtils.checkEmail(ggAcc.getEmail());
@@ -62,12 +62,14 @@ public class GoogleLoginController extends HttpServlet {
                     url = CUSTOMER_PAGE;
                 } else {
                     boolean registerSuccess = DBUtils.registerByGG(ggAcc.getEmail(), ggAcc.getName().trim());
+                    AccountInfo CheckAgain = DBUtils.checkEmail(ggAcc.getEmail());
+
                     if (registerSuccess) {
-                        UserUtils.createUser(accDB.getId());
-                        UserInfo userInfo2 = UserUtils.getUser(accDB.getId());
+                        UserUtils.createUser(CheckAgain.getId());
+                        UserInfo userInfo2 = UserUtils.getUser(CheckAgain.getId());
                         session.setAttribute("userInfo", userInfo2);
 
-                        session.setAttribute("user", accDB);
+                        session.setAttribute("user", CheckAgain);
                         url = CUSTOMER_PAGE;
                     }
                 }
